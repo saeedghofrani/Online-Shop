@@ -7,20 +7,20 @@ export class SmsService {
   url = process.env.SMS_URL;
   template = process.env.SMS_TEMPLATE;
 
-  // async sendOtp(code: string, receptor: string): Promise<boolean> {
-  //   const data = {
-  //     receptor,
-  //     type: 1,
-  //     template: this.template,
-  //     param1: code,
-  //   };
+  async sendOtp(code: string, receptor: string): Promise<boolean> {
+    const data = {
+      receptor,
+      type: 1,
+      template: this.template,
+      param1: code,
+    };
 
-  // const headers = {
-  //   apiKey: this.apiKey,
-  //   'Content-Type': 'application/x-www-form-urlencoded',
-  // };
+    const headers = {
+      apiKey: this.apiKey,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
 
-  // const result = await sendRequest('post', headers, this.url, data);
-  // return result && result.status == 200;
-  // }
+    const result = await sendRequest('post', headers, this.url, data);
+    return result && result.status == 200;
+  }
 }
