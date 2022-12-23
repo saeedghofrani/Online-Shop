@@ -10,6 +10,7 @@ import swaggerConfiguration from './swagger/swagger.configuration';
 import { AppConfigService } from './app/app-config.service';
 import { getEnvPath } from '../common/helper/env.helper';
 import { SwaggerConfigService } from './swagger/swagger.service';
+import jwtConfiguration from './jwt/jwt-configuration';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +25,7 @@ import { SwaggerConfigService } from './swagger/swagger.service';
         redisConfiguration,
         smsConfiguration,
         swaggerConfiguration,
+        jwtConfiguration,
       ],
     }),
   ],
