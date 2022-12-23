@@ -9,9 +9,9 @@ export class MainEntity extends BaseEntity {
   @PrimaryColumn({ nullable: false, type: 'uuid', primary: true, unique: true })
   id: string;
 
-  @CreateDateColumn({ update: false, default: Date.now() })
+  @CreateDateColumn({ update: false, default: new Date(Date.now()) })
   create_at: Date;
 
-  @UpdateDateColumn({ update: true, default: Date.now() })
+  @UpdateDateColumn({ update: true, default: new Date(Date.now()) })
   update_at: Date;
 }
