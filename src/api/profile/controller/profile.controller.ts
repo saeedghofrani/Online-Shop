@@ -1,0 +1,41 @@
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ProfileService } from '../service/profile.service';
+import { UpdateProfileDto } from '../dto/update.profile.dto';
+import { CreateProfileDto } from '../dto/create.profile.dto';
+
+@ApiBearerAuth('access-token')
+@ApiTags('Profile')
+@Controller('profile')
+export class ProfileController {
+  constructor(private profileService: ProfileService) {}
+
+  @Get('all')
+  @ApiOperation({ summary: 'Get All profiles' })
+  findAllEntities() {
+    return this.profileService.findAllEntities();
+  }
+
+  @Patch('')
+  @ApiOperation({ summary: 'Update Profile' })
+  @ApiBody({ type: UpdateProfileDto })
+  updateEntity(
+    @Query('profileId') profileId: string,
+    @Body() updateProfileDto: UpdateProfileDto,
+  ) {
+    return this.profileService.updateEntity(profileId, updateProfileDto);
+  }
+
+  @Post('')
+  @ApiOperation({ summary: 'Create Profile' })
+  @ApiBody({ type: CreateProfileDto })
+  sendOtp(@Body() createEntityDto: CreateProfileDto) {
+    return this.profileService.createEntity(createEntityDto);
+  }
+
+  @Get('')
+  @ApiOperation({ summary: 'Get Profile By Id' })
+  findOneEntity(@Query('profileId') profileId: string) {
+    return this.profileService.findOneEntity(profileId);
+  }
+}
