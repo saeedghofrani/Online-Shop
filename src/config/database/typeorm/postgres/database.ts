@@ -1,25 +1,32 @@
 import { Logger } from '@nestjs/common';
 import { join } from 'path';
+import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { UserEntity } from '../../../../entities/AUTH/user.entity';
+import { RoleEntity } from '../../../../entities/AUTH/role.entity';
+import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
+import { KycEntity } from '../../../../entities/AUTH/kyc.entity';
 
 export const dbConfig = (): PostgresConnectionOptions => ({
   type: 'postgres',
-  host: process.env.POSTGRES_HOST,
-  port: parseInt(process.env.POSTGRES_PORT, 10) || 5432,
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
-  ssl: process.env.POSTGRES_SSL === 'true',
-  entities: [join(__dirname, '../**/*.entity{.ts,.js}')],
-  synchronize: false,
+  host: process.env.PG_HOST,
+  port: parseInt(process.env.PG_PORT, 10) || 5432,
+  username: process.env.PG_USERNAME,
+  password: process.env.PG_PASSWORD,
+  database: process.env.PG_DATABASE,
+  ssl: process.env.PG_SSL === 'true',
+  entities: [
+    UserEntity,
+    ProfileEntity,
+    RoleEntity,
+    PermissionEntity,
+    KycEntity,
+  ],
+  synchronize: process.env.PG_SYNCHRONIZE === 'true',
   dropSchema: false,
   migrationsRun: false,
   logging: false,
   migrations: [join(__dirname, '../migrations/**/*{.ts,.js}')],
 });
 
-if (process.env.APP_MODE === 'DEVELOPMENT') {
-  Logger.debug(dbConfig());
-}
-
-export default dbConfig();
+export default dbConfig;
