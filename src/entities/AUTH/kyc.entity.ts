@@ -7,7 +7,7 @@ export class KycEntity extends MainEntity {
   @Column()
   father_name: string;
 
-  @Column()
+  @Column({ unique: true })
   national_code: string;
 
   @Column()
