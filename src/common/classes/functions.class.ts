@@ -1,0 +1,19 @@
+export class FunctionsClass {
+  public static generateRandomOtpCode(length: number): string {
+    let randomCode = '';
+    for (let i = 0; i < length; i++) {
+      randomCode += Math.ceil(Math.random() * (9 - 1)).toString();
+    }
+    return randomCode;
+  }
+  public static generateRandomString(length) {
+    let result = '';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+}
