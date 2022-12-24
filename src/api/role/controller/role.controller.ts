@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RoleService } from '../service/role.service';
-import { UpdateRoleDto } from '../dto/update.role.dto';
-import { CreateRoleDto } from '../dto/create.role.dto';
+import { UpdateRoleDto } from '../dto/update-role.dto';
+import { CreateRoleDto } from '../dto/create-role.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Role')

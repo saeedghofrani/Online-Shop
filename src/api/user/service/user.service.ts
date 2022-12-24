@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Repository, UpdateResult } from 'typeorm';
-import { CreateUserDto } from '../dto/create.user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
 import { UserEntity } from '../../../entities/AUTH/user.entity';
-import { UpdateUserDto } from '../dto/update.user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 import { RedisService } from '../../../utils/redis/redis.service';
 import { SendOtpStatusEnum } from '../enum/send-otp-status.enum';
 import { FunctionsClass } from '../../../common/classes/functions.class';

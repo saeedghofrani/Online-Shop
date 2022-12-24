@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateUserDto } from '../dto/update.user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
 import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
 import { LocalAuthGuard } from '../../../common/guards/local-auth.guard';

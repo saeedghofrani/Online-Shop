@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateKycDto } from '../dto/create.kyc.dto';
+import { CreateKycDto } from '../dto/create-kyc.dto';
 import { KycEntity } from 'src/entities/AUTH/kyc.entity';
 
 @Injectable()
