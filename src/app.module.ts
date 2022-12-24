@@ -11,7 +11,11 @@ import { PostgresModule } from './config/database/typeorm/postgres/postgres.modu
 
 @Module({
   imports: [
-    RedisModule.register({url:`redis://${process.env.REDIS_HOST}:${parseInt(process.env.REDIS_PORT)}`}),
+    RedisModule.register({
+      url: `redis://${process.env.REDIS_HOST}:${parseInt(
+        process.env.REDIS_PORT,
+      )}`,
+    }),
     ConfigurationModule,
     LoggerModule,
     UserModule,

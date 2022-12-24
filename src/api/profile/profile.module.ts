@@ -8,7 +8,7 @@ import { ProfileRepository } from './repositories/profile.repository';
 @Module({
   imports: [TypeOrmModule.forFeature([ProfileEntity])],
   controllers: [ProfileController],
-  providers: [ProfileService,ProfileRepository],
+  providers: [ProfileService, ProfileRepository],
   exports: [ProfileService],
 })
 export class ProfileModule {}

@@ -30,13 +30,13 @@ import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
     SmsModule,
     EmailModule,
     JwtModule.registerAsync({
-      imports:[ConfigModule],
-      inject:[ConfigService],
-      useFactory:(config:ConfigService)=>({
-       secret:config.get("jwt.secret") 
-      })
-    })
-    ],
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get('jwt.secret'),
+      }),
+    }),
+  ],
   controllers: [UserController],
   providers: [
     UserService,
@@ -45,7 +45,7 @@ import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
     EmailService,
     UserRepository,
     JwtStrategy,
-    ConfigModule
+    ConfigModule,
   ],
   exports: [UserService],
 })

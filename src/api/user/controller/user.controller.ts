@@ -14,7 +14,6 @@ import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
 import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 
-
 @ApiTags('User')
 @Controller('user')
 export class UserController {

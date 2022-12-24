@@ -21,38 +21,36 @@ import SearchTemplateApi from '@elastic/elasticsearch/lib/api/api/search_templat
 @Injectable()
 export class UserService {
   constructor(
-    private userRepository:UserRepository,
+    private userRepository: UserRepository,
     private redisService: RedisService,
     private smsService: SmsService,
     private emailService: EmailService,
-    private jwtService:JwtService
+    private jwtService: JwtService,
   ) {}
 
   private async createEntity(
     createEntityDto: CreateUserDto,
   ): Promise<UserEntity> {
-    return await this.userRepository.createEntity(createEntityDto)
+    return await this.userRepository.createEntity(createEntityDto);
   }
 
   async findAllEntities(): Promise<UserEntity[]> {
-    return await this.userRepository.findAllEntities()
+    return await this.userRepository.findAllEntities();
   }
 
   async findByEntity(searchTerm: string): Promise<UserEntity> {
-    return await this.userRepository
-      .findByEntity(searchTerm)
+    return await this.userRepository.findByEntity(searchTerm);
   }
 
   async findOneEntity(userId: string): Promise<UserEntity> {
-    return await this.userRepository
-      .findOneEntity(userId)
+    return await this.userRepository.findOneEntity(userId);
   }
 
   async updateEntity(
     id: string,
     updateEntityDto: UpdateUserDto,
   ): Promise<UpdateResult> {
-    return await this.userRepository.updateEntity(id,updateEntityDto)
+    return await this.userRepository.updateEntity(id, updateEntityDto);
   }
 
   async sendOtp(
@@ -136,9 +134,9 @@ export class UserService {
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,
-    }; 
+    };
     return {
-      access_token: this.jwtService.sign(payload,{expiresIn:"12h"}),
+      access_token: this.jwtService.sign(payload, { expiresIn: '12h' }),
     };
   }
 }

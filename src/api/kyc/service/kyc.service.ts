@@ -7,25 +7,21 @@ import { KycRepository } from '../repositories/kyc.repository';
 
 @Injectable()
 export class KycService {
-  constructor(
-    private kycRepository: KycRepository,
-  ) {}
+  constructor(private kycRepository: KycRepository) {}
 
   async createEntity(createEntityDto: CreateKycDto): Promise<KycEntity> {
-    return await this.kycRepository.createEntity(createEntityDto)
+    return await this.kycRepository.createEntity(createEntityDto);
   }
 
   async findAllEntities(): Promise<KycEntity[]> {
-    return await this.kycRepository.findAllEntities()
+    return await this.kycRepository.findAllEntities();
   }
 
   async findByEntity(searchTerm: string): Promise<KycEntity> {
-    return await this.kycRepository
-      .findByEntity(searchTerm)
+    return await this.kycRepository.findByEntity(searchTerm);
   }
 
   async findOneEntity(kycId: string): Promise<KycEntity> {
-    return await this.kycRepository
-      .findOneEntity(kycId)
+    return await this.kycRepository.findOneEntity(kycId);
   }
 }

@@ -9,35 +9,30 @@ import { PermissionRepository } from '../repositories/permission.repository';
 
 @Injectable()
 export class PermissionService {
-  constructor(
-    private permissionRepository: PermissionRepository,
-  ) {}
+  constructor(private permissionRepository: PermissionRepository) {}
 
   async createEntity(
     createEntityDto: CreatePermissionDto,
   ): Promise<PermissionEntity> {
-    return await this.permissionRepository.createEntity(createEntityDto)
+    return await this.permissionRepository.createEntity(createEntityDto);
   }
 
   async findAllEntities(): Promise<PermissionEntity[]> {
-    return await this.permissionRepository
-      .findAllEntities()
+    return await this.permissionRepository.findAllEntities();
   }
 
   async findByEntity(searchTerm: string): Promise<PermissionEntity> {
-    return await this.permissionRepository
-      .findByEntity(searchTerm)
+    return await this.permissionRepository.findByEntity(searchTerm);
   }
 
   async findOneEntity(permissionId: string): Promise<PermissionEntity> {
-    return await this.permissionRepository
-      .findOneEntity(permissionId)
+    return await this.permissionRepository.findOneEntity(permissionId);
   }
 
   async updateEntity(
     id: string,
     updateEntityDto: UpdatePermissionDto,
   ): Promise<UpdateResult> {
-    return await this.permissionRepository.updateEntity(id,updateEntityDto)
+    return await this.permissionRepository.updateEntity(id, updateEntityDto);
   }
 }

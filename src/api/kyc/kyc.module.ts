@@ -8,7 +8,7 @@ import { KycRepository } from './repositories/kyc.repository';
 @Module({
   imports: [TypeOrmModule.forFeature([KycEntity])],
   controllers: [KycController],
-  providers: [KycService,KycRepository],
+  providers: [KycService, KycRepository],
   exports: [KycService],
 })
 export class KycModule {}
