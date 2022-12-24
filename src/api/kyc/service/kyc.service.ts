@@ -3,42 +3,29 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateKycDto } from '../dto/create.kyc.dto';
 import { KycEntity } from 'src/entities/AUTH/kyc.entity';
+import { KycRepository } from '../repositories/kyc.repository';
 
 @Injectable()
 export class KycService {
   constructor(
-    @InjectRepository(KycEntity)
-    private kycRepository: Repository<KycEntity>,
+    private kycRepository: KycRepository,
   ) {}
 
   async createEntity(createEntityDto: CreateKycDto): Promise<KycEntity> {
-    return await this.kycRepository.save(
-      this.kycRepository.create(createEntityDto),
-    );
+    return await this.kycRepository.createEntity(createEntityDto)
   }
 
   async findAllEntities(): Promise<KycEntity[]> {
-    return await this.kycRepository.createQueryBuilder('kyc').getMany();
+    return await this.kycRepository.findAllEntities()
   }
 
   async findByEntity(searchTerm: string): Promise<KycEntity> {
     return await this.kycRepository
-      .createQueryBuilder('kyc')
-      .where(
-        `kyc.father_name = :searchTerm OR kyc.birth_date = :searchTerm OR kyc.national_code = :searchTerm`,
-        {
-          searchTerm,
-        },
-      )
-      .getOne();
+      .findByEntity(searchTerm)
   }
 
   async findOneEntity(kycId: string): Promise<KycEntity> {
     return await this.kycRepository
-      .createQueryBuilder('kyc')
-      .where('kyc.id = :kycId', {
-        kycId,
-      })
-      .getOne();
+      .findOneEntity(kycId)
   }
 }

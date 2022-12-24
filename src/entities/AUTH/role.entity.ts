@@ -21,10 +21,8 @@ export class RoleEntity extends MainEntity {
   delete_at?: Date;
 
   @ManyToMany(() => PermissionEntity, (permissions) => permissions.roles)
-  @JoinTable({ name: 'role_permissions' })
   permissions: PermissionEntity[];
 
   @ManyToMany(() => UserEntity, (users) => users.roles)
-  @JoinTable({ name: 'role_permissions' })
   users: UserEntity[];
 }

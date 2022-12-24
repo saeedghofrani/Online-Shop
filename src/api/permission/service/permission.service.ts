@@ -5,54 +5,39 @@ import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 import { CreatePermissionDto } from '../dto/create.permission.dto';
 import { UpdatePermissionDto } from '../dto/update.permission.dto';
 import { PermissionEntity } from '../../../entities/AUTH/permission.entity';
+import { PermissionRepository } from '../repositories/permission.repository';
 
 @Injectable()
 export class PermissionService {
   constructor(
-    @InjectRepository(PermissionEntity)
-    private permissionRepository: Repository<PermissionEntity>,
+    private permissionRepository: PermissionRepository,
   ) {}
 
   async createEntity(
     createEntityDto: CreatePermissionDto,
   ): Promise<PermissionEntity> {
-    return await this.permissionRepository.save(
-      this.permissionRepository.create(createEntityDto),
-    );
+    return await this.permissionRepository.createEntity(createEntityDto)
   }
 
   async findAllEntities(): Promise<PermissionEntity[]> {
     return await this.permissionRepository
-      .createQueryBuilder('permission')
-      .getMany();
+      .findAllEntities()
   }
 
   async findByEntity(searchTerm: string): Promise<PermissionEntity> {
     return await this.permissionRepository
-      .createQueryBuilder('permission')
-      .where(`permission.name = :searchTerm`, {
-        searchTerm,
-      })
-      .getOne();
+      .findByEntity(searchTerm)
   }
 
   async findOneEntity(permissionId: string): Promise<PermissionEntity> {
     return await this.permissionRepository
-      .createQueryBuilder('permission')
-      .where('permission.id = :permissionId', {
-        permissionId,
-      })
-      .getOne();
+      .findOneEntity(permissionId)
   }
 
   async updateEntity(
     id: string,
     updateEntityDto: UpdatePermissionDto,
   ): Promise<UpdateResult> {
-    const permissionEntity = await this.findOneEntity(id);
-    return await this.permissionRepository.update(
-      permissionEntity.id,
-      updateEntityDto,
-    );
+    return await this.permissionRepository.updateEntity(id,updateEntityDto)
   }
 }

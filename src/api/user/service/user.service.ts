@@ -15,54 +15,44 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { PayloadJwtInterface } from '../../../common/interfaces/payload-jwt.interface';
 import { JwtService } from '@nestjs/jwt';
+import { UserRepository } from '../repositories/user.repository';
+import SearchTemplateApi from '@elastic/elasticsearch/lib/api/api/search_template';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private userRepository:UserRepository,
     private redisService: RedisService,
     private smsService: SmsService,
     private emailService: EmailService,
-    private jwtService: JwtService,
+    private jwtService:JwtService
   ) {}
 
   private async createEntity(
     createEntityDto: CreateUserDto,
   ): Promise<UserEntity> {
-    return await this.userRepository.save(
-      this.userRepository.create(createEntityDto),
-    );
+    return await this.userRepository.createEntity(createEntityDto)
   }
 
   async findAllEntities(): Promise<UserEntity[]> {
-    return await this.userRepository.createQueryBuilder('user').getMany();
+    return await this.userRepository.findAllEntities()
   }
 
   async findByEntity(searchTerm: string): Promise<UserEntity> {
     return await this.userRepository
-      .createQueryBuilder('user')
-      .where(`user.mobile = :searchTerm OR user.email = :searchTerm `, {
-        searchTerm,
-      })
-      .getOne();
+      .findByEntity(searchTerm)
   }
 
   async findOneEntity(userId: string): Promise<UserEntity> {
     return await this.userRepository
-      .createQueryBuilder('user')
-      .where('user.id = :userId', {
-        userId,
-      })
-      .getOne();
+      .findOneEntity(userId)
   }
 
   async updateEntity(
     id: string,
     updateEntityDto: UpdateUserDto,
   ): Promise<UpdateResult> {
-    const userEntity = await this.findOneEntity(id);
-    return await this.userRepository.update(userEntity.id, updateEntityDto);
+    return await this.userRepository.updateEntity(id,updateEntityDto)
   }
 
   async sendOtp(
@@ -146,9 +136,9 @@ export class UserService {
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,
-    };
+    }; 
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload,{expiresIn:"12h"}),
     };
   }
 }
