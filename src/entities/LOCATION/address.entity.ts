@@ -29,7 +29,7 @@ export class AddressEntity extends MainEntity {
   @Column()
   telephone: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.address)
+  @ManyToOne(() => UserEntity, (user) => user.addresses)
   user: UserEntity;
 
   @ManyToOne(() => CityEntity, (city) => city.address)
