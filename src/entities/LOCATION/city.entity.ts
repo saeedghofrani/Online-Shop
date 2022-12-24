@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { KycEntity } from '../AUTH/kyc.entity';
 import { AddressEntity } from './address.entity';
 import { StateEntity } from './state.entity';
 

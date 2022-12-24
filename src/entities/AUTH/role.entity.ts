@@ -1,10 +1,4 @@
-import {
-  Column,
-  DeleteDateColumn,
-  Entity,
-  JoinTable,
-  ManyToMany,
-} from 'typeorm';
+import { Column, DeleteDateColumn, Entity, ManyToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { PermissionEntity } from './permission.entity';
 import { UserEntity } from './user.entity';

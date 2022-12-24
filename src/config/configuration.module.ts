@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import appConfiguration from './app/app-configuration';
 import elasticConfiguration from './database/elastic/elastic.configuration';
 import mongoConfiguration from './database/mongo/mongo.configuration';

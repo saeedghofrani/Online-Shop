@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { InjectDataSource } from '@nestjs/typeorm';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { RoleEntity } from 'src/entities/AUTH/role.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { CreateRoleDto } from '../dto/create.role.dto';
-import { UpdateRoleDto } from '../dto/update.role.dto';
+import { CreateRoleDto } from '../dto/create-role.dto';
+import { UpdateRoleDto } from '../dto/update-role.dto';
 
 @Injectable()
 export class RoleRepository

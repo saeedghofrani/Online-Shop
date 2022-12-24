@@ -1,16 +1,12 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './service/user.service';
-import { RedisModule } from 'src/utils/redis/redis.module';
 import { SmsModule } from '../../utils/sms/sms.module';
 import { EmailModule } from 'src/utils/email/email.module';
 import { RedisService } from 'src/utils/redis/redis.service';
 import { SmsService } from 'src/utils/sms/sms.service';
 import { EmailService } from '../../utils/email/email.service';
 import { UserController } from './controller/user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../../entities/AUTH/user.entity';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from '../../common/constants/jwt.constant';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserRepository } from './repositories/user.repository';
 import { JwtStrategy } from 'src/common/strategies/jwt.strategy';

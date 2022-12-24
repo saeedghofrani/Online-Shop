@@ -1,13 +1,5 @@
-import { Logger } from '@nestjs/common';
 import { join } from 'path';
-import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-import { UserEntity } from '../../../../entities/AUTH/user.entity';
-import { RoleEntity } from '../../../../entities/AUTH/role.entity';
-import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
-import { KycEntity } from '../../../../entities/AUTH/kyc.entity';
-import { DataSource, DataSourceOptions } from 'typeorm';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { DataSourceOptions } from 'typeorm';
 
 export const dbConfig = (): DataSourceOptions => ({
   type: 'postgres',

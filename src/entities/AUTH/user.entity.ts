@@ -16,7 +16,6 @@ import * as argon2 from 'argon2';
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../LOCATION/address.entity';
-import { PermissionEntity } from './permission.entity';
 import { RoleEntity } from './role.entity';
 
 @Entity({ schema: 'AUTH', name: 'user' })

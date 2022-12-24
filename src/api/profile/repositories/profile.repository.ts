@@ -3,8 +3,8 @@ import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract'
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { CreateProfileDto } from '../dto/create.profile.dto';
-import { UpdateProfileDto } from '../dto/update.profile.dto';
+import { CreateProfileDto } from '../dto/create-profile.dto';
+import { UpdateProfileDto } from '../dto/update-profile.dto';
 
 @Injectable()
 export class ProfileRepository

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserEntity } from '../AUTH/user.entity';
 import { CityEntity } from './city.entity';

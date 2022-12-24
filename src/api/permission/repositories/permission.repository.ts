@@ -1,14 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
-import {
-  DataSource,
-  Repository,
-  RepositoryNotTreeError,
-  UpdateResult,
-} from 'typeorm';
-import { CreatePermissionDto } from '../dto/create.permission.dto';
-import { UpdatePermissionDto } from '../dto/update.permission.dto';
+import { DataSource, Repository, UpdateResult } from 'typeorm';
+import { CreatePermissionDto } from '../dto/create-permission.dto';
+import { UpdatePermissionDto } from '../dto/update-permission.dto';
 
 @Injectable()
 export class PermissionRepository

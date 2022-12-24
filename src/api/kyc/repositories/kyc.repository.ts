@@ -3,7 +3,7 @@ import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract'
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { KycEntity } from 'src/entities/AUTH/kyc.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { CreateKycDto } from '../dto/create.kyc.dto';
+import { CreateKycDto } from '../dto/create-kyc.dto';
 
 @Injectable()
 export class KycRepository
