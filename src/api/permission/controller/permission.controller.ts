@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PermissionService } from '../service/permission.service';
-import { UpdatePermissionDto } from '../dto/update.permission.dto';
-import { CreatePermissionDto } from '../dto/create.permission.dto';
+import { UpdatePermissionDto } from '../dto/update-permission.dto';
+import { CreatePermissionDto } from '../dto/create-permission.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Permission')

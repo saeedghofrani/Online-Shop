@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { KycService } from '../service/kyc.service';
-import { CreateKycDto } from '../dto/create.kyc.dto';
+import { CreateKycDto } from '../dto/create-kyc.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Kyc')

@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProfileService } from '../service/profile.service';
-import { UpdateProfileDto } from '../dto/update.profile.dto';
-import { CreateProfileDto } from '../dto/create.profile.dto';
+import { UpdateProfileDto } from '../dto/update-profile.dto';
+import { CreateProfileDto } from '../dto/create-profile.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Profile')
