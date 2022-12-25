@@ -9,14 +9,18 @@ import { UserService } from '../../user/service/user.service';
 
 @Injectable()
 export class ProfileService {
-  constructor(private profileRepository: ProfileRepository,
-    private userService:UserService) {}
+  constructor(
+    private profileRepository: ProfileRepository,
+    private userService: UserService,
+  ) {}
 
   async createEntity(
     createEntityDto: CreateProfileDto,
   ): Promise<ProfileEntity> {
-    const findUser=await this.userService.findOneEntity(createEntityDto.user_id)
-    createEntityDto.user=findUser
+    const findUser = await this.userService.findOneEntity(
+      createEntityDto.user_id,
+    );
+    createEntityDto.user = findUser;
     return await this.profileRepository.createEntity(createEntityDto);
   }
 

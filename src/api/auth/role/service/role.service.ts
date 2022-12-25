@@ -36,8 +36,7 @@ export class RoleService {
     return await this.roleRepository.getRoleDefault();
   }
 
-  async findRolesByIds(ids:string[]):Promise<RoleEntity[]>
-  {
-    return await this.roleRepository.findRolesByIds(ids)
+  async findRolesByIds(ids: string[]): Promise<RoleEntity[]> {
+    return await this.roleRepository.findRolesByIds(ids);
   }
 }

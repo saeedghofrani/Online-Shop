@@ -7,12 +7,16 @@ import { UserService } from '../../user/service/user.service';
 
 @Injectable()
 export class KycService {
-  constructor(private kycRepository: KycRepository,
-    private userService:UserService) {}
+  constructor(
+    private kycRepository: KycRepository,
+    private userService: UserService,
+  ) {}
 
   async createEntity(createEntityDto: CreateKycDto): Promise<KycEntity> {
-    const findUser=await this.userService.findOneEntity(createEntityDto.user_id)
-    createEntityDto.user=findUser
+    const findUser = await this.userService.findOneEntity(
+      createEntityDto.user_id,
+    );
+    createEntityDto.user = findUser;
     return await this.kycRepository.createEntity(createEntityDto);
   }
 

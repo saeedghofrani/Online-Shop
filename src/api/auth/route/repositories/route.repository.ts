@@ -10,8 +10,7 @@ import { UpdateRouteDto } from '../dto/update-route.dto';
 @Injectable()
 export class RouteRepository
   extends Repository<RouteEntity>
-  implements
-    RepositoriesAbstract<RouteEntity, CreateRouteDto, UpdateRouteDto>
+  implements RepositoriesAbstract<RouteEntity, CreateRouteDto, UpdateRouteDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDatasource: DataSource,
@@ -19,9 +18,7 @@ export class RouteRepository
     super(ProfileEntity, postgresDatasource.createEntityManager());
   }
 
-  async createEntity(
-    createEntityDto: CreateRouteDto,
-  ): Promise<RouteEntity> {
+  async createEntity(createEntityDto: CreateRouteDto): Promise<RouteEntity> {
     return await this.save(this.create(createEntityDto));
   }
 

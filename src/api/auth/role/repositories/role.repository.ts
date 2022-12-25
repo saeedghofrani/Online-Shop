@@ -53,12 +53,9 @@ export class RoleRepository
     return await this.createQueryBuilder('role').where('role.default').getOne();
   }
 
-  async findRolesByIds(ids:string[]):Promise<RoleEntity[]>
-  {
-    return await this.find({where:{id:In(ids)}})
+  async findRolesByIds(ids: string[]): Promise<RoleEntity[]> {
+    return await this.find({ where: { id: In(ids) } });
   }
 
-  async addPermissionToUser(){
-
-  }
+  async addPermissionToUser() {}
 }

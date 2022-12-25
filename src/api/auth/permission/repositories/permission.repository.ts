@@ -16,7 +16,9 @@ export class PermissionRepository
       UpdatePermissionDto
     >
 {
-  constructor(@Inject(PostgresConstant) private postgresDataSource: DataSource) {
+  constructor(
+    @Inject(PostgresConstant) private postgresDataSource: DataSource,
+  ) {
     super(PermissionEntity, postgresDataSource.createEntityManager());
   }
   async createEntity(
@@ -52,8 +54,7 @@ export class PermissionRepository
       .getOne();
   }
 
-  async findPermissionByIds(ids:string[]):Promise<PermissionEntity[]>
-  {
-    return await this.find({where:{id:In(ids)}})
+  async findPermissionByIds(ids: string[]): Promise<PermissionEntity[]> {
+    return await this.find({ where: { id: In(ids) } });
   }
 }

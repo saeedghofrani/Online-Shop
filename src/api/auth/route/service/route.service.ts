@@ -10,14 +10,14 @@ import { RouteRepository } from '../repositories/route.repository';
 export class RouteService {
   constructor(
     private routeRepository: RouteRepository,
-    private permissionService:PermissionService 
-    ) {}
+    private permissionService: PermissionService,
+  ) {}
 
-  async createEntity(
-    createEntityDto: CreateRouteDto,
-  ): Promise<RouteEntity> {
-    const PermissionEntity = await this.permissionService.findPermissionByIds(createEntityDto.id_permissions);
-    createEntityDto.permissions=PermissionEntity;
+  async createEntity(createEntityDto: CreateRouteDto): Promise<RouteEntity> {
+    const PermissionEntity = await this.permissionService.findPermissionByIds(
+      createEntityDto.id_permissions,
+    );
+    createEntityDto.permissions = PermissionEntity;
     return await this.routeRepository.createEntity(createEntityDto);
   }
 

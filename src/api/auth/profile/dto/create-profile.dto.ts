@@ -9,8 +9,8 @@ export class CreateProfileDto {
   last_name: string;
 
   @ApiHideProperty()
-  user_id?:string
+  user_id?: string;
 
   @ApiHideProperty()
-  user?:UserEntity
+  user?: UserEntity;
 }

@@ -7,8 +7,8 @@ export class CreatePermissionDto {
   name: string;
 
   @ApiHideProperty()
-  role_id?:string[]
+  role_id?: string[];
 
   @ApiHideProperty()
-  roles:RoleEntity[]
+  roles: RoleEntity[];
 }

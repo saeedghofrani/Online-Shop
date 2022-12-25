@@ -8,14 +8,18 @@ import { PermissionRepository } from '../repositories/permission.repository';
 
 @Injectable()
 export class PermissionService {
-  constructor(private permissionRepository: PermissionRepository,
-    private roleService:RoleService) {}
+  constructor(
+    private permissionRepository: PermissionRepository,
+    private roleService: RoleService,
+  ) {}
 
   async createEntity(
     createEntityDto: CreatePermissionDto,
   ): Promise<PermissionEntity> {
-    const findRoles=await this.roleService.findRolesByIds(createEntityDto.role_id)
-    createEntityDto.roles=findRoles
+    const findRoles = await this.roleService.findRolesByIds(
+      createEntityDto.role_id,
+    );
+    createEntityDto.roles = findRoles;
     return await this.permissionRepository.createEntity(createEntityDto);
   }
 
@@ -38,8 +42,7 @@ export class PermissionService {
     return await this.permissionRepository.updateEntity(id, updateEntityDto);
   }
 
-  async findPermissionByIds(ids:string[]):Promise<PermissionEntity[]>
-  {
-    return await this.permissionRepository.findPermissionByIds(ids)
+  async findPermissionByIds(ids: string[]): Promise<PermissionEntity[]> {
+    return await this.permissionRepository.findPermissionByIds(ids);
   }
 }
