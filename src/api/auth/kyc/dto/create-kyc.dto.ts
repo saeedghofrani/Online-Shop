@@ -1,6 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty, PartialType } from '@nestjs/swagger';
+import { UserEntity } from 'src/entities/AUTH/user.entity';
 
-export class CreateKycDto {
+export class CreateKycDto  {
   @ApiProperty()
   father_name: string;
 
@@ -9,4 +10,10 @@ export class CreateKycDto {
 
   @ApiProperty()
   birth_date: Date;
+
+  @ApiHideProperty()
+  user_id?:string
+
+  @ApiHideProperty()
+  user?:UserEntity
 }
