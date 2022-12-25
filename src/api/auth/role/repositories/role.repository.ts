@@ -3,6 +3,7 @@ import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract'
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { RoleEntity } from 'src/entities/AUTH/role.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
+import { In } from 'typeorm/find-options/operator/In';
 import { CreateRoleDto } from '../dto/create-role.dto';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 
@@ -50,5 +51,14 @@ export class RoleRepository
 
   async getRoleDefault(): Promise<RoleEntity> {
     return await this.createQueryBuilder('role').where('role.default').getOne();
+  }
+
+  async findRolesByIds(ids:string[]):Promise<RoleEntity[]>
+  {
+    return await this.find({where:{id:In(ids)}})
+  }
+
+  async addPermissionToUser(){
+
   }
 }
