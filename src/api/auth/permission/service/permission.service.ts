@@ -37,4 +37,9 @@ export class PermissionService {
   ): Promise<UpdateResult> {
     return await this.permissionRepository.updateEntity(id, updateEntityDto);
   }
+
+  async findPermissionByIds(ids:string[]):Promise<PermissionEntity[]>
+  {
+    return await this.permissionRepository.findPermissionByIds(ids)
+  }
 }
