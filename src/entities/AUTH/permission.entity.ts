@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { RoleEntity } from './role.entity';
 import { RouteEntity } from './route.entity';
@@ -12,5 +12,6 @@ export class PermissionEntity extends MainEntity {
   roles: RoleEntity[];
 
   @ManyToMany(() => RouteEntity, (routes) => routes.permissions)
+  @JoinTable({ name: 'permission_route' })
   routes: RouteEntity[];
 }

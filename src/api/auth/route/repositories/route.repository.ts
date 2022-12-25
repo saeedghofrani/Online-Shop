@@ -15,7 +15,7 @@ export class RouteRepository
   constructor(
     @Inject(PostgresConstant) private postgresDatasource: DataSource,
   ) {
-    super(ProfileEntity, postgresDatasource.createEntityManager());
+    super(RouteEntity, postgresDatasource.createEntityManager());
   }
 
   async createEntity(createEntityDto: CreateRouteDto): Promise<RouteEntity> {

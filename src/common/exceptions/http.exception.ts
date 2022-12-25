@@ -14,8 +14,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
 
     const status = exception.getStatus();
-    console.log({ status, url: request.url });
-    console.log('hi', exception);
     const date = Date.now();
     switch (status) {
       case 400: {

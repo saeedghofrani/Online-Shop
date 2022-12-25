@@ -21,6 +21,9 @@ import { ProfileService } from './profile/service/profile.service';
 import { RoleController } from './role/controller/role.controller';
 import { RoleRepository } from './role/repositories/role.repository';
 import { RoleService } from './role/service/role.service';
+import { RouteController } from './route/controller/route.controller';
+import { RouteRepository } from './route/repositories/route.repository';
+import { RouteService } from './route/service/route.service';
 
 @Module({
   imports: [
@@ -36,6 +39,7 @@ import { RoleService } from './role/service/role.service';
   ],
   controllers: [
     UserController,
+    RouteController,
     RoleController,
     ProfileController,
     PermissionController,
@@ -44,6 +48,8 @@ import { RoleService } from './role/service/role.service';
   providers: [
     UserService,
     RedisService,
+    RouteRepository,
+    RouteService,
     ProfileService,
     ProfileRepository,
     PermissionService,

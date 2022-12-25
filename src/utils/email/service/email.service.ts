@@ -13,8 +13,6 @@ export class EmailService {
     private transporter: nodemailer.Transporter<SMTPTransport.SentMessageInfo>,
   ) {}
   async sentCode(email: string, sendEmailDto: SendEmailDto): Promise<any> {
-    console.log(email);
-    console.log(sendEmailDto);
     let str = await fs.readFileSync(
       path.join(process.cwd(), 'src/assets/template/', 'FA', 'otp') + '.ejs',
     );
