@@ -1,22 +1,20 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { UpdateResult } from 'typeorm';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UserEntity } from '../../../entities/AUTH/user.entity';
-import { UpdateUserDto } from '../dto/update-user.dto';
-import { RedisService } from '../../../utils/redis/redis.service';
-import { SendOtpStatusEnum } from '../enum/send-otp-status.enum';
-import { FunctionsClass } from '../../../common/classes/functions.class';
-import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
-import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
-import { SmsService } from '../../../utils/sms/sms.service';
-import { OtpRedisInterface } from '../interface/otp-redis.interface';
-import { v4 as uuidv4 } from 'uuid';
-import { PayloadJwtInterface } from '../../../common/interfaces/payload-jwt.interface';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from '../repositories/user.repository';
-import { RoleService } from 'src/api/role/service/role.service';
-import { EmailService } from 'src/utils/email/service/email.service';
+import { FunctionsClass } from 'src/common/classes/functions.class';
+import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
+import { UserEntity } from 'src/entities/AUTH/user.entity';
 import { SendEmailDto } from 'src/utils/email/dto/send-email.dto';
+import { EmailService } from 'src/utils/email/service/email.service';
+import { RedisService } from 'src/utils/redis/redis.service';
+import { SmsService } from 'src/utils/sms/sms.service';
+import { UpdateResult } from 'typeorm';
+import { RoleService } from '../../role/service/role.service';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { EmailSendOtpDto, CheckEmailOtpDto } from '../dto/email-otp.dto';
+import { MobileSendOtpDto, CheckMobileOtpDto } from '../dto/mobile-otp.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { OtpRedisInterface } from '../interface/otp-redis.interface';
+import { UserRepository } from '../repositories/user.repository';
 
 @Injectable()
 export class UserService {
@@ -26,7 +24,7 @@ export class UserService {
     private smsService: SmsService,
     private emailService: EmailService,
     private jwtService: JwtService,
-    private roleService: RoleService
+    private roleService: RoleService,
   ) {}
 
   private async createEntity(
@@ -89,15 +87,15 @@ export class UserService {
     hashCode: string,
   ): Promise<void> {
     const sendEmailDto: SendEmailDto = {
-      otp:otpCode,
-      subject: 'test' 
-    }
+      otp: otpCode,
+      subject: 'test',
+    };
     await this.emailService.sentCode(sendOtpDto.email, sendEmailDto);
     await this.redisService.setKey(
       `${hashCode}`,
       JSON.stringify({
         otpCode,
-        user: sendOtpDto.email
+        user: sendOtpDto.email,
       }),
       120,
     );
@@ -113,15 +111,15 @@ export class UserService {
     if (!getKey) throw new BadRequestException('Code has expired ...! ');
     if (getKey.otpCode !== checkOtpDto.code)
       throw new BadRequestException('Otp Code is not valid ...!');
-      userEntity = await this.findByEntity(getKey.user);
-      if (!userEntity) {
-        const role = await this.roleService.getRoleDefault();
-        const createUser = new CreateUserDto();
-        if (checkOtpDto.hasOwnProperty('mobile')) createUser.mobile = getKey.user;
-        else createUser.email = getKey.user;
-        createUser.roles = [role];
-        userEntity = await this.createEntity(createUser);
-      }
+    userEntity = await this.findByEntity(getKey.user);
+    if (!userEntity) {
+      const role = await this.roleService.getRoleDefault();
+      const createUser = new CreateUserDto();
+      if (checkOtpDto.hasOwnProperty('mobile')) createUser.mobile = getKey.user;
+      else createUser.email = getKey.user;
+      createUser.roles = [role];
+      userEntity = await this.createEntity(createUser);
+    }
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,
