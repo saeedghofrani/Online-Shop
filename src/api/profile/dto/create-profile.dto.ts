@@ -1,9 +1,6 @@
-import { ApiHideProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateProfileDto {
-  @ApiHideProperty()
-  id: string;
-
   @ApiPropertyOptional()
   first_name: string;
 

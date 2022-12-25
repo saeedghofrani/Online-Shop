@@ -12,14 +12,6 @@ export class MobileSendOtpDto {
   @ApiProperty()
   @IsNotEmpty()
   prefix: string;
-
-  @IsNotEmpty()
-  @ApiProperty({
-    type: 'enum',
-    enum: SendOtpStatusEnum,
-    default: SendOtpStatusEnum.LOGIN,
-  })
-  otp_type: SendOtpStatusEnum;
 }
 
 export class CheckMobileOtpDto {

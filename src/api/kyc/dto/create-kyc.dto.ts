@@ -1,9 +1,6 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateKycDto {
-  @ApiHideProperty()
-  id: string;
-
   @ApiProperty()
   father_name: string;
 

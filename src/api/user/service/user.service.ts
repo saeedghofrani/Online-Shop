@@ -9,12 +9,14 @@ import { FunctionsClass } from '../../../common/classes/functions.class';
 import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
 import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
 import { SmsService } from '../../../utils/sms/sms.service';
-import { EmailService } from 'src/utils/email/email.service';
 import { OtpRedisInterface } from '../interface/otp-redis.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { PayloadJwtInterface } from '../../../common/interfaces/payload-jwt.interface';
 import { JwtService } from '@nestjs/jwt';
 import { UserRepository } from '../repositories/user.repository';
+import { RoleService } from 'src/api/role/service/role.service';
+import { EmailService } from 'src/utils/email/service/email.service';
+import { SendEmailDto } from 'src/utils/email/dto/send-email.dto';
 
 @Injectable()
 export class UserService {
@@ -24,6 +26,7 @@ export class UserService {
     private smsService: SmsService,
     private emailService: EmailService,
     private jwtService: JwtService,
+    private roleService: RoleService
   ) {}
 
   private async createEntity(
@@ -70,17 +73,11 @@ export class UserService {
     hashCode: string,
   ): Promise<void> {
     await this.smsService.sendOtp(otpCode, sendOtpDto.mobile);
-    if (sendOtpDto.otp_type == SendOtpStatusEnum.LOGIN) {
-      const userEntity = await this.findByEntity(sendOtpDto.mobile);
-      if (!userEntity)
-        throw new BadRequestException('Your not register yet ...!');
-    }
     await this.redisService.setKey(
       `${hashCode}`,
       JSON.stringify({
         otpCode,
         user: sendOtpDto.mobile,
-        type: sendOtpDto.otp_type,
       }),
       120,
     );
@@ -91,18 +88,16 @@ export class UserService {
     otpCode: string,
     hashCode: string,
   ): Promise<void> {
-    await this.emailService.sentCode(sendOtpDto.email, otpCode);
-    if (sendOtpDto.otp_type == SendOtpStatusEnum.LOGIN) {
-      const userEntity = await this.findByEntity(sendOtpDto.email);
-      if (!userEntity)
-        throw new BadRequestException('Your not register yet ...!');
+    const sendEmailDto: SendEmailDto = {
+      otp:otpCode,
+      subject: 'test' 
     }
+    await this.emailService.sentCode(sendOtpDto.email, sendEmailDto);
     await this.redisService.setKey(
       `${hashCode}`,
       JSON.stringify({
         otpCode,
-        user: sendOtpDto.email,
-        type: sendOtpDto.otp_type,
+        user: sendOtpDto.email
       }),
       120,
     );
@@ -118,17 +113,15 @@ export class UserService {
     if (!getKey) throw new BadRequestException('Code has expired ...! ');
     if (getKey.otpCode !== checkOtpDto.code)
       throw new BadRequestException('Otp Code is not valid ...!');
-    if (getKey.type == SendOtpStatusEnum.LOGIN) {
       userEntity = await this.findByEntity(getKey.user);
-      if (!userEntity)
-        throw new BadRequestException('Your not register yet ...!');
-    } else {
-      const createUser = new CreateUserDto();
-      createUser.id = uuidv4();
-      if (checkOtpDto.hasOwnProperty('mobile')) createUser.mobile = getKey.user;
-      else createUser.email = getKey.user;
-      userEntity = await this.createEntity(createUser);
-    }
+      if (!userEntity) {
+        const role = await this.roleService.getRoleDefault();
+        const createUser = new CreateUserDto();
+        if (checkOtpDto.hasOwnProperty('mobile')) createUser.mobile = getKey.user;
+        else createUser.email = getKey.user;
+        createUser.roles = [role];
+        userEntity = await this.createEntity(createUser);
+      }
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,

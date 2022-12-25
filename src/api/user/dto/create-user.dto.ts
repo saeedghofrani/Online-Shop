@@ -1,9 +1,7 @@
 import { ApiHideProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { RoleEntity } from 'src/entities/AUTH/role.entity';
 
 export class CreateUserDto {
-  @ApiHideProperty()
-  id: string;
-
   @ApiPropertyOptional()
   mobile?: string;
 
@@ -12,4 +10,7 @@ export class CreateUserDto {
 
   @ApiPropertyOptional()
   password?: string;
+
+  @ApiHideProperty()
+  roles: RoleEntity[];
 }

@@ -1,9 +1,6 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateRoleDto {
-  @ApiHideProperty()
-  id: string;
-
   @ApiProperty()
   name: string;
 

@@ -47,4 +47,10 @@ export class RoleRepository
   async findAllEntities(): Promise<RoleEntity[]> {
     return await this.createQueryBuilder('role').getMany();
   }
+
+  async getRoleDefault(): Promise<RoleEntity> {
+    return await this.createQueryBuilder('role')
+    .where('role.default')
+    .getOne();
+  }
 }

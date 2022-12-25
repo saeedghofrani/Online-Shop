@@ -31,4 +31,8 @@ export class RoleService {
   ): Promise<UpdateResult> {
     return await this.roleRepository.updateEntity(id, updateEntityDto);
   }
+
+  async getRoleDefault() {
+    return await this.roleRepository.getRoleDefault();
+  }
 }

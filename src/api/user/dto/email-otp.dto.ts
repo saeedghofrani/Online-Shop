@@ -8,14 +8,6 @@ export class EmailSendOtpDto {
   @IsString()
   @IsNotEmpty()
   email: string;
-
-  @IsNotEmpty()
-  @ApiProperty({
-    type: 'enum',
-    enum: SendOtpStatusEnum,
-    default: SendOtpStatusEnum.LOGIN,
-  })
-  otp_type: SendOtpStatusEnum;
 }
 
 export class CheckEmailOtpDto {

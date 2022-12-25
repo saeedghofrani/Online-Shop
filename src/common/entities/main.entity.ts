@@ -2,11 +2,12 @@ import {
   BaseEntity,
   CreateDateColumn,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 export class MainEntity extends BaseEntity {
-  @PrimaryColumn({ nullable: false, type: 'uuid', primary: true, unique: true })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @CreateDateColumn({ update: false, default: new Date(Date.now()) })

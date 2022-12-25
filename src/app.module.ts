@@ -17,6 +17,7 @@ import { PostgresModule } from './config/database/typeorm/postgres/postgres.modu
     }),
     ConfigurationModule,
     LoggerModule,
+    EmailModule,
     UserModule,
     PostgresModule.openConnection(dbConfig()),
     SmsModule,
