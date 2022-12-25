@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
+import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
@@ -15,7 +16,7 @@ export class PermissionRepository
       UpdatePermissionDto
     >
 {
-  constructor(@Inject() private postgresDataSource: DataSource) {
+  constructor(@Inject(PostgresConstant) private postgresDataSource: DataSource) {
     super(PermissionEntity, postgresDataSource.createEntityManager());
   }
   async createEntity(
