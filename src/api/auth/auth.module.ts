@@ -54,8 +54,7 @@ import { RoleService } from './role/service/role.service';
     RoleRepository,
     SmsService,
     UserRepository,
-    JwtStrategy,
-    ConfigModule,
+    JwtStrategy
   ],
   exports: [
     UserService,

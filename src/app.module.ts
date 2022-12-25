@@ -20,8 +20,7 @@ import { AuthModule } from './api/auth/auth.module';
     EmailModule,
     AuthModule,
     PostgresModule.openConnection(dbConfig()),
-    SmsModule,
-    EmailModule,
+    SmsModule
   ],
   controllers: [],
   providers: [],
