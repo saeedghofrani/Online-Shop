@@ -6,9 +6,9 @@ export class BrandEntity extends MainEntity {
     @Column({unique: true})
     name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    status: boolean;
+  @Column()
+  status: boolean;
 }
