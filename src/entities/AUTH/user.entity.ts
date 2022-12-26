@@ -17,6 +17,7 @@ import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../LOCATION/address.entity';
 import { RoleEntity } from './role.entity';
+import { FileEntity } from '../public/file.entity';
 
 @Entity({ schema: 'AUTH', name: 'user' })
 export class UserEntity extends MainEntity {
@@ -52,6 +53,9 @@ export class UserEntity extends MainEntity {
   @ManyToMany(() => RoleEntity, (roles) => roles.users)
   @JoinTable({ name: 'user_role' })
   roles: RoleEntity[];
+
+  @OneToMany(() => FileEntity, (file) => file.user)
+  files: FileEntity[];
 
   @BeforeInsert()
   async hashPassword() {
