@@ -5,12 +5,12 @@ import { RepoEntity } from './repo.entity';
 
 @Entity({ schema: 'INVENTORY', name: 'summary' })
 export class SummaryEntity extends MainEntity {
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @ManyToOne(() => RepoEntity, (repo) => repo.summaries)
-    repo: RepoEntity;
+  @ManyToOne(() => RepoEntity, (repo) => repo.summaries)
+  repo: RepoEntity;
 
-    @ManyToOne(() => ProductEntity, (product) => product.summaries)
-    product: ProductEntity;
+  @ManyToOne(() => ProductEntity, (product) => product.summaries)
+  product: ProductEntity;
 }

@@ -1,16 +1,16 @@
-import { Body, Controller, Get, Patch, Post, Query } from "@nestjs/common";
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { CreateStateDto } from "../dto/create-state.dto";
-import { UpdateStateDto } from "../dto/update-state.dto";
-import { StateService } from "../services/state.service";
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CreateStateDto } from '../dto/create-state.dto';
+import { UpdateStateDto } from '../dto/update-state.dto';
+import { StateService } from '../services/state.service';
 
 @ApiBearerAuth('access-token')
 @ApiTags('State')
-@Controller("state")
-export class StateController{
-    constructor(private stateService:StateService){}
+@Controller('state')
+export class StateController {
+  constructor(private stateService: StateService) {}
 
-    @Get('all')
+  @Get('all')
   @ApiOperation({ summary: 'Get All States' })
   findAllEntities() {
     return this.stateService.findAllEntities();
@@ -23,10 +23,7 @@ export class StateController{
     @Query('stateId') stateId: string,
     @Body() updateStateDto: UpdateStateDto,
   ) {
-    return this.stateService.updateEntity(
-      stateId,
-      updateStateDto,
-    );
+    return this.stateService.updateEntity(stateId, updateStateDto);
   }
 
   @Post('')

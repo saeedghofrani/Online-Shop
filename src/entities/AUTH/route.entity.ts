@@ -8,7 +8,7 @@ export class RouteEntity extends MainEntity {
   @Column({ unique: true })
   address: string;
 
-  @Column({type: 'jsonb', nullable: true})
+  @Column({ type: 'jsonb', nullable: true })
   query: Record<string, string>;
 
   @Column({ type: 'enum', enum: RouteMethodeEnum })
@@ -20,7 +20,7 @@ export class RouteEntity extends MainEntity {
   @Column()
   jwt: boolean;
 
-  @Column({type: 'jsonb', nullable: true})
+  @Column({ type: 'jsonb', nullable: true })
   body: Record<string, string>;
 
   @Column()

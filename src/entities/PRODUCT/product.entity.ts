@@ -6,19 +6,18 @@ import { CategoryEntity } from './category.entity';
 
 @Entity({ schema: 'PRODUCT', name: 'product' })
 export class ProductEntity extends MainEntity {
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @OneToMany(() => FileEntity, (file) => file.product)
-    files: FileEntity[];
+  @OneToMany(() => FileEntity, (file) => file.product)
+  files: FileEntity[];
 
-    @ManyToOne(() => CategoryEntity, (category) => category.products)
-    category: CategoryEntity;
+  @ManyToOne(() => CategoryEntity, (category) => category.products)
+  category: CategoryEntity;
 
-    
-    @OneToMany(() => SummaryEntity, (summaries) => summaries.product)
-    summaries: SummaryEntity[];
+  @OneToMany(() => SummaryEntity, (summaries) => summaries.product)
+  summaries: SummaryEntity[];
 }
