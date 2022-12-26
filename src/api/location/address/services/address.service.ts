@@ -24,9 +24,6 @@ export class AddressService{
     }
 
     async updateEntity(id: string, updateEntityDto: UpdateAddressDto): Promise<UpdateResult> {
-        if(updateEntityDto.userId)
-        updateEntityDto.user=await this.userService.findOneEntity(updateEntityDto.userId)
-
         if(updateEntityDto.cityId)
         updateEntityDto.city=await this.cityService.findOneEntity(updateEntityDto.cityId)
 

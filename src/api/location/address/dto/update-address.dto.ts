@@ -26,15 +26,9 @@ export class UpdateAddressDto{
     
     @ApiProperty()
     telephone: string;
-  
-    @ApiProperty()
-    userId:string
 
     @ApiProperty()
     cityId:string
-
-    @ApiHideProperty()
-    user: UserEntity;
   
     @ApiHideProperty()
     city: CityEntity;
