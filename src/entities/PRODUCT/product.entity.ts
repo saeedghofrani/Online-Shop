@@ -4,7 +4,7 @@ import { SummaryEntity } from '../INVENTORY/summary.entity';
 import { FileEntity } from '../public/file.entity';
 import { CategoryEntity } from './category.entity';
 
-@Entity({ schema: 'PRODUCT', name: 'product' })
+@Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
   @Column()
   name: string;

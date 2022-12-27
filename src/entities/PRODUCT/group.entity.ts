@@ -10,7 +10,7 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { AttributeEntity } from './attribute.entity';
 import { CategoryEntity } from './category.entity';
 
-@Entity({ schema: 'PRODUCT', name: 'group' })
+@Entity({ schema: 'product', name: 'group' })
 export class GroupEntity extends MainEntity {
   @Column({ unique: true })
   name: string;

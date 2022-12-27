@@ -2,7 +2,7 @@ import { Column, Entity, ManyToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { GroupEntity } from './group.entity';
 
-@Entity({ schema: 'PRODUCT', name: 'attribute' })
+@Entity({ schema: 'product', name: 'attribute' })
 export class AttributeEntity extends MainEntity {
   @Column({ unique: true })
   name: string;
