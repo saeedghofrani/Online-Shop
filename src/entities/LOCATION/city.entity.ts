@@ -3,7 +3,7 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { AddressEntity } from './address.entity';
 import { StateEntity } from './state.entity';
 
-@Entity({ schema: 'LOCATION', name: 'city' })
+@Entity({ schema: 'location', name: 'city' })
 export class CityEntity extends MainEntity {
   @Column()
   name: string;
