@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuthModule } from '../auth/auth.module';
 import { AddressController } from './address/controller/address.controller';
 import { AddressRepository } from './address/repositories/address.repository';
 import { AddressService } from './address/services/address.service';
@@ -10,6 +11,7 @@ import { StateRepository } from './state/repositories/state.repository';
 import { StateService } from './state/services/state.service';
 
 @Module({
+  imports: [AuthModule],
   controllers: [StateController, CityController, AddressController],
   providers: [
     StateService,
