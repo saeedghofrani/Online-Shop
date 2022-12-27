@@ -7,6 +7,8 @@ import { SmsModule } from './utils/sms/sms.module';
 import { EmailModule } from './utils/email/email.module';
 import { PostgresModule } from './config/database/typeorm/postgres/postgres.module';
 import { AuthModule } from './api/auth/auth.module';
+import { InventoryModuel } from './api/inventory/inventory.module';
+import { LocationModule } from './api/location/location.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { AuthModule } from './api/auth/auth.module';
     ConfigurationModule,
     LoggerModule,
     EmailModule,
+    LocationModule,
+    InventoryModuel,
     AuthModule,
     PostgresModule.openConnection(dbConfig()),
     SmsModule,
