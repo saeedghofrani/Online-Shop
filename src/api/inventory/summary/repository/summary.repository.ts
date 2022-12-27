@@ -40,7 +40,7 @@ export class SummaryRepository extends Repository<SummaryEntity> implements Repo
     
       async findOneEntity(summaryId: string): Promise<SummaryEntity> {
         return await this.createQueryBuilder('summary')
-          .where('summary.id = :summary', {
+          .where('summary.id = :summaryId', {
             summaryId,
           })
           .getOne();

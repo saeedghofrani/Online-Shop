@@ -41,7 +41,7 @@ export class ProviderRepository extends Repository<ProviderEntity> implements Re
     
       async findOneEntity(providerId: string): Promise<ProviderEntity> {
         return await this.createQueryBuilder('provider')
-          .where('provider.id = :provider', {
+          .where('provider.id = :providerId', {
             providerId,
           })
           .getOne();

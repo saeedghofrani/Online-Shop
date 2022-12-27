@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/common/decorator/user.decorator';
+import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { UserDto } from 'src/common/interfaces/user.interface';
 import { CreateProviderDto } from '../dto/create-provider.dto';
 import { UpdateProviderStatusDto } from '../dto/update-provider-status.dto';
@@ -48,6 +49,7 @@ export class ProviderController {
   @Post('')
   @ApiOperation({ summary: 'Create Provider' })
   @ApiBody({ type: CreateProviderDto })
+  @UseJwtGuard()
   sendOtp(
     @Body() createEntityDto: CreateProviderDto,
     @GetUser() user: UserDto

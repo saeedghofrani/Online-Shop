@@ -30,9 +30,9 @@ export class UserRepository
 
   async findOneEntity(id: string): Promise<UserEntity> {
     return await this.createQueryBuilder('user')
-    .innerJoinAndSelect('user.kyc', 'kyc')
+    .leftJoinAndSelect('user.kyc', 'kyc')
       .where('user.id = :userId', {
-        id,
+        userId:id
       })
       .getOne();
   }
