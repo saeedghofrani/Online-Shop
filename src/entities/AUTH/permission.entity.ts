@@ -3,7 +3,7 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { RoleEntity } from './role.entity';
 import { RouteEntity } from './route.entity';
 
-@Entity({ schema: 'AUTH', name: 'permission' })
+@Entity({ schema: 'auth', name: 'permission' })
 export class PermissionEntity extends MainEntity {
   @Column()
   name: string;

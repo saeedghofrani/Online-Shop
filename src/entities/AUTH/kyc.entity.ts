@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserEntity } from './user.entity';
 
-@Entity({ schema: 'AUTH', name: 'kyc' })
+@Entity({ schema: 'auth', name: 'kyc' })
 export class KycEntity extends MainEntity {
   @Column()
   father_name: string;

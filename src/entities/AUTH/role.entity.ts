@@ -9,7 +9,7 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { PermissionEntity } from './permission.entity';
 import { UserEntity } from './user.entity';
 
-@Entity({ schema: 'AUTH', name: 'role' })
+@Entity({ schema: 'auth', name: 'role' })
 export class RoleEntity extends MainEntity {
   @Column()
   name: string;

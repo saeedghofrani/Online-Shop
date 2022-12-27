@@ -18,8 +18,9 @@ import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../LOCATION/address.entity';
 import { RoleEntity } from './role.entity';
 import { FileEntity } from '../public/file.entity';
+import { ProviderEntity } from '../INVENTORY/provider.entity';
 
-@Entity({ schema: 'AUTH', name: 'user' })
+@Entity({ schema: 'auth', name: 'user' })
 export class UserEntity extends MainEntity {
   @Index({ fulltext: true })
   @Column({ nullable: true, unique: true })
@@ -56,6 +57,10 @@ export class UserEntity extends MainEntity {
 
   @OneToMany(() => FileEntity, (file) => file.user)
   files: FileEntity[];
+
+  
+  @OneToMany(() => ProviderEntity, (providers) => providers.user)
+  providers: ProviderEntity[];
 
   @BeforeInsert()
   async hashPassword() {

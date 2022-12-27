@@ -3,7 +3,7 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { RouteMethodeEnum } from './enum/route-method.enum';
 import { PermissionEntity } from './permission.entity';
 
-@Entity({ schema: 'AUTH', name: 'route' })
+@Entity({ schema: 'auth', name: 'route' })
 export class RouteEntity extends MainEntity {
   @Column({ unique: true })
   address: string;
