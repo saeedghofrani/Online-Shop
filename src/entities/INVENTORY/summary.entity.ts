@@ -1,15 +1,24 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { ProductEntity } from '../PRODUCT/product.entity';
-import { RepoEntity } from './repo.entity';
+import { ProviderEntity } from './provider.entity';
 
-@Entity({ schema: 'INVENTORY', name: 'summary' })
+@Entity({ schema: 'inventory', name: 'summary' })
 export class SummaryEntity extends MainEntity {
   @Column()
   description: string;
 
-  @ManyToOne(() => RepoEntity, (repo) => repo.summaries)
-  repo: RepoEntity;
+  @Column({type: 'numeric'})
+  count: string;
+
+  @Column()
+  minimum: number;
+
+  @Column()
+  unit: string;
+
+  @ManyToOne(() => ProviderEntity, (repo) => repo.summaries)
+  provider: ProviderEntity;
 
   @ManyToOne(() => ProductEntity, (product) => product.summaries)
   product: ProductEntity;
