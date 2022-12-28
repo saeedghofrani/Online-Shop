@@ -1,6 +1,8 @@
 import { Controller, Post, Patch, Get, Body, Query } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common/decorators';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { GetUser } from 'src/common/decorator/user.decorator';
+import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { AddressEntity } from 'src/entities/LOCATION/address.entity';
 import { UpdateResult } from 'typeorm';
@@ -15,6 +17,7 @@ export class AddressController {
   constructor(private addressService: AddressService) {}
 
   @Post()
+  @UseJwtGuard()
   @ApiOperation({ summary: 'create Address' })
   async createEntity(
     @Body() createEntityDto: CreateAddressDto,@GetUser() user:UserInterface

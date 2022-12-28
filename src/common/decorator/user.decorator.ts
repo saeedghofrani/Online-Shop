@@ -4,8 +4,6 @@ import { UserInterface } from "../interfaces/user.interface";
 export const GetUser = createParamDecorator(
     (data, request):UserInterface => {
         const req = request.switchToHttp().getRequest();
-        console.log(req);
-        
         const user: UserInterface = {
             userId: req.user.userId,
         }

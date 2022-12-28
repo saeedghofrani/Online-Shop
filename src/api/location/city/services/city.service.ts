@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common/decorators';
 import { CityEntity } from 'src/entities/LOCATION/city.entity';
 import { UpdateResult } from 'typeorm';
 import { StateService } from '../../state/services/state.service';
@@ -5,6 +6,7 @@ import { CreateCityDto } from '../dto/create-city.dto';
 import { UpdateCityDto } from '../dto/update-city.dto';
 import { CityRepository } from '../repositories/city.repository';
 
+@Injectable()
 export class CityService {
   constructor(
     private cityRepository: CityRepository,

@@ -27,8 +27,8 @@ export class CreateAddressDto {
   @ApiProperty()
   telephone: string;
 
-  @ApiProperty()
-  userId: string;
+  @ApiHideProperty()
+  userId?: string;
 
   @ApiProperty()
   cityId: string;
