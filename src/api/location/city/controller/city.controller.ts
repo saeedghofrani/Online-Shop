@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CityEntity } from 'src/entities/LOCATION/city.entity';
 import { UpdateResult } from 'typeorm';
@@ -14,22 +14,22 @@ export class CityController {
 
   @Post()
   @ApiOperation({ summary: 'create city' })
-  async createEntity(createEntityDto: CreateCityDto): Promise<CityEntity> {
+  async createEntity(@Body() createEntityDto: CreateCityDto): Promise<CityEntity> {
     return await this.cityService.createEntity(createEntityDto);
   }
 
   @Patch()
   @ApiOperation({ summary: 'Update City' })
   async updateEntity(
-    id: string,
-    updateEntityDto: UpdateCityDto,
+    @Query("cityId") id: string,
+    @Body() updateEntityDto: UpdateCityDto,
   ): Promise<UpdateResult> {
     return await this.cityService.updateEntity(id, updateEntityDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get One City' })
-  async findOneEntity(id: string): Promise<CityEntity> {
+  async findOneEntity(@Query("cityId") id: string): Promise<CityEntity> {
     return await this.cityService.findOneEntity(id);
   }
 

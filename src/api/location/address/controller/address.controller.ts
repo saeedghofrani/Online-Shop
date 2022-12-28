@@ -1,5 +1,7 @@
-import { Controller, Post, Patch, Get } from '@nestjs/common';
+import { Controller, Post, Patch, Get, Body, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
+import { GetUser } from 'src/common/decorator/user.decorator';
+import { UserInterface } from 'src/common/interfaces/user.interface';
 import { AddressEntity } from 'src/entities/LOCATION/address.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAddressDto } from '../dto/create-address.dto';
@@ -15,23 +17,24 @@ export class AddressController {
   @Post()
   @ApiOperation({ summary: 'create Address' })
   async createEntity(
-    createEntityDto: CreateAddressDto,
+    @Body() createEntityDto: CreateAddressDto,@GetUser() user:UserInterface
   ): Promise<AddressEntity> {
+    createEntityDto.userId=user.userId
     return await this.addressService.createEntity(createEntityDto);
   }
 
   @Patch()
   @ApiOperation({ summary: 'Update Address' })
   async updateEntity(
-    id: string,
-    updateEntityDto: UpdateAddressDto,
+    @Query("addressId") id: string,
+     @Body() updateEntityDto: UpdateAddressDto,
   ): Promise<UpdateResult> {
     return await this.addressService.updateEntity(id, updateEntityDto);
   }
-
+ 
   @Get()
   @ApiOperation({ summary: 'Get One Address' })
-  async findOneEntity(id: string): Promise<AddressEntity> {
+  async findOneEntity(@Query("addressId") id: string): Promise<AddressEntity> {
     return await this.addressService.findOneEntity(id);
   }
 

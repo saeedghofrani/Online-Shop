@@ -1,12 +1,12 @@
 import { createParamDecorator } from "@nestjs/common";
-import { UserDto } from "../interfaces/user.interface";
+import { UserInterface } from "../interfaces/user.interface";
 
 export const GetUser = createParamDecorator(
-    (data, request):UserDto => {
+    (data, request):UserInterface => {
         const req = request.switchToHttp().getRequest();
         console.log(req);
         
-        const user: UserDto = {
+        const user: UserInterface = {
             userId: req.user.userId,
         }
         return user;
