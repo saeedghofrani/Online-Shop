@@ -9,6 +9,7 @@ import { PostgresModule } from './config/database/typeorm/postgres/postgres.modu
 import { AuthModule } from './api/auth/auth.module';
 import { InventoryModuel } from './api/inventory/inventory.module';
 import { LocationModule } from './api/location/location.module';
+import { MopngooseModule } from './config/database/mongoose/mongoose.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { LocationModule } from './api/location/location.module';
     ConfigurationModule,
     LoggerModule,
     EmailModule,
+    MopngooseModule,
     LocationModule,
     InventoryModuel,
     AuthModule,
