@@ -6,14 +6,14 @@ import { OrderEntity } from './order.entity';
 
 @Entity({ schema: 'wallet', name: 'pricing' })
 export class PricingEntity extends MainEntity {
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    price: number;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  price: number;
 
-    @ManyToOne(() => ProductEntity, product => product.pricings)
-    product: ProductEntity;
-    
+  @ManyToOne(() => ProductEntity, (product) => product.pricings)
+  product: ProductEntity;
+
   @OneToMany(() => OrderEntity, (orders) => orders.price)
   orders: OrderEntity[];
 }

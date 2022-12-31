@@ -67,10 +67,10 @@ export class UserEntity extends MainEntity {
 
   @OneToMany(() => UserPaymentEntity, (user_payments) => user_payments.user)
   user_payments: UserPaymentEntity[];
-  
+
   @OneToMany(() => OrderEntity, (orders) => orders.user)
   orders: OrderEntity[];
-  
+
   @OneToMany(() => ProviderEntity, (providers) => providers.user)
   providers: ProviderEntity[];
 

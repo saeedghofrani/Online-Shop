@@ -8,7 +8,7 @@ export class SummaryEntity extends MainEntity {
   @Column()
   description: string;
 
-  @Column({type: 'numeric'})
+  @Column({ type: 'numeric' })
   count: string;
 
   @Column()

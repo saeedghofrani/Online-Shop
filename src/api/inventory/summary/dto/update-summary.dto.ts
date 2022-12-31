@@ -1,15 +1,15 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateSummaryDto {
-    @ApiProperty()
-    description: string;
-  
-    @ApiProperty()
-    count: string;
-  
-    @ApiProperty()
-    minimum: number;
-  
-    @ApiProperty()
-    unit: string;
+  @ApiProperty()
+  description: string;
+
+  @ApiProperty()
+  count: string;
+
+  @ApiProperty()
+  minimum: number;
+
+  @ApiProperty()
+  unit: string;
 }

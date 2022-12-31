@@ -1,9 +1,11 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { KafkaJSTopicMetadataNotLoaded } from '@nestjs/microservices/external/kafka.interface';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
 import { FileEntity } from '../public/file.entity';
 import { PaymentEntity } from '../WALLET/payment.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
+import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
 import { ProductAttributeEntity } from './product-attribute.entity';
 
@@ -30,6 +32,13 @@ export class ProductEntity extends MainEntity {
   @OneToMany(() => PricingEntity, (pricings) => pricings.product)
   pricings: PricingEntity[];
 
-  @OneToMany(() => ProductAttributeEntity, (product_attributes) => product_attributes.product)
+  @OneToMany(
+    () => ProductAttributeEntity,
+    (product_attributes) => product_attributes.product,
+  )
   product_attributes: ProductAttributeEntity[];
+
+  @ManyToOne(() => BrandEntity, (brandEntity) => brandEntity.products)
+  @JoinColumn()
+  brand: BrandEntity;
 }

@@ -11,6 +11,9 @@ export class AttributeEntity extends MainEntity {
   @ManyToMany(() => GroupEntity, (groups) => groups.attributes)
   groups: GroupEntity[];
 
-  @OneToMany(() => ProductAttributeEntity, (product_attributes) => product_attributes.product)
+  @OneToMany(
+    () => ProductAttributeEntity,
+    (product_attributes) => product_attributes.product,
+  )
   product_attributes: ProductAttributeEntity[];
 }

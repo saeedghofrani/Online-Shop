@@ -20,24 +20,25 @@ export class AddressController {
   @UseJwtGuard()
   @ApiOperation({ summary: 'create Address' })
   async createEntity(
-    @Body() createEntityDto: CreateAddressDto,@GetUser() user:UserInterface
+    @Body() createEntityDto: CreateAddressDto,
+    @GetUser() user: UserInterface,
   ): Promise<AddressEntity> {
-    createEntityDto.userId=user.userId
+    createEntityDto.userId = user.userId;
     return await this.addressService.createEntity(createEntityDto);
   }
 
   @Patch()
   @ApiOperation({ summary: 'Update Address' })
   async updateEntity(
-    @Query("addressId") id: string,
-     @Body() updateEntityDto: UpdateAddressDto,
+    @Query('addressId') id: string,
+    @Body() updateEntityDto: UpdateAddressDto,
   ): Promise<UpdateResult> {
     return await this.addressService.updateEntity(id, updateEntityDto);
   }
- 
+
   @Get()
   @ApiOperation({ summary: 'Get One Address' })
-  async findOneEntity(@Query("addressId") id: string): Promise<AddressEntity> {
+  async findOneEntity(@Query('addressId') id: string): Promise<AddressEntity> {
     return await this.addressService.findOneEntity(id);
   }
 

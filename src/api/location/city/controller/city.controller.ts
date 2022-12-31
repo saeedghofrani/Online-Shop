@@ -14,14 +14,16 @@ export class CityController {
 
   @Post()
   @ApiOperation({ summary: 'create city' })
-  async createEntity(@Body() createEntityDto: CreateCityDto): Promise<CityEntity> {
+  async createEntity(
+    @Body() createEntityDto: CreateCityDto,
+  ): Promise<CityEntity> {
     return await this.cityService.createEntity(createEntityDto);
   }
 
   @Patch()
   @ApiOperation({ summary: 'Update City' })
   async updateEntity(
-    @Query("cityId") id: string,
+    @Query('cityId') id: string,
     @Body() updateEntityDto: UpdateCityDto,
   ): Promise<UpdateResult> {
     return await this.cityService.updateEntity(id, updateEntityDto);
@@ -29,7 +31,7 @@ export class CityController {
 
   @Get()
   @ApiOperation({ summary: 'Get One City' })
-  async findOneEntity(@Query("cityId") id: string): Promise<CityEntity> {
+  async findOneEntity(@Query('cityId') id: string): Promise<CityEntity> {
     return await this.cityService.findOneEntity(id);
   }
 

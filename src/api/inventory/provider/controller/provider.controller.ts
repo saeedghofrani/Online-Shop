@@ -27,22 +27,19 @@ export class ProviderController {
     @Query('providerId') providerId: string,
     @Body() updateProviderDto: UpdateProviderDto,
   ) {
-    return this.providerService.updateEntity(
-        providerId,
-        updateProviderDto,
-    );
+    return this.providerService.updateEntity(providerId, updateProviderDto);
   }
 
   @Patch('status')
   @ApiOperation({ summary: 'Update Provider status' })
-  @ApiBody({ type:  UpdateProviderStatusDto})
+  @ApiBody({ type: UpdateProviderStatusDto })
   UpdateProviderStatus(
     @Query('providerId') providerId: string,
     @Body() updateProviderStatusDto: UpdateProviderStatusDto,
   ) {
     return this.providerService.UpdateProviderStatus(
-        providerId,
-        updateProviderStatusDto,
+      providerId,
+      updateProviderStatusDto,
     );
   }
 
@@ -52,8 +49,8 @@ export class ProviderController {
   @UseJwtGuard()
   sendOtp(
     @Body() createEntityDto: CreateProviderDto,
-    @GetUser() user: UserInterface
-    ) {
+    @GetUser() user: UserInterface,
+  ) {
     return this.providerService.createEntity(createEntityDto, user.userId);
   }
 

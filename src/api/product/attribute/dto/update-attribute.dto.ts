@@ -1,3 +1,3 @@
-export class UpdateAttributeDto{
-    name:string
+export class UpdateAttributeDto {
+  name: string;
 }

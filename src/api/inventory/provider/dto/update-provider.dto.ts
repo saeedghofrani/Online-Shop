@@ -1,12 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateProviderDto {
-    @ApiProperty()
-    address: string;
+  @ApiProperty()
+  address: string;
 
-    @ApiProperty()
-    latitude: string;
+  @ApiProperty()
+  latitude: string;
 
-    @ApiProperty()
-    longitude: string;
+  @ApiProperty()
+  longitude: string;
 }

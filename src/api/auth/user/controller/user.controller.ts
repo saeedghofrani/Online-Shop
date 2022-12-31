@@ -39,11 +39,8 @@ export class UserController {
   @Get('role')
   @ApiOperation({ summary: 'Set User Role' })
   @UseJwtGuard()
-  setRole(
-    @Query('roleId') roleId: string,
-    @GetUser() user : UserInterface
-    ) {
-      console.log("user",user);
+  setRole(@Query('roleId') roleId: string, @GetUser() user: UserInterface) {
+    console.log('user', user);
     return this.userService.setRole(user, roleId);
   }
 

@@ -16,8 +16,12 @@ export class ProviderEntity extends MainEntity {
   @Column()
   longitude: string;
 
-  @Column({ type: 'enum', enum: ProviderStatus, default: ProviderStatus.PENDING})
-  status: ProviderStatus
+  @Column({
+    type: 'enum',
+    enum: ProviderStatus,
+    default: ProviderStatus.PENDING,
+  })
+  status: ProviderStatus;
 
   @OneToMany(() => SummaryEntity, (summaries) => summaries.provider)
   summaries: SummaryEntity[];

@@ -5,16 +5,16 @@ import { UserEntity } from '../AUTH/user.entity';
 
 @Entity({ schema: 'wallet', name: 'wallet' })
 export class WalletEntity extends MainEntity {
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    amount: number;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  amount: number;
 
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    amount_block: number;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  amount_block: number;
 
-    @ManyToOne(() => UserEntity, user => user.wallets)
-    user: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.wallets)
+  user: UserEntity;
 }

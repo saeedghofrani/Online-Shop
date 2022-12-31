@@ -30,10 +30,10 @@ export class UserRepository
 
   async findOneEntity(id: string): Promise<UserEntity> {
     return await this.createQueryBuilder('user')
-    .leftJoinAndSelect('user.kyc', 'kyc')
-    .innerJoinAndSelect('user.roles', 'roles')
+      .leftJoinAndSelect('user.kyc', 'kyc')
+      .innerJoinAndSelect('user.roles', 'roles')
       .where('user.id = :userId', {
-        userId:id
+        userId: id,
       })
       .getOne();
   }
@@ -44,7 +44,7 @@ export class UserRepository
 
   async findByEntity(searchTerm: string): Promise<UserEntity> {
     return await this.createQueryBuilder('user')
-    .innerJoinAndSelect('user.roles', 'roles')
+      .innerJoinAndSelect('user.roles', 'roles')
       .where(`user.mobile = :searchTerm OR user.email = :searchTerm `, {
         searchTerm,
       })

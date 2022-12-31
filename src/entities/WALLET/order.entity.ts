@@ -5,9 +5,9 @@ import { PricingEntity } from './pricing.entity';
 
 @Entity({ schema: 'wallet', name: 'order' })
 export class OrderEntity extends MainEntity {
-    @ManyToOne(() => UserEntity, user => user.orders)
-    user: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.orders)
+  user: UserEntity;
 
-    @ManyToOne(() => PricingEntity, price => price.orders)
-    price: PricingEntity;
+  @ManyToOne(() => PricingEntity, (price) => price.orders)
+  price: PricingEntity;
 }

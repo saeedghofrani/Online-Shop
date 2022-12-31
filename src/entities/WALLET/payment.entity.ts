@@ -5,18 +5,18 @@ import { UserPaymentEntity } from './user-payment.entity';
 
 @Entity({ schema: 'wallet', name: 'payment' })
 export class PaymentEntity extends MainEntity {
-    @Column()
-    pre_payment: number;
+  @Column()
+  pre_payment: number;
 
-    @Column()
-    remain: number;
+  @Column()
+  remain: number;
 
-    @Column()
-    month: number;
+  @Column()
+  month: number;
 
-    @ManyToOne(() => ProductEntity, product => product.payments)
-    product: ProductEntity;
+  @ManyToOne(() => ProductEntity, (product) => product.payments)
+  product: ProductEntity;
 
-    @OneToMany(() => UserPaymentEntity, (user_payments) => user_payments.payment)
-    user_payments: UserPaymentEntity[];
+  @OneToMany(() => UserPaymentEntity, (user_payments) => user_payments.payment)
+  user_payments: UserPaymentEntity[];
 }

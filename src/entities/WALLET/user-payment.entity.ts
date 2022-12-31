@@ -6,23 +6,23 @@ import { PaymentEntity } from './payment.entity';
 
 @Entity({ schema: 'wallet', name: 'user-payment' })
 export class UserPaymentEntity extends MainEntity {
-    @ManyToOne(() => UserEntity, user => user.user_payments)
-    user: UserEntity;
-    
-    @ManyToOne(() => PaymentEntity, payment => payment.user_payments)
-    payment: PaymentEntity;
+  @ManyToOne(() => UserEntity, (user) => user.user_payments)
+  user: UserEntity;
 
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    price: number;
+  @ManyToOne(() => PaymentEntity, (payment) => payment.user_payments)
+  payment: PaymentEntity;
 
-    @Column({ type: 'boolean', default: false })
-    status: boolean;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  price: number;
 
-    @Column()
-    do_date: Date;
+  @Column({ type: 'boolean', default: false })
+  status: boolean;
 
-    @Column()
-    serial: string;
+  @Column()
+  do_date: Date;
+
+  @Column()
+  serial: string;
 }

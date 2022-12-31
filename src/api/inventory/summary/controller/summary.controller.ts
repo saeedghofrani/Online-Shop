@@ -23,10 +23,7 @@ export class SummaryController {
     @Query('summaryId') summaryId: string,
     @Body() updateSummaryDto: UpdateSummaryDto,
   ) {
-    return this.summaryService.updateEntity(
-      summaryId,
-        updateSummaryDto,
-    );
+    return this.summaryService.updateEntity(summaryId, updateSummaryDto);
   }
 
   @Post('')
@@ -34,10 +31,14 @@ export class SummaryController {
   @ApiBody({ type: CreateSummaryDto })
   sendOtp(
     @Body() createSummaryDto: CreateSummaryDto,
-    @Query('providerId') providerId:string,
-    @Query('productId') productId:string,
-    ) {
-    return this.summaryService.createEntity(createSummaryDto,productId, providerId);
+    @Query('providerId') providerId: string,
+    @Query('productId') productId: string,
+  ) {
+    return this.summaryService.createEntity(
+      createSummaryDto,
+      productId,
+      providerId,
+    );
   }
 
   @Get('')

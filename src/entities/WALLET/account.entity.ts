@@ -6,12 +6,12 @@ import { PricingEntity } from './pricing.entity';
 
 @Entity({ schema: 'wallet', name: 'account' })
 export class AccountEntity extends MainEntity {
-    @ManyToOne(() => UserEntity, user => user.accounts)
-    user: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.accounts)
+  user: UserEntity;
 
-    @Column()
-    account: string;
+  @Column()
+  account: string;
 
-    @Column()
-    iban: string;
+  @Column()
+  iban: string;
 }

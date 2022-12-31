@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CreateOtpHistoryDto } from 'src/api/history/otp/dto/create.otp-history';
 import { OtpHistoryService } from 'src/api/history/otp/service/otp.service';
@@ -28,8 +32,8 @@ export class UserService {
     private emailService: EmailService,
     private jwtService: JwtService,
     private roleService: RoleService,
-    private otpHistoryService:OtpHistoryService
-  ) { }
+    private otpHistoryService: OtpHistoryService,
+  ) {}
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -77,8 +81,8 @@ export class UserService {
     const createOtpHistoryDto: CreateOtpHistoryDto = {
       otp_code: otpCode,
       token: hashCode,
-      user: sendOtpDto.mobile
-    }
+      user: sendOtpDto.mobile,
+    };
     await this.otpHistoryService.create(createOtpHistoryDto);
     await this.smsService.sendOtp(otpCode, sendOtpDto.mobile);
     await this.redisService.setKey(
@@ -100,11 +104,11 @@ export class UserService {
       otp: otpCode,
       subject: 'test',
     };
-        const createOtpHistoryDto: CreateOtpHistoryDto = {
+    const createOtpHistoryDto: CreateOtpHistoryDto = {
       otp_code: otpCode,
       token: hashCode,
-      user: sendOtpDto.email
-    }
+      user: sendOtpDto.email,
+    };
     await this.otpHistoryService.create(createOtpHistoryDto);
     await this.emailService.sentCode(sendOtpDto.email, sendEmailDto);
     await this.redisService.setKey(
@@ -119,7 +123,7 @@ export class UserService {
 
   async checkOtp(
     checkOtpDto: CheckMobileOtpDto | CheckEmailOtpDto,
-  ): Promise<{ access_token: string, roles: string[] }> {
+  ): Promise<{ access_token: string; roles: string[] }> {
     let userEntity: UserEntity;
     const getKey: OtpRedisInterface = JSON.parse(
       await this.redisService.getKey(`${checkOtpDto.hash}`),
@@ -146,22 +150,24 @@ export class UserService {
     };
   }
 
-  async setRole(user: UserInterface, roleId: string): Promise<{ access_token: string }> {
+  async setRole(
+    user: UserInterface,
+    roleId: string,
+  ): Promise<{ access_token: string }> {
     const userEntity = await this.findOneEntity(user.userId);
-    console.log("userEntity.roles");
+    console.log('userEntity.roles');
     console.log(userEntity.roles);
     const checkRole = userEntity.roles.find((role) => role.id == roleId);
-    console.log("checkRole");
+    console.log('checkRole');
     console.log(checkRole);
-    if (!checkRole)
-      throw new UnauthorizedException();
+    if (!checkRole) throw new UnauthorizedException();
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,
       role: roleId,
     };
     return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '1d' })
+      access_token: this.jwtService.sign(payload, { expiresIn: '1d' }),
     };
   }
 }
