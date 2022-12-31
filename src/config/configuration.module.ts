@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import appConfiguration from './app/app-configuration';
 import elasticConfiguration from './database/elastic/elastic.configuration';
-import mongoConfiguration from './database/mongoose/mongo.configuration';
+import mongoConfiguration from './database/mongoose/mongoose.configuration';
 import postgresConfiguration from './database/postgres/postgres.configuration';
 import redisConfiguration from './database/redis/redis.configuration';
 import smsConfiguration from './sms/sms.configuration';
