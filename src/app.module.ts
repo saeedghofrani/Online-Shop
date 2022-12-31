@@ -9,6 +9,7 @@ import { PostgresModule } from './config/database/typeorm/postgres/postgres.modu
 import { AuthModule } from './api/auth/auth.module';
 import { InventoryModuel } from './api/inventory/inventory.module';
 import { LocationModule } from './api/location/location.module';
+import { ProductModule } from './api/product/product.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { LocationModule } from './api/location/location.module';
     AuthModule,
     PostgresModule.openConnection(dbConfig()),
     SmsModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],
