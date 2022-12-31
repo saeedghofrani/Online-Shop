@@ -47,7 +47,7 @@ export class SwaggerConfigService {
         operationsSorter: 'alpha',
         docExpansion: 'none',
       },
-      customSiteTitle: 'Ester',
+      customSiteTitle: 'dig',
     };
 
     const document = SwaggerModule.createDocument(app, config, options);
