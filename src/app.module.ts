@@ -10,6 +10,7 @@ import { AuthModule } from './api/auth/auth.module';
 import { InventoryModuel } from './api/inventory/inventory.module';
 import { LocationModule } from './api/location/location.module';
 import { ProductModule } from './api/product/product.module';
+import { MopngooseModule } from './config/database/mongoose/mongoose.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ProductModule } from './api/product/product.module';
     ConfigurationModule,
     LoggerModule,
     EmailModule,
+    MopngooseModule,
     LocationModule,
     InventoryModuel,
     AuthModule,

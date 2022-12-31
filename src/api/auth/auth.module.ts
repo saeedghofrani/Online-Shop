@@ -24,11 +24,13 @@ import { RoleService } from './role/service/role.service';
 import { RouteController } from './route/controller/route.controller';
 import { RouteRepository } from './route/repositories/route.repository';
 import { RouteService } from './route/service/route.service';
+import { HistoryModule } from '../history/history.module';
 
 @Module({
   imports: [
     SmsModule,
     EmailModule,
+    HistoryModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
