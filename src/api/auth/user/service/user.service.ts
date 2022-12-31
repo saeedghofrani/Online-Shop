@@ -1,7 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { FunctionsClass } from 'src/common/classes/functions.class';
 import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
+import { UserInterface } from 'src/common/interfaces/user.interface';
 import { UserEntity } from 'src/entities/AUTH/user.entity';
 import { SendEmailDto } from 'src/utils/email/dto/send-email.dto';
 import { EmailService } from 'src/utils/email/service/email.service';
@@ -25,7 +26,7 @@ export class UserService {
     private emailService: EmailService,
     private jwtService: JwtService,
     private roleService: RoleService,
-  ) {}
+  ) { }
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -103,7 +104,7 @@ export class UserService {
 
   async checkOtp(
     checkOtpDto: CheckMobileOtpDto | CheckEmailOtpDto,
-  ): Promise<{ access_token: string }> {
+  ): Promise<{ access_token: string, roles: string[] }> {
     let userEntity: UserEntity;
     const getKey: OtpRedisInterface = JSON.parse(
       await this.redisService.getKey(`${checkOtpDto.hash}`),
@@ -126,6 +127,26 @@ export class UserService {
     };
     return {
       access_token: this.jwtService.sign(payload, { expiresIn: '12h' }),
+      roles: [userEntity.roles[0].id],
+    };
+  }
+
+  async setRole(user: UserInterface, roleId: string): Promise<{ access_token: string }> {
+    const userEntity = await this.findOneEntity(user.userId);
+    console.log("userEntity.roles");
+    console.log(userEntity.roles);
+    const checkRole = userEntity.roles.find((role) => role.id == roleId);
+    console.log("checkRole");
+    console.log(checkRole);
+    if (!checkRole)
+      throw new UnauthorizedException();
+    const payload: PayloadJwtInterface = {
+      userId: userEntity.id,
+      user: userEntity.mobile || userEntity.email,
+      role: roleId,
+    };
+    return {
+      access_token: this.jwtService.sign(payload, { expiresIn: '1d' })
     };
   }
 }

@@ -5,6 +5,8 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
 import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
+import { GetUser } from 'src/common/decorator/user.decorator';
+import { UserInterface } from 'src/common/interfaces/user.interface';
 
 @ApiTags('User')
 @Controller('user')
@@ -19,16 +21,6 @@ export class UserController {
     return this.userService.findAllEntities();
   }
 
-  @Patch('')
-  @ApiOperation({ summary: 'Update User' })
-  @ApiBody({ type: UpdateUserDto })
-  updateEntity(
-    @Query('userId') userId: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.userService.updateEntity(userId, updateUserDto);
-  }
-
   @Post('send')
   @ApiOperation({ summary: 'Send Otp Message To Mobile Or Email' })
   @ApiBody({ type: MobileSendOtpDto || EmailSendOtpDto })
@@ -41,6 +33,28 @@ export class UserController {
   @ApiBody({ type: CheckMobileOtpDto || CheckEmailOtpDto })
   checkOtp(@Body() sendOtpDto: CheckMobileOtpDto | CheckEmailOtpDto) {
     return this.userService.checkOtp(sendOtpDto);
+  }
+
+  @ApiBearerAuth('access-token')
+  @Get('role')
+  @ApiOperation({ summary: 'Set User Role' })
+  @UseJwtGuard()
+  setRole(
+    @Query('roleId') roleId: string,
+    @GetUser() user : UserInterface
+    ) {
+      console.log("user",user);
+    return this.userService.setRole(user, roleId);
+  }
+
+  @Patch('')
+  @ApiOperation({ summary: 'Update User' })
+  @ApiBody({ type: UpdateUserDto })
+  updateEntity(
+    @Query('userId') userId: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.userService.updateEntity(userId, updateUserDto);
   }
 
   @Get('')
