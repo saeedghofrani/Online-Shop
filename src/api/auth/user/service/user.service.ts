@@ -1,5 +1,7 @@
 import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { CreateOtpHistoryDto } from 'src/api/history/otp/dto/create.otp-history';
+import { OtpHistoryService } from 'src/api/history/otp/service/otp.service';
 import { FunctionsClass } from 'src/common/classes/functions.class';
 import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
 import { UserInterface } from 'src/common/interfaces/user.interface';
@@ -26,6 +28,7 @@ export class UserService {
     private emailService: EmailService,
     private jwtService: JwtService,
     private roleService: RoleService,
+    private otpHistoryService:OtpHistoryService
   ) { }
 
   private async createEntity(
@@ -56,7 +59,7 @@ export class UserService {
   async sendOtp(
     sendOtpDto: MobileSendOtpDto | EmailSendOtpDto,
   ): Promise<{ hashCode: string }> {
-    const hashCode = FunctionsClass.generateRandomString(12);
+    const hashCode = FunctionsClass.generateRandomString(125);
     const otpCode = FunctionsClass.generateRandomOtpCode(6);
     if (sendOtpDto.hasOwnProperty('mobile')) {
       await this.sendOtpMobile(<MobileSendOtpDto>sendOtpDto, otpCode, hashCode);
@@ -71,6 +74,12 @@ export class UserService {
     otpCode: string,
     hashCode: string,
   ): Promise<void> {
+    const createOtpHistoryDto: CreateOtpHistoryDto = {
+      otp_code: otpCode,
+      token: hashCode,
+      user: sendOtpDto.mobile
+    }
+    await this.otpHistoryService.create(createOtpHistoryDto);
     await this.smsService.sendOtp(otpCode, sendOtpDto.mobile);
     await this.redisService.setKey(
       `${hashCode}`,
@@ -91,6 +100,12 @@ export class UserService {
       otp: otpCode,
       subject: 'test',
     };
+        const createOtpHistoryDto: CreateOtpHistoryDto = {
+      otp_code: otpCode,
+      token: hashCode,
+      user: sendOtpDto.email
+    }
+    await this.otpHistoryService.create(createOtpHistoryDto);
     await this.emailService.sentCode(sendOtpDto.email, sendEmailDto);
     await this.redisService.setKey(
       `${hashCode}`,
