@@ -5,6 +5,7 @@ import { FileEntity } from '../public/file.entity';
 import { PaymentEntity } from '../WALLET/payment.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
 import { CategoryEntity } from './category.entity';
+import { ProductAttributeEntity } from './product-attribute.entity';
 
 @Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
@@ -28,4 +29,7 @@ export class ProductEntity extends MainEntity {
 
   @OneToMany(() => PricingEntity, (pricings) => pricings.product)
   pricings: PricingEntity[];
+
+  @OneToMany(() => ProductAttributeEntity, (product_attributes) => product_attributes.product)
+  product_attributes: ProductAttributeEntity[];
 }
