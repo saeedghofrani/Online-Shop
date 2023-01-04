@@ -4,9 +4,10 @@ export class GlobalResponseClass {
   data;
   route: string;
 
-  constructor(req: Request, response) {
-    this.timestamp = new Date().getDate();
+  constructor(req: any, response) {
+    this.timestamp = new Date(Date.now());
     this.data = response;
-    this.route = req.route;
+    console.log(req);
+    
   }
 }

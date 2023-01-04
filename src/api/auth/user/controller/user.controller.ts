@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query, UseInterceptors } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -7,6 +7,7 @@ import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
+import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester.interceptor';
 
 @ApiTags('User')
 @Controller('user')
@@ -29,6 +30,7 @@ export class UserController {
   }
 
   @Post('check')
+  @UseInterceptors(LoginRigesterInterceptor)
   @ApiOperation({ summary: 'Check Otp Message for Mobile Or Email' })
   @ApiBody({ type: CheckMobileOtpDto || CheckEmailOtpDto })
   checkOtp(@Body() sendOtpDto: CheckMobileOtpDto | CheckEmailOtpDto) {

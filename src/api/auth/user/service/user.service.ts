@@ -20,6 +20,7 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { EmailSendOtpDto, CheckEmailOtpDto } from '../dto/email-otp.dto';
 import { MobileSendOtpDto, CheckMobileOtpDto } from '../dto/mobile-otp.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { CheckOtpInterface } from '../interface/check-otp.interface';
 import { OtpRedisInterface } from '../interface/otp-redis.interface';
 import { UserRepository } from '../repositories/user.repository';
 
@@ -33,7 +34,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) {}
+  ) { }
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -78,12 +79,6 @@ export class UserService {
     otpCode: string,
     hashCode: string,
   ): Promise<void> {
-    const createOtpHistoryDto: CreateOtpHistoryDto = {
-      otp_code: otpCode,
-      token: hashCode,
-      user: sendOtpDto.mobile,
-    };
-    await this.otpHistoryService.create(createOtpHistoryDto);
     await this.smsService.sendOtp(otpCode, sendOtpDto.mobile);
     await this.redisService.setKey(
       `${hashCode}`,
@@ -104,12 +99,6 @@ export class UserService {
       otp: otpCode,
       subject: 'test',
     };
-    const createOtpHistoryDto: CreateOtpHistoryDto = {
-      otp_code: otpCode,
-      token: hashCode,
-      user: sendOtpDto.email,
-    };
-    await this.otpHistoryService.create(createOtpHistoryDto);
     await this.emailService.sentCode(sendOtpDto.email, sendEmailDto);
     await this.redisService.setKey(
       `${hashCode}`,
@@ -123,7 +112,7 @@ export class UserService {
 
   async checkOtp(
     checkOtpDto: CheckMobileOtpDto | CheckEmailOtpDto,
-  ): Promise<{ access_token: string; roles: string[] }> {
+  ): Promise<CheckOtpInterface> {
     let userEntity: UserEntity;
     const getKey: OtpRedisInterface = JSON.parse(
       await this.redisService.getKey(`${checkOtpDto.hash}`),
@@ -144,8 +133,9 @@ export class UserService {
       userId: userEntity.id,
       user: userEntity.mobile || userEntity.email,
     };
+    const access_token = this.jwtService.sign(payload, { expiresIn: '12h' });
     return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '12h' }),
+      access_token,
       roles: [userEntity.roles[0].id],
     };
   }
@@ -155,11 +145,7 @@ export class UserService {
     roleId: string,
   ): Promise<{ access_token: string }> {
     const userEntity = await this.findOneEntity(user.userId);
-    console.log('userEntity.roles');
-    console.log(userEntity.roles);
     const checkRole = userEntity.roles.find((role) => role.id == roleId);
-    console.log('checkRole');
-    console.log(checkRole);
     if (!checkRole) throw new UnauthorizedException();
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
