@@ -1,11 +1,11 @@
-import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
-import { UserEntity } from "src/entities/AUTH/user.entity";
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { UserEntity } from 'src/entities/AUTH/user.entity';
 
-export class CreateAccountDto{
+export class CreateAccountDto {
   @ApiHideProperty()
-    user: UserEntity;
+  user: UserEntity;
 
-    @ApiProperty()
+  @ApiProperty()
   account: string;
 
   @ApiProperty()

@@ -1,10 +1,10 @@
-import {ProductEntity} from "../../../../entities/PRODUCT/product.entity";
-import {ApiHideProperty, ApiProperty} from "@nestjs/swagger";
+import { ProductEntity } from '../../../../entities/PRODUCT/product.entity';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
 export class UpdatePricingDto {
-    @ApiProperty()
-    price: number;
+  @ApiProperty()
+  price: number;
 
-    @ApiHideProperty()
-    product: ProductEntity;
+  @ApiHideProperty()
+  product: ProductEntity;
 }

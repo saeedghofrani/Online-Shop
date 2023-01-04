@@ -16,18 +16,22 @@ export class CategoryController {
   @Post()
   async createEntity(
     @Body() createEntityDto: CreateCategoryDto,
-    @Query("group_id") groupId:string
+    @Query('group_id') groupId: string,
   ): Promise<CategoryEntity> {
-    return await this.categoryService.createEntity(createEntityDto,groupId);
+    return await this.categoryService.createEntity(createEntityDto, groupId);
   }
 
   @Patch()
   async updateEntity(
     @Query('category_id') id: string,
     @Body() updateEntityDto: UpdateCategoryDto,
-    @Query("group_id") groupId:string
+    @Query('group_id') groupId: string,
   ): Promise<UpdateResult> {
-    return await this.categoryService.updateEntity(id, updateEntityDto,groupId);
+    return await this.categoryService.updateEntity(
+      id,
+      updateEntityDto,
+      groupId,
+    );
   }
 
   @Get()

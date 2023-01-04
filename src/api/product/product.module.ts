@@ -19,7 +19,14 @@ import { ProductRepository } from './product/repositories/product.repository';
 import { ProductService } from './product/services/product.service';
 
 @Module({
-  controllers: [AttributeController, BrandController, CategoryController,GroupController,ProductController,ProductAttributeController],
+  controllers: [
+    AttributeController,
+    BrandController,
+    CategoryController,
+    GroupController,
+    ProductController,
+    ProductAttributeController,
+  ],
   providers: [
     AttributeService,
     AttributeRepository,
@@ -32,7 +39,7 @@ import { ProductService } from './product/services/product.service';
     ProductService,
     ProductRepository,
     ProductAttributeService,
-    ProductAttributeRepository
+    ProductAttributeRepository,
   ],
 })
 export class ProductModule {}

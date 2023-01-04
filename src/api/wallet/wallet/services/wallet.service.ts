@@ -1,34 +1,40 @@
-import {Injectable} from "@nestjs/common";
-import {RepositoriesAbstract} from "../../../../common/abstract/repositories.abstract";
-import {WalletEntity} from "../../../../entities/WALLET/wallet.entity";
-import {CreateWalletDto} from "../dto/create-wallet.dto";
-import {UpdateWalletDto} from "../dto/update-wallet.dto";
-import {UpdateResult} from "typeorm";
-import {WalletRepository} from "../repositories/wallet.repository";
-import {UserService} from "../../../auth/user/service/user.service";
+import { Injectable } from '@nestjs/common';
+import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
+import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
+import { CreateWalletDto } from '../dto/create-wallet.dto';
+import { UpdateWalletDto } from '../dto/update-wallet.dto';
+import { UpdateResult } from 'typeorm';
+import { WalletRepository } from '../repositories/wallet.repository';
+import { UserService } from '../../../auth/user/service/user.service';
 
 @Injectable()
 export class WalletService {
-    constructor(private walletRepository:WalletRepository,
-                private userService:UserService) {
-    }
-    async createEntity(createEntityDto: CreateWalletDto,userId:string): Promise<WalletEntity> {
-        const findUser=await this.userService.findOneEntity(userId)
+  constructor(
+    private walletRepository: WalletRepository,
+    private userService: UserService,
+  ) {}
+  async createEntity(
+    createEntityDto: CreateWalletDto,
+    userId: string,
+  ): Promise<WalletEntity> {
+    const findUser = await this.userService.findOneEntity(userId);
 
-        createEntityDto.user=findUser
-        return await this.walletRepository.createEntity(createEntityDto)
-    }
+    createEntityDto.user = findUser;
+    return await this.walletRepository.createEntity(createEntityDto);
+  }
 
-    async findAllEntities(): Promise<WalletEntity[]> {
-        return await this.walletRepository.findAllEntities()
-    }
+  async findAllEntities(): Promise<WalletEntity[]> {
+    return await this.walletRepository.findAllEntities();
+  }
 
-    async findOneEntity(id: string): Promise<WalletEntity> {
-        return await this.walletRepository.findOneEntity(id)
-    }
+  async findOneEntity(id: string): Promise<WalletEntity> {
+    return await this.walletRepository.findOneEntity(id);
+  }
 
-    async updateEntity(id: string, updateEntityDto: UpdateWalletDto): Promise<UpdateResult> {
-        return await this.walletRepository.updateEntity(id,updateEntityDto)
-    }
-
+  async updateEntity(
+    id: string,
+    updateEntityDto: UpdateWalletDto,
+  ): Promise<UpdateResult> {
+    return await this.walletRepository.updateEntity(id, updateEntityDto);
+  }
 }

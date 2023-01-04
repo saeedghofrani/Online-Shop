@@ -1,9 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdateProductAttribute{
-    @ApiProperty()
-    value: string;
-  
-    @ApiProperty()
-    unit: string;
+export class UpdateProductAttribute {
+  @ApiProperty()
+  value: string;
+
+  @ApiProperty()
+  unit: string;
 }

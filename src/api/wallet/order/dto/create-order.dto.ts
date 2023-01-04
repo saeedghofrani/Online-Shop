@@ -1,9 +1,9 @@
-import {ManyToOne} from "typeorm";
-import {UserEntity} from "../../../../entities/AUTH/user.entity";
-import {PricingEntity} from "../../../../entities/WALLET/pricing.entity";
+import { ManyToOne } from 'typeorm';
+import { UserEntity } from '../../../../entities/AUTH/user.entity';
+import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
 
 export class CreateOrderDto {
-    user: UserEntity;
+  user: UserEntity;
 
-    price: PricingEntity;
+  price: PricingEntity;
 }

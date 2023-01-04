@@ -1,23 +1,37 @@
-import { RepositoriesAbstract } from "src/common/abstract/repositories.abstract";
-import { ProductAttributeEntity } from "src/entities/PRODUCT/product-attribute.entity";
-import { Repository, UpdateResult } from "typeorm";
-import { CreateProductAttribute } from "../dto/create-product-attribute.dto";
-import { UpdateProductAttribute } from "../dto/update-product-attribute.dto";
+import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
+import { ProductAttributeEntity } from 'src/entities/PRODUCT/product-attribute.entity';
+import { Repository, UpdateResult } from 'typeorm';
+import { CreateProductAttribute } from '../dto/create-product-attribute.dto';
+import { UpdateProductAttribute } from '../dto/update-product-attribute.dto';
 
-export class ProductAttributeRepository extends Repository<ProductAttributeEntity> implements RepositoriesAbstract<ProductAttributeEntity,CreateProductAttribute,UpdateProductAttribute>{
-    
-    
-    async createEntity(createEntityDto: CreateProductAttribute): Promise<ProductAttributeEntity> {
-        return await this.save(this.create(createEntityDto))
-    }
-    async updateEntity(id: string, updateEntityDto: UpdateProductAttribute): Promise<UpdateResult> {
-        return await this.update(id,updateEntityDto)
-    }
-    async findOneEntity(id: string): Promise<ProductAttributeEntity> {
-        return await this.createQueryBuilder("product_attribute").where("product_attribute.id=:product_attribute_id",{product_attribute_id:id}).getOne()
-    }
-    async findAllEntities(): Promise<ProductAttributeEntity[]> {
-        return await this.createQueryBuilder("product_attribute").getMany()
-    }
-
+export class ProductAttributeRepository
+  extends Repository<ProductAttributeEntity>
+  implements
+    RepositoriesAbstract<
+      ProductAttributeEntity,
+      CreateProductAttribute,
+      UpdateProductAttribute
+    >
+{
+  async createEntity(
+    createEntityDto: CreateProductAttribute,
+  ): Promise<ProductAttributeEntity> {
+    return await this.save(this.create(createEntityDto));
+  }
+  async updateEntity(
+    id: string,
+    updateEntityDto: UpdateProductAttribute,
+  ): Promise<UpdateResult> {
+    return await this.update(id, updateEntityDto);
+  }
+  async findOneEntity(id: string): Promise<ProductAttributeEntity> {
+    return await this.createQueryBuilder('product_attribute')
+      .where('product_attribute.id=:product_attribute_id', {
+        product_attribute_id: id,
+      })
+      .getOne();
+  }
+  async findAllEntities(): Promise<ProductAttributeEntity[]> {
+    return await this.createQueryBuilder('product_attribute').getMany();
+  }
 }

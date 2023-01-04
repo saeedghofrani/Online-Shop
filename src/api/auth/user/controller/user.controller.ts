@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, Query, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Post,
+  Query,
+  UseInterceptors,
+} from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from '../dto/update-user.dto';

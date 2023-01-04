@@ -34,7 +34,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) { }
+  ) {}
 
   private async createEntity(
     createEntityDto: CreateUserDto,

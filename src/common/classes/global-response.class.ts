@@ -8,6 +8,5 @@ export class GlobalResponseClass {
     this.timestamp = new Date(Date.now());
     this.data = response;
     console.log(req);
-    
   }
 }

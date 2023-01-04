@@ -1,8 +1,8 @@
-import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
-import { BrandEntity } from "src/entities/PRODUCT/brand.entity";
-import { CategoryEntity } from "src/entities/PRODUCT/category.entity";
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { BrandEntity } from 'src/entities/PRODUCT/brand.entity';
+import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
-export class CreateProductDto{
+export class CreateProductDto {
   @ApiProperty()
   name: string;
 

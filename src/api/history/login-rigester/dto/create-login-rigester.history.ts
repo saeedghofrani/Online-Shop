@@ -12,8 +12,8 @@ export class CreateLoginRigesterHistoryDto {
   user: string;
 
   @Prop({ required: true })
-  roles: string[];  
+  roles: string[];
 
   @Prop({ required: true })
-  otpCode: string;  
+  otpCode: string;
 }

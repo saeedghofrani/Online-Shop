@@ -7,11 +7,16 @@ import { CreateLoginRigesterHistoryDto } from '../dto/create-login-rigester.hist
 @Injectable()
 export class LoginRigesterHistoryService {
   constructor(
-    @InjectModel(LoginRegisterHsitory.name) private loginRegisterHsitory: Model<LoginRegisterHsitory>,
+    @InjectModel(LoginRegisterHsitory.name)
+    private loginRegisterHsitory: Model<LoginRegisterHsitory>,
   ) {}
 
-  async create(createLoginRigesterHistoryDto: CreateLoginRigesterHistoryDto): Promise<LoginRegisterHsitory> {
-    const createdLoginHisotry = new this.loginRegisterHsitory(createLoginRigesterHistoryDto);
+  async create(
+    createLoginRigesterHistoryDto: CreateLoginRigesterHistoryDto,
+  ): Promise<LoginRegisterHsitory> {
+    const createdLoginHisotry = new this.loginRegisterHsitory(
+      createLoginRigesterHistoryDto,
+    );
     return createdLoginHisotry.save();
   }
 
