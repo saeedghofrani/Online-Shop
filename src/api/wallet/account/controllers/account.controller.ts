@@ -27,6 +27,7 @@ export class AccountController{
     findOneEntity(@Query("account_id") id: string): Promise<AccountEntity> {
         return this.accountService.findOneEntity(id)
     }
+    @Get("all")
     findAllEntities(): Promise<AccountEntity[]> {
         return this.accountService.findAllEntities()
     }
