@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type LoginRegisterHsitoryDocument =
-  HydratedDocument<LoginRegisterHsitory>;
+export type LoginRegisterHistoryDocument =
+  HydratedDocument<LoginRegisterHistory>;
 
 @Schema({ timestamps: true })
-export class LoginRegisterHsitory {
+export class LoginRegisterHistory {
   @Prop({ required: true })
   userId: string;
 
@@ -21,5 +21,5 @@ export class LoginRegisterHsitory {
   @Prop({ required: true })
   otpCode: string;
 }
-export const LoginRegisterHsitorySchema =
-  SchemaFactory.createForClass(LoginRegisterHsitory);
+export const LoginRegisterHistorySchema =
+  SchemaFactory.createForClass(LoginRegisterHistory);

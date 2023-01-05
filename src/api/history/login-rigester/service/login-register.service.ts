@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { LoginRegisterHsitory } from 'src/entities/history/login-register.schema';
 import { CreateLoginRigesterHistoryDto } from '../dto/create-login-rigester.history';
+import { LoginRegisterHistory } from "../../../../entities/history/login-register.schema";
 
 @Injectable()
 export class LoginRigesterHistoryService {
   constructor(
-    @InjectModel(LoginRegisterHsitory.name)
-    private loginRegisterHsitory: Model<LoginRegisterHsitory>,
+    @InjectModel(LoginRegisterHistory.name)
+    private loginRegisterHistory: Model<LoginRegisterHistory>,
   ) {}
 
   async create(
     createLoginRigesterHistoryDto: CreateLoginRigesterHistoryDto,
-  ): Promise<LoginRegisterHsitory> {
-    const createdLoginHisotry = new this.loginRegisterHsitory(
+  ): Promise<LoginRegisterHistory> {
+    const createdLoginRegisterHistory = new this.loginRegisterHistory(
       createLoginRigesterHistoryDto,
     );
-    return createdLoginHisotry.save();
+    return createdLoginRegisterHistory.save();
   }
 
-  async findAll(): Promise<LoginRegisterHsitory[]> {
-    return this.loginRegisterHsitory.find().exec();
+  async findAll(): Promise<LoginRegisterHistory[]> {
+    return this.loginRegisterHistory.find().exec();
   }
 }

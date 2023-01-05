@@ -113,6 +113,7 @@ export class UserService {
   async checkOtp(
     checkOtpDto: CheckMobileOtpDto | CheckEmailOtpDto,
   ): Promise<CheckOtpInterface> {
+  try {
     let userEntity: UserEntity;
     const getKey: OtpRedisInterface = JSON.parse(
       await this.redisService.getKey(`${checkOtpDto.hash}`),
@@ -138,6 +139,9 @@ export class UserService {
       access_token,
       roles: [userEntity.roles[0].id],
     };
+  } catch (e) {
+    console.log(e);
+  }
   }
 
   async setRole(

@@ -16,6 +16,7 @@ import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester.interceptor';
+import { OtpInterceptor } from "../../../../common/interceptors/otp.interceptor";
 
 @ApiTags('User')
 @Controller('user')
@@ -32,6 +33,7 @@ export class UserController {
 
   @Post('send')
   @ApiOperation({ summary: 'Send Otp Message To Mobile Or Email' })
+  @UseInterceptors(OtpInterceptor)
   @ApiBody({ type: MobileSendOtpDto || EmailSendOtpDto })
   sendOtp(@Body() sendOtpDto: MobileSendOtpDto | EmailSendOtpDto) {
     return this.userService.sendOtp(sendOtpDto);
@@ -50,7 +52,6 @@ export class UserController {
   @ApiOperation({ summary: 'Set User Role' })
   @UseJwtGuard()
   setRole(@Query('roleId') roleId: string, @GetUser() user: UserInterface) {
-    console.log('user', user);
     return this.userService.setRole(user, roleId);
   }
 

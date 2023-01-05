@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type OtpHsitoryDocument = HydratedDocument<OtpHsitory>;
+export type OtpHistoryDocument = HydratedDocument<OtpHistory>;
 
 @Schema({ timestamps: true })
-export class OtpHsitory {
+export class OtpHistory {
   @Prop({ required: true })
   user: string;
 }
-export const OtpHistorySchema = SchemaFactory.createForClass(OtpHsitory);
+export const OtpHistorySchema = SchemaFactory.createForClass(OtpHistory);

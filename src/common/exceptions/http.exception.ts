@@ -5,16 +5,30 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ErrorService } from "../../api/history/error/service/error.service";
+import { CreateErrorHistoryInterface } from "../../api/history/error/interface/create-error.interface";
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  catch(exception: HttpException, host: ArgumentsHost) {
+  constructor(
+    private errorService: ErrorService,
+  ) {
+  }
+  async catch(exception: HttpException, host: ArgumentsHost) {
+    console.log('asdgfiajshdgfoasdfiuiruisdhkjahwefipuhaslvjbWPIEUFHIASJVLUHRFUHSDFVUIURHIUsdjflkjshdflgkjsdf');
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-
     const status = exception.getStatus();
     const date = Date.now();
+    const createErrorHistoryInterface: CreateErrorHistoryInterface = {
+      error: exception['response'],
+      status: status,
+      path: request.url,
+      methode: request.method,
+      route: request.route
+    }
+    await this.errorService.create(createErrorHistoryInterface);
     switch (status) {
       case 400: {
         response.status(status).json({

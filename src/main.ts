@@ -7,6 +7,7 @@ import { SwaggerConfigService } from './config/swagger/swagger.service';
 import { logger } from './config/logger/logger.class';
 import { WINSTON_MODULE_NEST_PROVIDER, WinstonModule } from 'nest-winston';
 import { ResponseOkInterceptor } from './common/interceptors/global-response.interceptor';
+import { HttpExceptionFilter } from "./common/exceptions/http.exception";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

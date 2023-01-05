@@ -1,12 +1,12 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
 export type ErrorHistoryDocument = HydratedDocument<ErrorHistory>;
 
 @Schema({ timestamps: true })
 export class ErrorHistory {
   @Prop({ required: true })
-  status: string;
+  status: number;
 
   @Prop({ required: true })
   error: string;
