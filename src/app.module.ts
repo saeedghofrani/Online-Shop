@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigurationModule } from './config/configuration.module';
 import { RedisModule } from './utils/redis/redis.module';
 import { LoggerModule } from './config/logger/logger.module';
@@ -11,6 +11,8 @@ import { InventoryModuel } from './api/inventory/inventory.module';
 import { LocationModule } from './api/location/location.module';
 import { ProductModule } from './api/product/product.module';
 import { MopngooseModule } from './config/database/mongoose/mongoose.module';
+import { RequestLoggerMiddleware } from './common/middlewares/request-logger.middleware';
+import { HistoryModule } from './api/history/history.module';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { MopngooseModule } from './config/database/mongoose/mongoose.module';
     MopngooseModule,
     LocationModule,
     InventoryModuel,
+    HistoryModule,
     AuthModule,
     PostgresModule.openConnection(dbConfig()),
     SmsModule,
@@ -33,4 +36,8 @@ import { MopngooseModule } from './config/database/mongoose/mongoose.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*');
+  }
+}
