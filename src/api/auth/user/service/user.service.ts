@@ -4,7 +4,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CreateOtpHistoryDto } from 'src/api/history/otp/dto/create.otp-history';
 import { OtpHistoryService } from 'src/api/history/otp/service/otp.service';
 import { FunctionsClass } from 'src/common/classes/functions.class';
 import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
