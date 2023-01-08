@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateLoginRigesterHistoryDto } from '../dto/create-login-rigester.history';
+import { CreateLoginRegisterInterface } from '../interface/create-login-register.interface';
 import { LoginRegisterHistory } from "../../../../entities/history/login-register.schema";
 
 @Injectable()
@@ -12,10 +12,10 @@ export class LoginRigesterHistoryService {
   ) {}
 
   async create(
-    createLoginRigesterHistoryDto: CreateLoginRigesterHistoryDto,
+    createLoginRegisterInterface: CreateLoginRegisterInterface,
   ): Promise<LoginRegisterHistory> {
     const createdLoginRegisterHistory = new this.loginRegisterHistory(
-      createLoginRigesterHistoryDto,
+      createLoginRegisterInterface,
     );
     return createdLoginRegisterHistory.save();
   }

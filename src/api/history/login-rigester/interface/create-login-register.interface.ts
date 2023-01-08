@@ -1,7 +1,7 @@
 import { Prop } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateLoginRigesterHistoryDto {
+export class CreateLoginRegisterInterface {
   @ApiProperty()
   userId: string;
 

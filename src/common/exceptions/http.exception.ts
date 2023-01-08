@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { ErrorService } from "../../api/history/error/service/error.service";
-import { CreateErrorHistoryInterface } from "../../api/history/error/interface/create-error.interface";
+import { CreateErrorInterface } from "../../api/history/error/interface/create-error.interface";
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -21,7 +21,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
     const date = Date.now();
-    const createErrorHistoryInterface: CreateErrorHistoryInterface = {
+    const createErrorHistoryInterface: CreateErrorInterface = {
       error: exception['response'],
       status: status,
       path: request.url,

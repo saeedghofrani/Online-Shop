@@ -1,6 +1,6 @@
 import { ApiHideProperty } from '@nestjs/swagger';
 
-export class CreateOtpHistoryDto {
+export class CreateOtpInterface {
   @ApiHideProperty()
   user: string;
 }
