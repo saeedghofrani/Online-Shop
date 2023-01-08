@@ -22,7 +22,6 @@ import { ProviderEntity } from '../INVENTORY/provider.entity';
 import { WalletEntity } from '../WALLET/wallet.entity';
 import { OrderEntity } from '../WALLET/order.entity';
 import { AccountEntity } from '../WALLET/account.entity';
-import { UserPaymentEntity } from '../WALLET/user-payment.entity';
 
 @Entity({ schema: 'auth', name: 'user' })
 export class UserEntity extends MainEntity {
@@ -64,9 +63,6 @@ export class UserEntity extends MainEntity {
 
   @OneToMany(() => WalletEntity, (wallets) => wallets.user)
   wallets: WalletEntity[];
-
-  @OneToMany(() => UserPaymentEntity, (user_payments) => user_payments.user)
-  user_payments: UserPaymentEntity[];
 
   @OneToMany(() => OrderEntity, (orders) => orders.user)
   orders: OrderEntity[];
