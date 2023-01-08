@@ -1,11 +1,12 @@
-import { Request } from 'express';
 export class GlobalResponseClass {
-  timestamp;
-  data;
-  route: string;
-
-  constructor(req: any, response) {
+  status: string;
+  timestamp: Date;
+  data: JSON;
+  statusCode: number;
+  constructor(staus: string, statusCode: number, data) {
     this.timestamp = new Date(Date.now());
-    this.data = response;
+    this.status = staus;
+    this.data = data;
+    this.statusCode = statusCode;
   }
 }
