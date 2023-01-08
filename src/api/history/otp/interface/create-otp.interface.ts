@@ -1,6 +1,4 @@
-import { ApiHideProperty } from '@nestjs/swagger';
 
-export class CreateOtpInterface {
-  @ApiHideProperty()
+export interface CreateOtpInterface {
   user: string;
 }
