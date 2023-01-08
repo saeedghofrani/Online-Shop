@@ -1,28 +1,20 @@
 import { ColumnNumericTransformer } from 'src/common/classes/column-numeric-transformer.class';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { UserEntity } from '../AUTH/user.entity';
-import { PaymentEntity } from './payment.entity';
+import { InstallmentEntity } from './installment.entity';
 
 @Entity({ schema: 'wallet', name: 'user-payment' })
 export class UserPaymentEntity extends MainEntity {
-  @ManyToOne(() => UserEntity, (user) => user.user_payments)
-  user: UserEntity;
 
-  @ManyToOne(() => PaymentEntity, (payment) => payment.user_payments)
-  payment: PaymentEntity;
 
-  @Column('numeric', {
-    transformer: new ColumnNumericTransformer(),
-  })
-  price: number;
+    @ManyToOne(() => InstallmentEntity, (installment) => installment.user_payments)
+    installment: InstallmentEntity[];
 
-  @Column({ type: 'boolean', default: false })
-  status: boolean;
+    @Column()
+    dou_date: Date;
 
-  @Column()
-  do_date: Date;
-
-  @Column()
-  serial: string;
+    @Column('numeric', {
+        transformer: new ColumnNumericTransformer(),
+    })
+    amount: number;
 }
