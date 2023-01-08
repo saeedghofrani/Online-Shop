@@ -3,7 +3,6 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
 import { FileEntity } from '../public/file.entity';
-import { PaymentEntity } from '../WALLET/payment.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
@@ -25,9 +24,6 @@ export class ProductEntity extends MainEntity {
 
   @OneToMany(() => SummaryEntity, (summaries) => summaries.product)
   summaries: SummaryEntity[];
-
-  @OneToMany(() => PaymentEntity, (payments) => payments.product)
-  payments: PaymentEntity[];
 
   @OneToMany(() => PricingEntity, (pricings) => pricings.product)
   pricings: PricingEntity[];
