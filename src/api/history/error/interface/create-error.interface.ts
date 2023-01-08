@@ -1,4 +1,4 @@
-export interface CreateErrorHistoryInterface {
+export interface CreateErrorInterface {
   error: string;
 
   status: number;
