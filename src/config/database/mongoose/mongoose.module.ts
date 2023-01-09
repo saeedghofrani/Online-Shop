@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://hampa:HmpCo_2022_@192.168.10.200:27017/history?connectTimeoutMS=100000&authSource=admin&authMechanism=SCRAM-SHA-1',
+      `mongodb://${process.env.MG_AUTH}@${process.env.MG_HOST}:${process.env.MG_PORT}/${process.env.MG_COLLECTION}?${process.env.MG_MECHANISM}`,
       // 'mongodb://127.0.0.1:27017/admin'
     ),
   ],
