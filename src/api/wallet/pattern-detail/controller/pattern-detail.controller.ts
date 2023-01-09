@@ -15,9 +15,12 @@ export class PatternDetailController {
   @Post()
   async createEntity(
     @Body() createEntityDto: CreatePatternDetailDto,
-    @Query('pattern_master_id') pattern_master_id: string
+    @Query('pattern_master_id') pattern_master_id: string,
   ): Promise<PatternDetailEntity> {
-    return this.patternDetailService.createEntity(createEntityDto, pattern_master_id);
+    return this.patternDetailService.createEntity(
+      createEntityDto,
+      pattern_master_id,
+    );
   }
 
   @Get('all')
@@ -26,7 +29,9 @@ export class PatternDetailController {
   }
 
   @Get()
-  async findOneEntity(@Query('pattern_detail_id') id: string): Promise<PatternDetailEntity> {
+  async findOneEntity(
+    @Query('pattern_detail_id') id: string,
+  ): Promise<PatternDetailEntity> {
     return this.patternDetailService.findOneEntity(id);
   }
 
@@ -35,9 +40,6 @@ export class PatternDetailController {
     @Query('patternDetail_Id') id: string,
     @Body() updateEntityDto: UpdatePatternDetailDto,
   ): Promise<UpdateResult> {
-    return this.patternDetailService.updateEntity(
-      id,
-      updateEntityDto
-    );
+    return this.patternDetailService.updateEntity(id, updateEntityDto);
   }
 }

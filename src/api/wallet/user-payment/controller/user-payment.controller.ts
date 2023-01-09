@@ -10,30 +10,32 @@ import { UserPaymentService } from '../services/user-payment.service';
 @ApiTags('UserPayment')
 @Controller('user-payment')
 export class UserPaymentController {
-    constructor(private userPaymentService: UserPaymentService) {}
+  constructor(private userPaymentService: UserPaymentService) {}
 
-    @Post()
-    createEntity(
-        @Body() createEntityDto: CreateUserPaymentDto,
-    ): Promise<UserPaymentEntity> {
-        return this.userPaymentService.createEntity(createEntityDto);
-    }
+  @Post()
+  createEntity(
+    @Body() createEntityDto: CreateUserPaymentDto,
+  ): Promise<UserPaymentEntity> {
+    return this.userPaymentService.createEntity(createEntityDto);
+  }
 
-    @Patch()
-    updateEntity(
-        @Query('user_payment_id') id: string,
-        @Body() updateEntityDto: UpdateUserPaymentDto,
-    ): Promise<UpdateResult> {
-        return this.userPaymentService.updateEntity(id, updateEntityDto);
-    }
+  @Patch()
+  updateEntity(
+    @Query('user_payment_id') id: string,
+    @Body() updateEntityDto: UpdateUserPaymentDto,
+  ): Promise<UpdateResult> {
+    return this.userPaymentService.updateEntity(id, updateEntityDto);
+  }
 
-    @Get()
-    findOneEntity(@Query('user_payment_id') id: string): Promise<UserPaymentEntity> {
-        return this.userPaymentService.findOneEntity(id);
-    }
+  @Get()
+  findOneEntity(
+    @Query('user_payment_id') id: string,
+  ): Promise<UserPaymentEntity> {
+    return this.userPaymentService.findOneEntity(id);
+  }
 
-    @Get('all')
-    async findAllEntities(): Promise<UserPaymentEntity[]> {
-        return this.userPaymentService.findAllEntities();
-    }
+  @Get('all')
+  async findAllEntities(): Promise<UserPaymentEntity[]> {
+    return this.userPaymentService.findAllEntities();
+  }
 }

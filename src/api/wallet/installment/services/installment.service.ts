@@ -12,16 +12,19 @@ export class InstallmentService {
   constructor(
     private installmentRepository: InstallmentRepository,
     private patternDetailService: PatternDetailService,
-    private userFactorService: UserFactorService
+    private userFactorService: UserFactorService,
   ) {}
   async createEntity(
     createEntityDto: CreateInstallmentDto,
     pattern_detail_id: string,
-    user_factor_id: string
+    user_factor_id: string,
   ): Promise<InstallmentEntity> {
     try {
-      createEntityDto.user_factor = await this.userFactorService.findOneEntity(user_factor_id);
-      createEntityDto.pattern_detail = await this.patternDetailService.findOneEntity(pattern_detail_id);
+      createEntityDto.user_factor = await this.userFactorService.findOneEntity(
+        user_factor_id,
+      );
+      createEntityDto.pattern_detail =
+        await this.patternDetailService.findOneEntity(pattern_detail_id);
       return await this.installmentRepository.createEntity(createEntityDto);
     } catch (e) {}
   }
@@ -29,11 +32,14 @@ export class InstallmentService {
     id: string,
     updateEntityDto: UpdateInstallmentDto,
     pattern_detail_id: string,
-    user_factor_id: string
+    user_factor_id: string,
   ): Promise<UpdateResult> {
     try {
-      updateEntityDto.user_factor = await this.userFactorService.findOneEntity(user_factor_id);
-      updateEntityDto.pattern_detail = await this.patternDetailService.findOneEntity(pattern_detail_id);
+      updateEntityDto.user_factor = await this.userFactorService.findOneEntity(
+        user_factor_id,
+      );
+      updateEntityDto.pattern_detail =
+        await this.patternDetailService.findOneEntity(pattern_detail_id);
       return await this.installmentRepository.updateEntity(id, updateEntityDto);
     } catch (e) {}
   }

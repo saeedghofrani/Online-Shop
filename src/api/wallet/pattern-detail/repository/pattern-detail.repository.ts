@@ -9,7 +9,12 @@ import { UpdatePatternDetailDto } from '../dto/update-pattern-detail.dto';
 @Injectable()
 export class PatternDetailRepository
   extends Repository<PatternDetailEntity>
-  implements RepositoriesAbstract<PatternDetailEntity, CreatePatternDetailDto, UpdatePatternDetailDto>
+  implements
+    RepositoriesAbstract<
+      PatternDetailEntity,
+      CreatePatternDetailDto,
+      UpdatePatternDetailDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -17,7 +22,9 @@ export class PatternDetailRepository
     super(PatternDetailEntity, postgresDataSource.createEntityManager());
   }
 
-  async createEntity(createEntityDto: CreatePatternDetailDto): Promise<PatternDetailEntity> {
+  async createEntity(
+    createEntityDto: CreatePatternDetailDto,
+  ): Promise<PatternDetailEntity> {
     return await this.save(this.create(createEntityDto));
   }
 

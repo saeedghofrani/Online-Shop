@@ -25,7 +25,9 @@ export class PatternMasterController {
   }
 
   @Get()
-  async findOneEntity(@Query('pattern_master_id') id: string): Promise<PatternMasterEntity> {
+  async findOneEntity(
+    @Query('pattern_master_id') id: string,
+  ): Promise<PatternMasterEntity> {
     return this.patternMasterService.findOneEntity(id);
   }
 
@@ -34,9 +36,6 @@ export class PatternMasterController {
     @Query('patternMaster_Id') id: string,
     @Body() updateEntityDto: UpdatePatternMasterDto,
   ): Promise<UpdateResult> {
-    return this.patternMasterService.updateEntity(
-      id,
-      updateEntityDto
-    );
+    return this.patternMasterService.updateEntity(id, updateEntityDto);
   }
 }

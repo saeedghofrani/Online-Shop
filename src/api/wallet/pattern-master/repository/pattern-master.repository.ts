@@ -9,7 +9,12 @@ import { UpdatePatternMasterDto } from '../dto/update-pattern-master.dto';
 @Injectable()
 export class PatternMasterRepository
   extends Repository<PatternMasterEntity>
-  implements RepositoriesAbstract<PatternMasterEntity, CreatePatternMasterDto, UpdatePatternMasterDto>
+  implements
+    RepositoriesAbstract<
+      PatternMasterEntity,
+      CreatePatternMasterDto,
+      UpdatePatternMasterDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -17,7 +22,9 @@ export class PatternMasterRepository
     super(PatternMasterEntity, postgresDataSource.createEntityManager());
   }
 
-  async createEntity(createEntityDto: CreatePatternMasterDto): Promise<PatternMasterEntity> {
+  async createEntity(
+    createEntityDto: CreatePatternMasterDto,
+  ): Promise<PatternMasterEntity> {
     return await this.save(this.create(createEntityDto));
   }
 

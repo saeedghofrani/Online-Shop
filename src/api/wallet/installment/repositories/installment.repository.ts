@@ -10,7 +10,11 @@ import { UpdateInstallmentDto } from '../dto/update-installment.dto';
 export class InstallmentRepository
   extends Repository<InstallmentEntity>
   implements
-    RepositoriesAbstract<InstallmentEntity, CreateInstallmentDto, UpdateInstallmentDto>
+    RepositoriesAbstract<
+      InstallmentEntity,
+      CreateInstallmentDto,
+      UpdateInstallmentDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,

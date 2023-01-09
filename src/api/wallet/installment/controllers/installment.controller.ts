@@ -21,7 +21,11 @@ export class InstallmentController {
     @Query('pattern_detail_id') pattern_detail_id: string,
     @Query('user_factor_id') user_factor_id: string,
   ): Promise<InstallmentEntity> {
-    return this.installmentService.createEntity(createEntityDto, pattern_detail_id, user_factor_id);
+    return this.installmentService.createEntity(
+      createEntityDto,
+      pattern_detail_id,
+      user_factor_id,
+    );
   }
   @Patch()
   updateEntity(
@@ -30,10 +34,17 @@ export class InstallmentController {
     @Query('pattern_detail_id') pattern_detail_id: string,
     @Query('user_factor_id') user_factor_id: string,
   ): Promise<UpdateResult> {
-    return this.installmentService.updateEntity(id, updateEntityDto, pattern_detail_id, user_factor_id);
+    return this.installmentService.updateEntity(
+      id,
+      updateEntityDto,
+      pattern_detail_id,
+      user_factor_id,
+    );
   }
   @Get()
-  findOneEntity(@Query('installment_id') id: string): Promise<InstallmentEntity> {
+  findOneEntity(
+    @Query('installment_id') id: string,
+  ): Promise<InstallmentEntity> {
     return this.installmentService.findOneEntity(id);
   }
   @Get('all')

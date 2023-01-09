@@ -4,15 +4,15 @@ import { PenaltyType } from 'src/entities/WALLET/enum/penalty-type.enum';
 import { PatternMasterEntity } from 'src/entities/WALLET/pattern-master.entity';
 
 export class CreatePatternDetailDto {
-    @ApiProperty()
-    amount: number;
+  @ApiProperty()
+  amount: number;
 
-    @ApiProperty()
-    period: string;
+  @ApiProperty()
+  period: string;
 
-    @ApiProperty()
-    priorety: number;
+  @ApiProperty()
+  priorety: number;
 
-    @ApiHideProperty()
-    pattern_master: PatternMasterEntity;
+  @ApiHideProperty()
+  pattern_master: PatternMasterEntity;
 }

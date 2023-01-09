@@ -1,9 +1,9 @@
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserPaymentDto {
-    @ApiProperty()
-    dou_date: Date;
+  @ApiProperty()
+  dou_date: Date;
 
-    @ApiProperty()
-    amount: number;
+  @ApiProperty()
+  amount: number;
 }

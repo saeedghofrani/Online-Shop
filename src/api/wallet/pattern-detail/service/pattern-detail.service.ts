@@ -10,14 +10,16 @@ import { PatternDetailRepository } from '../repository/pattern-detail.repository
 export class PatternDetailService {
   constructor(
     private patternDetailRepository: PatternDetailRepository,
-    private patternMasterService: PatternMasterService
+    private patternMasterService: PatternMasterService,
   ) {}
   async createEntity(
     createEntityDto: CreatePatternDetailDto,
-    pattern_master_id: string
+    pattern_master_id: string,
   ): Promise<PatternDetailEntity> {
     try {
-      const patternMasterEntity = await this.patternMasterService.findOneEntity(pattern_master_id)
+      const patternMasterEntity = await this.patternMasterService.findOneEntity(
+        pattern_master_id,
+      );
       createEntityDto.pattern_master = patternMasterEntity;
       return await this.patternDetailRepository.createEntity(createEntityDto);
     } catch (e) {}
@@ -40,7 +42,10 @@ export class PatternDetailService {
     updateEntityDto: UpdatePatternDetailDto,
   ): Promise<UpdateResult> {
     try {
-      return await this.patternDetailRepository.updateEntity(id, updateEntityDto);
+      return await this.patternDetailRepository.updateEntity(
+        id,
+        updateEntityDto,
+      );
     } catch (e) {}
   }
 }

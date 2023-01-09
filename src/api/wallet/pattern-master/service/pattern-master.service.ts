@@ -7,9 +7,7 @@ import { PatternMasterRepository } from '../repository/pattern-master.repository
 
 @Injectable()
 export class PatternMasterService {
-  constructor(
-    private patternMasterRepository: PatternMasterRepository,
-  ) {}
+  constructor(private patternMasterRepository: PatternMasterRepository) {}
   async createEntity(
     createEntityDto: CreatePatternMasterDto,
   ): Promise<PatternMasterEntity> {
@@ -35,7 +33,10 @@ export class PatternMasterService {
     updateEntityDto: UpdatePatternMasterDto,
   ): Promise<UpdateResult> {
     try {
-      return await this.patternMasterRepository.updateEntity(id, updateEntityDto);
+      return await this.patternMasterRepository.updateEntity(
+        id,
+        updateEntityDto,
+      );
     } catch (e) {}
   }
 }
