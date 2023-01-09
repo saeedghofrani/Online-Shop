@@ -9,7 +9,7 @@ export class RequestHistory {
   @Prop({ required: true })
   is_authenticated: boolean;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   token: string;
 
   @Prop({ required: true })

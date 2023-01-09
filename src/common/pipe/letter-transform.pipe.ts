@@ -3,7 +3,7 @@ import {ArgumentMetadata, PipeTransform} from "@nestjs/common";
 export class LetterTransformPipe implements PipeTransform{
     transform(value: Object, metadata: ArgumentMetadata): any {
        const keys=Object.keys(value)
-        console.log(value)
+
         for (const key of keys) {
             if(typeof value[key]=='string')
             {
@@ -15,7 +15,6 @@ export class LetterTransformPipe implements PipeTransform{
 
             }
         }
-    console.log(value)
         return value
     }
     
