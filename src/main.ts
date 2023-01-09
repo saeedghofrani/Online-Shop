@@ -8,6 +8,7 @@ import { logger } from './config/logger/logger.class';
 import { WINSTON_MODULE_NEST_PROVIDER, WinstonModule } from 'nest-winston';
 import { ResponseOkInterceptor } from './common/interceptors/global-response.interceptor';
 import { HttpExceptionFilter } from './common/exceptions/http.exception';
+import {LetterTransformPipe} from "./common/pipe/letter-transform.pipe";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -17,6 +18,7 @@ async function bootstrap() {
   app.use(helmet());
   app.enableCors();
   app.setGlobalPrefix(appService.appApiPrefix);
+  app.useGlobalPipes(new LetterTransformPipe())
   app.useGlobalInterceptors(new ResponseOkInterceptor());
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);
