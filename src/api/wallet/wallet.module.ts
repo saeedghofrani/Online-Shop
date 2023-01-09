@@ -12,6 +12,9 @@ import { OrderRepository } from './order/repositories/order.repository';
 import { WalletController } from './wallet/controller/wallet.controller';
 import { WalletService } from './wallet/services/wallet.service';
 import { WalletRepository } from './wallet/repositories/wallet.repository';
+import {UserPaymentController} from "../user-payment/controller/user-payment.controller";
+import {UserPaymentService} from "../user-payment/services/user-payment.service";
+import {UserPaymentRepository} from "../user-payment/repositories/user-payment.repository";
 
 @Module({
   imports: [AuthModule],
@@ -20,6 +23,7 @@ import { WalletRepository } from './wallet/repositories/wallet.repository';
     PricingController,
     OrderController,
     WalletController,
+      UserPaymentController
   ],
   providers: [
     AccountService,
@@ -30,6 +34,8 @@ import { WalletRepository } from './wallet/repositories/wallet.repository';
     OrderRepository,
     WalletService,
     WalletRepository,
+      UserPaymentService,
+      UserPaymentRepository
   ],
 })
 export class WalletModule {}
