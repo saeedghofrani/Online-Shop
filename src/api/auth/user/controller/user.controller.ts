@@ -16,7 +16,7 @@ import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester.interceptor';
-import { OtpInterceptor } from "../../../../common/interceptors/otp.interceptor";
+import { OtpInterceptor } from '../../../../common/interceptors/otp.interceptor';
 
 @ApiTags('User')
 @Controller('user')

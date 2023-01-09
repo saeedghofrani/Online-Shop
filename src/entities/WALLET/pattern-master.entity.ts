@@ -18,20 +18,26 @@ export class PatternMasterEntity extends MainEntity {
   })
   interest_rates: number;
 
-  @Column({type: 'enum', enum: installmentType})
+  @Column({ type: 'enum', enum: installmentType })
   installmentType: installmentType;
 
-  @Column({type: 'enum', enum: PenaltyType})
+  @Column({ type: 'enum', enum: PenaltyType })
   penaltyType: PenaltyType;
-  
+
   @Column('numeric', {
     transformer: new ColumnNumericTransformer(),
   })
   penalty: number;
 
-  @OneToMany(() => PatternDetailEntity, (pattern_details) => pattern_details.pattern_master)
+  @OneToMany(
+    () => PatternDetailEntity,
+    (pattern_details) => pattern_details.pattern_master,
+  )
   pattern_details: PatternDetailEntity[];
 
-  @OneToMany(() => UserFactorEntity, (user_factors) => user_factors.pattern_master)
+  @OneToMany(
+    () => UserFactorEntity,
+    (user_factors) => user_factors.pattern_master,
+  )
   user_factors: UserFactorEntity[];
 }

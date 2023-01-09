@@ -13,7 +13,7 @@ export const dbConfig = (): DataSourceOptions => ({
   dropSchema: false,
   migrationsRun: false,
   logging: true,
-  logger: "file",
+  logger: 'file',
   migrations: [join(__dirname, '../migrations/**/*{.ts,.js}')],
   entities: ['dist/**/*.entity.js', '**/*.entity.js'],
 });

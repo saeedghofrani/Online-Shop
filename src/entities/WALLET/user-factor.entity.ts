@@ -8,37 +8,42 @@ import { PatternMasterEntity } from './pattern-master.entity';
 
 @Entity({ schema: 'wallet', name: 'user-factor' })
 export class UserFactorEntity extends MainEntity {
+  @Column()
+  purchase_date: Date;
 
-    @Column()
-    purchase_date: Date
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  amount: number;
 
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    amount: number;
+  @Column()
+  installment_count: number;
 
-    @Column()
-    installment_count: number;
+  @Column({ type: 'enum', enum: PenaltyType })
+  penaltyType: PenaltyType;
 
-    @Column({type: 'enum', enum: PenaltyType})
-    penaltyType: PenaltyType;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  total_amount: number;
 
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    total_amount: number;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  product_price: number;
 
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    product_price: number;
+  @Column({ type: 'enum', enum: installmentType })
+  installmentType: installmentType;
 
-    @Column({type: 'enum', enum: installmentType})
-    installmentType: installmentType;
-    
-    @ManyToOne(() => PatternMasterEntity, (pattern_master) => pattern_master.user_factors)
-    pattern_master: PatternMasterEntity;
+  @ManyToOne(
+    () => PatternMasterEntity,
+    (pattern_master) => pattern_master.user_factors,
+  )
+  pattern_master: PatternMasterEntity;
 
-    @OneToMany(() => InstallmentEntity, (installments) => installments.user_factor)
-    installments: InstallmentEntity[];
+  @OneToMany(
+    () => InstallmentEntity,
+    (installments) => installments.user_factor,
+  )
+  installments: InstallmentEntity[];
 }

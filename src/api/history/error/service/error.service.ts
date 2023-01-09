@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { ErrorHistory } from "../../../../entities/history/error.schema";
-import { CreateErrorInterface } from "../interface/create-error.interface";
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { ErrorHistory } from '../../../../entities/history/error.schema';
+import { CreateErrorInterface } from '../interface/create-error.interface';
 
 @Injectable()
 export class ErrorService {
@@ -14,9 +14,7 @@ export class ErrorService {
   async create(
     createErrorInterface: CreateErrorInterface,
   ): Promise<ErrorHistory> {
-    const createdErrorHistory = new this.ErrorHistory(
-      createErrorInterface,
-    );
+    const createdErrorHistory = new this.ErrorHistory(createErrorInterface);
     return createdErrorHistory.save();
   }
 

@@ -15,11 +15,17 @@ export class PatternDetailEntity extends MainEntity {
   period: string;
 
   @Column()
-  priorety: number
+  priorety: number;
 
-  @ManyToOne(() => PatternMasterEntity, (pattern_master) => pattern_master.pattern_details)
+  @ManyToOne(
+    () => PatternMasterEntity,
+    (pattern_master) => pattern_master.pattern_details,
+  )
   pattern_master: PatternMasterEntity;
 
-  @OneToMany(() => InstallmentEntity, (installments) => installments.pattern_detail)
+  @OneToMany(
+    () => InstallmentEntity,
+    (installments) => installments.pattern_detail,
+  )
   installments: InstallmentEntity[];
 }

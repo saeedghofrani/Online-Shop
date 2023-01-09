@@ -1,12 +1,12 @@
-import { ProductEntity } from "src/entities/PRODUCT/product.entity";
-import { PricingEntity } from "src/entities/WALLET/pricing.entity";
+import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
+import { PricingEntity } from 'src/entities/WALLET/pricing.entity';
 
 export interface CreateReportOrderInterface {
-    user: string;
+  user: string;
 
-    pricing: PricingEntity;
+  pricing: PricingEntity;
 
-    price: string;
+  price: string;
 
-    product: ProductEntity;
+  product: ProductEntity;
 }

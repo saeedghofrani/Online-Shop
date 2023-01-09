@@ -35,16 +35,16 @@ export class AddressService {
     id: string,
     updateEntityDto: UpdateAddressDto,
   ): Promise<UpdateResult> {
-      if (updateEntityDto.cityId)
-        updateEntityDto.city = await this.cityService.findOneEntity(
-          updateEntityDto.cityId,
-        );
+    if (updateEntityDto.cityId)
+      updateEntityDto.city = await this.cityService.findOneEntity(
+        updateEntityDto.cityId,
+      );
 
-      return await this.addressRepository.updateEntity(id, updateEntityDto);
+    return await this.addressRepository.updateEntity(id, updateEntityDto);
   }
 
   async findOneEntity(id: string): Promise<AddressEntity> {
-      return await this.addressRepository.findOneEntity(id);
+    return await this.addressRepository.findOneEntity(id);
   }
 
   async findAllEntities(): Promise<AddressEntity[]> {

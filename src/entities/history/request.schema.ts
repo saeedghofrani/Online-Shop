@@ -1,6 +1,6 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
-import { UserAgentClass } from "src/common/classes/user-agent.class";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+import { UserAgentClass } from 'src/common/classes/user-agent.class';
 
 export type RequestHistoryDocument = HydratedDocument<RequestHistory>;
 
@@ -15,10 +15,10 @@ export class RequestHistory {
   @Prop({ required: true })
   route: string;
 
-  @Prop({type:Object, required: true })
+  @Prop({ type: Object, required: true })
   data: Object;
 
-  @Prop({type:Object, required: true })
+  @Prop({ type: Object, required: true })
   query: Object;
 
   @Prop({ required: true })
@@ -36,4 +36,5 @@ export class RequestHistory {
   @Prop({ required: true })
   ip: string;
 }
-export const RequestHistorySchema = SchemaFactory.createForClass(RequestHistory);
+export const RequestHistorySchema =
+  SchemaFactory.createForClass(RequestHistory);

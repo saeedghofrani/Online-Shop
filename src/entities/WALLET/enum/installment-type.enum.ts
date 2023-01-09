@@ -1,4 +1,4 @@
 export enum installmentType {
-    FLOATING = 'floating',
-    FIXED = 'fixed',
+  FLOATING = 'floating',
+  FIXED = 'fixed',
 }

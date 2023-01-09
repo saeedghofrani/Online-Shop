@@ -5,17 +5,16 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { ErrorService } from "../../api/history/error/service/error.service";
-import { CreateErrorInterface } from "../../api/history/error/interface/create-error.interface";
+import { ErrorService } from '../../api/history/error/service/error.service';
+import { CreateErrorInterface } from '../../api/history/error/interface/create-error.interface';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(
-    private errorService: ErrorService,
-  ) {
-  }
+  constructor(private errorService: ErrorService) {}
   async catch(exception: HttpException, host: ArgumentsHost) {
-    console.log('asdgfiajshdgfoasdfiuiruisdhkjahwefipuhaslvjbWPIEUFHIASJVLUHRFUHSDFVUIURHIUsdjflkjshdflgkjsdf');
+    console.log(
+      'asdgfiajshdgfoasdfiuiruisdhkjahwefipuhaslvjbWPIEUFHIASJVLUHRFUHSDFVUIURHIUsdjflkjshdflgkjsdf',
+    );
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
@@ -26,8 +25,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       status: status,
       path: request.url,
       methode: request.method,
-      route: request.route
-    }
+      route: request.route,
+    };
     await this.errorService.create(createErrorHistoryInterface);
     switch (status) {
       case 400: {

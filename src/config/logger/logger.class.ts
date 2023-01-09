@@ -227,8 +227,8 @@ class Logger {
       transports: [
         new winston.transports.Console(transports.console),
         new winston.transports.File({
-          filename: 'src/common/logs/query.log'
-        })
+          filename: 'src/common/logs/query.log',
+        }),
       ],
     };
   }

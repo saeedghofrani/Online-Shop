@@ -6,21 +6,21 @@ import { CreateRequestHistoryInterfece } from '../interface/create-request.inter
 
 @Injectable()
 export class RequestHistoryService {
-    constructor(
-        @InjectModel(RequestHistory.name)
-        private RequestHistory: Model<RequestHistory>,
-    ) { }
+  constructor(
+    @InjectModel(RequestHistory.name)
+    private RequestHistory: Model<RequestHistory>,
+  ) {}
 
-    async create(
-        createRequestHistoryInterfece: CreateRequestHistoryInterfece,
-    ): Promise<RequestHistory> {
-        const createdRequestHistory = new this.RequestHistory(
-            createRequestHistoryInterfece,
-        );
-        return createdRequestHistory.save();
-    }
+  async create(
+    createRequestHistoryInterfece: CreateRequestHistoryInterfece,
+  ): Promise<RequestHistory> {
+    const createdRequestHistory = new this.RequestHistory(
+      createRequestHistoryInterfece,
+    );
+    return createdRequestHistory.save();
+  }
 
-    async findAll(): Promise<RequestHistory[]> {
-        return this.RequestHistory.find().exec();
-    }
+  async findAll(): Promise<RequestHistory[]> {
+    return this.RequestHistory.find().exec();
+  }
 }

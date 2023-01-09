@@ -1,4 +1,3 @@
-
 export interface CreateLoginRegisterInterface {
   userId: string;
 

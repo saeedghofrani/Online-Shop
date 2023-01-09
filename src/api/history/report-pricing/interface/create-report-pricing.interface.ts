@@ -1,4 +1,4 @@
-import { PricingEntity } from "src/entities/WALLET/pricing.entity";
+import { PricingEntity } from 'src/entities/WALLET/pricing.entity';
 
 export interface CreateReportPricingInterface {
   price: string;

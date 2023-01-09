@@ -7,11 +7,16 @@ import { CreateReportOrderInterface } from '../interface/creat-report-order.inte
 @Injectable()
 export class ReportOrderHistoryService {
   constructor(
-    @InjectModel(ReportOrderHistory.name) private reportOrderHistory: Model<ReportOrderHistory>,
+    @InjectModel(ReportOrderHistory.name)
+    private reportOrderHistory: Model<ReportOrderHistory>,
   ) {}
 
-  async create(createReportOrderInterface: CreateReportOrderInterface): Promise<ReportOrderHistory> {
-    const createdReportOrder = new this.reportOrderHistory(createReportOrderInterface);
+  async create(
+    createReportOrderInterface: CreateReportOrderInterface,
+  ): Promise<ReportOrderHistory> {
+    const createdReportOrder = new this.reportOrderHistory(
+      createReportOrderInterface,
+    );
     return createdReportOrder.save();
   }
 

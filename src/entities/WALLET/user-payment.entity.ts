@@ -5,16 +5,17 @@ import { InstallmentEntity } from './installment.entity';
 
 @Entity({ schema: 'wallet', name: 'user-payment' })
 export class UserPaymentEntity extends MainEntity {
+  @ManyToOne(
+    () => InstallmentEntity,
+    (installment) => installment.user_payments,
+  )
+  installment: InstallmentEntity[];
 
+  @Column()
+  dou_date: Date;
 
-    @ManyToOne(() => InstallmentEntity, (installment) => installment.user_payments)
-    installment: InstallmentEntity[];
-
-    @Column()
-    dou_date: Date;
-
-    @Column('numeric', {
-        transformer: new ColumnNumericTransformer(),
-    })
-    amount: number;
+  @Column('numeric', {
+    transformer: new ColumnNumericTransformer(),
+  })
+  amount: number;
 }

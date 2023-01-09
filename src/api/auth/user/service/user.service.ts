@@ -112,35 +112,36 @@ export class UserService {
   async checkOtp(
     checkOtpDto: CheckMobileOtpDto | CheckEmailOtpDto,
   ): Promise<CheckOtpInterface> {
-  try {
-    let userEntity: UserEntity;
-    const getKey: OtpRedisInterface = JSON.parse(
-      await this.redisService.getKey(`${checkOtpDto.hash}`),
-    );
-    if (!getKey) throw new BadRequestException('Code has expired ...! ');
-    if (getKey.otpCode !== checkOtpDto.code)
-      throw new BadRequestException('Otp Code is not valid ...!');
-    userEntity = await this.findByEntity(getKey.user);
-    if (!userEntity) {
-      const role = await this.roleService.getRoleDefault();
-      const createUser = new CreateUserDto();
-      if (checkOtpDto.hasOwnProperty('mobile')) createUser.mobile = getKey.user;
-      else createUser.email = getKey.user;
-      createUser.roles = [role];
-      userEntity = await this.createEntity(createUser);
+    try {
+      let userEntity: UserEntity;
+      const getKey: OtpRedisInterface = JSON.parse(
+        await this.redisService.getKey(`${checkOtpDto.hash}`),
+      );
+      if (!getKey) throw new BadRequestException('Code has expired ...! ');
+      if (getKey.otpCode !== checkOtpDto.code)
+        throw new BadRequestException('Otp Code is not valid ...!');
+      userEntity = await this.findByEntity(getKey.user);
+      if (!userEntity) {
+        const role = await this.roleService.getRoleDefault();
+        const createUser = new CreateUserDto();
+        if (checkOtpDto.hasOwnProperty('mobile'))
+          createUser.mobile = getKey.user;
+        else createUser.email = getKey.user;
+        createUser.roles = [role];
+        userEntity = await this.createEntity(createUser);
+      }
+      const payload: PayloadJwtInterface = {
+        userId: userEntity.id,
+        user: userEntity.mobile || userEntity.email,
+      };
+      const access_token = this.jwtService.sign(payload, { expiresIn: '12h' });
+      return {
+        access_token,
+        roles: [userEntity.roles[0].id],
+      };
+    } catch (e) {
+      console.log(e);
     }
-    const payload: PayloadJwtInterface = {
-      userId: userEntity.id,
-      user: userEntity.mobile || userEntity.email,
-    };
-    const access_token = this.jwtService.sign(payload, { expiresIn: '12h' });
-    return {
-      access_token,
-      roles: [userEntity.roles[0].id],
-    };
-  } catch (e) {
-    console.log(e);
-  }
   }
 
   async setRole(
