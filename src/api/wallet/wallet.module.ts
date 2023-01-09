@@ -18,6 +18,10 @@ import { PatternDetailRepository } from './pattern-detail/repository/pattern-det
 import { PatternDetailService } from './pattern-detail/service/pattern-detail.service';
 import { PatternMasterRepository } from './pattern-master/repository/pattern-master.repository';
 import { PatternMasterService } from './pattern-master/service/pattern-master.service';
+import {UserPaymentController} from "../user-payment/controller/user-payment.controller";
+import {UserPaymentService} from "../user-payment/services/user-payment.service";
+import {UserPaymentRepository} from "../user-payment/repositories/user-payment.repository";
+
 
 @Module({
   imports: [AuthModule],
@@ -28,6 +32,7 @@ import { PatternMasterService } from './pattern-master/service/pattern-master.se
     PatternDetailController,
     PatternMasterController,
     WalletController,
+      UserPaymentController
   ],
   providers: [
     AccountService,
@@ -42,6 +47,8 @@ import { PatternMasterService } from './pattern-master/service/pattern-master.se
     OrderRepository,
     WalletService,
     WalletRepository,
+      UserPaymentService,
+      UserPaymentRepository
   ],
 })
 export class WalletModule {}
