@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PatternDetailEntity } from 'src/entities/WALLET/pattern-detail.entity';
 import { UpdateResult } from 'typeorm';
+import { PatternMasterService } from '../../pattern-master/service/pattern-master.service';
 import { CreatePatternDetailDto } from '../dto/create-pattern-detail.dto';
 import { UpdatePatternDetailDto } from '../dto/update-pattern-detail.dto';
 import { PatternDetailRepository } from '../repository/pattern-detail.repository';
@@ -9,11 +10,15 @@ import { PatternDetailRepository } from '../repository/pattern-detail.repository
 export class PatternDetailService {
   constructor(
     private patternDetailRepository: PatternDetailRepository,
+    private patternMasterService: PatternMasterService
   ) {}
   async createEntity(
     createEntityDto: CreatePatternDetailDto,
+    pattern_master_id: string
   ): Promise<PatternDetailEntity> {
     try {
+      const patternMasterEntity = await this.patternMasterService.findOneEntity(pattern_master_id)
+      createEntityDto.pattern_master = patternMasterEntity;
       return await this.patternDetailRepository.createEntity(createEntityDto);
     } catch (e) {}
   }

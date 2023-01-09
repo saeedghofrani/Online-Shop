@@ -15,8 +15,9 @@ export class PatternDetailController {
   @Post()
   async createEntity(
     @Body() createEntityDto: CreatePatternDetailDto,
+    @Query('pattern_master_id') pattern_master_id: string
   ): Promise<PatternDetailEntity> {
-    return this.patternDetailService.createEntity(createEntityDto);
+    return this.patternDetailService.createEntity(createEntityDto, pattern_master_id);
   }
 
   @Get('all')

@@ -9,7 +9,7 @@ export class UserPaymentEntity extends MainEntity {
     () => InstallmentEntity,
     (installment) => installment.user_payments,
   )
-  irepositorieewnstallment: InstallmentEntity[];
+  installment: InstallmentEntity[];
 
   @Column()
   dou_date: Date;
