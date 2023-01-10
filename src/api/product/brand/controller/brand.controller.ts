@@ -1,5 +1,7 @@
 import { Controller, Post, Body, Patch, Get, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginateQuery, Paginated, Paginate } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { BrandEntity } from 'src/entities/PRODUCT/brand.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateBrandDto } from '../dto/create-brand.dto';
@@ -33,5 +35,11 @@ export class BrandController {
   @Get('all')
   findAllEntities(): Promise<BrandEntity[]> {
     return this.brandService.findAllEntities();
+  }
+
+  @Post("page")
+  testPaginations(@Body() query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
+  {
+    return this.brandService.brandPagination(query)
   }
 }

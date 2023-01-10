@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { PaginateQuery, Paginated, Paginate } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { BrandEntity } from 'src/entities/PRODUCT/brand.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateBrandDto } from '../dto/create-brand.dto';
@@ -34,5 +36,10 @@ export class BrandService {
     try {
       return await this.brandRepository.findAllEntities();
     } catch (e) {}
+  }
+
+  async brandPagination(query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
+  {
+    return this.brandRepository.brandPagination(query)
   }
 }
