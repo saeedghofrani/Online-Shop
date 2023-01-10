@@ -1,5 +1,7 @@
 import { Controller, Get, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductAttributeEntity } from 'src/entities/PRODUCT/product-attribute.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductAttribute } from '../dto/create-product-attribute.dto';
@@ -33,7 +35,13 @@ export class ProductAttributeController {
   }
 
   @Get('all')
-  async findAllEntities(): Promise<ProductAttributeEntity[]> {
-    return await this.productAttributeService.findAllEntities();
+   findAllEntities(): Promise<ProductAttributeEntity[]> {
+    return  this.productAttributeService.findAllEntities();
+  }
+
+  @Post("page")
+   productAttributePagination(query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>
+  {
+    return this.productAttributeService.productAttributePagination(query)
   }
 }

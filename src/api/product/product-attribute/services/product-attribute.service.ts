@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductAttributeEntity } from 'src/entities/PRODUCT/product-attribute.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductAttribute } from '../dto/create-product-attribute.dto';
@@ -28,5 +30,14 @@ export class ProductAttributeService {
   }
   async findAllEntities(): Promise<ProductAttributeEntity[]> {
     return await this.productAttributeRepository.findAllEntities();
+  }
+
+  async productAttributePagination(query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>
+  {
+    try {
+      return await this.productAttributeRepository.productAttributePagination(query)
+    } catch (e) {
+      
+    }
   }
 }
