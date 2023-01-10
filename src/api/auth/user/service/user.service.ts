@@ -4,10 +4,12 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { Paginated } from 'nestjs-paginate';
 import { OtpHistoryService } from 'src/api/history/otp/service/otp.service';
 import { FunctionsClass } from 'src/common/classes/functions.class';
 import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
 import { UserInterface } from 'src/common/interfaces/user.interface';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UserEntity } from 'src/entities/AUTH/user.entity';
 import { SendEmailDto } from 'src/utils/email/dto/send-email.dto';
 import { EmailService } from 'src/utils/email/service/email.service';
@@ -159,5 +161,14 @@ export class UserService {
     return {
       access_token: this.jwtService.sign(payload, { expiresIn: '1d' }),
     };
+  }
+
+  async userPagination(query:PaginationQueryDto):Promise<Paginated<UserEntity>>
+  {
+    try {
+      return await this.userRepository.userPagination(query)
+    } catch (e) {
+      
+    }
   }
 }

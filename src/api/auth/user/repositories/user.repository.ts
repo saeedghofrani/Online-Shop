@@ -5,6 +5,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { BrandEntity } from 'src/entities/PRODUCT/brand.entity';
 
 @Injectable()
 export class UserRepository
@@ -49,5 +52,18 @@ export class UserRepository
         searchTerm,
       })
       .getOne();
+  }
+
+  async userPagination(query:PaginationQueryDto):Promise<Paginated<UserEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['mobile','email'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        mobile: [FilterOperator.ILIKE],
+        email:[FilterOperator.ILIKE]
+      },
+    })
   }
 }

@@ -17,6 +17,9 @@ import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester.interceptor';
 import { OtpInterceptor } from '../../../../common/interceptors/otp.interceptor';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { UserEntity } from 'src/entities/AUTH/user.entity';
 
 @ApiTags('User')
 @Controller('user')
@@ -69,5 +72,11 @@ export class UserController {
   @ApiOperation({ summary: 'Get User By Id' })
   findOneEntity(@Query('userId') userId: string) {
     return this.userService.findOneEntity(userId);
+  }
+
+  @Post("page")
+  userPagination(@Body() query:PaginationQueryDto):Promise<Paginated<UserEntity>>
+  {
+    return this.userService.userPagination(query)
   }
 }
