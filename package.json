@@ -51,6 +51,7 @@
     "moment": "^2.29.4",
     "mongoose": "^6.8.2",
     "nest-winston": "^1.8.0",
+    "nestjs-paginate": "^4.6.1",
     "nodemailer": "^6.8.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
