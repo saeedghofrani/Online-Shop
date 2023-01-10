@@ -1,6 +1,8 @@
+import { Inject } from '@nestjs/common';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
+import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
-import { Repository, UpdateResult } from 'typeorm';
+import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
@@ -9,6 +11,9 @@ export class ProductRepository
   implements
     RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
 {
+  constructor(@Inject(PostgresConstant) private postgresDataSource:DataSource){
+    super(ProductEntity,postgresDataSource.createEntityManager())
+  }
   async createEntity(
     createEntityDto: CreateProductDto,
   ): Promise<ProductEntity> {
