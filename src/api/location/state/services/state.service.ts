@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { StateEntity } from 'src/entities/LOCATION/state.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateStateDto } from '../dto/create-state.dto';
@@ -23,5 +25,10 @@ export class StateService {
   }
   async findAllEntities(): Promise<StateEntity[]> {
     return await this.stateRepository.findAllEntities();
+  }
+
+  async statePagination(query:PaginationQueryDto):Promise<Paginated<StateEntity>>
+  {
+    return this.stateRepository.statePagination(query)
   }
 }

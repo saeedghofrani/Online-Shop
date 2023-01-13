@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { StateEntity } from 'src/entities/LOCATION/state.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateStateDto } from '../dto/create-state.dto';
@@ -33,5 +35,17 @@ export class StateRepository
   }
   async findAllEntities(): Promise<StateEntity[]> {
     return await this.createQueryBuilder('state').getMany();
+  }
+
+  async statePagination(query:PaginationQueryDto):Promise<Paginated<StateEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['name'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        name: [FilterOperator.ILIKE],
+      },
+    })
   }
 }
