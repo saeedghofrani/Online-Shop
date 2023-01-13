@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AccountEntity } from 'src/entities/WALLET/account.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAccountDto } from '../dto/create-account.dto';
@@ -36,5 +37,11 @@ export class AccountController {
   @Get('all')
   findAllEntities(): Promise<AccountEntity[]> {
     return this.accountService.findAllEntities();
+  }
+
+  @Post("page")
+  accountPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.accountService.accountPagination(query)
   }
 }

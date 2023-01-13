@@ -5,6 +5,8 @@ import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateAccountDto } from '../dto/create-account.dto';
 import { UpdateAccountDto } from '../dto/update-account.dto';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class AccountRepository
@@ -35,5 +37,18 @@ export class AccountRepository
   }
   async findAllEntities(): Promise<AccountEntity[]> {
     return await this.createQueryBuilder('account').getMany();
+  }
+
+  async accountPagination(query:PaginationQueryDto):Promise<Paginated<AccountEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['account'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        account: [FilterOperator.ILIKE],
+        iban: [FilterOperator.ILIKE],
+      },
+    })
   }
 }
