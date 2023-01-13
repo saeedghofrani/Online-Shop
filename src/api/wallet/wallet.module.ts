@@ -21,9 +21,12 @@ import { PatternMasterService } from './pattern-master/service/pattern-master.se
 import { UserPaymentController } from './user-payment/controller/user-payment.controller';
 import { UserPaymentService } from './user-payment/services/user-payment.service';
 import { UserPaymentRepository } from './user-payment/repositories/user-payment.repository';
+import { ProductModule } from '../product/product.module';
+import { ProductService } from '../product/product/services/product.service';
+import { ProductRepository } from '../product/product/repositories/product.repository';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, ProductModule],
   controllers: [
     AccountController,
     PricingController,
