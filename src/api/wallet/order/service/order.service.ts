@@ -7,6 +7,8 @@ import { UpdateResult } from 'typeorm';
 import { OrderRepository } from '../repositories/order.repository';
 import { PricingService } from '../../pricing/services/pricing.service';
 import { UserService } from '../../../auth/user/service/user.service';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class OrderService {
@@ -61,5 +63,10 @@ export class OrderService {
 
       return await this.orderRepository.updateEntity(id, updateEntityDto);
     } catch (e) {}
+  }
+
+  async orderPagination(query:PaginationQueryDto):Promise<Paginated<OrderEntity>>
+  {
+    return this.orderRepository.orderPagination(query)
   }
 }

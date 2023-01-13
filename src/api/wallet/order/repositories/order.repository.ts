@@ -1,11 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { OrderEntity } from '../../../../entities/WALLET/order.entity';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
+import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { OrderEntity } from '../../../../entities/WALLET/order.entity';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
-import { PostgresConstant } from '../../../../common/constants/postgres.constant';
-import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
 
 @Injectable()
 export class OrderRepository
@@ -37,5 +38,13 @@ export class OrderRepository
     updateEntityDto: UpdateOrderDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async orderPagination(query:PaginationQueryDto):Promise<Paginated<OrderEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      defaultSortBy: [['create_at', 'DESC']]
+    })
   }
 }

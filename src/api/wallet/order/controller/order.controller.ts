@@ -6,6 +6,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
 import { OrderService } from '../service/order.service';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Order')
@@ -45,5 +46,11 @@ export class OrderController {
       userId,
       pricingId,
     );
+  }
+
+  @Post("page")
+  orderPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.orderService.orderPagination(query)
   }
 }
