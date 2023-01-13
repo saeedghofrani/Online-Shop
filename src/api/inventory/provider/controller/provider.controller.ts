@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { UserInterface } from 'src/common/interfaces/user.interface';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CreateProviderDto } from '../dto/create-provider.dto';
 import { UpdateProviderStatusDto } from '../dto/update-provider-status.dto';
 import { UpdateProviderDto } from '../dto/update-provider.dto';
@@ -18,6 +19,12 @@ export class ProviderController {
   @ApiOperation({ summary: 'Get All Providers' })
   findAllEntities() {
     return this.providerService.findAllEntities();
+  }
+
+  @Post("page")
+  testPaginations(@Body() query:PaginationQueryDto)
+  {
+    return this.providerService.providerPagination(query)
   }
 
   @Patch('')

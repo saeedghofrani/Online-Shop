@@ -1,5 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
 import { UserService } from 'src/api/auth/user/service/user.service';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProviderDto } from '../dto/create-provider.dto';
@@ -53,5 +55,10 @@ export class ProviderService {
       providerId,
       updateProviderStatusDto,
     );
+  }
+
+  async providerPagination(query:PaginationQueryDto):Promise<Paginated<ProviderEntity>>
+  {
+    return this.providerRepository.providerPagination(query);
   }
 }

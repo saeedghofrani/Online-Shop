@@ -1,6 +1,8 @@
 import { Inject } from '@nestjs/common';
+import { FilterOperator, paginate, Paginated } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProviderDto } from '../dto/create-provider.dto';
@@ -59,5 +61,18 @@ export class ProviderRepository
     updateProviderStatusDto: UpdateProviderStatusDto,
   ): Promise<UpdateResult> {
     return await this.update(providerId, updateProviderStatusDto);
+  }
+
+  async providerPagination(query:PaginationQueryDto):Promise<Paginated<ProviderEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['latitude', 'longitude'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        latitude: [FilterOperator.BTW],
+        longitude: [FilterOperator.BTW],
+      },
+    })
   }
 }
