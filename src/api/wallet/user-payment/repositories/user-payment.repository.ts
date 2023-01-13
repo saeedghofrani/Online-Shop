@@ -5,6 +5,8 @@ import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 
 @Injectable()
 export class UserPaymentRepository
@@ -42,5 +44,16 @@ export class UserPaymentRepository
     updateEntityDto: UpdateUserPaymentDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async userPaymentPagination(query:PaginationQueryDto):Promise<Paginated<UserPaymentEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        dou_date: [FilterOperator.BTW],
+      },
+    })
   }
 }

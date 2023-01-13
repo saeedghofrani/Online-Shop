@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UserPaymentEntity } from 'src/entities/WALLET/user-payment.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
@@ -37,5 +38,11 @@ export class UserPaymentController {
   @Get('all')
   async findAllEntities(): Promise<UserPaymentEntity[]> {
     return this.userPaymentService.findAllEntities();
+  }
+
+  @Post("page")
+  accountPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.userPaymentService.userPaymentPagination(query)
   }
 }

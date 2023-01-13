@@ -5,6 +5,8 @@ import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';
 import { UpdateResult } from 'typeorm';
 import { UserPaymentRepository } from '../repositories/user-payment.repository';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'nestjs-paginate';
 
 @Injectable()
 export class UserPaymentService {
@@ -36,5 +38,10 @@ export class UserPaymentService {
     try {
       return await this.userPaymentRepo.updateEntity(id, updateEntityDto);
     } catch (e) {}
+  }
+
+  async userPaymentPagination(query:PaginationQueryDto):Promise<Paginated<UserPaymentEntity>>
+  {
+    return this.userPaymentRepo.userPaymentPagination(query)
   }
 }
