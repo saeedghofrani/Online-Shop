@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 import { UpdateResult } from 'typeorm';
 import { GroupService } from '../../group/services/group.service';
@@ -39,5 +41,10 @@ export class CategoryService {
   }
   async findAllEntities(): Promise<CategoryEntity[]> {
     return await this.categoryRepository.findAllEntities();
+  }
+
+  async categoryPagination(query:PaginationQueryDto):Promise<Paginated<CategoryEntity>>
+  {
+    return this.categoryRepository.categoryPagination(query)
   }
 }
