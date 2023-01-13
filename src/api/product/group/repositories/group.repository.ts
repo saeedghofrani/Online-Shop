@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { GroupEntity } from 'src/entities/PRODUCT/group.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateGroupDto } from '../dto/create-group.dto';
@@ -33,5 +35,17 @@ export class GroupRepository
   }
   async findAllEntities(): Promise<GroupEntity[]> {
     return await this.createQueryBuilder('group').getMany();
+  }
+
+  async groupPagination(query:PaginationQueryDto):Promise<Paginated<GroupEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['name'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        name: [FilterOperator.ILIKE],
+      },
+    })
   }
 }

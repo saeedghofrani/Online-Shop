@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { GroupEntity } from 'src/entities/PRODUCT/group.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateGroupDto } from '../dto/create-group.dto';
@@ -15,6 +16,12 @@ export class GroupController {
   @Post()
   createEntity(@Body() createEntityDto: CreateGroupDto): Promise<GroupEntity> {
     return this.groupService.createEntity(createEntityDto);
+  }
+
+  @Post("page")
+  brandPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.groupService.groupPagination(query)
   }
 
   @Patch()
