@@ -1,6 +1,8 @@
 import { Inject } from '@nestjs/common';
+import { paginate, Paginated } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { SummaryEntity } from 'src/entities/INVENTORY/summary.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateSummaryDto } from '../dto/create-summary.dto';
@@ -51,5 +53,13 @@ export class SummaryRepository
         summaryId,
       })
       .getOne();
+  }
+
+  async summaryPagination(query:PaginationQueryDto):Promise<Paginated<SummaryEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      defaultSortBy: [['create_at', 'DESC']],
+    })
   }
 }

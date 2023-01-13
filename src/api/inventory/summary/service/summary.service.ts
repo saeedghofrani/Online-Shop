@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { SummaryEntity } from 'src/entities/INVENTORY/summary.entity';
 import { UpdateResult } from 'typeorm';
 import { ProviderService } from '../../provider/service/provider.service';
@@ -40,5 +42,10 @@ export class SummaryService {
     updateSummaryDto: UpdateSummaryDto,
   ): Promise<UpdateResult> {
     return await this.summaryRepository.updateEntity(id, updateSummaryDto);
+  }
+
+  async summaryPagination(query:PaginationQueryDto):Promise<Paginated<SummaryEntity>>
+  {
+    return this.summaryRepository.summaryPagination(query)
   }
 }
