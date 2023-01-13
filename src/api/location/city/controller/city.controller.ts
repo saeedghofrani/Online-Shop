@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CityEntity } from 'src/entities/LOCATION/city.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateCityDto } from '../dto/create-city.dto';
@@ -39,5 +40,11 @@ export class CityController {
   @ApiOperation({ summary: 'Get All Cities' })
   async findAllEntities(): Promise<CityEntity[]> {
     return await this.cityService.findAllEntities();
+  }
+
+  @Post("page")
+  cityPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.cityService.cityPagination(query)
   }
 }
