@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
 import { UpdateResult } from 'typeorm';
 import { RoleService } from '../../role/service/role.service';
@@ -44,5 +46,10 @@ export class PermissionService {
 
   async findPermissionByIds(ids: string[]): Promise<PermissionEntity[]> {
     return await this.permissionRepository.findPermissionByIds(ids);
+  }
+
+  async permissionPagination(query:PaginationQueryDto):Promise<Paginated<PermissionEntity>>
+  {
+    return this.permissionRepository.permissionPagination(query)
   }
 }

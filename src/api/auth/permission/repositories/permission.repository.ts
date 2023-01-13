@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
 import { DataSource, In, Repository, UpdateResult } from 'typeorm';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
@@ -56,5 +58,17 @@ export class PermissionRepository
 
   async findPermissionByIds(ids: string[]): Promise<PermissionEntity[]> {
     return await this.find({ where: { id: In(ids) } });
+  }
+
+  async permissionPagination(query:PaginationQueryDto):Promise<Paginated<PermissionEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['name'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        name: [FilterOperator.ILIKE],
+      },
+    })
   }
 }
