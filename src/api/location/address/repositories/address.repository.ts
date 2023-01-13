@@ -1,6 +1,8 @@
 import { Inject } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AddressEntity } from 'src/entities/LOCATION/address.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateAddressDto } from '../dto/create-address.dto';
@@ -38,5 +40,14 @@ export class AddressRepository
 
   async findAllEntities(): Promise<AddressEntity[]> {
     return await this.createQueryBuilder('address').getMany();
+  }
+
+  async addressPagination(query:PaginationQueryDto):Promise<Paginated<AddressEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['building_number', 'postal_code'],
+      defaultSortBy: [['create_at', 'DESC']],
+    })
   }
 }

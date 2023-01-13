@@ -1,23 +1,17 @@
 import {
-  Controller,
-  Post,
-  Patch,
-  Get,
-  Body,
-  Query,
-  UseFilters,
+  Body, Controller, Get, Patch, Post, Query
 } from '@nestjs/common';
-import { UseGuards } from '@nestjs/common/decorators';
-import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Paginated } from 'nestjs-paginate';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { UserInterface } from 'src/common/interfaces/user.interface';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AddressEntity } from 'src/entities/LOCATION/address.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAddressDto } from '../dto/create-address.dto';
 import { UpdateAddressDto } from '../dto/update-address.dto';
 import { AddressService } from '../services/address.service';
-import { HttpExceptionFilter } from '../../../../common/exceptions/http.exception';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Address')
@@ -55,5 +49,11 @@ export class AddressController {
   @ApiOperation({ summary: 'Get All Addresses' })
   async findAllEntities(): Promise<AddressEntity[]> {
     return await this.addressService.findAllEntities();
+  }
+
+  @Post("page")
+  addressPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.addressService.addressPagination(query)
   }
 }
