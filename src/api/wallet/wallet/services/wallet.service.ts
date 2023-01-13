@@ -6,6 +6,8 @@ import { UpdateWalletDto } from '../dto/update-wallet.dto';
 import { UpdateResult } from 'typeorm';
 import { WalletRepository } from '../repositories/wallet.repository';
 import { UserService } from '../../../auth/user/service/user.service';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class WalletService {
@@ -36,5 +38,10 @@ export class WalletService {
     updateEntityDto: UpdateWalletDto,
   ): Promise<UpdateResult> {
     return await this.walletRepository.updateEntity(id, updateEntityDto);
+  }
+
+  async walletPagination(query:PaginationQueryDto):Promise<Paginated<WalletEntity>>
+  {
+    return this.walletRepository.walletPagination(query)
   }
 }

@@ -6,6 +6,8 @@ import { CreateWalletDto } from '../dto/create-wallet.dto';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
 import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class WalletRepository
@@ -38,5 +40,17 @@ export class WalletRepository
     updateEntityDto: UpdateWalletDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async walletPagination(query:PaginationQueryDto):Promise<Paginated<WalletEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['amount'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        amount: [FilterOperator.ILIKE],
+      },
+    })
   }
 }

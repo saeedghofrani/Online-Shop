@@ -4,9 +4,14 @@ import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
 import { UpdateResult } from 'typeorm';
 import { UserInterface } from '../../../../common/interfaces/user.interface';
-import { Body, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { GetUser } from '../../../../common/decorator/user.decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
+@ApiBearerAuth('access-token')
+@ApiTags('Wallet')
+@Controller('wallet')
 export class WalletController {
   constructor(private walletService: WalletService) {}
 
@@ -34,5 +39,11 @@ export class WalletController {
     @Body() updateEntityDto: UpdateWalletDto,
   ): Promise<UpdateResult> {
     return this.walletService.updateEntity(id, updateEntityDto);
+  }
+
+  @Post("page")
+  walletPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.walletService.walletPagination(query)
   }
 }
