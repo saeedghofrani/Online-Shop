@@ -41,5 +41,9 @@ import { ProductService } from './product/services/product.service';
     ProductAttributeService,
     ProductAttributeRepository,
   ],
+  exports: [
+    ProductService,
+    ProductRepository,
+  ]
 })
 export class ProductModule {}
