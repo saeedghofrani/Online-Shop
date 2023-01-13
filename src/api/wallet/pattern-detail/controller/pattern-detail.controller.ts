@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PatternDetailEntity } from 'src/entities/WALLET/pattern-detail.entity';
 import { UpdateResult } from 'typeorm';
 import { CreatePatternDetailDto } from '../dto/create-pattern-detail.dto';
@@ -41,5 +42,11 @@ export class PatternDetailController {
     @Body() updateEntityDto: UpdatePatternDetailDto,
   ): Promise<UpdateResult> {
     return this.patternDetailService.updateEntity(id, updateEntityDto);
+  }
+
+  @Post("page")
+  accountPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.patternDetailService.patternDetailPagination(query)
   }
 }

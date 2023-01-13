@@ -1,4 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PatternDetailEntity } from 'src/entities/WALLET/pattern-detail.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
@@ -43,5 +45,13 @@ export class PatternDetailRepository
     updateEntityDto: UpdatePatternDetailDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async patternDetailPagination(query:PaginationQueryDto):Promise<Paginated<PatternDetailEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      defaultSortBy: [['create_at', 'DESC']]
+    })
   }
 }
