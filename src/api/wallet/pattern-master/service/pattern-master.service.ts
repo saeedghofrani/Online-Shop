@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PatternMasterEntity } from 'src/entities/WALLET/pattern-master.entity';
 import { UpdateResult } from 'typeorm';
 import { CreatePatternMasterDto } from '../dto/create-pattern-master.dto';
@@ -38,5 +40,10 @@ export class PatternMasterService {
         updateEntityDto,
       );
     } catch (e) {}
+  }
+
+  async patternMasterPagination(query:PaginationQueryDto):Promise<Paginated<PatternMasterEntity>>
+  {
+    return this.patternMasterRepository.patternMasterPagination(query)
   }
 }
