@@ -2,6 +2,8 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { KycService } from '../service/kyc.service';
 import { CreateKycDto } from '../dto/create-kyc.dto';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'nestjs-paginate';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Kyc')
@@ -13,6 +15,12 @@ export class KycController {
   @ApiOperation({ summary: 'Get All Kyc' })
   findAllEntities() {
     return this.kycService.findAllEntities();
+  }
+
+  @Post("page")
+  kycPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.kycService.kycPagination(query)
   }
 
   @Post('')

@@ -4,6 +4,8 @@ import { KycEntity } from 'src/entities/AUTH/kyc.entity';
 import { KycRepository } from '../repositories/kyc.repository';
 import { UserRepository } from '../../user/repositories/user.repository';
 import { UserService } from '../../user/service/user.service';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class KycService {
@@ -30,5 +32,10 @@ export class KycService {
 
   async findOneEntity(kycId: string): Promise<KycEntity> {
     return await this.kycRepository.findOneEntity(kycId);
+  }
+
+  async kycPagination(query:PaginationQueryDto):Promise<Paginated<KycEntity>>
+  {
+    return this.kycRepository.kycPagination(query)
   }
 }
