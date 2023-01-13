@@ -6,6 +6,8 @@ import { CreateProfileDto } from '../dto/create-profile.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { UserRepository } from '../../user/repositories/user.repository';
 import { UserService } from '../../user/service/user.service';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'nestjs-paginate';
 
 @Injectable()
 export class ProfileService {
@@ -41,5 +43,10 @@ export class ProfileService {
     updateEntityDto: UpdateProfileDto,
   ): Promise<UpdateResult> {
     return await this.profileRepository.updateEntity(id, updateEntityDto);
+  }
+
+  async profilePagination(query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>
+  {
+    return this.profileRepository.profilePagination(query)
   }
 }

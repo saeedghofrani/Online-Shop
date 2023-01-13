@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProfileDto } from '../dto/create-profile.dto';
@@ -52,5 +54,14 @@ export class ProfileRepository
         },
       )
       .getOne();
+  }
+
+  async profilePagination(query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['first_name', 'last_name'],
+      defaultSortBy: [['create_at', 'DESC']],
+    })
   }
 }
