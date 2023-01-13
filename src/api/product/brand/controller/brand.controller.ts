@@ -38,7 +38,7 @@ export class BrandController {
   }
 
   @Post("page")
-  testPaginations(@Body() query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
+  brandPagination(@Body() query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
   {
     return this.brandService.brandPagination(query)
   }
