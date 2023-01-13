@@ -6,6 +6,8 @@ import { UpdatePricingDto } from '../dto/update-pricing.dto';
 import { UpdateResult } from 'typeorm';
 import { PricingRepository } from '../repositories/pricing.repository';
 import { ProductService } from '../../../product/product/services/product.service';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'nestjs-paginate';
 
 @Injectable()
 export class PricingService {
@@ -46,5 +48,10 @@ export class PricingService {
       if (findProduct) updateEntityDto.product = findProduct;
       return await this.pricingRepository.updateEntity(id, updateEntityDto);
     } catch (e) {}
+  }
+
+  async pricingPagination(query:PaginationQueryDto):Promise<Paginated<PricingEntity>>
+  {
+    return this.pricingRepository.pricingPagination(query)
   }
 }

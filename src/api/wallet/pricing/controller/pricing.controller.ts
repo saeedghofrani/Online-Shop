@@ -6,6 +6,7 @@ import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
 import { CreatePricingDto } from '../dto/create-pricing.dto';
 import { UpdatePricingDto } from '../dto/update-pricing.dto';
 import { UpdateResult } from 'typeorm';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Account')
@@ -38,5 +39,11 @@ export class PricingController {
     @Query('product_id') productId: string,
   ): Promise<UpdateResult> {
     return this.pricingService.updateEntity(id, updateEntityDto, productId);
+  }
+
+  @Post("page")
+  pricingPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.pricingService.pricingPagination(query)
   }
 }

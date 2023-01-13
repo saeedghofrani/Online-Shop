@@ -5,6 +5,8 @@ import { CreatePricingDto } from '../dto/create-pricing.dto';
 import { UpdatePricingDto } from '../dto/update-pricing.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class PricingRepository
@@ -38,5 +40,17 @@ export class PricingRepository
     updateEntityDto: UpdatePricingDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async pricingPagination(query:PaginationQueryDto):Promise<Paginated<PricingEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['price'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        price: [FilterOperator.EQ],
+      },
+    })
   }
 }
