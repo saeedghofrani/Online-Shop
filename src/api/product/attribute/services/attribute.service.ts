@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { time } from 'console';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAttributeDto } from '../dto/create-attribute.dto';
@@ -37,5 +39,10 @@ export class AttributeService {
     try {
       return await this.attributeRepository.findAllEntities();
     } catch (e) {}
+  }
+
+  async attributePagination(query:PaginationQueryDto):Promise<Paginated<AttributeEntity>>
+  {
+    return this.attributeRepository.attributePagination(query)
   }
 }

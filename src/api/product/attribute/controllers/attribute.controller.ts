@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { create } from 'domain';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAttributeDto } from '../dto/create-attribute.dto';
@@ -36,5 +36,11 @@ export class AttributeController {
   @Get('all')
   async findAllEntities(): Promise<AttributeEntity[]> {
     return this.attributeService.findAllEntities();
+  }
+  
+  @Post("page")
+  attributePagination(@Body() query:PaginationQueryDto)
+  {
+    return this.attributeService.attributePagination(query)
   }
 }
