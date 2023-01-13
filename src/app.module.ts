@@ -13,6 +13,7 @@ import { ProductModule } from './api/product/product.module';
 import { MopngooseModule } from './config/database/mongoose/mongoose.module';
 import { RequestLoggerMiddleware } from './common/middlewares/request-logger.middleware';
 import { HistoryModule } from './api/history/history.module';
+import { WalletModule } from './api/wallet/wallet.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { HistoryModule } from './api/history/history.module';
     EmailModule,
     MopngooseModule,
     LocationModule,
+    WalletModule,
     InventoryModuel,
     HistoryModule,
     AuthModule,
