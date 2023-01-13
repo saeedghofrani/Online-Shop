@@ -1,5 +1,8 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { RouteEntity } from 'src/entities/AUTH/route.entity';
 import { CreateRouteDto } from '../dto/create-route.dto';
 import { UpdateRouteDto } from '../dto/update-route.dto';
 import { RouteService } from '../service/route.service';
@@ -14,6 +17,12 @@ export class RouteController {
   @ApiOperation({ summary: 'Get All Routes' })
   findAllEntities() {
     return this.routeService.findAllEntities();
+  }
+
+  @Post("page")
+  routePagination(@Body() query:PaginationQueryDto)
+  {
+    return this.routeService.routePagination(query)
   }
 
   @Patch('')

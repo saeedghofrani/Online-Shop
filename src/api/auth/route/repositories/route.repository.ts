@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 import { RouteEntity } from 'src/entities/AUTH/route.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
@@ -50,5 +52,18 @@ export class RouteRepository
         },
       )
       .getOne();
+  }
+
+  async routePagination(query:PaginationQueryDto):Promise<Paginated<RouteEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['address'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        //##TODO
+        jwt: [FilterOperator.NOT],
+      },
+    })
   }
 }

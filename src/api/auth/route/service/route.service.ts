@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { RouteEntity } from 'src/entities/AUTH/route.entity';
 import { UpdateResult } from 'typeorm';
 import { PermissionService } from '../../permission/service/permission.service';
@@ -31,6 +33,11 @@ export class RouteService {
 
   async findOneEntity(routeId: string): Promise<RouteEntity> {
     return await this.routeRepository.findOneEntity(routeId);
+  }
+
+  async routePagination(query:PaginationQueryDto):Promise<Paginated<RouteEntity>>
+  {
+    return this.routeRepository.routePagination(query)
   }
 
   async updateEntity(
