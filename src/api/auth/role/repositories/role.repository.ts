@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { FilterOperator, paginate, Paginated } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { RoleEntity } from 'src/entities/AUTH/role.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { In } from 'typeorm/find-options/operator/In';
@@ -55,6 +57,18 @@ export class RoleRepository
 
   async findRolesByIds(ids: string[]): Promise<RoleEntity[]> {
     return await this.find({ where: { id: In(ids) } });
+  }
+  
+  async rolePagination(query:PaginationQueryDto):Promise<Paginated<RoleEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['name'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        name: [FilterOperator.ILIKE],
+      },
+    })
   }
 
   async addPermissionToUser() {}

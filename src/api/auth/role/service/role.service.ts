@@ -4,6 +4,8 @@ import { CreateRoleDto } from '../dto/create-role.dto';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 import { RoleEntity } from 'src/entities/AUTH/role.entity';
 import { RoleRepository } from '../repositories/role.repository';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class RoleService {
@@ -38,5 +40,10 @@ export class RoleService {
 
   async findRolesByIds(ids: string[]): Promise<RoleEntity[]> {
     return await this.roleRepository.findRolesByIds(ids);
+  }
+
+  async rolePagination(query:PaginationQueryDto):Promise<Paginated<RoleEntity>>
+  {
+    return this.roleRepository.rolePagination(query)
   }
 }

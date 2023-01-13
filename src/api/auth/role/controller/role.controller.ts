@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RoleService } from '../service/role.service';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 import { CreateRoleDto } from '../dto/create-role.dto';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Role')
@@ -14,6 +15,12 @@ export class RoleController {
   @ApiOperation({ summary: 'Get All Roles' })
   findAllEntities() {
     return this.roleService.findAllEntities();
+  }
+
+  @Post("page")
+  rolePaginations(@Body() query:PaginationQueryDto)
+  {
+    return this.roleService.rolePagination(query)
   }
 
   @Patch('')
