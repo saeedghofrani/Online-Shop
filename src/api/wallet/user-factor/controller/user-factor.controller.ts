@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserFactorService } from '../services/user-factor.service';
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
 import { UserFactorEntity } from '../../../../entities/WALLET/user-factor.entity';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('User-Factor')
@@ -28,5 +29,11 @@ export class UserFactorController {
     @Query('pattern_master_id') id: string,
   ): Promise<UserFactorEntity> {
     return this.userFactorService.findOneEntity(id);
+  }
+
+  @Post("page")
+  userFactorPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.userFactorService.userFactorPagination(query)
   }
 }

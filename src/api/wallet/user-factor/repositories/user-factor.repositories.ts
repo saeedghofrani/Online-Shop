@@ -5,6 +5,8 @@ import { RepositoriesAbstract } from '../../../../common/abstract/repositories.a
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
 import { UpdateUserFactorDto } from '../dto/update-user-factor.dto';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class UserFactorRepositories
@@ -43,5 +45,13 @@ export class UserFactorRepositories
     updateEntityDto: UpdateUserFactorDto,
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
+  }
+
+  async userFactorPagination(query:PaginationQueryDto):Promise<Paginated<UserFactorEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      defaultSortBy: [['create_at', 'DESC']],
+    })
   }
 }

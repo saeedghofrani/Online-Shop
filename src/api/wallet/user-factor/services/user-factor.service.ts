@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, UpdateResult } from 'typeorm';
+import { Paginated } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UserFactorEntity } from '../../../../entities/WALLET/user-factor.entity';
-import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
-import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
-import { UpdateUserFactorDto } from '../dto/update-user-factor.dto';
-import { UserFactorRepositories } from '../repositories/user-factor.repositories';
 import { PatternMasterService } from '../../pattern-master/service/pattern-master.service';
+import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
+import { UserFactorRepositories } from '../repositories/user-factor.repositories';
 
 @Injectable()
 export class UserFactorService {
@@ -32,5 +31,10 @@ export class UserFactorService {
 
   async findOneEntity(id: string): Promise<UserFactorEntity> {
     return await this.userFactorRepository.findOneEntity(id);
+  }
+  
+  async userFactorPagination(query:PaginationQueryDto):Promise<Paginated<UserFactorEntity>>
+  {
+    return this.userFactorRepository.userFactorPagination(query)
   }
 }
