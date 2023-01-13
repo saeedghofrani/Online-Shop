@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
@@ -48,5 +49,11 @@ export class ProductController {
   @Get('all')
   findAllEntities(): Promise<ProductEntity[]> {
     return this.productService.findAllEntities();
+  }
+
+  @Post("page")
+  brandPagination(@Body() query:PaginationQueryDto)
+  {
+    return this.productService.productPagination(query)
   }
 }

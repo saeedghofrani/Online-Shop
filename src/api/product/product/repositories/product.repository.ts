@@ -1,6 +1,8 @@
 import { Inject } from '@nestjs/common';
+import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
@@ -32,5 +34,17 @@ export class ProductRepository
   }
   async findAllEntities(): Promise<ProductEntity[]> {
     return await this.createQueryBuilder('product').getMany();
+  }
+
+  async productPagination(query:PaginationQueryDto):Promise<Paginated<ProductEntity>>{
+    return paginate(query, this, {
+      sortableColumns: ['create_at'],
+      nullSort: 'last',
+      searchableColumns: ['name','description'],
+      defaultSortBy: [['create_at', 'DESC']],
+      filterableColumns: {
+        name: [FilterOperator.ILIKE],
+      },
+    })
   }
 }
