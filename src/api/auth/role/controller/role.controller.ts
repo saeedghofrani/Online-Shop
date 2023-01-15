@@ -18,6 +18,7 @@ export class RoleController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Role Pagination' })
   rolePaginations(@Body() query:PaginationQueryDto)
   {
     return this.roleService.rolePagination(query)

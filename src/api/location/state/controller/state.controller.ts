@@ -41,6 +41,7 @@ export class StateController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'State Pagination' })
   statePagination(@Body() query:PaginationQueryDto)
   {
     return this.stateService.statePagination(query)

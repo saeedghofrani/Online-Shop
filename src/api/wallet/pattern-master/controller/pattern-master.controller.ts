@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { PatternMasterEntity } from 'src/entities/WALLET/pattern-master.entity';
 import { UpdateResult } from 'typeorm';
@@ -41,6 +41,7 @@ export class PatternMasterController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Pattern Master Pagination' })
   patternMasterPagination(@Body() query:PaginationQueryDto)
   {
     return this.patternMasterService.patternMasterPagination(query)

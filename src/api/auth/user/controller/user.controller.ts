@@ -75,6 +75,7 @@ export class UserController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'User Pagination' })
   userPagination(@Body() query:PaginationQueryDto):Promise<Paginated<UserEntity>>
   {
     return this.userService.userPagination(query)

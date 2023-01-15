@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { GroupEntity } from 'src/entities/PRODUCT/group.entity';
 import { UpdateResult } from 'typeorm';
@@ -19,6 +19,7 @@ export class GroupController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Group Pagination' })
   brandPagination(@Body() query:PaginationQueryDto)
   {
     return this.groupService.groupPagination(query)

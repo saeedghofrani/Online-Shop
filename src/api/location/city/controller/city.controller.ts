@@ -43,6 +43,7 @@ export class CityController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'City Pagination' })
   cityPagination(@Body() query:PaginationQueryDto)
   {
     return this.cityService.cityPagination(query)

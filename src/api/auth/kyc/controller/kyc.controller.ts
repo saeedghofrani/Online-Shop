@@ -18,6 +18,7 @@ export class KycController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'KYC Pagination' })
   kycPagination(@Body() query:PaginationQueryDto)
   {
     return this.kycService.kycPagination(query)

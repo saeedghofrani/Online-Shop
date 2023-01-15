@@ -19,6 +19,7 @@ export class SummaryController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Summary Pagination' })
   summaryPagination(@Body() query:PaginationQueryDto)
   {
     return this.summaryService.summaryPagination(query)

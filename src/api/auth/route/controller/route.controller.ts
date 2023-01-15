@@ -20,6 +20,7 @@ export class RouteController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Route Pagination' })
   routePagination(@Body() query:PaginationQueryDto)
   {
     return this.routeService.routePagination(query)

@@ -2,7 +2,7 @@ import { RepositoriesAbstract } from '../../../../common/abstract/repositories.a
 import { OrderEntity } from '../../../../entities/WALLET/order.entity';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
 import { OrderService } from '../service/order.service';
@@ -49,6 +49,7 @@ export class OrderController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Order Pagination' })
   orderPagination(@Body() query:PaginationQueryDto)
   {
     return this.orderService.orderPagination(query)

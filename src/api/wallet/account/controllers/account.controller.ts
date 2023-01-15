@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { GetUser } from 'src/common/decorator/user.decorator';
 import { UserInterface } from 'src/common/interfaces/user.interface';
@@ -40,6 +40,7 @@ export class AccountController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Accountt Pagination' })
   accountPagination(@Body() query:PaginationQueryDto)
   {
     return this.accountService.accountPagination(query)

@@ -22,6 +22,7 @@ export class ProviderController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Provider Pagination' })
   testPaginations(@Body() query:PaginationQueryDto)
   {
     return this.providerService.providerPagination(query)

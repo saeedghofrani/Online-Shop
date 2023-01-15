@@ -6,7 +6,7 @@ import { UpdateResult } from 'typeorm';
 import { UserInterface } from '../../../../common/interfaces/user.interface';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { GetUser } from '../../../../common/decorator/user.decorator';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
@@ -42,6 +42,7 @@ export class WalletController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Wallet Pagination' })
   walletPagination(@Body() query:PaginationQueryDto)
   {
     return this.walletService.walletPagination(query)

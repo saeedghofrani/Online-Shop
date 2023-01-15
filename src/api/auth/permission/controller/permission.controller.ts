@@ -18,6 +18,7 @@ export class PermissionController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Permission Pagination' })
   testPaginations(@Body() query:PaginationQueryDto)
   {
     return this.permissionService.permissionPagination(query)

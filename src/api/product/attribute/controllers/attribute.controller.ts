@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
 import { UpdateResult } from 'typeorm';
@@ -39,6 +39,7 @@ export class AttributeController {
   }
   
   @Post("page")
+  @ApiOperation({ summary: 'Attribute Pagination' })
   attributePagination(@Body() query:PaginationQueryDto)
   {
     return this.attributeService.attributePagination(query)

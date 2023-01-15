@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductAttributeEntity } from 'src/entities/PRODUCT/product-attribute.entity';
@@ -40,6 +40,7 @@ export class ProductAttributeController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Product Attribute Pagination' })
    productAttributePagination(@Body() query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>
   {
     return this.productAttributeService.productAttributePagination(query)

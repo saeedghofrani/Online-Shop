@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { PricingService } from '../services/pricing.service';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
@@ -42,6 +42,7 @@ export class PricingController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Pricing Pagination' })
   pricingPagination(@Body() query:PaginationQueryDto)
   {
     return this.pricingService.pricingPagination(query)

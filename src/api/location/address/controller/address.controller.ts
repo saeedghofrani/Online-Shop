@@ -52,6 +52,7 @@ export class AddressController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Address Pagination' })
   addressPagination(@Body() query:PaginationQueryDto)
   {
     return this.addressService.addressPagination(query)

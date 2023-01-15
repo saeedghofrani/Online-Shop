@@ -20,6 +20,7 @@ export class ProfileController {
   }
 
   @Post("page")
+  @ApiOperation({ summary: 'Profile Pagination' })
   testPaginations(@Body() query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>
   {
     return this.profileService.profilePagination(query)
