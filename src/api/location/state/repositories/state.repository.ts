@@ -37,7 +37,9 @@ export class StateRepository
     return await this.createQueryBuilder('state').getMany();
   }
 
-  async statePagination(query:PaginationQueryDto):Promise<Paginated<StateEntity>>{
+  async statePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<StateEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -46,6 +48,6 @@ export class StateRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

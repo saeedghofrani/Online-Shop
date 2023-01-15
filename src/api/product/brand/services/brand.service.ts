@@ -38,8 +38,9 @@ export class BrandService {
     } catch (e) {}
   }
 
-  async brandPagination(query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
-  {
-    return this.brandRepository.brandPagination(query)
+  async brandPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<BrandEntity>> {
+    return this.brandRepository.brandPagination(query);
   }
 }

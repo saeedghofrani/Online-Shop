@@ -18,11 +18,10 @@ export class SummaryController {
     return this.summaryService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Summary Pagination' })
-  summaryPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.summaryService.summaryPagination(query)
+  summaryPagination(@Body() query: PaginationQueryDto) {
+    return this.summaryService.summaryPagination(query);
   }
 
   @Patch('')

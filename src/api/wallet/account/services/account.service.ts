@@ -43,8 +43,9 @@ export class AccountService {
     } catch (e) {}
   }
 
-  async accountPagination(query:PaginationQueryDto):Promise<Paginated<AccountEntity>>
-  {
-    return this.accountRepository.accountPagination(query)
+  async accountPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AccountEntity>> {
+    return this.accountRepository.accountPagination(query);
   }
 }

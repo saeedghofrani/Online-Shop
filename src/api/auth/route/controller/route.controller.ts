@@ -19,11 +19,10 @@ export class RouteController {
     return this.routeService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Route Pagination' })
-  routePagination(@Body() query:PaginationQueryDto)
-  {
-    return this.routeService.routePagination(query)
+  routePagination(@Body() query: PaginationQueryDto) {
+    return this.routeService.routePagination(query);
   }
 
   @Patch('')

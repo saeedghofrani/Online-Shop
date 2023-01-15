@@ -35,14 +35,15 @@ export class ProductAttributeController {
   }
 
   @Get('all')
-   findAllEntities(): Promise<ProductAttributeEntity[]> {
-    return  this.productAttributeService.findAllEntities();
+  findAllEntities(): Promise<ProductAttributeEntity[]> {
+    return this.productAttributeService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Product Attribute Pagination' })
-   productAttributePagination(@Body() query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>
-  {
-    return this.productAttributeService.productAttributePagination(query)
+  productAttributePagination(
+    @Body() query: PaginationQueryDto,
+  ): Promise<Paginated<ProductAttributeEntity>> {
+    return this.productAttributeService.productAttributePagination(query);
   }
 }

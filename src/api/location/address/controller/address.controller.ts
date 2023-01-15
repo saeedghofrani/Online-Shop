@@ -1,6 +1,4 @@
-import {
-  Body, Controller, Get, Patch, Post, Query
-} from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { GetUser } from 'src/common/decorator/user.decorator';
@@ -51,10 +49,9 @@ export class AddressController {
     return await this.addressService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Address Pagination' })
-  addressPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.addressService.addressPagination(query)
+  addressPagination(@Body() query: PaginationQueryDto) {
+    return this.addressService.addressPagination(query);
   }
 }

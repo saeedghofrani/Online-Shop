@@ -37,16 +37,18 @@ export class ProductAttributeRepository
     return await this.createQueryBuilder('product_attribute').getMany();
   }
 
-  async productAttributePagination(query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>{
+  async productAttributePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProductAttributeEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['attribute.name','product.name'],
+      searchableColumns: ['attribute.name', 'product.name'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
-        "attribute.name": [FilterOperator.ILIKE],
-        "product.name":[FilterOperator.ILIKE]
+        'attribute.name': [FilterOperator.ILIKE],
+        'product.name': [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

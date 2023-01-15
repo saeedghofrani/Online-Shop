@@ -63,7 +63,9 @@ export class ProviderRepository
     return await this.update(providerId, updateProviderStatusDto);
   }
 
-  async providerPagination(query:PaginationQueryDto):Promise<Paginated<ProviderEntity>>{
+  async providerPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProviderEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -73,6 +75,6 @@ export class ProviderRepository
         latitude: [FilterOperator.BTW],
         longitude: [FilterOperator.BTW],
       },
-    })
+    });
   }
 }

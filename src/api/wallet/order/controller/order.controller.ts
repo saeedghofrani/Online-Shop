@@ -48,10 +48,9 @@ export class OrderController {
     );
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Order Pagination' })
-  orderPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.orderService.orderPagination(query)
+  orderPagination(@Body() query: PaginationQueryDto) {
+    return this.orderService.orderPagination(query);
   }
 }

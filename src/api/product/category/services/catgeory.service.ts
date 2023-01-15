@@ -43,8 +43,9 @@ export class CategoryService {
     return await this.categoryRepository.findAllEntities();
   }
 
-  async categoryPagination(query:PaginationQueryDto):Promise<Paginated<CategoryEntity>>
-  {
-    return this.categoryRepository.categoryPagination(query)
+  async categoryPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<CategoryEntity>> {
+    return this.categoryRepository.categoryPagination(query);
   }
 }

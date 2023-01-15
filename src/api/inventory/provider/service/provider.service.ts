@@ -57,8 +57,9 @@ export class ProviderService {
     );
   }
 
-  async providerPagination(query:PaginationQueryDto):Promise<Paginated<ProviderEntity>>
-  {
+  async providerPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProviderEntity>> {
     return this.providerRepository.providerPagination(query);
   }
 }

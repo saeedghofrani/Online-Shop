@@ -34,8 +34,9 @@ export class KycService {
     return await this.kycRepository.findOneEntity(kycId);
   }
 
-  async kycPagination(query:PaginationQueryDto):Promise<Paginated<KycEntity>>
-  {
-    return this.kycRepository.kycPagination(query)
+  async kycPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<KycEntity>> {
+    return this.kycRepository.kycPagination(query);
   }
 }

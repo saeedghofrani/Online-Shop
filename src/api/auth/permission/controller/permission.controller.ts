@@ -17,11 +17,10 @@ export class PermissionController {
     return this.permissionService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Permission Pagination' })
-  testPaginations(@Body() query:PaginationQueryDto)
-  {
-    return this.permissionService.permissionPagination(query)
+  testPaginations(@Body() query: PaginationQueryDto) {
+    return this.permissionService.permissionPagination(query);
   }
 
   @Patch('')

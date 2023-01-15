@@ -38,15 +38,17 @@ export class CategoryRepository
     return await this.createQueryBuilder('category').getMany();
   }
 
-  async categoryPagination(query:PaginationQueryDto):Promise<Paginated<CategoryEntity>>{
+  async categoryPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<CategoryEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['name','description'],
+      searchableColumns: ['name', 'description'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

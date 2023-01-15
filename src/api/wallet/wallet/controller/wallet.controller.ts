@@ -41,10 +41,9 @@ export class WalletController {
     return this.walletService.updateEntity(id, updateEntityDto);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Wallet Pagination' })
-  walletPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.walletService.walletPagination(query)
+  walletPagination(@Body() query: PaginationQueryDto) {
+    return this.walletService.walletPagination(query);
   }
 }

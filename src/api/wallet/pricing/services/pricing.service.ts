@@ -50,8 +50,9 @@ export class PricingService {
     } catch (e) {}
   }
 
-  async pricingPagination(query:PaginationQueryDto):Promise<Paginated<PricingEntity>>
-  {
-    return this.pricingRepository.pricingPagination(query)
+  async pricingPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PricingEntity>> {
+    return this.pricingRepository.pricingPagination(query);
   }
 }

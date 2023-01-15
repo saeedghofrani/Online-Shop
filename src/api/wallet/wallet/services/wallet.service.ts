@@ -40,8 +40,9 @@ export class WalletService {
     return await this.walletRepository.updateEntity(id, updateEntityDto);
   }
 
-  async walletPagination(query:PaginationQueryDto):Promise<Paginated<WalletEntity>>
-  {
-    return this.walletRepository.walletPagination(query)
+  async walletPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<WalletEntity>> {
+    return this.walletRepository.walletPagination(query);
   }
 }

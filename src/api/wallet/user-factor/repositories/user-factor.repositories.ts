@@ -47,11 +47,13 @@ export class UserFactorRepositories
     return await this.update(id, updateEntityDto);
   }
 
-  async userFactorPagination(query:PaginationQueryDto):Promise<Paginated<UserFactorEntity>>{
+  async userFactorPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserFactorEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
       defaultSortBy: [['create_at', 'DESC']],
-    })
+    });
   }
 }

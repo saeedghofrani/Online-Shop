@@ -41,10 +41,9 @@ export class PricingController {
     return this.pricingService.updateEntity(id, updateEntityDto, productId);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Pricing Pagination' })
-  pricingPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.pricingService.pricingPagination(query)
+  pricingPagination(@Body() query: PaginationQueryDto) {
+    return this.pricingService.pricingPagination(query);
   }
 }

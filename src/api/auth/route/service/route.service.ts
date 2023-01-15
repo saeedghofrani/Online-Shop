@@ -35,9 +35,10 @@ export class RouteService {
     return await this.routeRepository.findOneEntity(routeId);
   }
 
-  async routePagination(query:PaginationQueryDto):Promise<Paginated<RouteEntity>>
-  {
-    return this.routeRepository.routePagination(query)
+  async routePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<RouteEntity>> {
+    return this.routeRepository.routePagination(query);
   }
 
   async updateEntity(

@@ -46,7 +46,9 @@ export class UserPaymentRepository
     return await this.update(id, updateEntityDto);
   }
 
-  async userPaymentPagination(query:PaginationQueryDto):Promise<Paginated<UserPaymentEntity>>{
+  async userPaymentPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserPaymentEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -54,6 +56,6 @@ export class UserPaymentRepository
       filterableColumns: {
         dou_date: [FilterOperator.BTW],
       },
-    })
+    });
   }
 }

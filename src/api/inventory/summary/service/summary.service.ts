@@ -44,8 +44,9 @@ export class SummaryService {
     return await this.summaryRepository.updateEntity(id, updateSummaryDto);
   }
 
-  async summaryPagination(query:PaginationQueryDto):Promise<Paginated<SummaryEntity>>
-  {
-    return this.summaryRepository.summaryPagination(query)
+  async summaryPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<SummaryEntity>> {
+    return this.summaryRepository.summaryPagination(query);
   }
 }

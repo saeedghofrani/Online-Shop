@@ -37,7 +37,9 @@ export class CityRepository
     return await this.createQueryBuilder('city').getMany();
   }
 
-  async cityPagination(query:PaginationQueryDto):Promise<Paginated<CityEntity>>{
+  async cityPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<CityEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -46,6 +48,6 @@ export class CityRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

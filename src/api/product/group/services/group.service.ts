@@ -27,8 +27,9 @@ export class GroupService {
     return await this.groupRepository.findAllEntities();
   }
 
-  async groupPagination(query:PaginationQueryDto):Promise<Paginated<GroupEntity>>
-  {
-    return this.groupRepository.groupPagination(query)
+  async groupPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<GroupEntity>> {
+    return this.groupRepository.groupPagination(query);
   }
 }

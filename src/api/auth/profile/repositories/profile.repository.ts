@@ -56,12 +56,14 @@ export class ProfileRepository
       .getOne();
   }
 
-  async profilePagination(query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>{
+  async profilePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProfileEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
       searchableColumns: ['first_name', 'last_name'],
       defaultSortBy: [['create_at', 'DESC']],
-    })
+    });
   }
 }

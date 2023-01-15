@@ -27,8 +27,9 @@ export class StateService {
     return await this.stateRepository.findAllEntities();
   }
 
-  async statePagination(query:PaginationQueryDto):Promise<Paginated<StateEntity>>
-  {
-    return this.stateRepository.statePagination(query)
+  async statePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<StateEntity>> {
+    return this.stateRepository.statePagination(query);
   }
 }

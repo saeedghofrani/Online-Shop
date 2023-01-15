@@ -37,7 +37,9 @@ export class GroupRepository
     return await this.createQueryBuilder('group').getMany();
   }
 
-  async groupPagination(query:PaginationQueryDto):Promise<Paginated<GroupEntity>>{
+  async groupPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<GroupEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -46,6 +48,6 @@ export class GroupRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

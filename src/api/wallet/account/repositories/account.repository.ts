@@ -39,7 +39,9 @@ export class AccountRepository
     return await this.createQueryBuilder('account').getMany();
   }
 
-  async accountPagination(query:PaginationQueryDto):Promise<Paginated<AccountEntity>>{
+  async accountPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AccountEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -49,6 +51,6 @@ export class AccountRepository
         account: [FilterOperator.ILIKE],
         iban: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

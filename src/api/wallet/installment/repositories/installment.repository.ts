@@ -43,7 +43,9 @@ export class InstallmentRepository
     return await this.createQueryBuilder('installment').getMany();
   }
 
-  async installmentPagination(query:PaginationQueryDto):Promise<Paginated<InstallmentEntity>>{
+  async installmentPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<InstallmentEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -52,6 +54,6 @@ export class InstallmentRepository
         priec: [FilterOperator.EQ],
         dou_date: [FilterOperator.BTW],
       },
-    })
+    });
   }
 }

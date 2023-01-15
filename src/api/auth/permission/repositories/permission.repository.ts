@@ -60,7 +60,9 @@ export class PermissionRepository
     return await this.find({ where: { id: In(ids) } });
   }
 
-  async permissionPagination(query:PaginationQueryDto):Promise<Paginated<PermissionEntity>>{
+  async permissionPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PermissionEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -69,6 +71,6 @@ export class PermissionRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

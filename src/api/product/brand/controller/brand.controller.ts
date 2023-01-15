@@ -37,10 +37,11 @@ export class BrandController {
     return this.brandService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Brand Pagination' })
-  brandPagination(@Body() query:PaginationQueryDto):Promise<Paginated<BrandEntity>>
-  {
-    return this.brandService.brandPagination(query)
+  brandPagination(
+    @Body() query: PaginationQueryDto,
+  ): Promise<Paginated<BrandEntity>> {
+    return this.brandService.brandPagination(query);
   }
 }

@@ -163,12 +163,11 @@ export class UserService {
     };
   }
 
-  async userPagination(query:PaginationQueryDto):Promise<Paginated<UserEntity>>
-  {
+  async userPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserEntity>> {
     try {
-      return await this.userRepository.userPagination(query)
-    } catch (e) {
-      
-    }
+      return await this.userRepository.userPagination(query);
+    } catch (e) {}
   }
 }

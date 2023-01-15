@@ -54,16 +54,18 @@ export class UserRepository
       .getOne();
   }
 
-  async userPagination(query:PaginationQueryDto):Promise<Paginated<UserEntity>>{
+  async userPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['mobile','email'],
+      searchableColumns: ['mobile', 'email'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         mobile: [FilterOperator.ILIKE],
-        email:[FilterOperator.ILIKE]
+        email: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

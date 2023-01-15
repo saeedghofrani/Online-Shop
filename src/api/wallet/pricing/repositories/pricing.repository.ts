@@ -42,7 +42,9 @@ export class PricingRepository
     return await this.update(id, updateEntityDto);
   }
 
-  async pricingPagination(query:PaginationQueryDto):Promise<Paginated<PricingEntity>>{
+  async pricingPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PricingEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -51,6 +53,6 @@ export class PricingRepository
       filterableColumns: {
         price: [FilterOperator.EQ],
       },
-    })
+    });
   }
 }

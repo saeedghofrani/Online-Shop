@@ -42,8 +42,9 @@ export class CityService {
     return await this.cityRepository.findAllEntities();
   }
 
-  async cityPagination(query:PaginationQueryDto):Promise<Paginated<CityEntity>>
-  {
-    return this.cityRepository.cityPagination(query)
+  async cityPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<CityEntity>> {
+    return this.cityRepository.cityPagination(query);
   }
 }

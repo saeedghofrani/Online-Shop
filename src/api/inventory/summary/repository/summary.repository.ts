@@ -55,11 +55,13 @@ export class SummaryRepository
       .getOne();
   }
 
-  async summaryPagination(query:PaginationQueryDto):Promise<Paginated<SummaryEntity>>{
+  async summaryPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<SummaryEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
       defaultSortBy: [['create_at', 'DESC']],
-    })
+    });
   }
 }

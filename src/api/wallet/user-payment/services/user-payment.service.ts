@@ -40,8 +40,9 @@ export class UserPaymentService {
     } catch (e) {}
   }
 
-  async userPaymentPagination(query:PaginationQueryDto):Promise<Paginated<UserPaymentEntity>>
-  {
-    return this.userPaymentRepo.userPaymentPagination(query)
+  async userPaymentPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserPaymentEntity>> {
+    return this.userPaymentRepo.userPaymentPagination(query);
   }
 }

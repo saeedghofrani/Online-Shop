@@ -47,11 +47,13 @@ export class PatternDetailRepository
     return await this.update(id, updateEntityDto);
   }
 
-  async patternDetailPagination(query:PaginationQueryDto):Promise<Paginated<PatternDetailEntity>>{
+  async patternDetailPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PatternDetailEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']]
-    })
+      defaultSortBy: [['create_at', 'DESC']],
+    });
   }
 }

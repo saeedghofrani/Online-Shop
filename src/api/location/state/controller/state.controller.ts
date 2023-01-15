@@ -40,10 +40,9 @@ export class StateController {
     return this.stateService.findOneEntity(stateId);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'State Pagination' })
-  statePagination(@Body() query:PaginationQueryDto)
-  {
-    return this.stateService.statePagination(query)
+  statePagination(@Body() query: PaginationQueryDto) {
+    return this.stateService.statePagination(query);
   }
 }

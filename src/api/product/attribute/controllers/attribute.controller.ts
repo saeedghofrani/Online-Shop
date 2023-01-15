@@ -37,11 +37,10 @@ export class AttributeController {
   async findAllEntities(): Promise<AttributeEntity[]> {
     return this.attributeService.findAllEntities();
   }
-  
-  @Post("page")
+
+  @Post('page')
   @ApiOperation({ summary: 'Attribute Pagination' })
-  attributePagination(@Body() query:PaginationQueryDto)
-  {
-    return this.attributeService.attributePagination(query)
+  attributePagination(@Body() query: PaginationQueryDto) {
+    return this.attributeService.attributePagination(query);
   }
 }

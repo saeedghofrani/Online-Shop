@@ -42,12 +42,14 @@ export class AddressRepository
     return await this.createQueryBuilder('address').getMany();
   }
 
-  async addressPagination(query:PaginationQueryDto):Promise<Paginated<AddressEntity>>{
+  async addressPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AddressEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
       searchableColumns: ['building_number', 'postal_code'],
       defaultSortBy: [['create_at', 'DESC']],
-    })
+    });
   }
 }

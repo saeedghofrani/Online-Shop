@@ -40,10 +40,9 @@ export class UserPaymentController {
     return this.userPaymentService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'User Payment Pagination' })
-  accountPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.userPaymentService.userPaymentPagination(query)
+  accountPagination(@Body() query: PaginationQueryDto) {
+    return this.userPaymentService.userPaymentPagination(query);
   }
 }

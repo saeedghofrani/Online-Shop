@@ -42,7 +42,9 @@ export class WalletRepository
     return await this.update(id, updateEntityDto);
   }
 
-  async walletPagination(query:PaginationQueryDto):Promise<Paginated<WalletEntity>>{
+  async walletPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<WalletEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -51,6 +53,6 @@ export class WalletRepository
       filterableColumns: {
         amount: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

@@ -47,10 +47,9 @@ export class CategoryController {
     return await this.categoryService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Categorys Pagination' })
-  brandPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.categoryService.categoryPagination(query)
+  brandPagination(@Body() query: PaginationQueryDto) {
+    return this.categoryService.categoryPagination(query);
   }
 }

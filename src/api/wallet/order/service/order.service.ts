@@ -65,8 +65,9 @@ export class OrderService {
     } catch (e) {}
   }
 
-  async orderPagination(query:PaginationQueryDto):Promise<Paginated<OrderEntity>>
-  {
-    return this.orderRepository.orderPagination(query)
+  async orderPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<OrderEntity>> {
+    return this.orderRepository.orderPagination(query);
   }
 }

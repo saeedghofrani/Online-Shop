@@ -51,10 +51,9 @@ export class ProductController {
     return this.productService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Product Pagination' })
-  brandPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.productService.productPagination(query)
+  brandPagination(@Body() query: PaginationQueryDto) {
+    return this.productService.productPagination(query);
   }
 }

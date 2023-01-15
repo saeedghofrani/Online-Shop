@@ -55,9 +55,10 @@ export class InstallmentService {
       return await this.installmentRepository.findAllEntities();
     } catch (e) {}
   }
-  
-  async installmentPagination(query:PaginationQueryDto):Promise<Paginated<InstallmentEntity>>
-  {
-    return this.installmentRepository.installmentPagination(query)
+
+  async installmentPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<InstallmentEntity>> {
+    return this.installmentRepository.installmentPagination(query);
   }
 }

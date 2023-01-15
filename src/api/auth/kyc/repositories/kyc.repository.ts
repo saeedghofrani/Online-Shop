@@ -52,7 +52,9 @@ export class KycRepository
       .getOne();
   }
 
-  async kycPagination(query:PaginationQueryDto):Promise<Paginated<KycEntity>>{
+  async kycPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<KycEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -61,6 +63,6 @@ export class KycRepository
       filterableColumns: {
         national_code: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

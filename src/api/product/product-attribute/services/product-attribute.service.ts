@@ -32,12 +32,13 @@ export class ProductAttributeService {
     return await this.productAttributeRepository.findAllEntities();
   }
 
-  async productAttributePagination(query:PaginationQueryDto):Promise<Paginated<ProductAttributeEntity>>
-  {
+  async productAttributePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProductAttributeEntity>> {
     try {
-      return await this.productAttributeRepository.productAttributePagination(query)
-    } catch (e) {
-      
-    }
+      return await this.productAttributeRepository.productAttributePagination(
+        query,
+      );
+    } catch (e) {}
   }
 }

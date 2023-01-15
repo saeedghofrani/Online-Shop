@@ -32,9 +32,10 @@ export class UserFactorService {
   async findOneEntity(id: string): Promise<UserFactorEntity> {
     return await this.userFactorRepository.findOneEntity(id);
   }
-  
-  async userFactorPagination(query:PaginationQueryDto):Promise<Paginated<UserFactorEntity>>
-  {
-    return this.userFactorRepository.userFactorPagination(query)
+
+  async userFactorPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<UserFactorEntity>> {
+    return this.userFactorRepository.userFactorPagination(query);
   }
 }

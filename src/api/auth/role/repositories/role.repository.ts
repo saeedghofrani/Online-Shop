@@ -58,8 +58,10 @@ export class RoleRepository
   async findRolesByIds(ids: string[]): Promise<RoleEntity[]> {
     return await this.find({ where: { id: In(ids) } });
   }
-  
-  async rolePagination(query:PaginationQueryDto):Promise<Paginated<RoleEntity>>{
+
+  async rolePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<RoleEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -68,7 +70,7 @@ export class RoleRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 
   async addPermissionToUser() {}

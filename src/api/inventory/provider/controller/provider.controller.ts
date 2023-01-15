@@ -21,11 +21,10 @@ export class ProviderController {
     return this.providerService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Provider Pagination' })
-  testPaginations(@Body() query:PaginationQueryDto)
-  {
-    return this.providerService.providerPagination(query)
+  testPaginations(@Body() query: PaginationQueryDto) {
+    return this.providerService.providerPagination(query);
   }
 
   @Patch('')

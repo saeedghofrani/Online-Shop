@@ -42,8 +42,9 @@ export class PatternMasterService {
     } catch (e) {}
   }
 
-  async patternMasterPagination(query:PaginationQueryDto):Promise<Paginated<PatternMasterEntity>>
-  {
-    return this.patternMasterRepository.patternMasterPagination(query)
+  async patternMasterPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PatternMasterEntity>> {
+    return this.patternMasterRepository.patternMasterPagination(query);
   }
 }

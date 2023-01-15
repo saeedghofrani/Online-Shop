@@ -42,10 +42,9 @@ export class CityController {
     return await this.cityService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'City Pagination' })
-  cityPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.cityService.cityPagination(query)
+  cityPagination(@Body() query: PaginationQueryDto) {
+    return this.cityService.cityPagination(query);
   }
 }

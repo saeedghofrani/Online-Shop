@@ -13,8 +13,10 @@ export class ProductRepository
   implements
     RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
 {
-  constructor(@Inject(PostgresConstant) private postgresDataSource:DataSource){
-    super(ProductEntity,postgresDataSource.createEntityManager())
+  constructor(
+    @Inject(PostgresConstant) private postgresDataSource: DataSource,
+  ) {
+    super(ProductEntity, postgresDataSource.createEntityManager());
   }
   async createEntity(
     createEntityDto: CreateProductDto,
@@ -36,15 +38,17 @@ export class ProductRepository
     return await this.createQueryBuilder('product').getMany();
   }
 
-  async productPagination(query:PaginationQueryDto):Promise<Paginated<ProductEntity>>{
+  async productPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProductEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['name','description'],
+      searchableColumns: ['name', 'description'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

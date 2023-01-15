@@ -51,8 +51,9 @@ export class PatternDetailService {
     } catch (e) {}
   }
 
-  async patternDetailPagination(query:PaginationQueryDto):Promise<Paginated<PatternDetailEntity>>
-  {
-    return this.patternDetailRepository.patternDetailPagination(query)
+  async patternDetailPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PatternDetailEntity>> {
+    return this.patternDetailRepository.patternDetailPagination(query);
   }
 }

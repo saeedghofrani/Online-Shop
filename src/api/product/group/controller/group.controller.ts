@@ -18,11 +18,10 @@ export class GroupController {
     return this.groupService.createEntity(createEntityDto);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Group Pagination' })
-  brandPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.groupService.groupPagination(query)
+  brandPagination(@Body() query: PaginationQueryDto) {
+    return this.groupService.groupPagination(query);
   }
 
   @Patch()

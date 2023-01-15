@@ -45,7 +45,9 @@ export class AttributeRepository
     return await this.createQueryBuilder('attribute').getMany();
   }
 
-  async attributePagination(query:PaginationQueryDto):Promise<Paginated<AttributeEntity>>{
+  async attributePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AttributeEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -54,6 +56,6 @@ export class AttributeRepository
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

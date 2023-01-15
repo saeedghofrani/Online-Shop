@@ -42,8 +42,9 @@ export class RoleService {
     return await this.roleRepository.findRolesByIds(ids);
   }
 
-  async rolePagination(query:PaginationQueryDto):Promise<Paginated<RoleEntity>>
-  {
-    return this.roleRepository.rolePagination(query)
+  async rolePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<RoleEntity>> {
+    return this.roleRepository.rolePagination(query);
   }
 }

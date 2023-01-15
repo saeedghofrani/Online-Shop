@@ -19,11 +19,12 @@ export class ProfileController {
     return this.profileService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Profile Pagination' })
-  testPaginations(@Body() query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>
-  {
-    return this.profileService.profilePagination(query)
+  testPaginations(
+    @Body() query: PaginationQueryDto,
+  ): Promise<Paginated<ProfileEntity>> {
+    return this.profileService.profilePagination(query);
   }
 
   @Patch('')

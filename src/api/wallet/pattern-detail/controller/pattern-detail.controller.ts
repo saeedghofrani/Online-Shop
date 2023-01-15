@@ -44,10 +44,9 @@ export class PatternDetailController {
     return this.patternDetailService.updateEntity(id, updateEntityDto);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Pattern Detail Pagination' })
-  accountPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.patternDetailService.patternDetailPagination(query)
+  accountPagination(@Body() query: PaginationQueryDto) {
+    return this.patternDetailService.patternDetailPagination(query);
   }
 }

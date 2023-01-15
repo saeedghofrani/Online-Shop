@@ -74,10 +74,11 @@ export class UserController {
     return this.userService.findOneEntity(userId);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'User Pagination' })
-  userPagination(@Body() query:PaginationQueryDto):Promise<Paginated<UserEntity>>
-  {
-    return this.userService.userPagination(query)
+  userPagination(
+    @Body() query: PaginationQueryDto,
+  ): Promise<Paginated<UserEntity>> {
+    return this.userService.userPagination(query);
   }
 }

@@ -52,9 +52,10 @@ export class AddressService {
   async findAllEntities(): Promise<AddressEntity[]> {
     return await this.addressRepository.findAllEntities();
   }
-  
-  async addressPagination(query:PaginationQueryDto):Promise<Paginated<AddressEntity>>
-  {
-    return this.addressRepository.addressPagination(query)
+
+  async addressPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AddressEntity>> {
+    return this.addressRepository.addressPagination(query);
   }
 }

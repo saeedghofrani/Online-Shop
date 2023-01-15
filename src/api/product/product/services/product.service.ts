@@ -51,8 +51,9 @@ export class ProductService {
     return await this.productRepository.findAllEntities();
   }
 
-  async productPagination(query:PaginationQueryDto):Promise<Paginated<ProductEntity>>
-  {
-    return this.productRepository.productPagination(query)
+  async productPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProductEntity>> {
+    return this.productRepository.productPagination(query);
   }
 }

@@ -41,8 +41,9 @@ export class AttributeService {
     } catch (e) {}
   }
 
-  async attributePagination(query:PaginationQueryDto):Promise<Paginated<AttributeEntity>>
-  {
-    return this.attributeRepository.attributePagination(query)
+  async attributePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<AttributeEntity>> {
+    return this.attributeRepository.attributePagination(query);
   }
 }

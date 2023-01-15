@@ -40,11 +40,13 @@ export class OrderRepository
     return await this.update(id, updateEntityDto);
   }
 
-  async orderPagination(query:PaginationQueryDto):Promise<Paginated<OrderEntity>>{
+  async orderPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<OrderEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']]
-    })
+      defaultSortBy: [['create_at', 'DESC']],
+    });
   }
 }

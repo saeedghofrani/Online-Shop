@@ -40,10 +40,9 @@ export class PatternMasterController {
     return this.patternMasterService.updateEntity(id, updateEntityDto);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Pattern Master Pagination' })
-  patternMasterPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.patternMasterService.patternMasterPagination(query)
+  patternMasterPagination(@Body() query: PaginationQueryDto) {
+    return this.patternMasterService.patternMasterPagination(query);
   }
 }

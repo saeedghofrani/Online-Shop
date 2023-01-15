@@ -17,11 +17,10 @@ export class KycController {
     return this.kycService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'KYC Pagination' })
-  kycPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.kycService.kycPagination(query)
+  kycPagination(@Body() query: PaginationQueryDto) {
+    return this.kycService.kycPagination(query);
   }
 
   @Post('')

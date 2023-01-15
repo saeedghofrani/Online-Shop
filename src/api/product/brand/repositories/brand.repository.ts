@@ -1,5 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { FilterOperator, paginate, Paginated, PaginateQuery } from 'nestjs-paginate';
+import {
+  FilterOperator,
+  paginate,
+  Paginated,
+  PaginateQuery,
+} from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -36,15 +41,17 @@ export class BrandRepository
     return await this.createQueryBuilder('brand').getMany();
   }
 
-  async brandPagination(query:PaginationQueryDto):Promise<Paginated<BrandEntity>>{
+  async brandPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<BrandEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['name','description'],
+      searchableColumns: ['name', 'description'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-    })
+    });
   }
 }

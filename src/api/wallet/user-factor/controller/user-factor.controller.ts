@@ -31,10 +31,9 @@ export class UserFactorController {
     return this.userFactorService.findOneEntity(id);
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'User Factor Pagination' })
-  userFactorPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.userFactorService.userFactorPagination(query)
+  userFactorPagination(@Body() query: PaginationQueryDto) {
+    return this.userFactorService.userFactorPagination(query);
   }
 }

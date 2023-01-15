@@ -39,10 +39,9 @@ export class AccountController {
     return this.accountService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Accountt Pagination' })
-  accountPagination(@Body() query:PaginationQueryDto)
-  {
-    return this.accountService.accountPagination(query)
+  accountPagination(@Body() query: PaginationQueryDto) {
+    return this.accountService.accountPagination(query);
   }
 }

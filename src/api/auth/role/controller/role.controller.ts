@@ -17,11 +17,10 @@ export class RoleController {
     return this.roleService.findAllEntities();
   }
 
-  @Post("page")
+  @Post('page')
   @ApiOperation({ summary: 'Role Pagination' })
-  rolePaginations(@Body() query:PaginationQueryDto)
-  {
-    return this.roleService.rolePagination(query)
+  rolePaginations(@Body() query: PaginationQueryDto) {
+    return this.roleService.rolePagination(query);
   }
 
   @Patch('')

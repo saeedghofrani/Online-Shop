@@ -45,8 +45,9 @@ export class ProfileService {
     return await this.profileRepository.updateEntity(id, updateEntityDto);
   }
 
-  async profilePagination(query:PaginationQueryDto):Promise<Paginated<ProfileEntity>>
-  {
-    return this.profileRepository.profilePagination(query)
+  async profilePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProfileEntity>> {
+    return this.profileRepository.profilePagination(query);
   }
 }

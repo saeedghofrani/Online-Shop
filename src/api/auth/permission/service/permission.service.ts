@@ -48,8 +48,9 @@ export class PermissionService {
     return await this.permissionRepository.findPermissionByIds(ids);
   }
 
-  async permissionPagination(query:PaginationQueryDto):Promise<Paginated<PermissionEntity>>
-  {
-    return this.permissionRepository.permissionPagination(query)
+  async permissionPagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<PermissionEntity>> {
+    return this.permissionRepository.permissionPagination(query);
   }
 }

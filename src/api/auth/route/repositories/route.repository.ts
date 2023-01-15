@@ -54,7 +54,9 @@ export class RouteRepository
       .getOne();
   }
 
-  async routePagination(query:PaginationQueryDto):Promise<Paginated<RouteEntity>>{
+  async routePagination(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<RouteEntity>> {
     return paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
@@ -64,6 +66,6 @@ export class RouteRepository
         //##TODO
         jwt: [FilterOperator.NOT],
       },
-    })
+    });
   }
 }
