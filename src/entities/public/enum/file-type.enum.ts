@@ -1,5 +1,5 @@
 export enum FileTypeEnum {
-    PRODUCT,
-    BANNER,
-    HIDDEN
+  PRODUCT,
+  BANNER,
+  HIDDEN,
 }

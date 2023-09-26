@@ -18,7 +18,7 @@ async function bootstrap() {
   app.use(helmet());
   app.enableCors();
   app.setGlobalPrefix(appService.appApiPrefix);
-  // app.useGlobalPipes(new LetterTransformPipe()); 
+  // app.useGlobalPipes(new LetterTransformPipe());
   app.useGlobalInterceptors(new ResponseOkInterceptor());
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);

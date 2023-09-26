@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 export class MainEntity extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id: string;
 
   @CreateDateColumn({ update: false, default: new Date(Date.now()) })

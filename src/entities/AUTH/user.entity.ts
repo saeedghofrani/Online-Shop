@@ -88,7 +88,10 @@ export class UserEntity extends MainEntity {
     delete this.password;
   }
 
-  async verifyPassword(password: string, entityPassword: string): Promise<boolean> {
+  async verifyPassword(
+    password: string,
+    entityPassword: string,
+  ): Promise<boolean> {
     return argon2.verify(entityPassword, password);
   }
 }

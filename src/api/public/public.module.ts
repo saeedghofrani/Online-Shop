@@ -7,17 +7,14 @@ import { FileRepository } from './file/repository/file.repository';
 import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
-    imports: [AuthModule, ProductModule,
-        MulterModule.register({
-            dest: './uploads', // Define your upload directory
-        })
-    ],
-    controllers: [
-        FileController
-    ],
-    providers: [
-        FileService,
-        FileRepository
-    ],
+  imports: [
+    AuthModule,
+    ProductModule,
+    MulterModule.register({
+      dest: './uploads', // Define your upload directory
+    }),
+  ],
+  controllers: [FileController],
+  providers: [FileService, FileRepository],
 })
-export class PublicModule { }
+export class PublicModule {}

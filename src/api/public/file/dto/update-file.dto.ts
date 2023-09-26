@@ -3,33 +3,33 @@ import { UserEntity } from 'src/entities/AUTH/user.entity';
 import { FileTypeEnum } from 'src/entities/public/enum/file-type.enum';
 
 export class UpdateFileDto {
-    @ApiHideProperty()
-    originalName: string;
+  @ApiHideProperty()
+  originalName: string;
 
-    @ApiHideProperty()
-    file_name: string;
+  @ApiHideProperty()
+  file_name: string;
 
-    @ApiHideProperty()
-    mime_type: string;
+  @ApiHideProperty()
+  mime_type: string;
 
-    @ApiHideProperty()
-    extension: string;
+  @ApiHideProperty()
+  extension: string;
 
-    @ApiHideProperty()
-    size: number;
+  @ApiHideProperty()
+  size: number;
 
-    @ApiHideProperty()
-    path: string;
+  @ApiHideProperty()
+  path: string;
 
-    @ApiHideProperty()
-    compressedFileName: string;
+  @ApiHideProperty()
+  compressedFileName: string;
 
-    @ApiProperty()
-    relation_id: string;
+  @ApiProperty()
+  relation_id: string;
 
-    @ApiHideProperty()
-    status: FileTypeEnum;
+  @ApiHideProperty()
+  status: FileTypeEnum;
 
-    @ApiHideProperty()
-    user: UserEntity;
+  @ApiHideProperty()
+  user: UserEntity;
 }

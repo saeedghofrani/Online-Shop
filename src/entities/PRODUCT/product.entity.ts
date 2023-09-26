@@ -7,6 +7,7 @@ import { PricingEntity } from '../WALLET/pricing.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
 import { ProductAttributeEntity } from './product-attribute.entity';
+import { ProductAttributeValueEntity } from './product-attribute-value.entity';
 
 @Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
@@ -29,10 +30,10 @@ export class ProductEntity extends MainEntity {
   pricings: PricingEntity[];
 
   @OneToMany(
-    () => ProductAttributeEntity,
-    (product_attributes) => product_attributes.product,
+    () => ProductAttributeValueEntity,
+    (product_attributes_value) => product_attributes_value.product,
   )
-  product_attributes: ProductAttributeEntity[];
+  product_attributes_value: ProductAttributeValueEntity[];
 
   @ManyToOne(() => BrandEntity, (brandEntity) => brandEntity.products)
   @JoinColumn()

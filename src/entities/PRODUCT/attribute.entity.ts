@@ -1,19 +1,21 @@
-import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { GroupEntity } from './group.entity';
-import { ProductAttributeEntity } from './product-attribute.entity';
+import { CategoryAttributeEntity } from './category-attribute.entity';
 
 @Entity({ schema: 'product', name: 'attribute' })
 export class AttributeEntity extends MainEntity {
   @Column({ unique: true })
   name: string;
 
-  @ManyToMany(() => GroupEntity, (groups) => groups.attributes)
-  groups: GroupEntity[];
+  @OneToMany(
+    () => CategoryAttributeEntity,
+    (category_attribute) => category_attribute.category,
+  )
+  category_attribute: CategoryAttributeEntity[];
 
   @OneToMany(
-    () => ProductAttributeEntity,
-    (product_attributes) => product_attributes.product,
+    () => AttributeValueEntity,
+    (attributes_value) => attributes_value.product,
   )
-  product_attributes: ProductAttributeEntity[];
+  attributes_value: AttributeValueEntity[];
 }

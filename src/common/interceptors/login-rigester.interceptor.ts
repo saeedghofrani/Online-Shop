@@ -30,7 +30,7 @@ export class LoginRigesterInterceptor<T>
         const loginRigesterHistoryService: CreateLoginRegisterInterface = {
           access_token: data.access_token,
           roles: data.roles,
-          otpCode: request.body.code || "0000",
+          otpCode: request.body.code || '0000',
           user: request.body.mobile || request.body.email,
           userId: payload.userId,
         };
