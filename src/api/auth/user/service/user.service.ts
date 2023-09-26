@@ -2,6 +2,7 @@ import {
   Injectable,
   BadRequestException,
   UnauthorizedException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Paginated } from 'nestjs-paginate';
@@ -24,6 +25,7 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { CheckOtpInterface } from '../interface/check-otp.interface';
 import { OtpRedisInterface } from '../interface/otp-redis.interface';
 import { UserRepository } from '../repositories/user.repository';
+import { SignInDto } from '../dto/sign-in.dto';
 
 @Injectable()
 export class UserService {
@@ -35,7 +37,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) {}
+  ) { }
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -146,12 +148,49 @@ export class UserService {
     }
   }
 
+  async signIn(
+    signInDto: SignInDto,
+  ): Promise<CheckOtpInterface> {
+    try {
+      let userEntity: UserEntity;
+      userEntity = await this.findByEntity(signInDto.mobile);
+      if (!userEntity) {
+        const role = await this.roleService.getRoleDefault();
+        const createUser = new CreateUserDto();
+        createUser.mobile = signInDto.mobile;
+        createUser.prefix = signInDto.prefix;
+        createUser.password = signInDto.password;
+        createUser.roles = [role];
+        userEntity = await this.createEntity(createUser);
+      }
+      else
+        if (!userEntity.verifyPassword(signInDto.password, userEntity.password))
+          throw new ForbiddenException('Username or Password is wrong ...!');
+      const payload: PayloadJwtInterface = {
+        userId: userEntity.id,
+        user: userEntity.mobile,
+      };
+      const access_token = this.jwtService.sign(payload, { expiresIn: '12h' });
+      return {
+        access_token,
+        roles: [userEntity.roles[0].id],
+      };
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   async setRole(
     user: UserInterface,
     roleId: string,
   ): Promise<{ access_token: string }> {
+    console.log('h');
+    
     const userEntity = await this.findOneEntity(user.userId);
     const checkRole = userEntity.roles.find((role) => role.id == roleId);
+    console.log(userEntity);
+    console.log(checkRole);
+    
     if (!checkRole) throw new UnauthorizedException();
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,
@@ -159,7 +198,7 @@ export class UserService {
       role: roleId,
     };
     return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '1d' }),
+      access_token: this.jwtService.sign(payload, { expiresIn: '7d' }),
     };
   }
 
@@ -168,6 +207,6 @@ export class UserService {
   ): Promise<Paginated<UserEntity>> {
     try {
       return await this.userRepository.userPagination(query);
-    } catch (e) {}
+    } catch (e) { }
   }
 }

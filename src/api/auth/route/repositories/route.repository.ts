@@ -64,7 +64,7 @@ export class RouteRepository
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         //##TODO
-        jwt: [FilterOperator.NOT],
+        jwt: [FilterOperator.NULL],
       },
     });
   }

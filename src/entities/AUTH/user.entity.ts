@@ -29,6 +29,9 @@ export class UserEntity extends MainEntity {
   @Column({ nullable: true, unique: true })
   mobile: string;
 
+  @Column({ nullable: true, unique: true })
+  prefix: string;
+
   @Index({ fulltext: true })
   @Column({ nullable: true, unique: true })
   email: string;
@@ -85,7 +88,7 @@ export class UserEntity extends MainEntity {
     delete this.password;
   }
 
-  async verifyPassword(password): Promise<boolean> {
-    return argon2.verify(this.password, password);
+  async verifyPassword(password: string, entityPassword: string): Promise<boolean> {
+    return argon2.verify(entityPassword, password);
   }
 }

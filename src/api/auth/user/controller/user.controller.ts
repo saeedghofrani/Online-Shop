@@ -20,6 +20,7 @@ import { OtpInterceptor } from '../../../../common/interceptors/otp.interceptor'
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UserEntity } from 'src/entities/AUTH/user.entity';
+import { SignInDto } from '../dto/sign-in.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -48,6 +49,14 @@ export class UserController {
   @ApiBody({ type: CheckMobileOtpDto || CheckEmailOtpDto })
   checkOtp(@Body() sendOtpDto: CheckMobileOtpDto | CheckEmailOtpDto) {
     return this.userService.checkOtp(sendOtpDto);
+  }
+
+  @Post('signin')
+  @UseInterceptors(LoginRigesterInterceptor)
+  @ApiOperation({ summary: 'simple sign in' })
+  @ApiBody({ type: SignInDto })
+  signIn(@Body() signInDto: SignInDto) {
+    return this.userService.signIn(signInDto);
   }
 
   @ApiBearerAuth('access-token')

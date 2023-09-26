@@ -9,7 +9,7 @@ services:
       target: production
       dockerfile: ./Dockerfile
     command: npm run start:prod
-    env_file: production.env
+    env_file: ./../../common/envs/production.env
     ports:
       - '3000:3000'
       - '9229:9229'

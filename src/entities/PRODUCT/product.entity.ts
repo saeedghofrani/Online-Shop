@@ -14,6 +14,9 @@ export class ProductEntity extends MainEntity {
   name: string;
 
   @Column()
+  original_name: string;
+
+  @Column()
   description: string;
 
   @OneToMany(() => FileEntity, (file) => file.product)

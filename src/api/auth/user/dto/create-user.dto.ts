@@ -9,6 +9,9 @@ export class CreateUserDto {
   email?: string;
 
   @ApiPropertyOptional()
+  prefix: string;
+
+  @ApiPropertyOptional()
   password?: string;
 
   @ApiHideProperty()

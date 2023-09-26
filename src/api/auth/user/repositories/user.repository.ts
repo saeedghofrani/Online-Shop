@@ -48,6 +48,7 @@ export class UserRepository
   async findByEntity(searchTerm: string): Promise<UserEntity> {
     return await this.createQueryBuilder('user')
       .innerJoinAndSelect('user.roles', 'roles')
+      .addSelect('user.password')
       .where(`user.mobile = :searchTerm OR user.email = :searchTerm `, {
         searchTerm,
       })
