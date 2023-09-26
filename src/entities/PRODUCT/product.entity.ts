@@ -19,9 +19,6 @@ export class ProductEntity extends MainEntity {
   @Column()
   description: string;
 
-  @OneToMany(() => FileEntity, (file) => file.product)
-  files: FileEntity[];
-
   @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;
 
