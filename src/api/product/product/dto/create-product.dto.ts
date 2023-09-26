@@ -7,6 +7,9 @@ export class CreateProductDto {
   name: string;
 
   @ApiProperty()
+  original_name: string;
+
+  @ApiProperty()
   description: string;
 
   @ApiHideProperty()
