@@ -163,9 +163,11 @@ export class UserService {
         createUser.roles = [role];
         userEntity = await this.createEntity(createUser);
       }
-      else
-        if (!userEntity.verifyPassword(signInDto.password, userEntity.password))
-          throw new ForbiddenException('Username or Password is wrong ...!');
+      else {
+        if (!(await userEntity.verifyPassword(signInDto.password, userEntity.password)))
+        throw new ForbiddenException('Username or Password is wrong ...!');
+      }
+       
       const payload: PayloadJwtInterface = {
         userId: userEntity.id,
         user: userEntity.mobile,
@@ -176,7 +178,7 @@ export class UserService {
         roles: [userEntity.roles[0].id],
       };
     } catch (e) {
-      console.log(e);
+      throw e
     }
   }
 

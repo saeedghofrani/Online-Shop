@@ -1,10 +1,13 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserEntity } from '../AUTH/user.entity';
-import { ProductEntity } from '../PRODUCT/product.entity';
+import { FileTypeEnum } from './enum/file-type.enum';
 
 @Entity({ schema: 'public', name: 'file' })
 export class FileEntity extends MainEntity {
+  @Column()
+  originalName: string;
+
   @Column()
   file_name: string;
 
@@ -12,22 +15,30 @@ export class FileEntity extends MainEntity {
   mime_type: string;
 
   @Column()
-  ext: string;
+  extension: string;
 
   @Column()
   size: number;
 
   @Column()
-  old_path: string;
+  path: string;
 
   @Column()
-  new_path: string;
+  compressedFileName: string;
+
+  @Index({ fulltext: true })
+  @Column({ nullable: false, unique: false })
+  relation_id: string;
+
+  @Column({
+    type: 'enum',
+    enum: FileTypeEnum,
+    default: FileTypeEnum.PRODUCT,
+  })
+  type: FileTypeEnum;
 
   @ManyToOne(() => UserEntity, (user) => user.files, {
     cascade: true,
   })
   user: UserEntity;
-
-  @ManyToOne(() => ProductEntity, (product) => product.files)
-  product: ProductEntity;
 }

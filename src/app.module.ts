@@ -14,6 +14,7 @@ import { MopngooseModule } from './config/database/mongoose/mongoose.module';
 import { RequestLoggerMiddleware } from './common/middlewares/request-logger.middleware';
 import { HistoryModule } from './api/history/history.module';
 import { WalletModule } from './api/wallet/wallet.module';
+import { PublicModule } from './api/public/public.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { WalletModule } from './api/wallet/wallet.module';
     ConfigurationModule,
     LoggerModule,
     EmailModule,
+    PublicModule,
     MopngooseModule,
     LocationModule,
     WalletModule,

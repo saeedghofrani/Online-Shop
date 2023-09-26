@@ -12,28 +12,28 @@ export class RequestHistory {
   @Prop({ required: false })
   token: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   route: string;
 
-  @Prop({ type: Object, required: true })
+  @Prop({ type: Object, required: false })
   data: Object;
 
-  @Prop({ type: Object, required: true })
+  @Prop({ type: Object, required: false })
   query: Object;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   method: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   statusCode: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   contentLength: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   userAgent: UserAgentClass;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   ip: string;
 }
 export const RequestHistorySchema =
