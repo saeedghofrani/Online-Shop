@@ -31,7 +31,7 @@ import { InventoryModuel } from '../inventory/inventory.module';
     ProductController,
     AttributeValueController,
     CategoryAttributeController,
-    ProductAttributeValueController
+    ProductAttributeValueController,
   ],
   providers: [
     AttributeService,
@@ -47,11 +47,8 @@ import { InventoryModuel } from '../inventory/inventory.module';
     CategoryAttributeService,
     CategoryAttributeRepository,
     ProductAttributeValueService,
-    ProductAttributeValueRepository
+    ProductAttributeValueRepository,
   ],
-  exports: [
-    ProductService, 
-    ProductRepository
-  ],
+  exports: [ProductService, ProductRepository],
 })
 export class ProductModule {}

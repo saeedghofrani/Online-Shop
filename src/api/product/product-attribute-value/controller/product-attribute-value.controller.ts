@@ -10,38 +10,49 @@ import { ProductAttributeValueService } from '../services/product-attribute-valu
 
 @ApiBearerAuth('access-token')
 @ApiTags('ProductAttributeValue')
-@Controller('category_product_attribute')
+@Controller('product_attribute_value')
 export class ProductAttributeValueController {
-  constructor(private categoryProductAttributeService: ProductAttributeValueService) { }
+  constructor(
+    private ProductAttributeValueService: ProductAttributeValueService,
+  ) {}
 
   @Post()
-  createEntity(@Body() createEntityDto: CreateProductAttributeValueDto): Promise<ProductAttributeValueEntity> {
-    return this.categoryProductAttributeService.createEntity(createEntityDto);
+  createEntity(
+    @Body() createEntityDto: CreateProductAttributeValueDto,
+  ): Promise<ProductAttributeValueEntity> {
+    return this.ProductAttributeValueService.createEntity(createEntityDto);
   }
 
   @Patch()
   updateEntity(
-    @Query('product_attribute_value_id') id: string,
+    @Query('id') id: string,
     @Body() updateEntityDto: UpdateProductAttributeValueDto,
   ): Promise<UpdateResult> {
-    return this.categoryProductAttributeService.updateEntity(id, updateEntityDto);
+    return this.ProductAttributeValueService.updateEntity(
+      id,
+      updateEntityDto,
+    );
   }
 
   @Get()
-  findOneEntity(@Query('product_attribute_value_id') id: string): Promise<ProductAttributeValueEntity> {
-    return this.categoryProductAttributeService.findOneEntity(id);
+  findOneEntity(
+    @Query('id') id: string,
+  ): Promise<ProductAttributeValueEntity> {
+    return this.ProductAttributeValueService.findOneEntity(id);
   }
 
   @Get('all')
   findAllEntities(): Promise<ProductAttributeValueEntity[]> {
-    return this.categoryProductAttributeService.findAllEntities();
+    return this.ProductAttributeValueService.findAllEntities();
   }
 
   @Post('page')
   @ApiOperation({ summary: 'Product Attribute Value Pagination' })
-  categoryProductAttributePagination(
+  ProductAttributeValuePagination(
     @Body() query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {
-    return this.categoryProductAttributeService.categoryProductAttributePagination(query);
+    return this.ProductAttributeValueService.ProductAttributeValeuPagination(
+      query,
+    );
   }
 }

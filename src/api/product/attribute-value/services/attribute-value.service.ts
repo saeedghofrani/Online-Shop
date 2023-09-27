@@ -6,13 +6,20 @@ import { UpdateResult } from 'typeorm';
 import { CreateAttributeValueDto } from '../dto/create-attribute-value.dto';
 import { UpdateAttributeValueDto } from '../dto/update-attribute-value.dto';
 import { AttributeValueRepository } from '../repositories/attribute-value.repository';
+import { AttributeService } from '../../attribute/services/attribute.service';
 
 @Injectable()
 export class AttributeValueService {
-  constructor(private attributeValueRepository: AttributeValueRepository) {}
+  constructor(
+    private attributeValueRepository: AttributeValueRepository,
+    private attributeSevice: AttributeService
+    ) {}
 
-  async createEntity(createEntityDto: CreateAttributeValueDto): Promise<AttributeValueEntity> {
+  async createEntity(
+    createEntityDto: CreateAttributeValueDto,
+  ): Promise<AttributeValueEntity> {
     try {
+      createEntityDto.attribute = await this.attributeSevice.findOneEntity(createEntityDto.attribute_id);
       return await this.attributeValueRepository.createEntity(createEntityDto);
     } catch (e) {}
   }
@@ -22,7 +29,10 @@ export class AttributeValueService {
     updateEntityDto: UpdateAttributeValueDto,
   ): Promise<UpdateResult> {
     try {
-      return await this.attributeValueRepository.updateEntity(id, updateEntityDto);
+      return await this.attributeValueRepository.updateEntity(
+        id,
+        updateEntityDto,
+      );
     } catch (e) {}
   }
 

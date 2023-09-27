@@ -12,10 +12,12 @@ import { CategoryAttributeService } from '../services/category-attribute.service
 @ApiTags('CategoryAttribute')
 @Controller('category_attribute')
 export class CategoryAttributeController {
-  constructor(private categoryAttributeService: CategoryAttributeService) { }
+  constructor(private categoryAttributeService: CategoryAttributeService) {}
 
   @Post()
-  createEntity(@Body() createEntityDto: CreateCategoryAttributeDto): Promise<CategoryAttributeEntity> {
+  createEntity(
+    @Body() createEntityDto: CreateCategoryAttributeDto,
+  ): Promise<CategoryAttributeEntity> {
     return this.categoryAttributeService.createEntity(createEntityDto);
   }
 
@@ -28,7 +30,9 @@ export class CategoryAttributeController {
   }
 
   @Get()
-  findOneEntity(@Query('category-attribute_id') id: string): Promise<CategoryAttributeEntity> {
+  findOneEntity(
+    @Query('category-attribute_id') id: string,
+  ): Promise<CategoryAttributeEntity> {
     return this.categoryAttributeService.findOneEntity(id);
   }
 

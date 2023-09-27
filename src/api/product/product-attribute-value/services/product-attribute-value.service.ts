@@ -8,21 +8,36 @@ import { UpdateProductAttributeValueDto } from '../dto/update-product-attribute-
 import { ProductAttributeValueRepository } from '../repositories/product-attribute-value.repository';
 import { AttributeValueService } from '../../attribute-value/services/attribute-value.service';
 import { ProviderService } from 'src/api/inventory/provider/service/provider.service';
+import { ProductService } from '../../product/services/product.service';
 
 @Injectable()
 export class ProductAttributeValueService {
   constructor(
-    private categoryProductAttributeRepository: ProductAttributeValueRepository,
+    private ProductAttributeValueRepository: ProductAttributeValueRepository,
     private attributeValueService: AttributeValueService,
-    private providerService: ProviderService
-    ) {}
+    private productService: ProductService,
+    private providerService: ProviderService,
+  ) { }
 
-  async createEntity(createEntityDto: CreateProductAttributeValueDto): Promise<ProductAttributeValueEntity> {
+  async createEntity(
+    createEntityDto: CreateProductAttributeValueDto,
+  ): Promise<ProductAttributeValueEntity> {
     try {
-      createEntityDto.provider = await this.providerService.findOneEntity(createEntityDto.provider_id);
-      createEntityDto.attribute_value = await this.attributeValueService.findOneEntity(createEntityDto.attribute_value_id);
-      return await this.categoryProductAttributeRepository.createEntity(createEntityDto);
-    } catch (e) {}
+      createEntityDto.provider = await this.providerService.findOneEntity(
+        createEntityDto.provider_id,
+      );
+      createEntityDto.attribute_value =
+        await this.attributeValueService.findOneEntity(
+          createEntityDto.attribute_value_id,
+        );
+      createEntityDto.product =
+        await this.productService.findOneEntity(
+          createEntityDto.product_id,
+        );
+      return await this.ProductAttributeValueRepository.createEntity(
+        createEntityDto,
+      );
+    } catch (e) { }
   }
 
   async updateEntity(
@@ -30,27 +45,41 @@ export class ProductAttributeValueService {
     updateEntityDto: UpdateProductAttributeValueDto,
   ): Promise<UpdateResult> {
     try {
-      updateEntityDto.provider = await this.providerService.findOneEntity(updateEntityDto.provider_id);
-      updateEntityDto.attribute_value = await this.attributeValueService.findOneEntity(updateEntityDto.attribute_value_id);
-      return await this.categoryProductAttributeRepository.updateEntity(id, updateEntityDto);
-    } catch (e) {}
+      updateEntityDto.provider = await this.providerService.findOneEntity(
+        updateEntityDto.provider_id,
+      );
+      updateEntityDto.attribute_value =
+        await this.attributeValueService.findOneEntity(
+          updateEntityDto.attribute_value_id,
+        );
+      updateEntityDto.product =
+        await this.productService.findOneEntity(
+          updateEntityDto.product_id,
+        );
+      return await this.ProductAttributeValueRepository.updateEntity(
+        id,
+        updateEntityDto,
+      );
+    } catch (e) { }
   }
 
   async findOneEntity(id: string): Promise<ProductAttributeValueEntity> {
     try {
-      return await this.categoryProductAttributeRepository.findOneEntity(id);
-    } catch (e) {}
+      return await this.ProductAttributeValueRepository.findOneEntity(id);
+    } catch (e) { }
   }
 
   async findAllEntities(): Promise<ProductAttributeValueEntity[]> {
     try {
-      return await this.categoryProductAttributeRepository.findAllEntities();
-    } catch (e) {}
+      return await this.ProductAttributeValueRepository.findAllEntities();
+    } catch (e) { }
   }
 
-  async categoryProductAttributePagination(
+  async ProductAttributeValeuPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {
-    return this.categoryProductAttributeRepository.categoryProductAttributePagination(query);
+    return this.ProductAttributeValueRepository.ProductAttributeValuePagination(
+      query,
+    );
   }
 }

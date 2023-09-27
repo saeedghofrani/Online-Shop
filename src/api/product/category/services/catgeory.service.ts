@@ -9,15 +9,15 @@ import { CategoryRepository } from '../repositories/category.repository';
 
 @Injectable()
 export class CategoryService {
-  constructor(
-    private categoryRepository: CategoryRepository,
-  ) {}
+  constructor(private categoryRepository: CategoryRepository) {}
 
   async createEntity(
     createEntityDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
     if (createEntityDto.parent_id) {
-      const findParent = await this.categoryRepository.findOneEntity(createEntityDto.parent_id);
+      const findParent = await this.categoryRepository.findOneEntity(
+        createEntityDto.parent_id,
+      );
       createEntityDto.parent = findParent;
     }
     return await this.categoryRepository.createEntity(createEntityDto);
@@ -27,7 +27,9 @@ export class CategoryService {
     updateEntityDto: UpdateCategoryDto,
   ): Promise<UpdateResult> {
     if (updateEntityDto.parent_id) {
-      const findParent = await this.categoryRepository.findOneEntity(updateEntityDto.parent_id);
+      const findParent = await this.categoryRepository.findOneEntity(
+        updateEntityDto.parent_id,
+      );
       updateEntityDto.parent = findParent;
     }
     return await this.categoryRepository.updateEntity(id, updateEntityDto);

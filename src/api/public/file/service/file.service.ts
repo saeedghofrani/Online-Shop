@@ -26,7 +26,7 @@ export class FileService {
     userId: string,
   ): Promise<string> {
     try {
-      userId = `${1}`
+      userId = `${1}`;
       // Implement file upload, compression, and categorization here
       const extension = file.originalname.split('.').pop();
       const originalName = file.originalname;

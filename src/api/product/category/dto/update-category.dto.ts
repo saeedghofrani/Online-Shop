@@ -1,4 +1,8 @@
-import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  ApiHideProperty,
+  ApiProperty,
+  ApiPropertyOptional,
+} from '@nestjs/swagger';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
 export class UpdateCategoryDto {
@@ -7,7 +11,7 @@ export class UpdateCategoryDto {
 
   @ApiProperty()
   description: string;
-  
+
   @ApiPropertyOptional()
   parent_id?: string;
 

@@ -1,9 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
-  FilterOperator,
-  Paginated,
-  paginate
-} from 'nestjs-paginate';
+import { FilterOperator, Paginated, paginate } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -15,14 +11,24 @@ import { UpdateProductAttributeValueDto } from '../dto/update-product-attribute-
 @Injectable()
 export class ProductAttributeValueRepository
   extends Repository<ProductAttributeValueEntity>
-  implements RepositoriesAbstract<ProductAttributeValueEntity, CreateProductAttributeValueDto, UpdateProductAttributeValueDto>
+  implements
+    RepositoriesAbstract<
+      ProductAttributeValueEntity,
+      CreateProductAttributeValueDto,
+      UpdateProductAttributeValueDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
   ) {
-    super(ProductAttributeValueEntity, postgresDataSource.createEntityManager());
+    super(
+      ProductAttributeValueEntity,
+      postgresDataSource.createEntityManager(),
+    );
   }
-  async createEntity(createEntityDto: CreateProductAttributeValueDto): Promise<ProductAttributeValueEntity> {
+  async createEntity(
+    createEntityDto: CreateProductAttributeValueDto,
+  ): Promise<ProductAttributeValueEntity> {
     return await this.save(this.create(createEntityDto));
   }
   async updateEntity(
@@ -32,15 +38,17 @@ export class ProductAttributeValueRepository
     return await this.update(id, updateEntityDto);
   }
   async findOneEntity(id: string): Promise<ProductAttributeValueEntity> {
-    return await this.createQueryBuilder('product-attribute_value')
-      .where('product-attribute_value.id=:product-attribute_value_id', { productattribute_value_id: id })
+    return await this.createQueryBuilder('product_attribute_value')
+      .where('product_attribute_value.id=:product_attribute_value_id', {
+        productattribute_value_id: id,
+      })
       .getOne();
   }
   async findAllEntities(): Promise<ProductAttributeValueEntity[]> {
-    return await this.createQueryBuilder('product-attribute_value').getMany();
+    return await this.createQueryBuilder('product_attribute_value').getMany();
   }
 
-  async categoryProductAttributePagination(
+  async ProductAttributeValuePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {
     return paginate(query, this, {

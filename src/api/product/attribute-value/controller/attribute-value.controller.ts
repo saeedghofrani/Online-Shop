@@ -10,12 +10,14 @@ import { AttributeValueService } from '../services/attribute-value.service';
 
 @ApiBearerAuth('access-token')
 @ApiTags('AttributeValue')
-@Controller('attribute_attribute')
+@Controller('attribute_value')
 export class AttributeValueController {
-  constructor(private attributeValueService: AttributeValueService) { }
+  constructor(private attributeValueService: AttributeValueService) {}
 
   @Post()
-  createEntity(@Body() createEntityDto: CreateAttributeValueDto): Promise<AttributeValueEntity> {
+  createEntity(
+    @Body() createEntityDto: CreateAttributeValueDto,
+  ): Promise<AttributeValueEntity> {
     return this.attributeValueService.createEntity(createEntityDto);
   }
 
@@ -28,7 +30,9 @@ export class AttributeValueController {
   }
 
   @Get()
-  findOneEntity(@Query('attribute-value_id') id: string): Promise<AttributeValueEntity> {
+  findOneEntity(
+    @Query('attribute-value_id') id: string,
+  ): Promise<AttributeValueEntity> {
     return this.attributeValueService.findOneEntity(id);
   }
 

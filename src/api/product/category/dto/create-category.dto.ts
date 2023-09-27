@@ -1,4 +1,8 @@
-import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  ApiHideProperty,
+  ApiProperty,
+  ApiPropertyOptional,
+} from '@nestjs/swagger';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
 export class CreateCategoryDto implements Partial<CategoryEntity> {
@@ -7,7 +11,7 @@ export class CreateCategoryDto implements Partial<CategoryEntity> {
 
   @ApiProperty()
   description: string;
-  
+
   @ApiPropertyOptional()
   parent_id?: string;
 

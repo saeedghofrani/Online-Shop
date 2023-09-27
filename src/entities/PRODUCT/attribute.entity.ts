@@ -8,7 +8,7 @@ import { AttributeEnum } from './enum/category-attribute-type.enum';
 export class AttributeEntity extends MainEntity {
   @Column({ unique: true })
   name: string;
-  
+
   @Column({
     type: 'enum',
     enum: AttributeEnum,

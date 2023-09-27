@@ -6,16 +6,26 @@ import { CreateCategoryAttributeDto } from '../dto/create-category-attribute.dto
 import { UpdateCategoryAttributeDto } from '../dto/update-category-attribute.dto';
 import { CategoryAttributeEntity } from 'src/entities/PRODUCT/category-attribute.entity';
 import { CategoryAttributeRepository } from '../repositories/category-attribute.repository';
+import { CategoryService } from '../../category/services/catgeory.service';
+import { AttributeService } from '../../attribute/services/attribute.service';
 
 @Injectable()
 export class CategoryAttributeService {
   constructor(
-    private categoryAttributeRepository: CategoryAttributeRepository
-    ) {}
+    private categoryAttributeRepository: CategoryAttributeRepository,
+    private categoryService: CategoryService,
+    private attributeService: AttributeService,
+  ) {}
 
-  async createEntity(createEntityDto: CreateCategoryAttributeDto): Promise<CategoryAttributeEntity> {
+  async createEntity(
+    createEntityDto: CreateCategoryAttributeDto,
+  ): Promise<CategoryAttributeEntity> {
     try {
-      return await this.categoryAttributeRepository.createEntity(createEntityDto);
+      createEntityDto.attribute = await this.attributeService.findOneEntity(createEntityDto.attribute_id);
+      createEntityDto.category = await this.categoryService.findOneEntity(createEntityDto.category_id);
+      return await this.categoryAttributeRepository.createEntity(
+        createEntityDto,
+      );
     } catch (e) {}
   }
 
@@ -24,7 +34,10 @@ export class CategoryAttributeService {
     updateEntityDto: UpdateCategoryAttributeDto,
   ): Promise<UpdateResult> {
     try {
-      return await this.categoryAttributeRepository.updateEntity(id, updateEntityDto);
+      return await this.categoryAttributeRepository.updateEntity(
+        id,
+        updateEntityDto,
+      );
     } catch (e) {}
   }
 

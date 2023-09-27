@@ -1,9 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
-  FilterOperator,
-  Paginated,
-  paginate
-} from 'nestjs-paginate';
+import { FilterOperator, Paginated, paginate } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -15,14 +11,21 @@ import { UpdateAttributeValueDto } from '../dto/update-attribute-value.dto';
 @Injectable()
 export class AttributeValueRepository
   extends Repository<AttributeValueEntity>
-  implements RepositoriesAbstract<AttributeValueEntity, CreateAttributeValueDto, UpdateAttributeValueDto>
+  implements
+    RepositoriesAbstract<
+      AttributeValueEntity,
+      CreateAttributeValueDto,
+      UpdateAttributeValueDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
   ) {
     super(AttributeValueEntity, postgresDataSource.createEntityManager());
   }
-  async createEntity(createEntityDto: CreateAttributeValueDto): Promise<AttributeValueEntity> {
+  async createEntity(
+    createEntityDto: CreateAttributeValueDto,
+  ): Promise<AttributeValueEntity> {
     return await this.save(this.create(createEntityDto));
   }
   async updateEntity(
@@ -33,7 +36,9 @@ export class AttributeValueRepository
   }
   async findOneEntity(id: string): Promise<AttributeValueEntity> {
     return await this.createQueryBuilder('attribute_value')
-      .where('attribute_value.id=:attribute_value_id', { attribute_value_id: id })
+      .where('attribute_value.id=:attribute_value_id', {
+        attribute_value_id: id,
+      })
       .getOne();
   }
   async findAllEntities(): Promise<AttributeValueEntity[]> {

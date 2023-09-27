@@ -16,14 +16,21 @@ import { UpdateCategoryAttributeDto } from '../dto/update-category-attribute.dto
 @Injectable()
 export class CategoryAttributeRepository
   extends Repository<CategoryAttributeEntity>
-  implements RepositoriesAbstract<CategoryAttributeEntity, CreateCategoryAttributeDto, UpdateCategoryAttributeDto>
+  implements
+    RepositoriesAbstract<
+      CategoryAttributeEntity,
+      CreateCategoryAttributeDto,
+      UpdateCategoryAttributeDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
   ) {
     super(CategoryAttributeEntity, postgresDataSource.createEntityManager());
   }
-  async createEntity(createEntityDto: CreateCategoryAttributeDto): Promise<CategoryAttributeEntity> {
+  async createEntity(
+    createEntityDto: CreateCategoryAttributeDto,
+  ): Promise<CategoryAttributeEntity> {
     return await this.save(this.create(createEntityDto));
   }
   async updateEntity(
@@ -34,7 +41,9 @@ export class CategoryAttributeRepository
   }
   async findOneEntity(id: string): Promise<CategoryAttributeEntity> {
     return await this.createQueryBuilder('category_attribute')
-      .where('category_attribute.id=:category_attribute_id', { category_attribute_id: id })
+      .where('category_attribute.id=:category_attribute_id', {
+        category_attribute_id: id,
+      })
       .getOne();
   }
   async findAllEntities(): Promise<CategoryAttributeEntity[]> {

@@ -16,7 +16,7 @@ export class CategoryController {
 
   @Post()
   async createEntity(
-    @Body() createEntityDto: CreateCategoryDto
+    @Body() createEntityDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
     return await this.categoryService.createEntity(createEntityDto);
   }
@@ -24,12 +24,9 @@ export class CategoryController {
   @Patch()
   async updateEntity(
     @Query('category_id') id: string,
-    @Body() updateEntityDto: UpdateCategoryDto
+    @Body() updateEntityDto: UpdateCategoryDto,
   ): Promise<UpdateResult> {
-    return await this.categoryService.updateEntity(
-      id,
-      updateEntityDto
-    );
+    return await this.categoryService.updateEntity(id, updateEntityDto);
   }
 
   @Get()

@@ -9,9 +9,7 @@ import { AttributeRepository } from '../repositories/attribute.repository';
 
 @Injectable()
 export class AttributeService {
-  constructor(
-    private attributeRepository: AttributeRepository
-  ) {}
+  constructor(private attributeRepository: AttributeRepository) {}
 
   async createEntity(
     createEntityDto: CreateAttributeDto,
