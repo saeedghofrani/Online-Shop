@@ -45,7 +45,6 @@ export class PricingService {
     try {
       const previousPrice = await this.findOneEntity(id);
       previousPrice.softRemove();
-      console.log(previousPrice);
       const createEntityDto : CreatePricingDto = {
         price: updateEntityDto.price
       }
