@@ -37,7 +37,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) {}
+  ) { }
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -152,23 +152,13 @@ export class UserService {
     try {
       let userEntity: UserEntity;
       userEntity = await this.findByEntity(signInDto.mobile);
-      if (!userEntity) {
-        const role = await this.roleService.getRoleDefault();
-        const createUser = new CreateUserDto();
-        createUser.mobile = signInDto.mobile;
-        createUser.prefix = signInDto.prefix;
-        createUser.password = signInDto.password;
-        createUser.roles = [role];
-        userEntity = await this.createEntity(createUser);
-      } else {
-        if (
-          !(await userEntity.verifyPassword(
-            signInDto.password,
-            userEntity.password,
-          ))
-        )
-          throw new ForbiddenException('Username or Password is wrong ...!');
-      }
+      if (
+        !(await userEntity.verifyPassword(
+          signInDto.password,
+          userEntity.password,
+        ))
+      )
+        throw new ForbiddenException('Username or Password is wrong ...!');
 
       const payload: PayloadJwtInterface = {
         userId: userEntity.id,
@@ -181,6 +171,32 @@ export class UserService {
       };
     } catch (e) {
       throw e;
+    }
+  }
+
+  async signUp(signInDto: SignInDto) {
+    try {
+      const role = await this.roleService.getRoleDefault();
+      const createUser = new CreateUserDto();
+      createUser.mobile = signInDto.mobile;
+      createUser.prefix = signInDto.prefix;
+      createUser.password = signInDto.password;
+      createUser.roles = [role];
+      await this.createEntity(createUser);
+      return await this.signIn(signInDto);
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async assignRole(role: number, user: number): Promise<UserEntity> {
+    try {
+      const userEntity = await this.findOneEntity(String(user));
+      const roleEntity = await this.roleService.findOneEntity(String(role));
+      userEntity.roles.push(roleEntity);
+      return await this.userRepository.save(this.userRepository.create(userEntity));
+    } catch (error) {
+      throw error
     }
   }
 
@@ -206,6 +222,6 @@ export class UserService {
   ): Promise<Paginated<UserEntity>> {
     try {
       return await this.userRepository.userPagination(query);
-    } catch (e) {}
+    } catch (e) { }
   }
 }

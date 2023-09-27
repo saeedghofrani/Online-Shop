@@ -6,6 +6,7 @@ import {
   SwaggerDocumentOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
+import * as fs from 'fs/promises'
 
 @Injectable()
 export class SwaggerConfigService {
@@ -51,6 +52,7 @@ export class SwaggerConfigService {
     };
 
     const document = SwaggerModule.createDocument(app, config, options);
+    fs.writeFile("./swagger-spec.json", JSON.stringify(document));
     SwaggerModule.setup(this.preFix, app, document, customOptions);
   }
 }

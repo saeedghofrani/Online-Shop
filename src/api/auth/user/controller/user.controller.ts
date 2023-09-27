@@ -59,6 +59,20 @@ export class UserController {
     return this.userService.signIn(signInDto);
   }
 
+  @Post('signup')
+  @UseInterceptors(LoginRigesterInterceptor)
+  @ApiOperation({ summary: 'simple sign in' })
+  @ApiBody({ type: SignInDto })
+  signUp(@Body() signInDto: SignInDto) {
+    return this.userService.signUp(signInDto);
+  }
+
+  @Patch('asign/role')
+  @ApiOperation({ summary: 'add role to user' })
+  assignRole(@Query('role') role: number, @Query('user') user: number) {
+    return this.userService.assignRole(role, user);
+  }
+
   @ApiBearerAuth('access-token')
   @Get('role')
   @ApiOperation({ summary: 'Set User Role' })
