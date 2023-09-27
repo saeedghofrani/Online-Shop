@@ -21,8 +21,12 @@ export class CategoryAttributeService {
     createEntityDto: CreateCategoryAttributeDto,
   ): Promise<CategoryAttributeEntity> {
     try {
-      createEntityDto.attribute = await this.attributeService.findOneEntity(createEntityDto.attribute_id);
-      createEntityDto.category = await this.categoryService.findOneEntity(createEntityDto.category_id);
+      createEntityDto.attribute = await this.attributeService.findOneEntity(
+        createEntityDto.attribute_id,
+      );
+      createEntityDto.category = await this.categoryService.findOneEntity(
+        createEntityDto.category_id,
+      );
       return await this.categoryAttributeRepository.createEntity(
         createEntityDto,
       );

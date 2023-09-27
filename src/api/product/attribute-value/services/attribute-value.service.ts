@@ -12,14 +12,16 @@ import { AttributeService } from '../../attribute/services/attribute.service';
 export class AttributeValueService {
   constructor(
     private attributeValueRepository: AttributeValueRepository,
-    private attributeSevice: AttributeService
-    ) {}
+    private attributeSevice: AttributeService,
+  ) {}
 
   async createEntity(
     createEntityDto: CreateAttributeValueDto,
   ): Promise<AttributeValueEntity> {
     try {
-      createEntityDto.attribute = await this.attributeSevice.findOneEntity(createEntityDto.attribute_id);
+      createEntityDto.attribute = await this.attributeSevice.findOneEntity(
+        createEntityDto.attribute_id,
+      );
       return await this.attributeValueRepository.createEntity(createEntityDto);
     } catch (e) {}
   }

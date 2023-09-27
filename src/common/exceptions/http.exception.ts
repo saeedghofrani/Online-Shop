@@ -10,9 +10,8 @@ import { CreateErrorInterface } from '../../api/history/error/interface/create-e
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(
-    // private errorService: ErrorService,
-    ) {}
+  constructor() // private errorService: ErrorService,
+  {}
   async catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
@@ -32,14 +31,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
       case 400: {
         response.status(status).json({
           msg: exception['response'],
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
         });
         break;
       }
       case 401: {
         response.status(status).json({
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
         });
         break;
@@ -47,7 +46,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       case 402: {
         response.status(status).json({
           msg: exception,
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
         });
         break;
@@ -55,7 +54,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       case 403: {
         response.status(status).json({
           msg: exception['response'],
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
         });
         break;
@@ -63,7 +62,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       case 409: {
         response.status(status).json({
           msg: exception,
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
         });
         break;
@@ -71,7 +70,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       case 500: {
         response.status(status).json({
           msg: exception,
-          status : 'failed',
+          status: 'failed',
           timestamp: date,
           body: request.body,
         });

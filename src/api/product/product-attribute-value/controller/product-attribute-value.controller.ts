@@ -28,16 +28,11 @@ export class ProductAttributeValueController {
     @Query('id') id: string,
     @Body() updateEntityDto: UpdateProductAttributeValueDto,
   ): Promise<UpdateResult> {
-    return this.ProductAttributeValueService.updateEntity(
-      id,
-      updateEntityDto,
-    );
+    return this.ProductAttributeValueService.updateEntity(id, updateEntityDto);
   }
 
   @Get()
-  findOneEntity(
-    @Query('id') id: string,
-  ): Promise<ProductAttributeValueEntity> {
+  findOneEntity(@Query('id') id: string): Promise<ProductAttributeValueEntity> {
     return this.ProductAttributeValueService.findOneEntity(id);
   }
 

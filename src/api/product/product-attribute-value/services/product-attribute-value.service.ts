@@ -17,7 +17,7 @@ export class ProductAttributeValueService {
     private attributeValueService: AttributeValueService,
     private productService: ProductService,
     private providerService: ProviderService,
-  ) { }
+  ) {}
 
   async createEntity(
     createEntityDto: CreateProductAttributeValueDto,
@@ -30,14 +30,13 @@ export class ProductAttributeValueService {
         await this.attributeValueService.findOneEntity(
           createEntityDto.attribute_value_id,
         );
-      createEntityDto.product =
-        await this.productService.findOneEntity(
-          createEntityDto.product_id,
-        );
+      createEntityDto.product = await this.productService.findOneEntity(
+        createEntityDto.product_id,
+      );
       return await this.ProductAttributeValueRepository.createEntity(
         createEntityDto,
       );
-    } catch (e) { }
+    } catch (e) {}
   }
 
   async updateEntity(
@@ -52,27 +51,26 @@ export class ProductAttributeValueService {
         await this.attributeValueService.findOneEntity(
           updateEntityDto.attribute_value_id,
         );
-      updateEntityDto.product =
-        await this.productService.findOneEntity(
-          updateEntityDto.product_id,
-        );
+      updateEntityDto.product = await this.productService.findOneEntity(
+        updateEntityDto.product_id,
+      );
       return await this.ProductAttributeValueRepository.updateEntity(
         id,
         updateEntityDto,
       );
-    } catch (e) { }
+    } catch (e) {}
   }
 
   async findOneEntity(id: string): Promise<ProductAttributeValueEntity> {
     try {
       return await this.ProductAttributeValueRepository.findOneEntity(id);
-    } catch (e) { }
+    } catch (e) {}
   }
 
   async findAllEntities(): Promise<ProductAttributeValueEntity[]> {
     try {
       return await this.ProductAttributeValueRepository.findAllEntities();
-    } catch (e) { }
+    } catch (e) {}
   }
 
   async ProductAttributeValeuPagination(

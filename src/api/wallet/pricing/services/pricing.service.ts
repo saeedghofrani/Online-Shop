@@ -40,17 +40,17 @@ export class PricingService {
 
   async updateEntity(
     id: string,
-    updateEntityDto: UpdatePricingDto
+    updateEntityDto: UpdatePricingDto,
   ): Promise<PricingEntity> {
     try {
       const previousPrice = await this.findOneEntity(id);
       previousPrice.softRemove();
-      const createEntityDto : CreatePricingDto = {
-        price: updateEntityDto.price
-      }
+      const createEntityDto: CreatePricingDto = {
+        price: updateEntityDto.price,
+      };
       return await this.createEntity(createEntityDto, previousPrice.product.id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 

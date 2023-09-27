@@ -57,9 +57,9 @@ export class ProductRepository
 
   async test() {
     return await this.createQueryBuilder('p')
-    .innerJoinAndSelect('p.product_attributes_value', 'pav')
-    .innerJoinAndSelect('pav.attribute_value', 'av')
-    .getMany();
+      .innerJoinAndSelect('p.product_attributes_value', 'pav')
+      .innerJoinAndSelect('pav.attribute_value', 'av')
+      .getMany();
   }
 
   async productPagination(

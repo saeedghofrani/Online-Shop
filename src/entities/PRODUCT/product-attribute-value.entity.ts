@@ -1,4 +1,10 @@
-import { Column, DeleteDateColumn, Entity, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { AttributeValueEntity } from './attribute-value.entity';
 import { ProductEntity } from './product.entity';

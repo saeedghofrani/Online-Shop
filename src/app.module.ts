@@ -35,14 +35,14 @@ import { APP_GUARD } from '@nestjs/core';
         {
           name: 'medium',
           ttl: 10000,
-          limit: 150
+          limit: 150,
         },
         {
           name: 'long',
           ttl: 60000,
-          limit: 300
-        }
-      ]
+          limit: 300,
+        },
+      ],
     }),
     ConfigurationModule,
     LoggerModule,
@@ -62,8 +62,8 @@ import { APP_GUARD } from '@nestjs/core';
   providers: [
     {
       provide: APP_GUARD,
-      useClass: ThrottlerGuard
-    }
+      useClass: ThrottlerGuard,
+    },
   ],
 })
 export class AppModule implements NestModule {

@@ -1,4 +1,11 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
