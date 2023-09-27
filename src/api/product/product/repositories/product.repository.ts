@@ -41,7 +41,9 @@ export class ProductRepository
 
     return await this.query(`
       SELECT
-      p.*,
+      p.title ,
+      p.description ,
+      p.original_title ,
       (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
       CAST((SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1) AS FLOAT) AS price
       FROM

@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
@@ -8,10 +8,12 @@ import { ProductAttributeValueEntity } from './product-attribute-value.entity';
 
 @Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
-  @Column()
+  @Index({ fulltext: true })
+  @Column({ unique: true })
   title: string;
 
-  @Column()
+  @Index({ fulltext: true })
+  @Column({ unique: true })
   original_title: string;
 
   @Column()

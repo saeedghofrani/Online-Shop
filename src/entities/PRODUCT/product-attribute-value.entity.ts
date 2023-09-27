@@ -31,6 +31,6 @@ export class ProductAttributeValueEntity extends MainEntity {
   @OneToMany(() => OrderEntity, (orders) => orders.price)
   orders: OrderEntity[];
 
-  @DeleteDateColumn({})
+  @DeleteDateColumn({ select: false })
   delete_at?: Date;
 }
