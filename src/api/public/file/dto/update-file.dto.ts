@@ -25,7 +25,7 @@ export class UpdateFileDto {
   compressedFileName: string;
 
   @ApiProperty()
-  relation_id: string;
+  relation_id: number;
 
   @ApiHideProperty()
   status: FileTypeEnum;

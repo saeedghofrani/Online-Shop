@@ -28,7 +28,7 @@ export class FileEntity extends MainEntity {
 
   @Index({ fulltext: true })
   @Column({ nullable: false, unique: false })
-  relation_id: string;
+  relation_id: number;
 
   @Column({
     type: 'enum',

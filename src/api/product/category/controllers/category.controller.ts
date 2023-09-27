@@ -16,22 +16,19 @@ export class CategoryController {
 
   @Post()
   async createEntity(
-    @Body() createEntityDto: CreateCategoryDto,
-    @Query('group_id') groupId: string,
+    @Body() createEntityDto: CreateCategoryDto
   ): Promise<CategoryEntity> {
-    return await this.categoryService.createEntity(createEntityDto, groupId);
+    return await this.categoryService.createEntity(createEntityDto);
   }
 
   @Patch()
   async updateEntity(
     @Query('category_id') id: string,
-    @Body() updateEntityDto: UpdateCategoryDto,
-    @Query('group_id') groupId: string,
+    @Body() updateEntityDto: UpdateCategoryDto
   ): Promise<UpdateResult> {
     return await this.categoryService.updateEntity(
       id,
-      updateEntityDto,
-      groupId,
+      updateEntityDto
     );
   }
 
@@ -40,6 +37,11 @@ export class CategoryController {
     @Query('category_id') id: string,
   ): Promise<CategoryEntity> {
     return await this.categoryService.findOneEntity(id);
+  }
+
+  @Get('tree')
+  async findTree(): Promise<CategoryEntity[]> {
+    return await this.categoryService.findTree();
   }
 
   @Get('all')

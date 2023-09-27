@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 import { UpdateResult } from 'typeorm';
-import { GroupService } from '../../group/services/group.service';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
 import { CategoryRepository } from '../repositories/category.repository';
@@ -13,27 +11,25 @@ import { CategoryRepository } from '../repositories/category.repository';
 export class CategoryService {
   constructor(
     private categoryRepository: CategoryRepository,
-    private groupService: GroupService,
   ) {}
 
   async createEntity(
     createEntityDto: CreateCategoryDto,
-    group_id: string,
   ): Promise<CategoryEntity> {
-    const findGroup = await this.groupService.findOneEntity(group_id);
-    createEntityDto.group = findGroup;
+    if (createEntityDto.parent_id) {
+      const findParent = await this.categoryRepository.findOneEntity(createEntityDto.parent_id);
+      createEntityDto.parent = findParent;
+    }
     return await this.categoryRepository.createEntity(createEntityDto);
   }
   async updateEntity(
     id: string,
     updateEntityDto: UpdateCategoryDto,
-    group_id: string,
   ): Promise<UpdateResult> {
-    if (group_id) {
-      const findGroup = await this.groupService.findOneEntity(group_id);
-      updateEntityDto.group = findGroup;
+    if (updateEntityDto.parent_id) {
+      const findParent = await this.categoryRepository.findOneEntity(updateEntityDto.parent_id);
+      updateEntityDto.parent = findParent;
     }
-
     return await this.categoryRepository.updateEntity(id, updateEntityDto);
   }
   async findOneEntity(id: string): Promise<CategoryEntity> {
@@ -41,6 +37,9 @@ export class CategoryService {
   }
   async findAllEntities(): Promise<CategoryEntity[]> {
     return await this.categoryRepository.findAllEntities();
+  }
+  async findTree(): Promise<CategoryEntity[]> {
+    return await this.categoryRepository.findTree();
   }
 
   async categoryPagination(

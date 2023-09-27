@@ -11,7 +11,7 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 export class ProductRepository
   extends Repository<ProductEntity>
   implements
-    RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
+  RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -35,20 +35,41 @@ export class ProductRepository
       .getOne();
   }
   async findAllEntities(): Promise<ProductEntity[]> {
-    return await this.createQueryBuilder('product').getMany();
+    // return await this.createQueryBuilder('product')
+    // .leftJoinAndSelect('product.pricings', 'pricing')
+    // .getMany();
+
+    return await this.query(`
+      SELECT
+      p.*,
+      (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
+      (SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1) AS price
+      FROM
+          product.product p
+      WHERE
+      (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) IS NOT NULL
+      AND
+      (SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1) IS NOT NULL;
+    `)
   }
 
   async productPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductEntity>> {
-    return paginate(query, this, {
+    const selectQueryBuilder = this.createQueryBuilder('p')
+    .addSelect('(SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1)', 'image')
+    .addSelect('(SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1)', 'price');
+    
+    return paginate(query, selectQueryBuilder, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
-      searchableColumns: ['name', 'description'],
+      searchableColumns: ['title', 'description'],
       defaultSortBy: [['create_at', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
+      select: ['image', '(SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1)'],
+
     });
   }
 }

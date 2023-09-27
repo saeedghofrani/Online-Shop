@@ -1,13 +1,10 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { AttributeEnum } from 'src/entities/PRODUCT/enum/category-attribute-type.enum';
 
 export class UpdateAttributeDto {
   @ApiProperty()
   name: string;
 
-  @ApiHideProperty()
-  category: CategoryEntity[];
-
   @ApiProperty()
-  category_id?: string[];
+  type: AttributeEnum;
 }

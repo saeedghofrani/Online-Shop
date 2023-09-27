@@ -21,12 +21,12 @@ export class FileService {
 
   async uploadFile(
     file: Express.Multer.File,
-    relation_id: string,
+    relation_id: number,
     status: FileTypeEnum,
     userId: string,
   ): Promise<string> {
     try {
-      console.log(file);
+      userId = `${1}`
       // Implement file upload, compression, and categorization here
       const extension = file.originalname.split('.').pop();
       const originalName = file.originalname;
@@ -49,8 +49,6 @@ export class FileService {
       createFileDto.status = status;
       createFileDto.path = file.path;
       createFileDto.user = await this.userService.findOneEntity(userId);
-      console.log(createFileDto);
-
       const newFile = await this.fileRepository.createEntity(createFileDto);
       return newFile.id;
     } catch (error) {
@@ -64,7 +62,6 @@ export class FileService {
     const file = await this.fileRepository.findOneEntity(id);
     if (!file) throw new NotFoundException('File not found');
     const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
-    console.log(filePath);
     return filePath;
   }
 

@@ -1,5 +1,5 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { GroupEntity } from 'src/entities/PRODUCT/group.entity';
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
 export class UpdateCategoryDto {
   @ApiProperty()
@@ -7,7 +7,10 @@ export class UpdateCategoryDto {
 
   @ApiProperty()
   description: string;
+  
+  @ApiPropertyOptional()
+  parent_id?: string;
 
   @ApiHideProperty()
-  group: GroupEntity;
+  parent: CategoryEntity;
 }

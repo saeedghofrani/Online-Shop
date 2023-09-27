@@ -1,21 +1,18 @@
-import { KafkaJSTopicMetadataNotLoaded } from '@nestjs/microservices/external/kafka.interface';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
-import { FileEntity } from '../public/file.entity';
 import { PricingEntity } from '../WALLET/pricing.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
-import { ProductAttributeEntity } from './product-attribute.entity';
 import { ProductAttributeValueEntity } from './product-attribute-value.entity';
 
 @Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
   @Column()
-  name: string;
+  title: string;
 
   @Column()
-  original_name: string;
+  original_title: string;
 
   @Column()
   description: string;

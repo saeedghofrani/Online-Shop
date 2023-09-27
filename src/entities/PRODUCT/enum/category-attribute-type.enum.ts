@@ -1,4 +1,4 @@
-export enum CategoryAttributeEnum {
+export enum AttributeEnum {
   COLOR,
   NUMBER,
   STRING,

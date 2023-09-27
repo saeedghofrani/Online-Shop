@@ -9,8 +9,8 @@ import { UpdateResult } from 'typeorm';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
-@ApiTags('Account')
-@Controller('account')
+@ApiTags('Pricing')
+@Controller('pricing')
 export class PricingController {
   constructor(private pricingService: PricingService) {}
 

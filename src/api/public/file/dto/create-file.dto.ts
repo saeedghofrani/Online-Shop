@@ -25,7 +25,7 @@ export class CreateFileDto {
   compressedFileName: string;
 
   @ApiProperty()
-  relation_id: string;
+  relation_id: number;
 
   @ApiProperty({
     type: 'enum',

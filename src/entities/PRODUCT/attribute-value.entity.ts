@@ -15,5 +15,5 @@ export class AttributeValueEntity extends MainEntity {
     () => ProductAttributeValueEntity,
     (product_attribute_value) => product_attribute_value.attribute_value,
   )
-  product_attribute_value: ProductAttributeValueEntity;
+  product_attribute_value: ProductAttributeValueEntity[];
 }

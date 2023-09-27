@@ -19,8 +19,8 @@ import { FileService } from '../service/file.service';
 
 @Controller('files')
 @ApiTags('File')
-@UseJwtGuard()
-@ApiBearerAuth('access-token')
+// @UseJwtGuard()
+// @ApiBearerAuth('access-token')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 
@@ -38,13 +38,14 @@ export class FileController {
       },
     },
   })
+  @UseJwtGuard()
+  @ApiBearerAuth('access-token')
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
     @Query('status') status: number,
-    @Query('id') id: string,
+    @Query('id') id: number,
     @GetUser() user: UserInterface,
   ) {
-    console.log(user);
     return this.fileService.uploadFile(file, id, status, user.userId);
   }
 

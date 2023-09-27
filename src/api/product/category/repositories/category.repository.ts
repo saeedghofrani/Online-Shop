@@ -37,6 +37,9 @@ export class CategoryRepository
   async findAllEntities(): Promise<CategoryEntity[]> {
     return await this.createQueryBuilder('category').getMany();
   }
+  async findTree(): Promise<CategoryEntity[]> {
+    return await this.manager.getTreeRepository(CategoryEntity).findTrees();
+  }
 
   async categoryPagination(
     query: PaginationQueryDto,

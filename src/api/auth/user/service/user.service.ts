@@ -188,13 +188,8 @@ export class UserService {
     user: UserInterface,
     roleId: string,
   ): Promise<{ access_token: string }> {
-    console.log('h');
-
     const userEntity = await this.findOneEntity(user.userId);
     const checkRole = userEntity.roles.find((role) => role.id == roleId);
-    console.log(userEntity);
-    console.log(checkRole);
-
     if (!checkRole) throw new UnauthorizedException();
     const payload: PayloadJwtInterface = {
       userId: userEntity.id,

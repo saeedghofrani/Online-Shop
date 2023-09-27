@@ -1,20 +1,23 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { BrandEntity } from 'src/entities/PRODUCT/brand.entity';
+import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
-export class CreateProductDto {
+export class CreateCategoryAttributeDto {
   @ApiProperty()
-  title: string;
+  filterable: boolean;
 
   @ApiProperty()
-  original_title: string;
+  priceable: boolean;
 
   @ApiProperty()
-  description: string;
+  category_id: string;
+
+  @ApiProperty()
+  attribute_id: string;
 
   @ApiHideProperty()
   category: CategoryEntity;
 
   @ApiHideProperty()
-  brand: BrandEntity;
+  attribute: AttributeEntity;
 }

@@ -12,9 +12,6 @@ import { CreateErrorInterface } from '../../api/history/error/interface/create-e
 export class HttpExceptionFilter implements ExceptionFilter {
   constructor(private errorService: ErrorService) {}
   async catch(exception: HttpException, host: ArgumentsHost) {
-    console.log(
-      'asdgfiajshdgfoasdfiuiruisdhkjahwefipuhaslvjbWPIEUFHIASJVLUHRFUHSDFVUIURHIUsdjflkjshdflgkjsdf',
-    );
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();

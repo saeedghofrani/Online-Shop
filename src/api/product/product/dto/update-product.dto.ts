@@ -4,10 +4,10 @@ import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
 export class UpdateProductDto {
   @ApiProperty()
-  name: string;
+  title: string;
 
   @ApiProperty()
-  original_name: string;
+  original_title: string;
 
   @ApiProperty()
   description: string;

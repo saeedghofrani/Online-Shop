@@ -16,6 +16,9 @@ import { SummaryService } from './summary/service/summary.service';
     SummaryService,
     SummaryRepository,
   ],
-  exports: [],
+  exports: [
+    ProviderService,
+    ProviderRepository,
+  ],
 })
 export class InventoryModuel {}

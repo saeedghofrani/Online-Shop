@@ -1,8 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { CategoryEntity } from './category.entity';
 import { AttributeEntity } from './attribute.entity';
-import { CategoryAttributeEnum } from './enum/category-attribute-type.enum';
+import { CategoryEntity } from './category.entity';
 
 @Entity({ schema: 'product', name: 'category_attribute' })
 export class CategoryAttributeEntity extends MainEntity {
@@ -11,13 +10,6 @@ export class CategoryAttributeEntity extends MainEntity {
 
   @Column()
   priceable: boolean;
-
-  @Column({
-    type: 'enum',
-    enum: CategoryAttributeEnum,
-    default: CategoryAttributeEnum.NUMBER,
-  })
-  type: CategoryAttributeEnum;
 
   @ManyToOne(() => CategoryEntity, (category) => category.category_attribute)
   category: CategoryEntity;
