@@ -36,9 +36,8 @@ export class PricingController {
   updateEntity(
     @Query('pricing_id') id: string,
     @Body() updateEntityDto: UpdatePricingDto,
-    @Query('product_id') productId: string,
-  ): Promise<UpdateResult> {
-    return this.pricingService.updateEntity(id, updateEntityDto, productId);
+  ): Promise<PricingEntity> {
+    return this.pricingService.updateEntity(id, updateEntityDto);
   }
 
   @Post('page')

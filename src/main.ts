@@ -1,14 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { AppConfigService } from './config/app/app-config.service';
-import helmet from 'helmet';
 import { Logger } from '@nestjs/common';
-import { SwaggerConfigService } from './config/swagger/swagger.service';
-import { logger } from './config/logger/logger.class';
+import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
 import { WINSTON_MODULE_NEST_PROVIDER, WinstonModule } from 'nest-winston';
+import { AppModule } from './app.module';
 import { ResponseOkInterceptor } from './common/interceptors/global-response.interceptor';
+import { AppConfigService } from './config/app/app-config.service';
+import { logger } from './config/logger/logger.class';
+import { SwaggerConfigService } from './config/swagger/swagger.service';
 import { HttpExceptionFilter } from './common/exceptions/http.exception';
-import { LetterTransformPipe } from './common/pipe/letter-transform.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -19,6 +18,7 @@ async function bootstrap() {
   app.enableCors();
   app.setGlobalPrefix(appService.appApiPrefix);
   // app.useGlobalPipes(new LetterTransformPipe());
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseOkInterceptor());
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);

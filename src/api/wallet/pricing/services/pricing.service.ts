@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
 import { CreatePricingDto } from '../dto/create-pricing.dto';
@@ -40,14 +40,19 @@ export class PricingService {
 
   async updateEntity(
     id: string,
-    updateEntityDto: UpdatePricingDto,
-    productId: string,
-  ): Promise<UpdateResult> {
+    updateEntityDto: UpdatePricingDto
+  ): Promise<PricingEntity> {
     try {
-      const findProduct = await this.productService.findOneEntity(productId);
-      if (findProduct) updateEntityDto.product = findProduct;
-      return await this.pricingRepository.updateEntity(id, updateEntityDto);
-    } catch (e) {}
+      const previousPrice = await this.findOneEntity(id);
+      previousPrice.softRemove();
+      console.log(previousPrice);
+      const createEntityDto : CreatePricingDto = {
+        price: updateEntityDto.price
+      }
+      return await this.createEntity(createEntityDto, previousPrice.product.id);
+    } catch (e) {
+      throw e
+    }
   }
 
   async pricingPagination(

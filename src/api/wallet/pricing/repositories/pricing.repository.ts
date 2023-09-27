@@ -31,6 +31,7 @@ export class PricingRepository
 
   async findOneEntity(id: string): Promise<PricingEntity> {
     return await this.createQueryBuilder('pricing')
+    .innerJoinAndSelect('pricing.product', 'product')
       .where('pricing.id=:id_pricing', { id_pricing: id })
       .getOne();
   }

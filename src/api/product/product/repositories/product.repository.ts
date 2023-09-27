@@ -51,7 +51,7 @@ export class ProductRepository
       WHERE
       (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) IS NOT NULL
       AND
-      (SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1) IS NOT NULL;
+      (SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id and p2.delete_at is null LIMIT 1 ) IS NOT NULL;
     `);
   }
 

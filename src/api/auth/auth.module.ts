@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { SmsModule } from '../../utils/sms/sms.module';
+import { ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
+import { ConfigurationModule } from 'src/config/configuration.module';
 import { EmailModule } from 'src/utils/email/email.module';
 import { RedisService } from 'src/utils/redis/redis.service';
 import { SmsService } from 'src/utils/sms/sms.service';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
-import { UserController } from './user/controller/user.controller';
-import { UserService } from './user/service/user.service';
-import { UserRepository } from './user/repositories/user.repository';
+import { SmsModule } from '../../utils/sms/sms.module';
+import { HistoryModule } from '../history/history.module';
 import { KycController } from './kyc/controller/kyc.controller';
 import { KycRepository } from './kyc/repositories/kyc.repository';
 import { KycService } from './kyc/service/kyc.service';
@@ -24,7 +23,9 @@ import { RoleService } from './role/service/role.service';
 import { RouteController } from './route/controller/route.controller';
 import { RouteRepository } from './route/repositories/route.repository';
 import { RouteService } from './route/service/route.service';
-import { HistoryModule } from '../history/history.module';
+import { UserController } from './user/controller/user.controller';
+import { UserRepository } from './user/repositories/user.repository';
+import { UserService } from './user/service/user.service';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { HistoryModule } from '../history/history.module';
     EmailModule,
     HistoryModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
+      imports: [ConfigurationModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: process.env.JWT_SECRET,

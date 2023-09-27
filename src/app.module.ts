@@ -15,6 +15,8 @@ import { RequestLoggerMiddleware } from './common/middlewares/request-logger.mid
 import { HistoryModule } from './api/history/history.module';
 import { WalletModule } from './api/wallet/wallet.module';
 import { PublicModule } from './api/public/public.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -22,6 +24,25 @@ import { PublicModule } from './api/public/public.module';
       url: `redis://${process.env.REDIS_HOST}:${parseInt(
         process.env.REDIS_PORT,
       )}`,
+    }),
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          name: 'short',
+          ttl: 1000,
+          limit: 20,
+        },
+        {
+          name: 'medium',
+          ttl: 10000,
+          limit: 150
+        },
+        {
+          name: 'long',
+          ttl: 60000,
+          limit: 300
+        }
+      ]
     }),
     ConfigurationModule,
     LoggerModule,
@@ -38,7 +59,12 @@ import { PublicModule } from './api/public/public.module';
     ProductModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard
+    }
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {

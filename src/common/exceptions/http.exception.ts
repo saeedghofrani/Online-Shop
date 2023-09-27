@@ -10,12 +10,15 @@ import { CreateErrorInterface } from '../../api/history/error/interface/create-e
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private errorService: ErrorService) {}
+  constructor(
+    // private errorService: ErrorService,
+    ) {}
   async catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
+    console.log(status);
     const date = Date.now();
     const createErrorHistoryInterface: CreateErrorInterface = {
       error: exception['response'],
@@ -24,64 +27,52 @@ export class HttpExceptionFilter implements ExceptionFilter {
       methode: request.method,
       route: request.route,
     };
-    await this.errorService.create(createErrorHistoryInterface);
+    // await this.errorService.create(createErrorHistoryInterface);
     switch (status) {
       case 400: {
         response.status(status).json({
           msg: exception['response'],
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
         });
         break;
       }
       case 401: {
         response.status(status).json({
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
         });
         break;
       }
       case 402: {
         response.status(status).json({
           msg: exception,
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
         });
         break;
       }
       case 403: {
         response.status(status).json({
           msg: exception['response'],
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
         });
         break;
       }
       case 409: {
         response.status(status).json({
           msg: exception,
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
         });
         break;
       }
       case 500: {
         response.status(status).json({
           msg: exception,
-          status: status,
+          status : 'failed',
           timestamp: date,
-          path: request.url,
-          method: request.method,
           body: request.body,
         });
         break;

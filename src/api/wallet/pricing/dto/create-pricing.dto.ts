@@ -6,5 +6,5 @@ export class CreatePricingDto {
   price: number;
 
   @ApiHideProperty()
-  product: ProductEntity;
+  product?: ProductEntity;
 }
