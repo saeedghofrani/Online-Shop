@@ -55,10 +55,11 @@ export class ProductRepository
     `);
   }
 
-  async test() {
+  async productList() {
     return await this.createQueryBuilder('p')
       .innerJoinAndSelect('p.product_attributes_value', 'pav')
       .innerJoinAndSelect('pav.attribute_value', 'av')
+      .innerJoinAndSelect('av.attribute', 'a', 'a.type = :attributeType', { attributeType: 0 })
       .getMany();
   }
 

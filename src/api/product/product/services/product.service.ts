@@ -57,7 +57,7 @@ export class ProductService {
     return this.productRepository.productPagination(query);
   }
 
-  async test() {
-    return await this.productRepository.test();
+  async productList() {
+    return await this.productRepository.productList();
   }
 }

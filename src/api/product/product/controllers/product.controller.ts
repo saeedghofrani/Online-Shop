@@ -57,9 +57,9 @@ export class ProductController {
     return this.productService.productPagination(query);
   }
 
-  @Post('test')
-  @ApiOperation({ summary: 'test' })
-  test() {
-    return this.productService.test();
+  @Post('attribute')
+  @ApiOperation({ summary: 'get all product with price and attribute' })
+  productList() {
+    return this.productService.productList();
   }
 }
