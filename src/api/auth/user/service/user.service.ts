@@ -38,7 +38,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) {}
+  ) { }
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -56,7 +56,7 @@ export class UserService {
 
   async findOneEntity(userId: string): Promise<UserEntity> {
     try {
-      return await this.userRepository.findOneEntity(userId);      
+      return await this.userRepository.findOneEntity(userId);
     } catch (error) {
       throw error
     }
@@ -158,6 +158,7 @@ export class UserService {
       const userEntity = await this.findByEntity(signInDto.mobile);
       if (!userEntity) {
         throw new BadRequestException('Username Does Not Exist');
+      }
       if (
         !(await userEntity.verifyPassword(
           signInDto.password,
@@ -230,6 +231,6 @@ export class UserService {
   ): Promise<Paginated<UserEntity>> {
     try {
       return await this.userRepository.userPagination(query);
-    } catch (e) {}
+    } catch (e) { }
   }
 }
