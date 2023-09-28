@@ -21,9 +21,6 @@ export class ProviderService {
     userId: string,
   ): Promise<ProviderEntity> {
     const userEntity = await this.userService.findOneEntity(userId);
-    if (!userEntity.kyc) {
-      throw new UnauthorizedException();
-    }
     createEntityDto.user = userEntity;
     return await this.providerRepository.createEntity(createEntityDto);
   }
