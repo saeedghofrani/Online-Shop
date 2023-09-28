@@ -150,8 +150,10 @@ export class UserService {
 
   async signIn(signInDto: SignInDto): Promise<CheckOtpInterface> {
     try {
-      let userEntity: UserEntity;
-      userEntity = await this.findByEntity(signInDto.mobile);
+      const userEntity = await this.findByEntity(signInDto.mobile);
+      if (! userEntity) {
+        throw new BadRequestException('Username Does Not Exist');
+      }
       if (
         !(await userEntity.verifyPassword(
           signInDto.password,
@@ -167,7 +169,7 @@ export class UserService {
       const access_token = this.jwtService.sign(payload, { expiresIn: '12h' });
       return {
         access_token,
-        roles: [userEntity.roles[0].id],
+        roles: [...userEntity.roles.map((item)=> item.id)],
       };
     } catch (e) {
       throw e;

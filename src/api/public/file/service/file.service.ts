@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { createReadStream } from 'fs';
+import { unlink } from 'fs/promises';
 import * as sharp from 'sharp';
 import { UserService } from 'src/api/auth/user/service/user.service';
 import { FileRepository } from '../repository/file.repository';
@@ -22,11 +23,10 @@ export class FileService {
   async uploadFile(
     file: Express.Multer.File,
     relation_id: number,
-    status: FileTypeEnum,
+    type: FileTypeEnum,
     userId: string,
   ): Promise<string> {
     try {
-      userId = `${1}`;
       // Implement file upload, compression, and categorization here
       const extension = file.originalname.split('.').pop();
       const originalName = file.originalname;
@@ -38,6 +38,7 @@ export class FileService {
       await sharp(file.path)
         .resize(800, 600)
         .toFile(`uploads/${compressedFileName}`);
+      unlink(process.cwd() + '/' + file.path);
       const createFileDto = new CreateFileDto();
       createFileDto.compressedFileName = compressedFileName;
       createFileDto.extension = extension;
@@ -46,7 +47,7 @@ export class FileService {
       createFileDto.originalName = originalName;
       createFileDto.relation_id = relation_id;
       createFileDto.size = size;
-      createFileDto.status = status;
+      createFileDto.type = type;
       createFileDto.path = file.path;
       createFileDto.user = await this.userService.findOneEntity(userId);
       const newFile = await this.fileRepository.createEntity(createFileDto);

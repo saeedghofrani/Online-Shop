@@ -42,11 +42,11 @@ export class FileController {
   @ApiBearerAuth('access-token')
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
-    @Query('status') status: number,
+    @Query('type') type: number,
     @Query('id') id: number,
     @GetUser() user: UserInterface,
   ) {
-    return this.fileService.uploadFile(file, id, status, user.userId);
+    return this.fileService.uploadFile(file, id, type, user.userId);
   }
 
   @Get(':id/download')
