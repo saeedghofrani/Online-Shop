@@ -29,7 +29,7 @@ export class UserEntity extends MainEntity {
   @Column({ nullable: true, unique: true })
   mobile: string;
 
-  @Column({ nullable: true, unique: true })
+  @Column({ nullable: true, unique: false })
   prefix: string;
 
   @Index({ fulltext: true })
