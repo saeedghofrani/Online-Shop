@@ -92,9 +92,11 @@ export class UserController {
   }
 
   @Get('')
-  @ApiOperation({ summary: 'Get User By Id' })
-  findOneEntity(@Query('userId') userId: string) {
-    return this.userService.findOneEntity(userId);
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: 'Get User' })
+  @UseJwtGuard()
+  findOneEntity(@GetUser() user: UserInterface) {
+    return this.userService.findOneEntity(user.userId);
   }
 
   @Post('page')

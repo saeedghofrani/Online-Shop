@@ -53,7 +53,6 @@ export class FileService {
       const newFile = await this.fileRepository.createEntity(createFileDto);
       return newFile.id;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

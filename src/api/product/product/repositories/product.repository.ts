@@ -1,10 +1,10 @@
 import { Inject } from '@nestjs/common';
-import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
+import { Paginated, paginate, FilterOperator, FilterComparator, PaginationType } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
-import { DataSource, Repository, UpdateResult } from 'typeorm';
+import { DataSource, Repository, SelectQueryBuilder, UpdateResult, getRepository } from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
@@ -35,10 +35,6 @@ export class ProductRepository
       .getOne();
   }
   async findAllEntities(): Promise<ProductEntity[]> {
-    // return await this.createQueryBuilder('product')
-    // .leftJoinAndSelect('product.pricings', 'pricing')
-    // .getMany();
-
     return await this.query(`
       SELECT
       p.title ,
@@ -68,18 +64,27 @@ export class ProductRepository
   async productPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductEntity>> {
-    return paginate(query, this, {
+    const pagination = await paginate(query, this, {
       sortableColumns: ['create_at'],
       nullSort: 'last',
       searchableColumns: ['title', 'description'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['title', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },
-      select: [
-        'image',
-        '(SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1)',
-      ],
+      paginationType: PaginationType.TAKE_AND_SKIP,
     });
+    for (let i = 0; i < pagination.data.length; i++) {
+      const element: any = pagination.data[i];
+      const image = await this.query(`
+      SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
+      `)
+      const price = await this.query(`
+      SELECT "price" as price FROM wallet.pricing p2 WHERE p2."productId" = ${element.id} LIMIT 1
+      `)
+      element.image = image[0]['image'];
+      element.price = Number(price[0]['price']);
+    }
+    return pagination;
   }
 }

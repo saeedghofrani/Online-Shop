@@ -3,6 +3,7 @@ import {
   BadRequestException,
   UnauthorizedException,
   ForbiddenException,
+  NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Paginated } from 'nestjs-paginate';
@@ -54,7 +55,11 @@ export class UserService {
   }
 
   async findOneEntity(userId: string): Promise<UserEntity> {
-    return await this.userRepository.findOneEntity(userId);
+    try {
+      return await this.userRepository.findOneEntity(userId);      
+    } catch (error) {
+      throw error
+    }
   }
 
   async updateEntity(
@@ -153,7 +158,6 @@ export class UserService {
       const userEntity = await this.findByEntity(signInDto.mobile);
       if (!userEntity) {
         throw new BadRequestException('Username Does Not Exist');
-      }
       if (
         !(await userEntity.verifyPassword(
           signInDto.password,
