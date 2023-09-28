@@ -5,6 +5,9 @@
 # Uploaded File
 /uploads
 
+#Swagger
+/swagger-soec.json
+
 # Logs
 logs
 *.log
