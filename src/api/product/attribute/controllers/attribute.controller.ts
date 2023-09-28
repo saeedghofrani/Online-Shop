@@ -38,6 +38,11 @@ export class AttributeController {
     return this.attributeService.findAllEntities();
   }
 
+  @Get('category')
+  async categoryAttribute(@Query('id') id: number): Promise<AttributeEntity[]> {
+    return this.attributeService.categoryAttribute(id);
+  }
+
   @Post('page')
   @ApiOperation({ summary: 'Attribute Pagination' })
   attributePagination(@Body() query: PaginationQueryDto) {

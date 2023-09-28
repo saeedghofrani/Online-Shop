@@ -45,6 +45,17 @@ export class AttributeRepository
     return await this.createQueryBuilder('attribute').getMany();
   }
 
+  async categoryAttribute(product_id: number) {
+    return await this.query(`
+      select a."name",a."type"  , av.value, av.id  from product.product p 
+      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" 
+      inner join product."attribute" a on a.id = ca."attributeId" 
+      inner join product.attribute_value av on av."attributeId" = ca."attributeId"
+      where p.id = ${product_id}
+    `)
+
+  }
+
   async attributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeEntity>> {

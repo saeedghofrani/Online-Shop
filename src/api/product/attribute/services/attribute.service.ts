@@ -42,6 +42,10 @@ export class AttributeService {
     } catch (e) {}
   }
 
+  async categoryAttribute(product_id: number) {
+    return await this.attributeRepository.categoryAttribute(product_id);
+  }
+
   async attributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeEntity>> {
