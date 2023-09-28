@@ -37,7 +37,7 @@ export class UserService {
     private jwtService: JwtService,
     private roleService: RoleService,
     private otpHistoryService: OtpHistoryService,
-  ) { }
+  ) {}
 
   private async createEntity(
     createEntityDto: CreateUserDto,
@@ -185,7 +185,7 @@ export class UserService {
       await this.createEntity(createUser);
       return await this.signIn(signInDto);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -194,9 +194,11 @@ export class UserService {
       const userEntity = await this.findOneEntity(String(user));
       const roleEntity = await this.roleService.findOneEntity(String(role));
       userEntity.roles.push(roleEntity);
-      return await this.userRepository.save(this.userRepository.create(userEntity));
+      return await this.userRepository.save(
+        this.userRepository.create(userEntity),
+      );
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -222,6 +224,6 @@ export class UserService {
   ): Promise<Paginated<UserEntity>> {
     try {
       return await this.userRepository.userPagination(query);
-    } catch (e) { }
+    } catch (e) {}
   }
 }

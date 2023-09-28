@@ -59,7 +59,9 @@ export class ProductRepository
     return await this.createQueryBuilder('p')
       .innerJoinAndSelect('p.product_attributes_value', 'pav')
       .innerJoinAndSelect('pav.attribute_value', 'av')
-      .innerJoinAndSelect('av.attribute', 'a', 'a.type = :attributeType', { attributeType: 0 })
+      .innerJoinAndSelect('av.attribute', 'a', 'a.type = :attributeType', {
+        attributeType: 0,
+      })
       .getMany();
   }
 

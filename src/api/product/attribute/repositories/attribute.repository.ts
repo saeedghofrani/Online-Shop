@@ -52,8 +52,7 @@ export class AttributeRepository
       inner join product."attribute" a on a.id = ca."attributeId" 
       inner join product.attribute_value av on av."attributeId" = ca."attributeId"
       where p.id = ${product_id}
-    `)
-
+    `);
   }
 
   async attributePagination(

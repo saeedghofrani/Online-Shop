@@ -10,8 +10,7 @@ import { CreateErrorInterface } from '../../api/history/error/interface/create-e
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor() // private errorService: ErrorService,
-  {}
+  constructor() {} // private errorService: ErrorService,
   async catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
