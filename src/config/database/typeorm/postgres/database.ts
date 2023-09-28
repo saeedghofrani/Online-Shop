@@ -23,13 +23,13 @@ export const dbConfig = (): DataSourceOptions => ({
     duration: 2000,
     alwaysEnabled: true,
     options: {
-      host: "localhost",
-      port: 6379
-    }
+      host: 'localhost',
+      port: 6379,
+    },
   },
   extra: {
     max: 10,
-    connectionTimeoutMillis: 2000
-  }
+    connectionTimeoutMillis: 2000,
+  },
 });
 export default dbConfig;

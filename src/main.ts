@@ -23,7 +23,7 @@ async function bootstrap() {
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);
   const swaggerConfig = app.get<SwaggerConfigService>(SwaggerConfigService);
-  const port = appConfigService.appPort || 4000;
+  const port = 40000;
   app.setGlobalPrefix(appConfigService.appApiPrefix);
   Logger.log(`Swagger Is Enable In DEVELOPMENT Mode`, 'Swagger');
   swaggerConfig.init(app);
