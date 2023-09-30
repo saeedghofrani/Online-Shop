@@ -149,7 +149,7 @@ export class UserService {
         roles: [userEntity.roles[0].id],
       };
     } catch (e) {
-      console.log(e);
+      throw e
     }
   }
 

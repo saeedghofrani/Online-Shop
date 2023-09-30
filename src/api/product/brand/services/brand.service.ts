@@ -14,7 +14,9 @@ export class BrandService {
   async createEntity(createEntityDto: CreateBrandDto): Promise<BrandEntity> {
     try {
       return await this.brandRepository.createEntity(createEntityDto);
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async updateEntity(

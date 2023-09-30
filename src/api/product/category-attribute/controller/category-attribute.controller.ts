@@ -23,7 +23,7 @@ export class CategoryAttributeController {
 
   @Patch()
   updateEntity(
-    @Query('category-attribute_id') id: string,
+    @Query('id') id: string,
     @Body() updateEntityDto: UpdateCategoryAttributeDto,
   ): Promise<UpdateResult> {
     return this.categoryAttributeService.updateEntity(id, updateEntityDto);
@@ -31,7 +31,7 @@ export class CategoryAttributeController {
 
   @Get()
   findOneEntity(
-    @Query('category-attribute_id') id: string,
+    @Query('id') id: string,
   ): Promise<CategoryAttributeEntity> {
     return this.categoryAttributeService.findOneEntity(id);
   }
