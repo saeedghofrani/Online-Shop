@@ -53,7 +53,7 @@ export class ProductRepository
     p.description ,
     p.original_title ,
     (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
-    CAST((SELECT "price" FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
+    CAST((SELECT MIN(pav.price) FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
     FROM
         product.product p
     WHERE
@@ -92,7 +92,7 @@ export class ProductRepository
       SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
       `);
       const price = await this.query(`
-      SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1
+      SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1
       `);
       element.image = image[0] ? image[0]['image'] : '';
       element.price = Number(price[0] ? price[0]['price'] : '');

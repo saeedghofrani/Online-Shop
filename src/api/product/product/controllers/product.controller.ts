@@ -52,9 +52,15 @@ export class ProductController {
   }
 
   @Post('test')
-  @ApiOperation({ summary: 'Product Pagination' })
+  @ApiOperation({ summary: 'Product Pagination TEST' })
   brandPagination(@Body() query: PaginationQueryDto) {
     return this.productService.test(query);
+  }
+
+  @Post('page')
+  @ApiOperation({ summary: 'Product Pagination' })
+  productPagination(@Body() query: PaginationQueryDto) {
+    return this.productService.productPagination(query);
   }
 
   @Get('attribute')
