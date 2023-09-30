@@ -6,16 +6,21 @@ import { ProviderService } from './provider/service/provider.service';
 import { SummaryController } from './summary/controller/summary.controller';
 import { SummaryRepository } from './summary/repository/summary.repository';
 import { SummaryService } from './summary/service/summary.service';
+import { WebController } from './web/controller/web.controller';
+import { WebService } from './web/service/web.service';
+import { WebRepository } from './web/repository/web.repository';
 
 @Module({
   imports: [AuthModule],
-  controllers: [ProviderController, SummaryController],
+  controllers: [ProviderController, SummaryController, WebController],
   providers: [
     ProviderService,
     ProviderRepository,
     SummaryService,
     SummaryRepository,
+    WebService,
+    WebRepository
   ],
   exports: [ProviderService, ProviderRepository],
 })
-export class InventoryModuel {}
+export class InventoryModuel { }

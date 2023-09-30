@@ -4,6 +4,7 @@ import { UserEntity } from '../AUTH/user.entity';
 import { ProviderStatus } from './enum/provider-status.enum';
 import { SummaryEntity } from './summary.entity';
 import { ProductAttributeValueEntity } from '../PRODUCT/product-attribute-value.entity';
+import { WebEntity } from './web.entity';
 
 @Entity({ schema: 'inventory', name: 'provider' })
 @Unique(['latitude', 'longitude'])
@@ -35,4 +36,10 @@ export class ProviderEntity extends MainEntity {
     (product_attribute_value) => product_attribute_value.provider,
   )
   product_attribute_value: ProductAttributeValueEntity[];
+
+  @OneToMany(
+    () => WebEntity,
+    (web) => web.provider,
+  )
+  web: WebEntity[];
 }
