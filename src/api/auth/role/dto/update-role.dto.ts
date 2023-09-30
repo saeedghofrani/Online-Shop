@@ -1,6 +1,7 @@
 import { ApiHideProperty } from '@nestjs/swagger';
+import { RoleEntity } from 'src/entities/AUTH/role.entity';
 
-export class UpdateRoleDto {
+export class UpdateRoleDto  implements Partial<RoleEntity>{
   @ApiHideProperty()
   name: string;
 

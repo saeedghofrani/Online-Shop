@@ -1,7 +1,7 @@
-import { UserEntity } from '../../../../entities/AUTH/user.entity';
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
+import { WalletEntity } from 'src/entities/WALLET/wallet.entity';
 
-export class UpdateWalletDto {
+export class UpdateWalletDto implements Partial<WalletEntity>{
   @ApiProperty()
   amount: number;
 

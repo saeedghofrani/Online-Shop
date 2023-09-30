@@ -1,6 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
 
-export class UpdateProfileDto {
+export class UpdateProfileDto implements Partial<ProfileEntity> {
   @ApiPropertyOptional()
   first_name: string;
 

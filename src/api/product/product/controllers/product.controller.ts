@@ -51,13 +51,13 @@ export class ProductController {
     return this.productService.findAllEntities();
   }
 
-  @Post('page')
+  @Post('test')
   @ApiOperation({ summary: 'Product Pagination' })
   brandPagination(@Body() query: PaginationQueryDto) {
-    return this.productService.productPagination(query);
+    return this.productService.test(query);
   }
 
-  @Post('attribute')
+  @Get('attribute')
   @ApiOperation({ summary: 'get all product with price and attribute' })
   productList() {
     return this.productService.productList();

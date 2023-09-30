@@ -1,8 +1,9 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { RouteMethodeEnum } from 'src/entities/AUTH/enum/route-method.enum';
 import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
+import { RouteEntity } from 'src/entities/AUTH/route.entity';
 
-export class UpdateRouteDto {
+export class UpdateRouteDto implements Partial<RouteEntity> {
   @ApiProperty()
   address: string;
 

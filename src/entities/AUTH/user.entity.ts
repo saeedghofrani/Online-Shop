@@ -13,6 +13,7 @@ import {
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserStatusEnum } from './enum/user-status.enum';
 import * as argon2 from 'argon2';
+import crypto from 'crypto'
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../LOCATION/address.entity';

@@ -19,6 +19,9 @@ export class CategoryEntity extends MainEntity {
   @Column({ unique: true })
   name: string;
 
+  @Column({ unique: true })
+  original_name: string;
+  
   @Column()
   description: string;
 

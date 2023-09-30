@@ -11,7 +11,7 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 export class ProductRepository
   extends Repository<ProductEntity>
   implements
-    RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
+  RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -36,18 +36,18 @@ export class ProductRepository
   }
   async findAllEntities(): Promise<ProductEntity[]> {
     return await this.query(`
-      SELECT
-      p.title ,
-      p.description ,
-      p.original_title ,
-      (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
-      CAST((SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id LIMIT 1) AS FLOAT) AS price
-      FROM
-          product.product p
-      WHERE
-      (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) IS NOT NULL
-      AND
-      (SELECT "price" FROM wallet.pricing p2 WHERE p2."productId" = p.id and p2.delete_at is null LIMIT 1 ) IS NOT NULL;
+    SELECT
+    p.title ,
+    p.description ,
+    p.original_title ,
+    (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
+    CAST((SELECT "price" FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
+    FROM
+        product.product p
+    WHERE
+    (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) IS NOT NULL
+    AND
+    (SELECT pav.price FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) IS NOT NULL;
     `);
   }
 
@@ -80,11 +80,26 @@ export class ProductRepository
       SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
       `)
       const price = await this.query(`
-      SELECT "price" as price FROM wallet.pricing p2 WHERE p2."productId" = ${element.id} LIMIT 1
+      SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1
       `)
-      element.image = image[0]['image'];
-      element.price = Number(price[0]['price']);
+      element.image = image[0] ? image[0]['image'] : '';
+      element.price = Number(price[0] ? price[0]['price'] : '');
     }
     return pagination;
+  }
+
+  async test(
+    query: PaginationQueryDto,
+  ): Promise<Paginated<ProductEntity>> {
+    const { page, limit } = query;
+    const skip = (page - 1) * limit;
+    const [product, totalItems] = await this.createQueryBuilder('')
+      .skip(skip)
+      .take(limit)
+      // .addFrom(`SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 `, `image`)
+      // .addSelect(`SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1`)
+      .getManyAndCount();
+    const totalPages = Math.ceil(totalItems / limit);
+    return new Paginated();
   }
 }

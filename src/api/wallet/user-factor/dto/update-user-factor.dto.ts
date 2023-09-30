@@ -1,9 +1,9 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { installmentType } from 'src/entities/WALLET/enum/installment-type.enum';
+import { UserFactorEntity } from 'src/entities/WALLET/user-factor.entity';
 import { PenaltyType } from '../../../../entities/WALLET/enum/penalty-type.enum';
-import { PatternMasterEntity } from '../../../../entities/WALLET/pattern-master.entity';
 
-export class UpdateUserFactorDto {
+export class UpdateUserFactorDto  implements Partial<UserFactorEntity>{
   @ApiProperty()
   purchase_date: Date;
 

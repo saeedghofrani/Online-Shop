@@ -5,12 +5,15 @@ import {
 } from '@nestjs/swagger';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
-export class UpdateCategoryDto {
+export class UpdateCategoryDto  implements Partial<CategoryEntity> {
   @ApiProperty()
   name: string;
 
   @ApiProperty()
   description: string;
+  
+  @ApiProperty()
+  original_name: string;
 
   @ApiPropertyOptional()
   parent_id?: string;
