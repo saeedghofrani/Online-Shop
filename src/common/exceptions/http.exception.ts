@@ -1,79 +1,63 @@
 import {
-  ExceptionFilter,
-  Catch,
   ArgumentsHost,
+  Catch,
+  ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { ErrorService } from '../../api/history/error/service/error.service';
+import {
+  EntityNotFoundError,
+  QueryFailedError,
+  TypeORMError,
+} from 'typeorm';
 import { CreateErrorInterface } from '../../api/history/error/interface/create-error.interface';
 
-@Catch(HttpException)
+@Catch(HttpException, QueryFailedError, EntityNotFoundError, TypeORMError)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor() {} // private errorService: ErrorService,
-  async catch(exception: HttpException, host: ArgumentsHost) {
+  constructor() {}
+
+  async catch(
+    exception: HttpException | QueryFailedError | EntityNotFoundError | TypeORMError,
+    host: ArgumentsHost,
+  ) {
+    // Log the exception for debugging purposes
+    console.error(exception);
+
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    const status = exception.getStatus();
+    
+    // Determine the HTTP status code
+    const status = exception instanceof HttpException ? exception.getStatus() : 400;
+
     const date = Date.now();
+
+    // Create an object to store error history information
     const createErrorHistoryInterface: CreateErrorInterface = {
       error: exception['response'],
       status: status,
       path: request.url,
-      methode: request.method,
+      method: request.method,
       route: request.route,
     };
+
+    // You can uncomment this section to use an error service to log errors
     // await this.errorService.create(createErrorHistoryInterface);
-    switch (status) {
-      case 400: {
-        response.status(status).json({
-          msg: exception['response'],
-          status: 'failed',
-          timestamp: date,
-        });
-        break;
-      }
-      case 401: {
-        response.status(status).json({
-          status: 'failed',
-          timestamp: date,
-        });
-        break;
-      }
-      case 402: {
-        response.status(status).json({
-          msg: exception,
-          status: 'failed',
-          timestamp: date,
-        });
-        break;
-      }
-      case 403: {
-        response.status(status).json({
-          msg: exception['response'],
-          status: 'failed',
-          timestamp: date,
-        });
-        break;
-      }
-      case 409: {
-        response.status(status).json({
-          msg: exception,
-          status: 'failed',
-          timestamp: date,
-        });
-        break;
-      }
-      case 500: {
-        response.status(status).json({
-          msg: exception,
-          status: 'failed',
-          timestamp: date,
-          body: request.body,
-        });
-        break;
-      }
-    }
+
+    // Define error messages and responses based on status code
+    const errorResponse: any = {
+      400: { msg: exception['response'] || exception.message, status: 'failed' },
+      401: { msg: 'Unauthorized', status: 'failed' },
+      403: { msg: exception.message || exception['response'] || 'Forbidden', status: 'failed' },
+      404: { msg: exception['response'] || exception.message || 'Not Found', status: 'failed' },
+      409: { msg: exception, status: 'failed' },
+      500: { msg: exception, status: 'failed', body: request.body },
+    };
+
+    // Send the appropriate response based on the status code
+    response.status(status).json({
+      ...errorResponse[status],
+      timestamp: date,
+    });
   }
 }

@@ -7,5 +7,5 @@ export interface CreateErrorInterface {
 
   path: string;
 
-  methode: string;
+  method: string;
 }
