@@ -56,10 +56,6 @@ export class ProductRepository
     CAST((SELECT MIN(pav.price) FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
     FROM
         product.product p
-    WHERE
-    (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) IS NOT NULL
-    AND
-    (SELECT pav.price FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) IS NOT NULL;
     `);
   }
 
