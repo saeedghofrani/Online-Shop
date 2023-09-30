@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { createReadStream } from 'fs';
-import { unlink } from 'fs/promises';
+import { unlink, stat } from 'fs/promises';
 import * as sharp from 'sharp';
 import { UserService } from 'src/api/auth/user/service/user.service';
 import { FileRepository } from '../repository/file.repository';
@@ -18,7 +18,7 @@ export class FileService {
   constructor(
     private fileRepository: FileRepository,
     private userService: UserService,
-  ) {}
+  ) { }
 
   async uploadFile(
     file: Express.Multer.File,
@@ -58,48 +58,81 @@ export class FileService {
   }
 
   async downloadFile(id: string): Promise<string> {
-    // Implement file download logic here
-    const file = await this.fileRepository.findOneEntity(id);
-    if (!file) throw new NotFoundException('File not found');
-    const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
-    return filePath;
+    try {
+      // Implement file download logic here
+      const file = await this.fileRepository.findOneEntity(id);
+      if (!file) throw new NotFoundException('File not found');
+      const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
+      return filePath;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async streamFile(id: string): Promise<Readable> {
-    // Implement file streaming logic here
-    const file = await this.fileRepository.findOneEntity(id);
-    if (!file) throw new NotFoundException('File not found');
-    const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
-    const stream = createReadStream(filePath);
-    return stream;
+    try {
+      // Implement file streaming logic here
+      const file = await this.fileRepository.findOneEntity(id);
+      if (!file) throw new NotFoundException('File not found');
+      const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
+      await stat(filePath);
+      const stream = createReadStream(filePath);
+      return stream;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findAllEntities(): Promise<FileEntity[]> {
-    return await this.fileRepository.findAllEntities();
+    try {
+      return await this.fileRepository.findAllEntities();
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findOneEntity(providerId: string): Promise<FileEntity> {
-    return await this.fileRepository.findOneEntity(providerId);
+    try {
+      return await this.fileRepository.findOneEntity(providerId);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findFile(type: FileTypeEnum, id: string): Promise<FileEntity[]> {
-    return await this.fileRepository.findFile(type, id);
+    try {
+      return await this.fileRepository.findFile(type, id);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async updateEntity(
     id: string,
     updateFileDto: UpdateFileDto,
   ): Promise<UpdateResult> {
-    return await this.fileRepository.updateEntity(id, updateFileDto);
+    try {
+      return await this.fileRepository.updateEntity(id, updateFileDto);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async filePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<FileEntity>> {
-    return this.fileRepository.filePagination(query);
+    try {
+      return this.fileRepository.filePagination(query);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async removeFile(id: string): Promise<UpdateResult> {
-    return await this.fileRepository.removeFile(id);
+    try {
+      return await this.fileRepository.removeFile(id);
+    } catch (error) {
+      throw error;
+    }
   }
 }
