@@ -19,8 +19,8 @@ import { WebRepository } from './web/repository/web.repository';
     SummaryService,
     SummaryRepository,
     WebService,
-    WebRepository
+    WebRepository,
   ],
   exports: [ProviderService, ProviderRepository],
 })
-export class InventoryModuel { }
+export class InventoryModuel {}

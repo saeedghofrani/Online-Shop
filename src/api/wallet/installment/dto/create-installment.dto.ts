@@ -3,7 +3,7 @@ import { InstallmentEntity } from 'src/entities/WALLET/installment.entity';
 import { PatternDetailEntity } from 'src/entities/WALLET/pattern-detail.entity';
 import { UserFactorEntity } from 'src/entities/WALLET/user-factor.entity';
 
-export class CreateInstallmentDto implements Partial<InstallmentEntity>{
+export class CreateInstallmentDto implements Partial<InstallmentEntity> {
   @ApiProperty()
   dou_date: Date;
 

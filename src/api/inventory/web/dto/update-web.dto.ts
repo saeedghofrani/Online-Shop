@@ -2,7 +2,7 @@ import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
 import { WebEntity } from 'src/entities/INVENTORY/web.entity';
 
-export class UpdateWebDto implements Partial<WebEntity>{
+export class UpdateWebDto implements Partial<WebEntity> {
   @ApiProperty()
   name: string;
 

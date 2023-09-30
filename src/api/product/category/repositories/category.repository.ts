@@ -11,7 +11,7 @@ import { UpdateCategoryDto } from '../dto/update-category.dto';
 export class CategoryRepository
   extends Repository<CategoryEntity>
   implements
-  RepositoriesAbstract<CategoryEntity, CreateCategoryDto, UpdateCategoryDto>
+    RepositoriesAbstract<CategoryEntity, CreateCategoryDto, UpdateCategoryDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -27,7 +27,7 @@ export class CategoryRepository
     id: string,
     updateEntityDto: UpdateCategoryDto,
   ): Promise<UpdateResult> {
-    delete updateEntityDto.parent_id
+    delete updateEntityDto.parent_id;
     return await this.update(id, updateEntityDto);
   }
   async findOneEntity(id: string): Promise<CategoryEntity> {
@@ -45,19 +45,20 @@ export class CategoryRepository
   async findRoots() {
     return await this.query(`
     select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId" is null 
-      `)
+      `);
   }
 
   async findChildren(parent_id: number) {
     return await this.query(`
       select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId"  = ${parent_id}
-      `)
+      `);
   }
 
   async removeCategory(id: number) {
     const category = await this.createQueryBuilder('category')
-    .where('category.id = :id', {id}).getOne();
-    category.softRemove()
+      .where('category.id = :id', { id })
+      .getOne();
+    category.softRemove();
   }
 
   async categoryPagination(

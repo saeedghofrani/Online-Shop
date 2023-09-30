@@ -4,7 +4,7 @@ import { PenaltyType } from 'src/entities/WALLET/enum/penalty-type.enum';
 import { PatternDetailEntity } from 'src/entities/WALLET/pattern-detail.entity';
 import { PatternMasterEntity } from 'src/entities/WALLET/pattern-master.entity';
 
-export class CreatePatternDetailDto implements Partial<PatternDetailEntity>{
+export class CreatePatternDetailDto implements Partial<PatternDetailEntity> {
   @ApiProperty()
   amount: number;
 

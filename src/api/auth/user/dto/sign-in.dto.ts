@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsPhoneNumber, Length, Matches, IsIn } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsPhoneNumber,
+  Length,
+  Matches,
+  IsIn,
+} from 'class-validator';
 
 export class SignInDto {
   @IsString()
@@ -17,7 +24,9 @@ export class SignInDto {
   @IsString()
   @ApiProperty()
   @IsNotEmpty({ message: 'Password is required' })
-  @Length(1, 20, { message: 'Password length must be between 6 and 20 characters' })
+  @Length(1, 20, {
+    message: 'Password length must be between 6 and 20 characters',
+  })
   // @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
   //   message: 'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character',
   // })

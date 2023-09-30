@@ -9,7 +9,7 @@ import { WebService } from '../service/web.service';
 @ApiTags('Web')
 @Controller('web')
 export class WebController {
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService) {}
 
   @Get('all')
   @ApiOperation({ summary: 'Get All Web' })
@@ -36,12 +36,8 @@ export class WebController {
   @Post('')
   @ApiOperation({ summary: 'Create Web' })
   @ApiBody({ type: CreateWebDto })
-  sendOtp(
-    @Body() createWebDto: CreateWebDto,
-  ) {
-    return this.webService.createEntity(
-      createWebDto,
-    );
+  sendOtp(@Body() createWebDto: CreateWebDto) {
+    return this.webService.createEntity(createWebDto);
   }
 
   @Get('')

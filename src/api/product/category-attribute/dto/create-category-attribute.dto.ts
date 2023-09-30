@@ -4,7 +4,9 @@ import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
 import { CategoryAttributeEntity } from 'src/entities/PRODUCT/category-attribute.entity';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
 
-export class CreateCategoryAttributeDto  implements Partial<CategoryAttributeEntity> {
+export class CreateCategoryAttributeDto
+  implements Partial<CategoryAttributeEntity>
+{
   @ApiProperty()
   @IsNotEmpty()
   @IsBoolean()

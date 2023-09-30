@@ -15,7 +15,7 @@ export class BrandService {
     try {
       return await this.brandRepository.createEntity(createEntityDto);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 

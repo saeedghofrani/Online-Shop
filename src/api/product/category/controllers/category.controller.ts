@@ -1,5 +1,13 @@
 import GetApi from '@elastic/elasticsearch/lib/api/api/get';
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
@@ -47,9 +55,7 @@ export class CategoryController {
   }
 
   @Get('descendants')
-  async findChildren(
-    @Query('id') id: number 
-  ): Promise<CategoryEntity[]> {
+  async findChildren(@Query('id') id: number): Promise<CategoryEntity[]> {
     return await this.categoryService.findChildren(id);
   }
 
@@ -65,9 +71,7 @@ export class CategoryController {
   }
 
   @Delete()
-  async removeCategory(
-    @Query('id') id: number 
-  ) {
+  async removeCategory(@Query('id') id: number) {
     return await this.categoryService.removeCategory(id);
   }
 }

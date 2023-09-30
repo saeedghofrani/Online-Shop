@@ -1,17 +1,29 @@
 import { Inject } from '@nestjs/common';
-import { Paginated, paginate, FilterOperator, FilterComparator, PaginationType } from 'nestjs-paginate';
+import {
+  Paginated,
+  paginate,
+  FilterOperator,
+  FilterComparator,
+  PaginationType,
+} from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
-import { DataSource, Repository, SelectQueryBuilder, UpdateResult, getRepository } from 'typeorm';
+import {
+  DataSource,
+  Repository,
+  SelectQueryBuilder,
+  UpdateResult,
+  getRepository,
+} from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
 export class ProductRepository
   extends Repository<ProductEntity>
   implements
-  RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
+    RepositoriesAbstract<ProductEntity, CreateProductDto, UpdateProductDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -78,19 +90,17 @@ export class ProductRepository
       const element: any = pagination.data[i];
       const image = await this.query(`
       SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
-      `)
+      `);
       const price = await this.query(`
       SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1
-      `)
+      `);
       element.image = image[0] ? image[0]['image'] : '';
       element.price = Number(price[0] ? price[0]['price'] : '');
     }
     return pagination;
   }
 
-  async test(
-    query: PaginationQueryDto,
-  ): Promise<Paginated<ProductEntity>> {
+  async test(query: PaginationQueryDto): Promise<Paginated<ProductEntity>> {
     const { page, limit } = query;
     const skip = (page - 1) * limit;
     // const [products, totalItems] = await this.createQueryBuilder('product')
@@ -103,8 +113,13 @@ export class ProductRepository
     const [product, totalItems] = await this.createQueryBuilder('')
       .skip(skip)
       .take(limit)
-      .addFrom(`SELECT "id" as image FROM file f WHERE f.relation_id = p.id LIMIT 1 `, `image`)
-      .addSelect(`SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1`)
+      .addFrom(
+        `SELECT "id" as image FROM file f WHERE f.relation_id = p.id LIMIT 1 `,
+        `image`,
+      )
+      .addSelect(
+        `SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1`,
+      )
       .getManyAndCount();
     const totalPages = Math.ceil(totalItems / limit);
     return new Paginated();

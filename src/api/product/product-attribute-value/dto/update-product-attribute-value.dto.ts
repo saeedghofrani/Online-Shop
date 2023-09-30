@@ -4,7 +4,9 @@ import { AttributeValueEntity } from 'src/entities/PRODUCT/attribute-value.entit
 import { ProductAttributeValueEntity } from 'src/entities/PRODUCT/product-attribute-value.entity';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
 
-export class UpdateProductAttributeValueDto implements Partial<ProductAttributeValueEntity> {
+export class UpdateProductAttributeValueDto
+  implements Partial<ProductAttributeValueEntity>
+{
   @ApiProperty()
   attribute_value_id: string;
 

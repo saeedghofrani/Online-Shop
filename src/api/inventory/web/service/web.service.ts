@@ -13,12 +13,12 @@ export class WebService {
   constructor(
     private webRepository: WebRepository,
     private providerService: ProviderService,
-  ) { }
+  ) {}
 
-  async createEntity(
-    createEntityDto: CreateWebDto,
-  ): Promise<WebEntity> {
-    const providerEntity = await this.providerService.findOneEntity(String(createEntityDto.provider_id));
+  async createEntity(createEntityDto: CreateWebDto): Promise<WebEntity> {
+    const providerEntity = await this.providerService.findOneEntity(
+      String(createEntityDto.provider_id),
+    );
     createEntityDto.provider = providerEntity;
     return await this.webRepository.createEntity(createEntityDto);
   }

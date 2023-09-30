@@ -4,7 +4,7 @@ import { BrandEntity } from 'src/entities/product/brand.entity';
 export class UpdateBrandDto implements Partial<BrandEntity> {
   @ApiProperty()
   name: string;
-  
+
   @ApiProperty()
   original_name: string;
 

@@ -57,9 +57,7 @@ export class ProductService {
     return this.productRepository.productPagination(query);
   }
 
-  async test(
-    query: PaginationQueryDto,
-  ): Promise<Paginated<ProductEntity>> {
+  async test(query: PaginationQueryDto): Promise<Paginated<ProductEntity>> {
     return this.productRepository.test(query);
   }
 

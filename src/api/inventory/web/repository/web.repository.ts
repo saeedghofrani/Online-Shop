@@ -1,5 +1,10 @@
 import { Inject } from '@nestjs/common';
-import { FilterOperator, paginate, Paginated, PaginationType } from 'nestjs-paginate';
+import {
+  FilterOperator,
+  paginate,
+  Paginated,
+  PaginationType,
+} from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -10,8 +15,7 @@ import { UpdateWebDto } from '../dto/update-web.dto';
 
 export class WebRepository
   extends Repository<WebEntity>
-  implements
-  RepositoriesAbstract<WebEntity, CreateWebDto, UpdateWebDto>
+  implements RepositoriesAbstract<WebEntity, CreateWebDto, UpdateWebDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -19,9 +23,7 @@ export class WebRepository
     super(WebEntity, postgresDataSource.createEntityManager());
   }
 
-  async createEntity(
-    createEntityDto: CreateWebDto,
-  ): Promise<WebEntity> {
+  async createEntity(createEntityDto: CreateWebDto): Promise<WebEntity> {
     return await this.save(this.create(createEntityDto));
   }
 
@@ -38,12 +40,9 @@ export class WebRepository
 
   async findByEntity(searchTerm: string): Promise<WebEntity> {
     return await this.createQueryBuilder('web')
-      .where(
-        `web.name = :searchTerm OR web.original_name = :searchTerm`,
-        {
-          searchTerm,
-        },
-      )
+      .where(`web.name = :searchTerm OR web.original_name = :searchTerm`, {
+        searchTerm,
+      })
       .getOne();
   }
 

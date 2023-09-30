@@ -27,14 +27,21 @@ export class CategoryAttributeService {
       createEntityDto.category = await this.categoryService.findOneEntity(
         createEntityDto.category_id,
       );
-      if ((await this.findPriceableAttribute(createEntityDto.category_id, createEntityDto.attribute_id))) {
-        throw new BadRequestException('category can only contain one priceable attribute');
+      if (
+        await this.findPriceableAttribute(
+          createEntityDto.category_id,
+          createEntityDto.attribute_id,
+        )
+      ) {
+        throw new BadRequestException(
+          'category can only contain one priceable attribute',
+        );
       }
       return await this.categoryAttributeRepository.createEntity(
         createEntityDto,
       );
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -48,7 +55,7 @@ export class CategoryAttributeService {
         updateEntityDto,
       );
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -56,7 +63,7 @@ export class CategoryAttributeService {
     try {
       return await this.categoryAttributeRepository.findOneEntity(id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -64,7 +71,7 @@ export class CategoryAttributeService {
     try {
       return await this.categoryAttributeRepository.findAllEntities();
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -75,6 +82,9 @@ export class CategoryAttributeService {
   }
 
   async findPriceableAttribute(category_id: string, attribute_id: string) {
-    return await this.categoryAttributeRepository.findPriceableAttribute(category_id, attribute_id);
+    return await this.categoryAttributeRepository.findPriceableAttribute(
+      category_id,
+      attribute_id,
+    );
   }
 }

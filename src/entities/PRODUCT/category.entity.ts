@@ -22,7 +22,7 @@ export class CategoryEntity extends MainEntity {
 
   @Column({ unique: true })
   original_name: string;
-  
+
   @Column()
   description: string;
 

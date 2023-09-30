@@ -39,7 +39,7 @@ export class CategoryAttributeRepository
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
   }
-  
+
   async findOneEntity(id: string): Promise<CategoryAttributeEntity> {
     return await this.createQueryBuilder('category_attribute')
       .where('category_attribute.id=:category_attribute_id', {
@@ -54,12 +54,16 @@ export class CategoryAttributeRepository
 
   async findPriceableAttribute(category_id: string, attribute_id: string) {
     return await this.createQueryBuilder('category_attribute')
-    .innerJoinAndSelect('category_attribute.category', 'category')
-    .innerJoinAndSelect('category_attribute.attribute', 'attribute')
-    .where('attribute.id = :attribute_id and category.id = :category_id and category_attribute.priceable', {
-      attribute_id,
-      category_id
-    }).getOne();
+      .innerJoinAndSelect('category_attribute.category', 'category')
+      .innerJoinAndSelect('category_attribute.attribute', 'attribute')
+      .where(
+        'attribute.id = :attribute_id and category.id = :category_id and category_attribute.priceable',
+        {
+          attribute_id,
+          category_id,
+        },
+      )
+      .getOne();
   }
 
   async categoryAttributePagination(

@@ -37,9 +37,6 @@ export class ProviderEntity extends MainEntity {
   )
   product_attribute_value: ProductAttributeValueEntity[];
 
-  @OneToMany(
-    () => WebEntity,
-    (web) => web.provider,
-  )
+  @OneToMany(() => WebEntity, (web) => web.provider)
   web: WebEntity[];
 }

@@ -11,7 +11,7 @@ export class CreateCategoryDto implements Partial<CategoryEntity> {
 
   @ApiProperty()
   description: string;
-  
+
   @ApiProperty()
   original_name: string;
 

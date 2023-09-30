@@ -30,9 +30,7 @@ export class CategoryAttributeController {
   }
 
   @Get()
-  findOneEntity(
-    @Query('id') id: string,
-  ): Promise<CategoryAttributeEntity> {
+  findOneEntity(@Query('id') id: string): Promise<CategoryAttributeEntity> {
     return this.categoryAttributeService.findOneEntity(id);
   }
 

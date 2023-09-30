@@ -51,7 +51,7 @@ export class CategoryService {
   }
 
   async findRoots() {
-    return await this.categoryRepository.findRoots()
+    return await this.categoryRepository.findRoots();
   }
 
   async findChildren(parent_id: number) {

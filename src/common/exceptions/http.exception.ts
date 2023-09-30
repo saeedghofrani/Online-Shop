@@ -5,11 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import {
-  EntityNotFoundError,
-  QueryFailedError,
-  TypeORMError,
-} from 'typeorm';
+import { EntityNotFoundError, QueryFailedError, TypeORMError } from 'typeorm';
 import { CreateErrorInterface } from '../../api/history/error/interface/create-error.interface';
 
 @Catch(HttpException, QueryFailedError, EntityNotFoundError, TypeORMError)
@@ -17,7 +13,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
   constructor() {}
 
   async catch(
-    exception: HttpException | QueryFailedError | EntityNotFoundError | TypeORMError,
+    exception:
+      | HttpException
+      | QueryFailedError
+      | EntityNotFoundError
+      | TypeORMError,
     host: ArgumentsHost,
   ) {
     // Log the exception for debugging purposes
@@ -26,9 +26,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    
+
     // Determine the HTTP status code
-    const status = exception instanceof HttpException ? exception.getStatus() : 400;
+    const status =
+      exception instanceof HttpException ? exception.getStatus() : 400;
 
     const date = Date.now();
 
@@ -46,10 +47,19 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     // Define error messages and responses based on status code
     const errorResponse: any = {
-      400: { msg: exception['response'] || exception.message, status: 'failed' },
+      400: {
+        msg: exception['response'] || exception.message,
+        status: 'failed',
+      },
       401: { msg: 'Unauthorized', status: 'failed' },
-      403: { msg: exception.message || exception['response'] || 'Forbidden', status: 'failed' },
-      404: { msg: exception['response'] || exception.message || 'Not Found', status: 'failed' },
+      403: {
+        msg: exception.message || exception['response'] || 'Forbidden',
+        status: 'failed',
+      },
+      404: {
+        msg: exception['response'] || exception.message || 'Not Found',
+        status: 'failed',
+      },
       409: { msg: exception, status: 'failed' },
       500: { msg: exception, status: 'failed', body: request.body },
     };
