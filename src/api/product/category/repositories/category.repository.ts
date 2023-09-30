@@ -11,7 +11,7 @@ import { UpdateCategoryDto } from '../dto/update-category.dto';
 export class CategoryRepository
   extends Repository<CategoryEntity>
   implements
-    RepositoriesAbstract<CategoryEntity, CreateCategoryDto, UpdateCategoryDto>
+  RepositoriesAbstract<CategoryEntity, CreateCategoryDto, UpdateCategoryDto>
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -21,7 +21,7 @@ export class CategoryRepository
   async createEntity(
     createEntityDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
-    return await this.save(this.create(createEntityDto));
+    return await this.manager.save(this.create(createEntityDto));
   }
   async updateEntity(
     id: string,
@@ -47,9 +47,9 @@ export class CategoryRepository
   }
 
   async findChildren(parent_id: number) {
-    const parent = await this.findOneEntity(String(parent_id));
-    console.log(parent);
-    return await this.manager.getTreeRepository(CategoryEntity).findDescendants(parent);
+    return await this.createQueryBuilder('category')
+      .where('category.parent = :parent_id', { parent_id })
+      .getMany()
   }
 
   async categoryPagination(
