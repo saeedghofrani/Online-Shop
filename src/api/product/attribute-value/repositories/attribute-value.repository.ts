@@ -41,8 +41,23 @@ export class AttributeValueRepository
       })
       .getOne();
   }
+
+  async findByAttribute(id: string): Promise<AttributeValueEntity[]> {
+    return await this.createQueryBuilder('attribute_value')
+      .where('attribute_value.attribute=:id', {
+        id,
+      })
+      .getMany();
+  }
+
   async findAllEntities(): Promise<AttributeValueEntity[]> {
     return await this.createQueryBuilder('attribute_value').getMany();
+  }
+
+  async removeAttributeValue(id: string): Promise<AttributeValueEntity> {
+    const attributeValue = await this.findOne({where: {id}});
+    return await attributeValue.softRemove();
+
   }
 
   async attributeValuePagination(

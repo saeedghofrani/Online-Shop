@@ -58,6 +58,14 @@ export class AttributeValueService {
     }
   }
 
+  async findByAttribute(id: string) {
+    return await this.attributeValueRepository.findByAttribute(id)
+  }
+
+  async removeAttributeValue(id: string) {
+    return await this.attributeValueRepository.removeAttributeValue(id);
+  }
+
   async attributeValuePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeValueEntity>> {
