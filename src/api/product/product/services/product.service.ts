@@ -22,10 +22,10 @@ export class ProductService {
     brandId: string,
     createEntityDto: CreateProductDto,
   ): Promise<ProductEntity> {
-    // createEntityDto.brand = await this.brandService.findOneEntity(brandId);
-    // createEntityDto.category = await this.categoryService.findOneEntity(
-    //   categoryId,
-    // );
+    createEntityDto.brand = await this.brandService.findOneEntity(brandId);
+    createEntityDto.category = await this.categoryService.findOneEntity(
+      categoryId,
+    );
     return await this.productRepository.createEntity(createEntityDto);
   }
   async updateEntity(
