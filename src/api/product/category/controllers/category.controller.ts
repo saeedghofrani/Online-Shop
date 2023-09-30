@@ -41,6 +41,18 @@ export class CategoryController {
     return await this.categoryService.findTree();
   }
 
+  @Get('root')
+  async findRoots(): Promise<CategoryEntity[]> {
+    return await this.categoryService.findRoots();
+  }
+
+  @Get('descendants')
+  async findChildren(
+    @Query('id') id: number 
+  ): Promise<CategoryEntity[]> {
+    return await this.categoryService.findChildren(id);
+  }
+
   @Get('all')
   async findAllEntities(): Promise<CategoryEntity[]> {
     return await this.categoryService.findAllEntities();

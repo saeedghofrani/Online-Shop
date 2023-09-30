@@ -93,11 +93,18 @@ export class ProductRepository
   ): Promise<Paginated<ProductEntity>> {
     const { page, limit } = query;
     const skip = (page - 1) * limit;
+    // const [products, totalItems] = await this.createQueryBuilder('product')
+    // .leftJoinAndSelect('product.product_attributes_value', 'pav')
+    // .where('pav.price > 0')
+    // .skip(skip)
+    // .take(limit) // Adjust this condition as needed
+    // // .getManyAndCount();
+    // .getMany()
     const [product, totalItems] = await this.createQueryBuilder('')
       .skip(skip)
       .take(limit)
-      // .addFrom(`SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 `, `image`)
-      // .addSelect(`SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1`)
+      .addFrom(`SELECT "id" as image FROM file f WHERE f.relation_id = p.id LIMIT 1 `, `image`)
+      .addSelect(`SELECT pav.price as price FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1`)
       .getManyAndCount();
     const totalPages = Math.ceil(totalItems / limit);
     return new Paginated();

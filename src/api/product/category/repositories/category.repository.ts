@@ -42,6 +42,16 @@ export class CategoryRepository
     return await this.manager.getTreeRepository(CategoryEntity).findTrees();
   }
 
+  async findRoots() {
+    return await this.manager.getTreeRepository(CategoryEntity).findRoots();
+  }
+
+  async findChildren(parent_id: number) {
+    const parent = await this.findOneEntity(String(parent_id));
+    console.log(parent);
+    return await this.manager.getTreeRepository(CategoryEntity).findDescendants(parent);
+  }
+
   async categoryPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<CategoryEntity>> {

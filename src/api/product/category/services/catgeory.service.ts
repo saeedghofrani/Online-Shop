@@ -49,4 +49,12 @@ export class CategoryService {
   ): Promise<Paginated<CategoryEntity>> {
     return this.categoryRepository.categoryPagination(query);
   }
+
+  async findRoots() {
+    return await this.categoryRepository.findRoots()
+  }
+
+  async findChildren(parent_id: number) {
+    return await this.categoryRepository.findChildren(parent_id);
+  }
 }
