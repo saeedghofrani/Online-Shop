@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { PricingEntity } from '../WALLET/pricing.entity';
 import { ProductEntity } from '../product/product.entity';
 
 export type ReportOrderHistoryDocument = HydratedDocument<ReportOrderHistory>;
@@ -11,7 +10,7 @@ export class ReportOrderHistory {
   user: string;
 
   @Prop({ required: true })
-  pricing: PricingEntity;
+  pricing: string;
 
   @Prop({ required: true })
   price: string;

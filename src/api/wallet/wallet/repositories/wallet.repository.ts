@@ -1,13 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { FilterOperator, Paginated, paginate } from 'nestjs-paginate';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
+import { PostgresConstant } from '../../../../common/constants/postgres.constant';
+import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
 import { CreateWalletDto } from '../dto/create-wallet.dto';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
-import { PostgresConstant } from '../../../../common/constants/postgres.constant';
-import { PricingEntity } from '../../../../entities/WALLET/pricing.entity';
-import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @Injectable()
 export class WalletRepository

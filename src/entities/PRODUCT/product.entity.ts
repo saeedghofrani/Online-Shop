@@ -8,7 +8,6 @@ import {
 } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../INVENTORY/summary.entity';
-import { PricingEntity } from '../WALLET/pricing.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
 import { ProductAttributeValueEntity } from './product-attribute-value.entity';
@@ -31,9 +30,6 @@ export class ProductEntity extends MainEntity {
 
   @OneToMany(() => SummaryEntity, (summaries) => summaries.product)
   summaries: SummaryEntity[];
-
-  @OneToMany(() => PricingEntity, (pricings) => pricings.product)
-  pricings: PricingEntity[];
 
   @OneToMany(
     () => ProductAttributeValueEntity,
