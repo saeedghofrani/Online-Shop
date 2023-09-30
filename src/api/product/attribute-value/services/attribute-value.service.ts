@@ -13,7 +13,7 @@ export class AttributeValueService {
   constructor(
     private attributeValueRepository: AttributeValueRepository,
     private attributeSevice: AttributeService,
-  ) {}
+  ) { }
 
   async createEntity(
     createEntityDto: CreateAttributeValueDto,
@@ -23,7 +23,9 @@ export class AttributeValueService {
         createEntityDto.attribute_id,
       );
       return await this.attributeValueRepository.createEntity(createEntityDto);
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async updateEntity(
@@ -35,24 +37,34 @@ export class AttributeValueService {
         id,
         updateEntityDto,
       );
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async findOneEntity(id: string): Promise<AttributeValueEntity> {
     try {
       return await this.attributeValueRepository.findOneEntity(id);
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async findAllEntities(): Promise<AttributeValueEntity[]> {
     try {
       return await this.attributeValueRepository.findAllEntities();
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async attributeValuePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeValueEntity>> {
-    return this.attributeValueRepository.attributeValuePagination(query);
+    try {
+      return this.attributeValueRepository.attributeValuePagination(query);
+    } catch (e) {
+      throw e
+    }
   }
 }

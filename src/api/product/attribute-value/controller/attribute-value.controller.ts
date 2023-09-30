@@ -23,7 +23,7 @@ export class AttributeValueController {
 
   @Patch()
   updateEntity(
-    @Query('attribute-value_id') id: string,
+    @Query('id') id: string,
     @Body() updateEntityDto: UpdateAttributeValueDto,
   ): Promise<UpdateResult> {
     return this.attributeValueService.updateEntity(id, updateEntityDto);
@@ -31,7 +31,7 @@ export class AttributeValueController {
 
   @Get()
   findOneEntity(
-    @Query('attribute-value_id') id: string,
+    @Query('id') id: string,
   ): Promise<AttributeValueEntity> {
     return this.attributeValueService.findOneEntity(id);
   }
