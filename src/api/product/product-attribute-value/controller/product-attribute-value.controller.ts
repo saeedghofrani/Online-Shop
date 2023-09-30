@@ -41,6 +41,13 @@ export class ProductAttributeValueController {
     return this.ProductAttributeValueService.findAllEntities();
   }
 
+  @Get('product')
+  findByProduct(
+    @Query('id') id: string
+  ): Promise<ProductAttributeValueEntity[]> {
+    return this.ProductAttributeValueService.findByProduct(id);
+  }
+
   @Post('page')
   @ApiOperation({ summary: 'Product Attribute Value Pagination' })
   ProductAttributeValuePagination(

@@ -73,6 +73,10 @@ export class ProductAttributeValueService {
     } catch (e) {}
   }
 
+  async findByProduct(id:string) {
+    return await this.ProductAttributeValueRepository.findByProduct(id);
+  }
+
   async ProductAttributeValeuPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {

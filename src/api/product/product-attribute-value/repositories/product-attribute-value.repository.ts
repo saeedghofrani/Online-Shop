@@ -48,6 +48,15 @@ export class ProductAttributeValueRepository
     return await this.createQueryBuilder('product_attribute_value').getMany();
   }
 
+  async findByProduct(id: string): Promise<ProductAttributeValueEntity[]> {
+    return await this.createQueryBuilder('product_attribute_value')
+    .innerJoinAndSelect('product_attribute_value.attribute_value', 'attribute_value')
+    .where('product_attribute_value.product = :id', {
+      id
+    })
+    .getMany();
+  }
+
   async ProductAttributeValuePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {
