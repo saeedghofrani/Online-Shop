@@ -27,6 +27,7 @@ export class CategoryRepository
     id: string,
     updateEntityDto: UpdateCategoryDto,
   ): Promise<UpdateResult> {
+    delete updateEntityDto.parent_id
     return await this.update(id, updateEntityDto);
   }
   async findOneEntity(id: string): Promise<CategoryEntity> {
