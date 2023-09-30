@@ -43,13 +43,21 @@ export class CategoryRepository
   }
 
   async findRoots() {
-    return await this.manager.getTreeRepository(CategoryEntity).findRoots();
+    return await this.query(`
+    select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId" is null 
+      `)
   }
 
   async findChildren(parent_id: number) {
-    return await this.createQueryBuilder('category')
-      .where('category.parent = :parent_id', { parent_id })
-      .getMany()
+    return await this.query(`
+      select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId"  = ${parent_id}
+      `)
+  }
+
+  async removeCategory(id: number) {
+    const category = await this.createQueryBuilder('category')
+    .where('category.id = :id', {id}).getOne();
+    category.softRemove()
   }
 
   async categoryPagination(
