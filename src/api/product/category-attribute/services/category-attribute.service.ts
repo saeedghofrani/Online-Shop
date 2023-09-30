@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UpdateResult } from 'typeorm';
@@ -27,10 +27,15 @@ export class CategoryAttributeService {
       createEntityDto.category = await this.categoryService.findOneEntity(
         createEntityDto.category_id,
       );
+      if ((await this.findPriceableAttribute(createEntityDto.category_id, createEntityDto.attribute_id))) {
+        throw new BadRequestException('category can only contain one priceable attribute');
+      }
       return await this.categoryAttributeRepository.createEntity(
         createEntityDto,
       );
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async updateEntity(
@@ -42,24 +47,34 @@ export class CategoryAttributeService {
         id,
         updateEntityDto,
       );
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async findOneEntity(id: string): Promise<CategoryAttributeEntity> {
     try {
       return await this.categoryAttributeRepository.findOneEntity(id);
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async findAllEntities(): Promise<CategoryAttributeEntity[]> {
     try {
       return await this.categoryAttributeRepository.findAllEntities();
-    } catch (e) {}
+    } catch (e) {
+      throw e
+    }
   }
 
   async categoryAttributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<CategoryAttributeEntity>> {
     return this.categoryAttributeRepository.categoryAttributePagination(query);
+  }
+
+  async findPriceableAttribute(category_id: string, attribute_id: string) {
+    return await this.categoryAttributeRepository.findPriceableAttribute(category_id, attribute_id);
   }
 }
