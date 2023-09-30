@@ -12,7 +12,7 @@ export const dbConfig = (): DataSourceOptions => ({
   synchronize: process.env.PG_SYNCHRONIZE === 'true',
   dropSchema: false,
   migrationsRun: false,
-  logging: true,
+  logging: false,
   logger: 'file',
   migrations: [join(__dirname, '../migrations/**/*{.ts,.js}')],
   entities: ['dist/**/*.entity.js', '**/*.entity.js'],
