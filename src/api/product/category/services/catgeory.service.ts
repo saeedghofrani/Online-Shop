@@ -57,4 +57,8 @@ export class CategoryService {
   async findChildren(parent_id: number) {
     return await this.categoryRepository.findChildren(parent_id);
   }
+
+  async removeCategory(id: number) {
+    return await this.categoryRepository.removeCategory(id);
+  }
 }

@@ -1,5 +1,6 @@
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   Tree,
@@ -24,6 +25,9 @@ export class CategoryEntity extends MainEntity {
   
   @Column()
   description: string;
+
+  @DeleteDateColumn()
+  delete_at: Date;
 
   @TreeChildren()
   children: CategoryEntity[];

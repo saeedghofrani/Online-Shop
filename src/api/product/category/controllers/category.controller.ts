@@ -1,5 +1,5 @@
 import GetApi from '@elastic/elasticsearch/lib/api/api/get';
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
@@ -62,5 +62,12 @@ export class CategoryController {
   @ApiOperation({ summary: 'Categorys Pagination' })
   brandPagination(@Body() query: PaginationQueryDto) {
     return this.categoryService.categoryPagination(query);
+  }
+
+  @Delete()
+  async removeCategory(
+    @Query('id') id: number 
+  ) {
+    return await this.categoryService.removeCategory(id);
   }
 }
