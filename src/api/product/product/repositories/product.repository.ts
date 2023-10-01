@@ -52,6 +52,7 @@ export class ProductRepository
     p.title ,
     p.id ,
     p.description ,
+    p.price as defaultPrice,
     p.original_title ,
     (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
     CAST((SELECT MIN(pav.price) FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
