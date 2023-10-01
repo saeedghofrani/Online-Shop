@@ -43,6 +43,13 @@ export class AttributeValueController {
     return this.attributeValueService.findByAttribute(id);
   }
 
+  @Get('product')
+  productAttributeValue(
+    @Query('id') id: number,
+  ) {
+    return this.attributeValueService.productAttributeValue(id);
+  }
+
   @Delete()
   removeAttributeValue(
     @Query('id') id: string,

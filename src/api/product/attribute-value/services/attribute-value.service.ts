@@ -66,6 +66,10 @@ export class AttributeValueService {
     return await this.attributeValueRepository.removeAttributeValue(id);
   }
 
+  async productAttributeValue(id: number) {
+    return await this.attributeValueRepository.productAttributeValue(id)
+  }
+
   async attributeValuePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeValueEntity>> {
