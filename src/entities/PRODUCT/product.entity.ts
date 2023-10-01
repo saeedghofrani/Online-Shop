@@ -22,8 +22,11 @@ export class ProductEntity extends MainEntity {
   @Column({ unique: true })
   original_title: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   description: string;
+
+  @Column({ nullable: false })
+  price: number;
 
   @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;
