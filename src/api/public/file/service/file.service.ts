@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { createReadStream } from 'fs';
-import { unlink, stat } from 'fs/promises';
+import { unlink, stat, readFile } from 'fs/promises';
 import * as sharp from 'sharp';
 import { UserService } from 'src/api/auth/user/service/user.service';
 import { FileRepository } from '../repository/file.repository';
@@ -71,12 +71,42 @@ export class FileService {
     }
   }
 
+  async downloadFileCompressed(id: string, res: any) {
+    try {
+      // Implement file retrieval logic here
+      const file = await this.fileRepository.findOneEntity(id);
+      if (!file) throw new NotFoundException('File not found');
+      const filePath = join(process.cwd(), `uploads/${file.compressedFileName}`); // Corrected path join
+      console.log(filePath);
+      res.sendFile(filePath);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getFile(id: string) {
+    const file = await this.fileRepository.findOneEntity(id);
+    if (!file) throw new NotFoundException('File not found');
+  
+    const filePath = join(process.cwd(), file.path);
+    const fileContent = await readFile(filePath, 'base64');
+  
+    return { data: fileContent };
+  }
+
+  async getFileDirect(id: string) {
+    const file = await this.fileRepository.findOneEntity(id);
+    if (!file) throw new NotFoundException('File not found');
+    const fileUrl = `/${file.path}`;
+    return { url: fileUrl };
+  }
+
   async streamFile(id: string): Promise<Readable> {
     try {
       // Implement file streaming logic here
       const file = await this.fileRepository.findOneEntity(id);
       if (!file) throw new NotFoundException('File not found');
-      const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
+      const filePath = process.cwd() + `/uploads/${file.path}`;
       await stat(filePath);
       const stream = createReadStream(filePath);
       return stream;

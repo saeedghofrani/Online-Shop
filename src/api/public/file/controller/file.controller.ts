@@ -52,13 +52,27 @@ export class FileController {
   @Get(':id/download')
   async downloadFile(@Param('id') id: string, @Res() res: Response) {
     return await this.fileService.downloadFile(id, res);
+  }
 
+  @Get(':id/download/compressed')
+  async downloadFileCompressed(@Param('id') id: string, @Res() res: Response) {
+    return await this.fileService.downloadFileCompressed(id, res);
+  }
+
+  @Get(':id/base')
+  async getFile(@Param('id') id: string) {
+    return await this.fileService.getFile(id);
   }
 
   @Get(':id/stream')
   async streamFile(@Param('id') id: string, @Res() res: Response) {
     const file = await this.fileService.streamFile(id);
     file.pipe(res);
+  }
+
+  @Get(':id/direct')
+  async getFileDirect(@Param('id') id: string) {
+    return await this.fileService.getFileDirect(id);
   }
 
   @Delete(':id')

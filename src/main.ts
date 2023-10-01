@@ -8,13 +8,16 @@ import { AppConfigService } from './config/app/app-config.service';
 import { logger } from './config/logger/logger.class';
 import { SwaggerConfigService } from './config/swagger/swagger.service';
 import { HttpExceptionFilter } from './common/exceptions/http.exception';
+import * as express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger(logger.config),
   });
   const appService = <AppConfigService>app.get(AppConfigService);
-  app.use(helmet());
+  app.use(helmet({
+    crossOriginResourcePolicy: false,
+  }));
   app.enableCors();
   app.setGlobalPrefix(appService.appApiPrefix);
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -26,7 +29,9 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.enableCors();
+  app.enableCors({
+    origin: '*'
+  });
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);
   const swaggerConfig = app.get<SwaggerConfigService>(SwaggerConfigService);
