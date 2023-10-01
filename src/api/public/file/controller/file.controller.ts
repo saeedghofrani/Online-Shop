@@ -51,8 +51,8 @@ export class FileController {
 
   @Get(':id/download')
   async downloadFile(@Param('id') id: string, @Res() res: Response) {
-    const file = await this.fileService.downloadFile(id);
-    res.sendFile(file);
+    return await this.fileService.downloadFile(id, res);
+
   }
 
   @Get(':id/stream')

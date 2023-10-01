@@ -12,6 +12,7 @@ import { Paginated } from 'nestjs-paginate';
 import { FileEntity } from 'src/entities/public/file.entity';
 import { UpdateFileDto } from '../dto/update-file.dto';
 import { UpdateResult } from 'typeorm';
+import {join} from 'path';
 
 @Injectable()
 export class FileService {
@@ -38,7 +39,7 @@ export class FileService {
       await sharp(file.path)
         .resize(800, 600)
         .toFile(`uploads/${compressedFileName}`);
-      unlink(process.cwd() + '/' + file.path);
+      // unlink(process.cwd() + '/' + file.path);
       const createFileDto = new CreateFileDto();
       createFileDto.compressedFileName = compressedFileName;
       createFileDto.extension = extension;
@@ -57,13 +58,14 @@ export class FileService {
     }
   }
 
-  async downloadFile(id: string): Promise<string> {
+  async downloadFile(id: string, res: any) {
     try {
-      // Implement file download logic here
+      // Implement file retrieval logic here
       const file = await this.fileRepository.findOneEntity(id);
       if (!file) throw new NotFoundException('File not found');
-      const filePath = process.cwd() + `/uploads/${file.compressedFileName}`;
-      return filePath;
+      const filePath = join(process.cwd(), file.path); // Corrected path join
+      console.log(filePath);
+      res.sendFile(filePath);
     } catch (error) {
       throw error;
     }

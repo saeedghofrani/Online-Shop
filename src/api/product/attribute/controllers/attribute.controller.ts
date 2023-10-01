@@ -43,6 +43,11 @@ export class AttributeController {
     return this.attributeService.categoryAttribute(id);
   }
 
+  @Get('product')
+  async productAttribute(@Query('id') id: number): Promise<AttributeEntity[]> {
+    return this.attributeService.categoryAttribute(id);
+  }
+
   @Post('page')
   @ApiOperation({ summary: 'Attribute Pagination' })
   attributePagination(@Body() query: PaginationQueryDto) {

@@ -50,6 +50,7 @@ export class ProductRepository
     return await this.query(`
     SELECT
     p.title ,
+    p.id ,
     p.description ,
     p.original_title ,
     (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
