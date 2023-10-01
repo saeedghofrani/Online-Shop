@@ -10,7 +10,7 @@ export class BrandEntity extends MainEntity {
   @Column({ unique: true })
   original_name: string;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
 
   @Column({ default: true })

@@ -23,7 +23,7 @@ export class CategoryEntity extends MainEntity {
   @Column({ unique: true })
   original_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @DeleteDateColumn()

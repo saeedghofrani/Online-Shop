@@ -16,8 +16,6 @@ export class CreateProductDto implements Partial<ProductEntity> {
   original_title: string;
 
   @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
   description: string;
 
   @ApiHideProperty()

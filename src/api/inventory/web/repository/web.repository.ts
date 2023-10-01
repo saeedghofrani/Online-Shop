@@ -35,7 +35,12 @@ export class WebRepository
   }
 
   async findAllEntities(): Promise<WebEntity[]> {
-    return await this.createQueryBuilder('web').getMany();
+    return await this.query(`
+    select
+* ,
+(select id from public.file f where f.relation_id = w.id)
+from inventory.web w 
+    `)
   }
 
   async findByEntity(searchTerm: string): Promise<WebEntity> {

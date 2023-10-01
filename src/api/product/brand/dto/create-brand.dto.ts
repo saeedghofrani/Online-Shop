@@ -14,7 +14,5 @@ export class CreateBrandDto implements Partial<BrandEntity> {
   original_name: string;
 
   @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
   description: string;
 }
