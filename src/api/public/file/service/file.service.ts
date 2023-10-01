@@ -12,14 +12,14 @@ import { Paginated } from 'nestjs-paginate';
 import { FileEntity } from 'src/entities/public/file.entity';
 import { UpdateFileDto } from '../dto/update-file.dto';
 import { UpdateResult } from 'typeorm';
-import {join} from 'path';
+import { join } from 'path';
 
 @Injectable()
 export class FileService {
   constructor(
     private fileRepository: FileRepository,
     private userService: UserService,
-  ) { }
+  ) {}
 
   async uploadFile(
     file: Express.Multer.File,
@@ -76,7 +76,10 @@ export class FileService {
       // Implement file retrieval logic here
       const file = await this.fileRepository.findOneEntity(id);
       if (!file) throw new NotFoundException('File not found');
-      const filePath = join(process.cwd(), `uploads/${file.compressedFileName}`); // Corrected path join
+      const filePath = join(
+        process.cwd(),
+        `uploads/${file.compressedFileName}`,
+      ); // Corrected path join
       console.log(filePath);
       res.sendFile(filePath);
     } catch (error) {
@@ -87,10 +90,10 @@ export class FileService {
   async getFile(id: string) {
     const file = await this.fileRepository.findOneEntity(id);
     if (!file) throw new NotFoundException('File not found');
-  
+
     const filePath = join(process.cwd(), file.path);
     const fileContent = await readFile(filePath, 'base64');
-  
+
     return { data: fileContent };
   }
 

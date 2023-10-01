@@ -9,7 +9,7 @@ import { AttributeRepository } from '../repositories/attribute.repository';
 
 @Injectable()
 export class AttributeService {
-  constructor(private attributeRepository: AttributeRepository) { }
+  constructor(private attributeRepository: AttributeRepository) {}
 
   async createEntity(
     createEntityDto: CreateAttributeDto,
@@ -27,25 +27,33 @@ export class AttributeService {
   ): Promise<UpdateResult> {
     try {
       return await this.attributeRepository.updateEntity(id, updateEntityDto);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findOneEntity(id: string): Promise<AttributeEntity> {
     try {
       return await this.attributeRepository.findOneEntity(id);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findAllEntities(): Promise<AttributeEntity[]> {
     try {
       return await this.attributeRepository.findAllEntities();
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async categoryAttribute(product_id: number) {
     try {
       return await this.attributeRepository.categoryAttribute(product_id);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async attributePagination(
@@ -53,6 +61,8 @@ export class AttributeService {
   ): Promise<Paginated<AttributeEntity>> {
     try {
       return this.attributeRepository.attributePagination(query);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 }

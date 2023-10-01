@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -30,30 +38,22 @@ export class AttributeValueController {
   }
 
   @Get()
-  findOneEntity(
-    @Query('id') id: string,
-  ): Promise<AttributeValueEntity> {
+  findOneEntity(@Query('id') id: string): Promise<AttributeValueEntity> {
     return this.attributeValueService.findOneEntity(id);
   }
 
   @Get('attribute')
-  findByAttribute(
-    @Query('id') id: string,
-  ): Promise<AttributeValueEntity[]> {
+  findByAttribute(@Query('id') id: string): Promise<AttributeValueEntity[]> {
     return this.attributeValueService.findByAttribute(id);
   }
 
   @Get('product')
-  productAttributeValue(
-    @Query('id') id: number,
-  ) {
+  productAttributeValue(@Query('id') id: number) {
     return this.attributeValueService.productAttributeValue(id);
   }
 
   @Delete()
-  removeAttributeValue(
-    @Query('id') id: string,
-  ): Promise<AttributeValueEntity> {
+  removeAttributeValue(@Query('id') id: string): Promise<AttributeValueEntity> {
     return this.attributeValueService.removeAttributeValue(id);
   }
 

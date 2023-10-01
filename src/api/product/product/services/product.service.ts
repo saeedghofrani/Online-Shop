@@ -15,7 +15,7 @@ export class ProductService {
     private productRepository: ProductRepository,
     private categoryService: CategoryService,
     private brandService: BrandService,
-  ) { }
+  ) {}
 
   async createEntity(
     categoryId: string,
@@ -28,7 +28,7 @@ export class ProductService {
         categoryId,
       );
       return await this.productRepository.createEntity(createEntityDto);
-    } catch (error) { }
+    } catch (error) {}
   }
   async updateEntity(
     id: string,
@@ -37,11 +37,11 @@ export class ProductService {
     brandId: string,
   ): Promise<UpdateResult> {
     try {
-    } catch (error) { }
+    } catch (error) {}
     categoryId
       ? (updateEntityDto.category = await this.categoryService.findOneEntity(
-        categoryId,
-      ))
+          categoryId,
+        ))
       : (updateEntityDto.category = null);
     brandId
       ? (updateEntityDto.brand = await this.brandService.findOneEntity(brandId))
@@ -52,14 +52,14 @@ export class ProductService {
     try {
       return await this.productRepository.findOneEntity(id);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
   async findAllEntities(): Promise<ProductEntity[]> {
     try {
       return await this.productRepository.findAllEntities();
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -69,7 +69,7 @@ export class ProductService {
     try {
       return this.productRepository.productPagination(query);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -77,7 +77,7 @@ export class ProductService {
     try {
       return this.productRepository.test(query);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -85,7 +85,7 @@ export class ProductService {
     try {
       return await this.productRepository.productList();
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 }

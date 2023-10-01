@@ -9,7 +9,7 @@ import { BrandRepository } from '../repositories/brand.repository';
 
 @Injectable()
 export class BrandService {
-  constructor(private brandRepository: BrandRepository) { }
+  constructor(private brandRepository: BrandRepository) {}
 
   async createEntity(createEntityDto: CreateBrandDto): Promise<BrandEntity> {
     try {
@@ -25,19 +25,25 @@ export class BrandService {
   ): Promise<UpdateResult> {
     try {
       return await this.brandRepository.updateEntity(id, updateEntityDto);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findOneEntity(id: string): Promise<BrandEntity> {
     try {
       return await this.brandRepository.findOneEntity(id);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findAllEntities(): Promise<BrandEntity[]> {
     try {
       return await this.brandRepository.findAllEntities();
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 
   async brandPagination(
@@ -45,6 +51,8 @@ export class BrandService {
   ): Promise<Paginated<BrandEntity>> {
     try {
       return this.brandRepository.brandPagination(query);
-    } catch (e) { throw e; }
+    } catch (e) {
+      throw e;
+    }
   }
 }

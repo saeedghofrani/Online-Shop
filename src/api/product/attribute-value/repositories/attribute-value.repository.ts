@@ -55,7 +55,7 @@ export class AttributeValueRepository
   }
 
   async removeAttributeValue(id: string): Promise<AttributeValueEntity> {
-    const attributeValue = await this.findOne({where: {id}});
+    const attributeValue = await this.findOne({ where: { id } });
     return await attributeValue.softRemove();
   }
 
@@ -67,7 +67,7 @@ export class AttributeValueRepository
       inner join product.attribute_value av on av."attributeId" = ca."attributeId" 
       inner join product.product_attribute_value pav on pav."productId" = p.id
       where p.id = ${id}
-    `)
+    `);
   }
 
   async attributeValuePagination(

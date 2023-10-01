@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -14,7 +22,7 @@ import { ProductAttributeValueService } from '../services/product-attribute-valu
 export class ProductAttributeValueController {
   constructor(
     private ProductAttributeValueService: ProductAttributeValueService,
-  ) { }
+  ) {}
 
   @Post()
   createEntity(
@@ -43,15 +51,13 @@ export class ProductAttributeValueController {
 
   @Get('product')
   findByProduct(
-    @Query('id') id: string
+    @Query('id') id: string,
   ): Promise<ProductAttributeValueEntity[]> {
     return this.ProductAttributeValueService.findByProduct(id);
   }
 
   @Delete()
-  removeEntity(
-    @Query('id') id: string
-  ) {
+  removeEntity(@Query('id') id: string) {
     return this.ProductAttributeValueService.removeEntity(id);
   }
 

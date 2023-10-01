@@ -15,9 +15,11 @@ async function bootstrap() {
     logger: WinstonModule.createLogger(logger.config),
   });
   const appService = <AppConfigService>app.get(AppConfigService);
-  app.use(helmet({
-    crossOriginResourcePolicy: false,
-  }));
+  app.use(
+    helmet({
+      crossOriginResourcePolicy: false,
+    }),
+  );
   app.enableCors();
   app.setGlobalPrefix(appService.appApiPrefix);
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -30,7 +32,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: '*'
+    origin: '*',
   });
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   const appConfigService = app.get<AppConfigService>(AppConfigService);

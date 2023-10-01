@@ -9,7 +9,7 @@ import { CategoryRepository } from '../repositories/category.repository';
 
 @Injectable()
 export class CategoryService {
-  constructor(private categoryRepository: CategoryRepository) { }
+  constructor(private categoryRepository: CategoryRepository) {}
 
   async createEntity(
     createEntityDto: CreateCategoryDto,
@@ -22,8 +22,9 @@ export class CategoryService {
         createEntityDto.parent = findParent;
       }
       return await this.categoryRepository.createEntity(createEntityDto);
-    } catch (error) { throw error }
-
+    } catch (error) {
+      throw error;
+    }
   }
   async updateEntity(
     id: string,
@@ -37,22 +38,30 @@ export class CategoryService {
         updateEntityDto.parent = findParent;
       }
       return await this.categoryRepository.updateEntity(id, updateEntityDto);
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
   async findOneEntity(id: string): Promise<CategoryEntity> {
     try {
       return await this.categoryRepository.findOneEntity(id);
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
   async findAllEntities(): Promise<CategoryEntity[]> {
     try {
       return await this.categoryRepository.findAllEntities();
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
   async findTree(): Promise<CategoryEntity[]> {
     try {
       return await this.categoryRepository.findTree();
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
 
   async categoryPagination(
@@ -60,26 +69,32 @@ export class CategoryService {
   ): Promise<Paginated<CategoryEntity>> {
     try {
       return this.categoryRepository.categoryPagination(query);
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findRoots() {
     try {
       return await this.categoryRepository.findRoots();
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findChildren(parent_id: number) {
     try {
       return await this.categoryRepository.findChildren(parent_id);
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
 
   async removeCategory(id: number) {
     try {
       return await this.categoryRepository.removeCategory(id);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 }

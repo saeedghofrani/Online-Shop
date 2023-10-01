@@ -13,7 +13,7 @@ export class AttributeValueService {
   constructor(
     private attributeValueRepository: AttributeValueRepository,
     private attributeSevice: AttributeService,
-  ) { }
+  ) {}
 
   async createEntity(
     createEntityDto: CreateAttributeValueDto,
@@ -24,7 +24,7 @@ export class AttributeValueService {
       );
       return await this.attributeValueRepository.createEntity(createEntityDto);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -38,7 +38,7 @@ export class AttributeValueService {
         updateEntityDto,
       );
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -46,7 +46,7 @@ export class AttributeValueService {
     try {
       return await this.attributeValueRepository.findOneEntity(id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -54,15 +54,15 @@ export class AttributeValueService {
     try {
       return await this.attributeValueRepository.findAllEntities();
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
   async findByAttribute(id: string) {
     try {
-      return await this.attributeValueRepository.findByAttribute(id)
+      return await this.attributeValueRepository.findByAttribute(id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -70,15 +70,15 @@ export class AttributeValueService {
     try {
       return await this.attributeValueRepository.removeAttributeValue(id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
   async productAttributeValue(id: number) {
     try {
-      return await this.attributeValueRepository.productAttributeValue(id)
+      return await this.attributeValueRepository.productAttributeValue(id);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 
@@ -88,7 +88,7 @@ export class AttributeValueService {
     try {
       return this.attributeValueRepository.attributeValuePagination(query);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 }
