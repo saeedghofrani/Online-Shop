@@ -59,15 +59,27 @@ export class AttributeValueService {
   }
 
   async findByAttribute(id: string) {
-    return await this.attributeValueRepository.findByAttribute(id)
+    try {
+      return await this.attributeValueRepository.findByAttribute(id)
+    } catch (e) {
+      throw e
+    }
   }
 
   async removeAttributeValue(id: string) {
-    return await this.attributeValueRepository.removeAttributeValue(id);
+    try {
+      return await this.attributeValueRepository.removeAttributeValue(id);
+    } catch (e) {
+      throw e
+    }
   }
 
   async productAttributeValue(id: number) {
-    return await this.attributeValueRepository.productAttributeValue(id)
+    try {
+      return await this.attributeValueRepository.productAttributeValue(id)
+    } catch (e) {
+      throw e
+    }
   }
 
   async attributeValuePagination(

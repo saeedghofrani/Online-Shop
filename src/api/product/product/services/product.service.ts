@@ -15,18 +15,20 @@ export class ProductService {
     private productRepository: ProductRepository,
     private categoryService: CategoryService,
     private brandService: BrandService,
-  ) {}
+  ) { }
 
   async createEntity(
     categoryId: string,
     brandId: string,
     createEntityDto: CreateProductDto,
   ): Promise<ProductEntity> {
-    createEntityDto.brand = await this.brandService.findOneEntity(brandId);
-    createEntityDto.category = await this.categoryService.findOneEntity(
-      categoryId,
-    );
-    return await this.productRepository.createEntity(createEntityDto);
+    try {
+      createEntityDto.brand = await this.brandService.findOneEntity(brandId);
+      createEntityDto.category = await this.categoryService.findOneEntity(
+        categoryId,
+      );
+      return await this.productRepository.createEntity(createEntityDto);
+    } catch (error) { }
   }
   async updateEntity(
     id: string,
@@ -34,10 +36,12 @@ export class ProductService {
     categoryId: string,
     brandId: string,
   ): Promise<UpdateResult> {
+    try {
+    } catch (error) { }
     categoryId
       ? (updateEntityDto.category = await this.categoryService.findOneEntity(
-          categoryId,
-        ))
+        categoryId,
+      ))
       : (updateEntityDto.category = null);
     brandId
       ? (updateEntityDto.brand = await this.brandService.findOneEntity(brandId))
@@ -45,23 +49,43 @@ export class ProductService {
     return await this.productRepository.updateEntity(id, updateEntityDto);
   }
   async findOneEntity(id: string): Promise<ProductEntity> {
-    return await this.productRepository.findOneEntity(id);
+    try {
+      return await this.productRepository.findOneEntity(id);
+    } catch (error) {
+      throw error
+    }
   }
   async findAllEntities(): Promise<ProductEntity[]> {
-    return await this.productRepository.findAllEntities();
+    try {
+      return await this.productRepository.findAllEntities();
+    } catch (error) {
+      throw error
+    }
   }
 
   async productPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductEntity>> {
-    return this.productRepository.productPagination(query);
+    try {
+      return this.productRepository.productPagination(query);
+    } catch (error) {
+      throw error
+    }
   }
 
   async test(query: PaginationQueryDto): Promise<Paginated<ProductEntity>> {
-    return this.productRepository.test(query);
+    try {
+      return this.productRepository.test(query);
+    } catch (error) {
+      throw error
+    }
   }
 
   async productList() {
-    return await this.productRepository.productList();
+    try {
+      return await this.productRepository.productList();
+    } catch (error) {
+      throw error
+    }
   }
 }

@@ -48,6 +48,11 @@ export class ProductAttributeValueRepository
     return await this.createQueryBuilder('product_attribute_value').getMany();
   }
 
+  async removeEntity(id: string) {
+    const productAttributeValue = await this.findOne({where: {id}});
+    return productAttributeValue.softRemove();
+  }
+
   async findByProduct(id: string): Promise<ProductAttributeValueEntity[]> {
     return await this.createQueryBuilder('product_attribute_value')
     .innerJoinAndSelect('product_attribute_value.attribute_value', 'attribute_value')

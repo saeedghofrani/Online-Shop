@@ -17,7 +17,7 @@ export class ProductAttributeValueService {
     private attributeValueService: AttributeValueService,
     private productService: ProductService,
     private providerService: ProviderService,
-  ) {}
+  ) { }
 
   async createEntity(
     createEntityDto: CreateProductAttributeValueDto,
@@ -36,7 +36,7 @@ export class ProductAttributeValueService {
       return await this.ProductAttributeValueRepository.createEntity(
         createEntityDto,
       );
-    } catch (e) {}
+    } catch (e) { throw e }
   }
 
   async updateEntity(
@@ -58,30 +58,40 @@ export class ProductAttributeValueService {
         id,
         updateEntityDto,
       );
-    } catch (e) {}
+    } catch (e) { throw e }
   }
 
   async findOneEntity(id: string): Promise<ProductAttributeValueEntity> {
     try {
       return await this.ProductAttributeValueRepository.findOneEntity(id);
-    } catch (e) {}
+    } catch (e) { throw e }
   }
 
   async findAllEntities(): Promise<ProductAttributeValueEntity[]> {
     try {
       return await this.ProductAttributeValueRepository.findAllEntities();
-    } catch (e) {}
+    } catch (e) { throw e }
   }
 
-  async findByProduct(id:string) {
-    return await this.ProductAttributeValueRepository.findByProduct(id);
+  async findByProduct(id: string) {
+    try {
+      return await this.ProductAttributeValueRepository.findByProduct(id);
+    } catch (e) { throw e }
+  }
+
+  async removeEntity(id: string) {
+    try {
+      return await this.ProductAttributeValueRepository.removeEntity(id);
+    } catch (e) { throw e }
   }
 
   async ProductAttributeValeuPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductAttributeValueEntity>> {
-    return this.ProductAttributeValueRepository.ProductAttributeValuePagination(
-      query,
-    );
+    try {
+      return this.ProductAttributeValueRepository.ProductAttributeValuePagination(
+        query,
+      );
+    } catch (e) { throw e }
   }
 }

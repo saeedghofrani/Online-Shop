@@ -15,7 +15,7 @@ export class CategoryAttributeService {
     private categoryAttributeRepository: CategoryAttributeRepository,
     private categoryService: CategoryService,
     private attributeService: AttributeService,
-  ) {}
+  ) { }
 
   async createEntity(
     createEntityDto: CreateCategoryAttributeDto,
@@ -78,13 +78,17 @@ export class CategoryAttributeService {
   async categoryAttributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<CategoryAttributeEntity>> {
-    return this.categoryAttributeRepository.categoryAttributePagination(query);
+    try {
+      return this.categoryAttributeRepository.categoryAttributePagination(query);
+    } catch (error) { throw error }
   }
 
   async findPriceableAttribute(category_id: string, attribute_id: string) {
-    return await this.categoryAttributeRepository.findPriceableAttribute(
-      category_id,
-      attribute_id,
-    );
+    try {
+      return await this.categoryAttributeRepository.findPriceableAttribute(
+        category_id,
+        attribute_id,
+      );
+    } catch (error) { throw error }
   }
 }
