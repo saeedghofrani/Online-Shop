@@ -28,7 +28,7 @@ export class ProductService {
         categoryId,
       );
       return await this.productRepository.createEntity(createEntityDto);
-    } catch (error) {}
+    } catch (error) { throw error }
   }
   async updateEntity(
     id: string,
@@ -37,7 +37,7 @@ export class ProductService {
     brandId: string,
   ): Promise<UpdateResult> {
     try {
-    } catch (error) {}
+    } catch (error) { throw error }
     categoryId
       ? (updateEntityDto.category = await this.categoryService.findOneEntity(
           categoryId,
