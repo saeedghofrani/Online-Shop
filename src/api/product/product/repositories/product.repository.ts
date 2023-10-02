@@ -58,7 +58,7 @@ export class ProductRepository
     p.description ,
     p.price as defaultPrice,
     p.original_title ,
-    (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
+    (SELECT "id" FROM file f WHERE f.relation_id = p.id and f.type= '0'::file_type_enum  LIMIT 1) AS image,
     CAST((SELECT MIN(pav.price) FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
     FROM
         product.product p where p.delete_at is null order by p.id asc
@@ -92,7 +92,7 @@ export class ProductRepository
     for (let i = 0; i < pagination.data.length; i++) {
       const element: any = pagination.data[i];
       const image = await this.query(`
-      SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
+      SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} and f.type= '0'::file_type_enum  LIMIT 1 
       `);
       const price = await this.query(`
       SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 and pav.delete_at is null LIMIT 1

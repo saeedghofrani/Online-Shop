@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { createReadStream } from 'fs';
 import { unlink, stat, readFile } from 'fs/promises';
 import * as sharp from 'sharp';
@@ -73,6 +73,7 @@ export class FileService {
   async downloadFileCompressed(id: string, res: any) {
     try {
       // Implement file retrieval logic here
+      if (!id) throw new BadRequestException('id cannot be null');
       const file = await this.fileRepository.findOneEntity(id);
       if (!file) throw new NotFoundException('File not found');
       const filePath = join(
