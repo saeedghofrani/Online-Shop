@@ -50,6 +50,30 @@ export class CategoryAttributeService {
     updateEntityDto: UpdateCategoryAttributeDto,
   ): Promise<UpdateResult> {
     try {
+      updateEntityDto.attribute = await this.attributeService.findOneEntity(
+        updateEntityDto.attribute_id,
+      );
+      updateEntityDto.category = await this.categoryService.findOneEntity(
+        updateEntityDto.category_id,
+      );
+      if (
+        await this.findPriceableAttribute(
+          updateEntityDto.category_id,
+          updateEntityDto.attribute_id,
+        ) && updateEntityDto.priceable
+      ) {
+        throw new BadRequestException(
+          'category can only contain one priceable attribute',
+        );
+      }
+      await this.attributeService.updateEntity(updateEntityDto.attribute_id, {
+        name: updateEntityDto.name,
+        type: updateEntityDto.type
+      })
+      delete updateEntityDto.name
+      delete updateEntityDto.type
+      delete updateEntityDto.category_id
+      delete updateEntityDto.attribute_id
       return await this.categoryAttributeRepository.updateEntity(
         id,
         updateEntityDto,
