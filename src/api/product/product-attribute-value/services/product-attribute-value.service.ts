@@ -23,9 +23,7 @@ export class ProductAttributeValueService {
     createEntityDto: CreateProductAttributeValueDto,
   ): Promise<ProductAttributeValueEntity> {
     try {
-      createEntityDto.provider = await this.providerService.findOneEntity(
-        createEntityDto.provider_id,
-      );
+      createEntityDto.provider = await this.providerService.findDefault();
       createEntityDto.attribute_value =
         await this.attributeValueService.findOneEntity(
           createEntityDto.attribute_value_id,

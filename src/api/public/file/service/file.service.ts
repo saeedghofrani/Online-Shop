@@ -88,13 +88,17 @@ export class FileService {
   }
 
   async getFile(id: string) {
-    const file = await this.fileRepository.findOneEntity(id);
-    if (!file) throw new NotFoundException('File not found');
-
-    const filePath = join(process.cwd(), file.path);
-    const fileContent = await readFile(filePath, 'base64');
-
-    return { data: fileContent };
+    try {
+      const file = await this.fileRepository.findOneEntity(id);
+      if (!file) throw new NotFoundException('File not found');
+  
+      const filePath = join(process.cwd(), file.path);
+      const fileContent = await readFile(filePath, 'base64');
+  
+      return { data: fileContent };
+    } catch (error) {
+      throw error;
+    }
   }
 
   async getFileDirect(id: string) {

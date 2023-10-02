@@ -16,9 +16,7 @@ export class WebService {
   ) {}
 
   async createEntity(createEntityDto: CreateWebDto): Promise<WebEntity> {
-    const providerEntity = await this.providerService.findOneEntity(
-      String(createEntityDto.provider_id),
-    );
+    const providerEntity = await this.providerService.findDefault();
     createEntityDto.provider = providerEntity;
     return await this.webRepository.createEntity(createEntityDto);
   }

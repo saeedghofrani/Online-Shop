@@ -37,6 +37,10 @@ export class ProviderRepository
     return await this.createQueryBuilder('provider').getMany();
   }
 
+  async findDefault(): Promise<ProviderEntity> {
+    return await this.createQueryBuilder('provider').getOne();
+  }
+
   async findByEntity(searchTerm: string): Promise<ProviderEntity> {
     return await this.createQueryBuilder('provider')
       .where(

@@ -37,6 +37,10 @@ export class ProviderService {
     return await this.providerRepository.findOneEntity(providerId);
   }
 
+  async findDefault(): Promise<ProviderEntity> {
+    return await this.providerRepository.findDefault();
+  }
+
   async updateEntity(
     id: string,
     updateEntityDto: UpdateProviderDto,
