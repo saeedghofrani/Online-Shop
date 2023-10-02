@@ -1,4 +1,4 @@
-import { Column, DeleteDateColumn, Entity, OneToMany } from 'typeorm';
+import { BeforeSoftRemove, Column, DeleteDateColumn, Entity, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { CategoryAttributeEntity } from './category-attribute.entity';
 import { AttributeValueEntity } from './attribute-value.entity';
@@ -30,4 +30,10 @@ export class AttributeEntity extends MainEntity {
     (attributes_value) => attributes_value.attribute,
   )
   attributes_value: AttributeValueEntity[];
+
+  @BeforeSoftRemove() 
+  beforeSoftRemove() {
+    this.name = 'deleted_' + this.id + '_' + this.name;
+    return this.save()
+  }
 }

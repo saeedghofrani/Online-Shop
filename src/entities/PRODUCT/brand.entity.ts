@@ -18,4 +18,6 @@ export class BrandEntity extends MainEntity {
 
   @OneToMany(() => ProductEntity, (productEntity) => productEntity.brand)
   products: ProductEntity[];
+
+  
 }

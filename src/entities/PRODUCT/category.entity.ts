@@ -1,4 +1,6 @@
 import {
+  BeforeRemove,
+  BeforeSoftRemove,
   Column,
   DeleteDateColumn,
   Entity,
@@ -43,4 +45,12 @@ export class CategoryEntity extends MainEntity {
     (category_attribute) => category_attribute.category,
   )
   category_attribute: CategoryAttributeEntity[];
+
+  @BeforeSoftRemove() 
+  @BeforeRemove() 
+  changeName() {
+    this.name = 'deleted_' + this.id + '_' + this.name;
+    this.original_name = 'deleted_' + this.id + '_' + this.original_name;
+    return this.save()
+  }
 }

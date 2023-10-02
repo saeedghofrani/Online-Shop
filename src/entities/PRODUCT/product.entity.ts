@@ -1,4 +1,5 @@
 import {
+  BeforeSoftRemove,
   Column,
   DeleteDateColumn,
   Entity,
@@ -47,4 +48,11 @@ export class ProductEntity extends MainEntity {
   @ManyToOne(() => BrandEntity, (brandEntity) => brandEntity.products)
   @JoinColumn()
   brand: BrandEntity;
+
+  @BeforeSoftRemove() 
+  beforeSoftRemove() {
+    this.title = 'deleted_' + this.id + '_' + this.title;
+    this.original_title = 'deleted_' + this.id + '_' + this.original_title;
+    return this.save()
+  }
 }
