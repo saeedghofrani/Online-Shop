@@ -38,7 +38,7 @@ export class WebRepository
     return await this.query(`
     select
     * ,
-    (select id from public.file f where f.relation_id = w.id order by create_at limit 1)
+    (select id from public.file f where f.relation_id = w.id order by create_at limit 1) as image
     from inventory.web w 
     `)
   }
@@ -47,7 +47,7 @@ export class WebRepository
     return await this.query(`
     select
     * ,
-    (select id from public.file f where f.relation_id = w.id order by create_at limit 1)
+    (select id from public.file f where f.relation_id = w.id order by create_at limit 1) as image 
     from inventory.web w order by create_at desc limit 1
     `)
   }
