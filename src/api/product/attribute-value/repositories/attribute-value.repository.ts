@@ -12,11 +12,11 @@ import { UpdateAttributeValueDto } from '../dto/update-attribute-value.dto';
 export class AttributeValueRepository
   extends Repository<AttributeValueEntity>
   implements
-    RepositoriesAbstract<
-      AttributeValueEntity,
-      CreateAttributeValueDto,
-      UpdateAttributeValueDto
-    >
+  RepositoriesAbstract<
+    AttributeValueEntity,
+    CreateAttributeValueDto,
+    UpdateAttributeValueDto
+  >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -62,12 +62,12 @@ export class AttributeValueRepository
 
   async productAttributeValue(id: number): Promise<AttributeValueEntity> {
     return await this.query(`
-      select a."name" , av.value , ca.priceable , pav.price  from product.product p 
-      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" and ca.delete_at is NULL
-      inner join product."attribute" a on a.id = ca."attributeId" and a.delete_at is NULL
-      inner join product.attribute_value av on av."attributeId" = ca."attributeId"  and av.delete_at is NULL
-      inner join product.product_attribute_value pav on pav."productId" = p.id
-      where p.id = ${id} and p.delete_at is NULL order by p.id asc
+      select a."name" , av.value , ca.priceable , pav.price from product.product_attribute_value pav 
+      inner join product.attribute_value av on av.id = pav."attributeValueId" 
+        inner join product."attribute" a on a.id = av."attributeId" 
+        inner join product.category_attribute ca on ca."attributeId" = a.id
+      inner join product.product p on p."categoryId" = ca."categoryId" and p.id = ${id} and p.delete_at is NULL 
+      order by p.id asc
     `);
   }
 
