@@ -37,7 +37,7 @@ export class ProductController {
   @Patch()
   updateEntity(
     @Query('product_id') id: string,
-    updateEntityDto: UpdateProductDto,
+    @Body() updateEntityDto: UpdateProductDto,
     @Query('category_id') categoryId: string,
     @Query('brand_id') brandId: string,
   ): Promise<UpdateResult> {

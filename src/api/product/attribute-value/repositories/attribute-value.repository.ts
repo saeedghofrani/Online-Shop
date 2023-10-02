@@ -64,12 +64,13 @@ export class AttributeValueRepository
 
   async productAttributeValue(id: number): Promise<AttributeValueEntity> {
     return await this.query(`
-      select a."name" , av.value , ca.priceable , pav.price from product.product_attribute_value pav 
-      inner join product.attribute_value av on av.id = pav."attributeValueId" 
-        inner join product."attribute" a on a.id = av."attributeId" 
-        inner join product.category_attribute ca on ca."attributeId" = a.id
-      inner join product.product p on p."categoryId" = ca."categoryId" and p.id = ${id} and p.delete_at is NULL 
-      order by p.id asc
+    select a."name" , av.value , ca.priceable , pav.price, pav.id  from product.product_attribute_value pav 
+    inner join product.attribute_value av on av.id = pav."attributeValueId"  and av.delete_at is NULL
+      inner join product."attribute" a on a.id = av."attributeId" and a.delete_at is NULL
+      inner join product.category_attribute ca on ca."attributeId" = a.id and ca.delete_at is NULL
+    inner join product.product p on p."categoryId" = ca."categoryId" and p.id = ${id} and p.delete_at is NULL 
+    and pav.delete_at is NULL
+    order by p.id asc
     `);
   }
 

@@ -50,8 +50,8 @@ export class AttributeRepository
   async categoryAttribute(product_id: number) {
     return await this.query(`
       select a."name",a."type" , ca.priceable, a.id  from product.product p 
-      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" 
-      inner join product."attribute" a on a.id = ca."attributeId"
+      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" and ca.delete_at is null
+      inner join product."attribute" a on a.id = ca."attributeId" and a.delete_at is null
       where p.id = ${product_id} and p.delete_at is NULL order by p.id desc
     `);
   }
