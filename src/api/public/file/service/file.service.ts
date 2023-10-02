@@ -64,7 +64,6 @@ export class FileService {
       const file = await this.fileRepository.findOneEntity(id);
       if (!file) throw new NotFoundException('File not found');
       const filePath = join(process.cwd(), file.path); // Corrected path join
-      console.log(filePath);
       res.sendFile(filePath);
     } catch (error) {
       throw error;
@@ -80,7 +79,6 @@ export class FileService {
         process.cwd(),
         `uploads/${file.compressedFileName}`,
       ); // Corrected path join
-      console.log(filePath);
       res.sendFile(filePath);
     } catch (error) {
       throw error;
