@@ -31,7 +31,7 @@ export class CategoryAttributeService {
         await this.findPriceableAttribute(
           createEntityDto.category_id,
           createEntityDto.attribute_id,
-        )
+        ) && createEntityDto.priceable
       ) {
         throw new BadRequestException(
           'category can only contain one priceable attribute',
