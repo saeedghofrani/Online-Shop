@@ -1,8 +1,8 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { ProviderEntity } from 'src/entities/inventory/provider.entity';
-import { SummaryEntity } from 'src/entities/inventory/summary.entity';
-import { ProductEntity } from 'src/entities/product/product.entity';
+import { ProviderEntity } from 'entities/inventory/provider.entity';
+import { SummaryEntity } from 'entities/inventory/summary.entity';
+import { ProductEntity } from 'entities/product/product.entity';
 
 export class CreateSummaryDto implements Partial<SummaryEntity> {
   @ApiProperty()

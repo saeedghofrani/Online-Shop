@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AttributeEntity } from 'src/entities/product/attribute.entity';
-import { AttributeEnum } from 'src/entities/product/enum/category-attribute-type.enum';
+import { AttributeEntity } from 'entities/product/attribute.entity';
+import { AttributeEnum } from 'entities/product/enum/category-attribute-type.enum';
 
 export class CreateAttributeDto implements Partial<AttributeEntity> {
   @ApiProperty()

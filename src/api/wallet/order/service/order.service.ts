@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { UpdateResult } from 'typeorm';
 import { OrderEntity } from '../../../../entities/wallet/order.entity';
 import { UserService } from '../../../auth/user/service/user.service';

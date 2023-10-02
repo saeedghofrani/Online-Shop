@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RequestHistory } from 'src/entities/history/request.schema';
+import { RequestHistory } from 'entities/history/request.schema';
 import { CreateRequestHistoryInterfece } from '../interface/create-request.interface';
 
 @Injectable()

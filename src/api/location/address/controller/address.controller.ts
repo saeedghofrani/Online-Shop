@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
-import { GetUser } from 'src/common/decorator/user.decorator';
-import { UseJwtGuard } from 'src/common/guards/jwt.guard';
-import { UserInterface } from 'src/common/interfaces/user.interface';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { AddressEntity } from 'src/entities/location/address.entity';
+import { GetUser } from 'common/decorator/user.decorator';
+import { UseJwtGuard } from 'common/guards/jwt.guard';
+import { UserInterface } from 'common/interfaces/user.interface';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { AddressEntity } from 'entities/location/address.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAddressDto } from '../dto/create-address.dto';
 import { UpdateAddressDto } from '../dto/update-address.dto';

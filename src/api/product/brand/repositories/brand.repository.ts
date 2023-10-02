@@ -5,10 +5,10 @@ import {
   Paginated,
   PaginateQuery,
 } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { PostgresConstant } from 'src/common/constants/postgres.constant';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { BrandEntity } from 'src/entities/product/brand.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { PostgresConstant } from 'common/constants/postgres.constant';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { BrandEntity } from 'entities/product/brand.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateBrandDto } from '../dto/create-brand.dto';
 import { UpdateBrandDto } from '../dto/update-brand.dto';

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { RouteEntity } from 'src/entities/auth/route.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { RouteEntity } from 'entities/auth/route.entity';
 import { UpdateResult } from 'typeorm';
 import { PermissionService } from '../../permission/service/permission.service';
 import { CreateRouteDto } from '../dto/create-route.dto';

@@ -5,7 +5,7 @@ import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 
 @Injectable()

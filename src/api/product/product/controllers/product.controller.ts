@@ -8,8 +8,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductEntity } from 'src/entities/product/product.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProductEntity } from 'entities/product/product.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';

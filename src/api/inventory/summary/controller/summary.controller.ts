@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { CreateSummaryDto } from '../dto/create-summary.dto';
 import { UpdateSummaryDto } from '../dto/update-summary.dto';
 import { SummaryService } from '../service/summary.service';

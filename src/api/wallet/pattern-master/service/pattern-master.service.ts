@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { PatternMasterEntity } from 'src/entities/wallet/pattern-master.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { PatternMasterEntity } from 'entities/wallet/pattern-master.entity';
 import { UpdateResult } from 'typeorm';
 import { CreatePatternMasterDto } from '../dto/create-pattern-master.dto';
 import { UpdatePatternMasterDto } from '../dto/update-pattern-master.dto';

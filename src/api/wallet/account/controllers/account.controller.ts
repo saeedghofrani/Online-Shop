@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { GetUser } from 'src/common/decorator/user.decorator';
-import { UserInterface } from 'src/common/interfaces/user.interface';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { AccountEntity } from 'src/entities/wallet/account.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { GetUser } from 'common/decorator/user.decorator';
+import { UserInterface } from 'common/interfaces/user.interface';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { AccountEntity } from 'entities/wallet/account.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAccountDto } from '../dto/create-account.dto';
 import { UpdateAccountDto } from '../dto/update-account.dto';

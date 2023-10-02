@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { UserAgentClass } from 'src/common/classes/user-agent.class';
+import { UserAgentClass } from 'common/classes/user-agent.class';
 
 export type RequestHistoryDocument = HydratedDocument<RequestHistory>;
 

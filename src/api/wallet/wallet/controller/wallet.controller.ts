@@ -7,7 +7,7 @@ import { UserInterface } from '../../../../common/interfaces/user.interface';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { GetUser } from '../../../../common/decorator/user.decorator';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Wallet')

@@ -14,7 +14,7 @@ export class EmailService {
   ) {}
   async sentCode(email: string, sendEmailDto: SendEmailDto): Promise<any> {
     let str = await fs.readFileSync(
-      path.join(process.cwd(), 'src/assets/template/', 'FA', 'otp') + '.ejs',
+      path.join(process.cwd(), 'assets/template/', 'FA', 'otp') + '.ejs',
     );
     let html = ejs.render(str.toString(), sendEmailDto);
     await this.transporter.sendMail({

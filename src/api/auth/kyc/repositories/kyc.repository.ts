@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { PostgresConstant } from 'src/common/constants/postgres.constant';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { KycEntity } from 'src/entities/auth/kyc.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { PostgresConstant } from 'common/constants/postgres.constant';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { KycEntity } from 'entities/auth/kyc.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateKycDto } from '../dto/create-kyc.dto';
 

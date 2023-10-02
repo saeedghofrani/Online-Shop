@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductAttributeValueEntity } from 'src/entities/product/product-attribute-value.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProductAttributeValueEntity } from 'entities/product/product-attribute-value.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductAttributeValueDto } from '../dto/create-product-attribute-value.dto';
 import { UpdateProductAttributeValueDto } from '../dto/update-product-attribute-value.dto';

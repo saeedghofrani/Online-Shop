@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiProperty, PartialType } from '@nestjs/swagger';
-import { KycEntity } from 'src/entities/auth/kyc.entity';
-import { UserEntity } from 'src/entities/auth/user.entity';
+import { KycEntity } from 'entities/auth/kyc.entity';
+import { UserEntity } from 'entities/auth/user.entity';
 
 export class CreateKycDto implements Partial<KycEntity> {
   @ApiProperty()

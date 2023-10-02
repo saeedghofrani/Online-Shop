@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserFactorService } from '../services/user-factor.service';
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
 import { UserFactorEntity } from '../../../../entities/wallet/user-factor.entity';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('User-Factor')

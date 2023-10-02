@@ -7,7 +7,7 @@ import { UpdateResult } from 'typeorm';
 import { WalletRepository } from '../repositories/wallet.repository';
 import { UserService } from '../../../auth/user/service/user.service';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @Injectable()
 export class WalletService {

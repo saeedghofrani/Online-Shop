@@ -1,4 +1,4 @@
-import { ColumnNumericTransformer } from 'src/common/classes/column-numeric-transformer.class';
+import { ColumnNumericTransformer } from 'common/classes/column-numeric-transformer.class';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { installmentType } from './enum/installment-type.enum';

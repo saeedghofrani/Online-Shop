@@ -1,8 +1,8 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsString, Length } from 'class-validator';
-import { AttributeEntity } from 'src/entities/product/attribute.entity';
-import { CategoryAttributeEntity } from 'src/entities/product/category-attribute.entity';
-import { CategoryEntity } from 'src/entities/product/category.entity';
+import { AttributeEntity } from 'entities/product/attribute.entity';
+import { CategoryAttributeEntity } from 'entities/product/category-attribute.entity';
+import { CategoryEntity } from 'entities/product/category.entity';
 
 export class CreateCategoryAttributeDto
   implements Partial<CategoryAttributeEntity>

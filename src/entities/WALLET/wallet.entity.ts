@@ -1,7 +1,7 @@
-import { ColumnNumericTransformer } from 'src/common/classes/column-numeric-transformer.class';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserEntity } from '../auth/user.entity';
+import { ColumnNumericTransformer } from 'common/classes/column-numeric-transformer.class';
 
 @Entity({ schema: 'wallet', name: 'wallet' })
 export class WalletEntity extends MainEntity {

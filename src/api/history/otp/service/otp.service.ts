@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { OtpHistory } from 'src/entities/history/otp.schema';
+import { OtpHistory } from 'entities/history/otp.schema';
 import { CreateOtpInterface } from '../interface/create-otp.interface';
 
 @Injectable()

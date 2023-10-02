@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { UserEntity } from 'src/entities/auth/user.entity';
-import { ProviderEntity } from 'src/entities/inventory/provider.entity';
+import { UserEntity } from 'entities/auth/user.entity';
+import { ProviderEntity } from 'entities/inventory/provider.entity';
 
 export class CreateProviderDto implements Partial<ProviderEntity> {
   @ApiProperty()

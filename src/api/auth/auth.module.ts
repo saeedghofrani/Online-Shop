@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
-import { ConfigurationModule } from 'src/config/configuration.module';
-import { EmailModule } from 'src/utils/email/email.module';
-import { RedisService } from 'src/utils/redis/redis.service';
-import { SmsService } from 'src/utils/sms/sms.service';
+import { JwtStrategy } from 'common/strategies/jwt.strategy';
+import { ConfigurationModule } from 'config/configuration.module';
+import { EmailModule } from 'utils/email/email.module';
+import { RedisService } from 'utils/redis/redis.service';
+import { SmsService } from 'utils/sms/sms.service';
 import { SmsModule } from '../../utils/sms/sms.module';
 import { HistoryModule } from '../history/history.module';
 import { KycController } from './kyc/controller/kyc.controller';

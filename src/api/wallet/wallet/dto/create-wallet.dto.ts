@@ -1,4 +1,4 @@
-import { WalletEntity } from 'src/entities/wallet/wallet.entity';
+import { WalletEntity } from 'entities/wallet/wallet.entity';
 import { UserEntity } from '../../../../entities/auth/user.entity';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 

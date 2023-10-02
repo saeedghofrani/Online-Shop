@@ -1,7 +1,7 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { ProviderEntity } from 'src/entities/inventory/provider.entity';
-import { WebEntity } from 'src/entities/inventory/web.entity';
+import { ProviderEntity } from 'entities/inventory/provider.entity';
+import { WebEntity } from 'entities/inventory/web.entity';
 
 export class UpdateWebDto implements Partial<WebEntity> {
   @IsNotEmpty()

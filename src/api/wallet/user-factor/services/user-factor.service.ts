@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { UserFactorEntity } from '../../../../entities/wallet/user-factor.entity';
 import { PatternMasterService } from '../../pattern-master/service/pattern-master.service';
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';

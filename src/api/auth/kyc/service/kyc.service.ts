@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateKycDto } from '../dto/create-kyc.dto';
-import { KycEntity } from 'src/entities/auth/kyc.entity';
+import { KycEntity } from 'entities/auth/kyc.entity';
 import { KycRepository } from '../repositories/kyc.repository';
 import { UserRepository } from '../../user/repositories/user.repository';
 import { UserService } from '../../user/service/user.service';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @Injectable()
 export class KycService {

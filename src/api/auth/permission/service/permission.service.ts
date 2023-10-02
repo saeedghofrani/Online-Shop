@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { PermissionEntity } from 'src/entities/auth/permission.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { PermissionEntity } from 'entities/auth/permission.entity';
 import { UpdateResult } from 'typeorm';
 import { RoleService } from '../../role/service/role.service';
 import { CreatePermissionDto } from '../dto/create-permission.dto';

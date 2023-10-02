@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { PostgresConstant } from 'src/common/constants/postgres.constant';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { StateEntity } from 'src/entities/location/state.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { PostgresConstant } from 'common/constants/postgres.constant';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { StateEntity } from 'entities/location/state.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateStateDto } from '../dto/create-state.dto';
 import { UpdateStateDto } from '../dto/update-state.dto';

@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RoleService } from '../service/role.service';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 import { CreateRoleDto } from '../dto/create-role.dto';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Role')

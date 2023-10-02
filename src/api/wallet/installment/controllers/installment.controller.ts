@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { InstallmentEntity } from 'src/entities/wallet/installment.entity';
+import { InstallmentEntity } from 'entities/wallet/installment.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateInstallmentDto } from '../dto/create-installment.dto';
 import { UpdateInstallmentDto } from '../dto/update-installment.dto';

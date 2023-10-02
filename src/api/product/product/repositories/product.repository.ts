@@ -6,10 +6,10 @@ import {
   FilterComparator,
   PaginationType,
 } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { PostgresConstant } from 'src/common/constants/postgres.constant';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductEntity } from 'src/entities/product/product.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { PostgresConstant } from 'common/constants/postgres.constant';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProductEntity } from 'entities/product/product.entity';
 import {
   DataSource,
   Repository,

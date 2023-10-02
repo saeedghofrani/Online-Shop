@@ -3,9 +3,9 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProfileService } from '../service/profile.service';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { CreateProfileDto } from '../dto/create-profile.dto';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { Paginated } from 'nestjs-paginate';
-import { ProfileEntity } from 'src/entities/auth/profile.entity';
+import { ProfileEntity } from 'entities/auth/profile.entity';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Profile')

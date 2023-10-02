@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductAttributeValueEntity } from 'src/entities/product/product-attribute-value.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProductAttributeValueEntity } from 'entities/product/product-attribute-value.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProductAttributeValueDto } from '../dto/create-product-attribute-value.dto';
 import { UpdateProductAttributeValueDto } from '../dto/update-product-attribute-value.dto';
 import { ProductAttributeValueRepository } from '../repositories/product-attribute-value.repository';
 import { AttributeValueService } from '../../attribute-value/services/attribute-value.service';
-import { ProviderService } from 'src/api/inventory/provider/service/provider.service';
+import { ProviderService } from 'api/inventory/provider/service/provider.service';
 import { ProductService } from '../../product/services/product.service';
 
 @Injectable()

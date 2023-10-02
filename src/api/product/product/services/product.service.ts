@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductEntity } from 'src/entities/product/product.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProductEntity } from 'entities/product/product.entity';
 import { UpdateResult } from 'typeorm';
 import { BrandService } from '../../brand/services/brand.service';
 import { CategoryService } from '../../category/services/catgeory.service';

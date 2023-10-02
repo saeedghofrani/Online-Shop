@@ -5,7 +5,7 @@ import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';
 import { UpdateResult } from 'typeorm';
 import { UserPaymentRepository } from '../repositories/user-payment.repository';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { Paginated } from 'nestjs-paginate';
 
 @Injectable()

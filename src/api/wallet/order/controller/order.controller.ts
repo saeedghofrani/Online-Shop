@@ -6,7 +6,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
 import { OrderService } from '../service/order.service';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Order')

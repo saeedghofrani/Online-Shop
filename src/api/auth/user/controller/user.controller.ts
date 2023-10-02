@@ -12,14 +12,14 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { CheckMobileOtpDto, MobileSendOtpDto } from '../dto/mobile-otp.dto';
 import { CheckEmailOtpDto, EmailSendOtpDto } from '../dto/email-otp.dto';
-import { UseJwtGuard } from 'src/common/guards/jwt.guard';
-import { GetUser } from 'src/common/decorator/user.decorator';
-import { UserInterface } from 'src/common/interfaces/user.interface';
-import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester.interceptor';
+import { UseJwtGuard } from 'common/guards/jwt.guard';
+import { GetUser } from 'common/decorator/user.decorator';
+import { UserInterface } from 'common/interfaces/user.interface';
+import { LoginRigesterInterceptor } from 'common/interceptors/login-rigester.interceptor';
 import { OtpInterceptor } from '../../../../common/interceptors/otp.interceptor';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { UserEntity } from 'src/entities/auth/user.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { UserEntity } from 'entities/auth/user.entity';
 import { SignInDto } from '../dto/sign-in.dto';
 
 @ApiTags('User')

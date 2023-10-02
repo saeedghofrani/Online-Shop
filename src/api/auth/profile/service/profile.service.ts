@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
-import { ProfileEntity } from 'src/entities/auth/profile.entity';
+import { ProfileEntity } from 'entities/auth/profile.entity';
 import { ProfileRepository } from '../repositories/profile.repository';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { UserRepository } from '../../user/repositories/user.repository';
 import { UserService } from '../../user/service/user.service';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { Paginated } from 'nestjs-paginate';
 
 @Injectable()

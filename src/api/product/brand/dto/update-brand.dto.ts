@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BrandEntity } from 'src/entities/product/brand.entity';
+import { BrandEntity } from 'entities/product/brand.entity';
 
 export class UpdateBrandDto implements Partial<BrandEntity> {
   @ApiProperty()

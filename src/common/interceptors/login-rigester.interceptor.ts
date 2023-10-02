@@ -7,9 +7,9 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { CheckOtpInterface } from 'src/api/auth/user/interface/check-otp.interface';
-import { CreateLoginRegisterInterface } from 'src/api/history/login-rigester/interface/create-login-register.interface';
-import { LoginRigesterHistoryService } from 'src/api/history/login-rigester/service/login-register.service';
+import { CheckOtpInterface } from 'api/auth/user/interface/check-otp.interface';
+import { CreateLoginRegisterInterface } from 'api/history/login-rigester/interface/create-login-register.interface';
+import { LoginRigesterHistoryService } from 'api/history/login-rigester/service/login-register.service';
 
 @Injectable()
 export class LoginRigesterInterceptor<T>

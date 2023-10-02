@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { installmentType } from 'src/entities/wallet/enum/installment-type.enum';
-import { UserFactorEntity } from 'src/entities/wallet/user-factor.entity';
+import { installmentType } from 'entities/wallet/enum/installment-type.enum';
+import { UserFactorEntity } from 'entities/wallet/user-factor.entity';
 import { PenaltyType } from '../../../../entities/wallet/enum/penalty-type.enum';
 
 export class UpdateUserFactorDto implements Partial<UserFactorEntity> {

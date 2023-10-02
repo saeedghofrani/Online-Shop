@@ -1,13 +1,13 @@
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { UserEntity } from 'src/entities/auth/user.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { UserEntity } from 'entities/auth/user.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { Inject, Injectable } from '@nestjs/common';
-import { PostgresConstant } from 'src/common/constants/postgres.constant';
+import { PostgresConstant } from 'common/constants/postgres.constant';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { BrandEntity } from 'src/entities/product/brand.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { BrandEntity } from 'entities/product/brand.entity';
 
 @Injectable()
 export class UserRepository

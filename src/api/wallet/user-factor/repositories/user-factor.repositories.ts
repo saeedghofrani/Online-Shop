@@ -6,7 +6,7 @@ import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
 import { UpdateUserFactorDto } from '../dto/update-user-factor.dto';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @Injectable()
 export class UserFactorRepositories

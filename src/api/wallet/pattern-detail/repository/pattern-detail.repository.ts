@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { PatternDetailEntity } from 'src/entities/wallet/pattern-detail.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { PatternDetailEntity } from 'entities/wallet/pattern-detail.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';

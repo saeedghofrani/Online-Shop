@@ -1,4 +1,4 @@
-import { UserAgentClass } from 'src/common/classes/user-agent.class';
+import { UserAgentClass } from 'common/classes/user-agent.class';
 
 export interface CreateRequestHistoryInterfece {
   is_authenticated: boolean;

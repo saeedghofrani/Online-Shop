@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { FilterOperator, Paginated, paginate } from 'nestjs-paginate';
-import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { FileEntity } from 'src/entities/public/file.entity';
+import { RepositoriesAbstract } from 'common/abstract/repositories.abstract';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { FileEntity } from 'entities/public/file.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
 import { CreateFileDto } from '../dto/create-file.dto';
 import { UpdateFileDto } from '../dto/update-file.dto';
-import { FileTypeEnum } from 'src/entities/public/enum/file-type.enum';
+import { FileTypeEnum } from 'entities/public/enum/file-type.enum';
 
 @Injectable()
 export class FileRepository

@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { UserEntity } from 'src/entities/auth/user.entity';
-import { AccountEntity } from 'src/entities/wallet/account.entity';
+import { UserEntity } from 'entities/auth/user.entity';
+import { AccountEntity } from 'entities/wallet/account.entity';
 
 export class CreateAccountDto implements Partial<AccountEntity> {
   @ApiHideProperty()

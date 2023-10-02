@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { CreateOtpInterface } from 'src/api/history/otp/interface/create-otp.interface';
-import { OtpHistoryService } from 'src/api/history/otp/service/otp.service';
+import { CreateOtpInterface } from 'api/history/otp/interface/create-otp.interface';
+import { OtpHistoryService } from 'api/history/otp/service/otp.service';
 
 @Injectable()
 export class OtpInterceptor implements NestInterceptor {

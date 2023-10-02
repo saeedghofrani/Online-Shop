@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { SummaryEntity } from 'src/entities/inventory/summary.entity';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { SummaryEntity } from 'entities/inventory/summary.entity';
 import { UpdateResult } from 'typeorm';
 import { ProviderService } from '../../provider/service/provider.service';
 import { CreateSummaryDto } from '../dto/create-summary.dto';

@@ -1,7 +1,7 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { UserEntity } from 'src/entities/auth/user.entity';
-import { FileTypeEnum } from 'src/entities/public/enum/file-type.enum';
-import { FileEntity } from 'src/entities/public/file.entity';
+import { UserEntity } from 'entities/auth/user.entity';
+import { FileTypeEnum } from 'entities/public/enum/file-type.enum';
+import { FileEntity } from 'entities/public/file.entity';
 
 export class CreateFileDto implements Partial<FileEntity> {
   @ApiHideProperty()

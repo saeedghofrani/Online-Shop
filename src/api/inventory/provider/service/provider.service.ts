@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
-import { UserService } from 'src/api/auth/user/service/user.service';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProviderEntity } from 'src/entities/inventory/provider.entity';
+import { UserService } from 'api/auth/user/service/user.service';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
+import { ProviderEntity } from 'entities/inventory/provider.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateProviderDto } from '../dto/create-provider.dto';
 import { UpdateProviderStatusDto } from '../dto/update-provider-status.dto';

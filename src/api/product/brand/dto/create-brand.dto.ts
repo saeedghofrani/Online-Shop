@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { BrandEntity } from 'src/entities/product/brand.entity';
+import { BrandEntity } from 'entities/product/brand.entity';
 
 export class CreateBrandDto implements Partial<BrandEntity> {
   @ApiProperty()

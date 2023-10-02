@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { GetUser } from 'src/common/decorator/user.decorator';
-import { UseJwtGuard } from 'src/common/guards/jwt.guard';
-import { UserInterface } from 'src/common/interfaces/user.interface';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { GetUser } from 'common/decorator/user.decorator';
+import { UseJwtGuard } from 'common/guards/jwt.guard';
+import { UserInterface } from 'common/interfaces/user.interface';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 import { CreateProviderDto } from '../dto/create-provider.dto';
 import { UpdateProviderStatusDto } from '../dto/update-provider-status.dto';
 import { UpdateProviderDto } from '../dto/update-provider.dto';

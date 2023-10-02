@@ -3,9 +3,9 @@ import {
   ApiProperty,
   ApiPropertyOptional,
 } from '@nestjs/swagger';
-import { RouteMethodeEnum } from 'src/entities/auth/enum/route-method.enum';
-import { PermissionEntity } from 'src/entities/auth/permission.entity';
-import { RouteEntity } from 'src/entities/auth/route.entity';
+import { RouteMethodeEnum } from 'entities/auth/enum/route-method.enum';
+import { PermissionEntity } from 'entities/auth/permission.entity';
+import { RouteEntity } from 'entities/auth/route.entity';
 
 export class CreateRouteDto implements Partial<RouteEntity> {
   @ApiProperty()

@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { ProfileEntity } from 'src/entities/auth/profile.entity';
-import { UserEntity } from 'src/entities/auth/user.entity';
+import { ProfileEntity } from 'entities/auth/profile.entity';
+import { UserEntity } from 'entities/auth/user.entity';
 
 export class CreateProfileDto implements Partial<ProfileEntity> {
   @ApiPropertyOptional()

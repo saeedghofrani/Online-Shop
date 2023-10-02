@@ -1,7 +1,7 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty } from 'class-validator';
-import { AttributeValueEntity } from 'src/entities/product/attribute-value.entity';
-import { AttributeEntity } from 'src/entities/product/attribute.entity';
+import { AttributeValueEntity } from 'entities/product/attribute-value.entity';
+import { AttributeEntity } from 'entities/product/attribute.entity';
 
 export class UpdateAttributeValueDto implements Partial<AttributeValueEntity> {
   @ApiProperty()

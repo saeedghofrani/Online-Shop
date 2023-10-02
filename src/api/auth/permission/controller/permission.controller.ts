@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PermissionService } from '../service/permission.service';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
-import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { PaginationQueryDto } from 'common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Permission')

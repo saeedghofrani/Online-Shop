@@ -12,9 +12,9 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
-import { GetUser } from 'src/common/decorator/user.decorator';
-import { UseJwtGuard } from 'src/common/guards/jwt.guard';
-import { UserInterface } from 'src/common/interfaces/user.interface';
+import { GetUser } from 'common/decorator/user.decorator';
+import { UseJwtGuard } from 'common/guards/jwt.guard';
+import { UserInterface } from 'common/interfaces/user.interface';
 import { FileService } from '../service/file.service';
 
 @Controller('files')

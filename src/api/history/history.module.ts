@@ -17,12 +17,12 @@ import {
 import {
   RequestHistory,
   RequestHistorySchema,
-} from 'src/entities/history/request.schema';
+} from 'entities/history/request.schema';
 import { RequestHistoryService } from './request/service/request.service';
 import {
   ReportOrderHistory,
   ReportOrderHistorySchema,
-} from 'src/entities/history/report-order.schema';
+} from 'entities/history/report-order.schema';
 import { ReportOrderHistoryService } from './report-order/service/report-order.service';
 
 @Module({
