@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
-import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
+import { ProfileEntity } from 'src/entities/auth/profile.entity';
 import { ProfileRepository } from '../repositories/profile.repository';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';

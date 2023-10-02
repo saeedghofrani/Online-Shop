@@ -3,7 +3,7 @@ import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { KycEntity } from 'src/entities/AUTH/kyc.entity';
+import { KycEntity } from 'src/entities/auth/kyc.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateKycDto } from '../dto/create-kyc.dto';
 

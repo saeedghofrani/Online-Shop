@@ -12,7 +12,7 @@ import { FunctionsClass } from 'src/common/classes/functions.class';
 import { PayloadJwtInterface } from 'src/common/interfaces/payload-jwt.interface';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { UserEntity } from 'src/entities/AUTH/user.entity';
+import { UserEntity } from 'src/entities/auth/user.entity';
 import { SendEmailDto } from 'src/utils/email/dto/send-email.dto';
 import { EmailService } from 'src/utils/email/service/email.service';
 import { RedisService } from 'src/utils/redis/redis.service';

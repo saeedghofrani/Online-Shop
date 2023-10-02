@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ProviderStatus } from 'src/entities/INVENTORY/enum/provider-status.enum';
-import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
+import { ProviderStatus } from 'src/entities/inventory/enum/provider-status.enum';
+import { ProviderEntity } from 'src/entities/inventory/provider.entity';
 
 export class UpdateProviderStatusDto implements Partial<ProviderEntity> {
   @ApiProperty()

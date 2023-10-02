@@ -8,7 +8,7 @@ import {
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { CategoryAttributeEntity } from 'src/entities/PRODUCT/category-attribute.entity';
+import { CategoryAttributeEntity } from 'src/entities/product/category-attribute.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateCategoryAttributeDto } from '../dto/create-category-attribute.dto';
 import { UpdateCategoryAttributeDto } from '../dto/update-category-attribute.dto';

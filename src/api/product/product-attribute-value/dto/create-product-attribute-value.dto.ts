@@ -1,10 +1,10 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
-import { AttributeValueEntity } from 'src/entities/PRODUCT/attribute-value.entity';
-import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
-import { ProductAttributeValueEntity } from 'src/entities/PRODUCT/product-attribute-value.entity';
-import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
+import { ProviderEntity } from 'src/entities/inventory/provider.entity';
+import { AttributeValueEntity } from 'src/entities/product/attribute-value.entity';
+import { AttributeEntity } from 'src/entities/product/attribute.entity';
+import { ProductAttributeValueEntity } from 'src/entities/product/product-attribute-value.entity';
+import { ProductEntity } from 'src/entities/product/product.entity';
 
 export class CreateProductAttributeValueDto
   implements Partial<ProductAttributeValueEntity>

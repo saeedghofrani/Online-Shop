@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common/decorators';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { CityEntity } from 'src/entities/LOCATION/city.entity';
+import { CityEntity } from 'src/entities/location/city.entity';
 import { UpdateResult } from 'typeorm';
 import { StateService } from '../../state/services/state.service';
 import { CreateCityDto } from '../dto/create-city.dto';

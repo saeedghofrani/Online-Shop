@@ -8,9 +8,9 @@ import {
 import { MainEntity } from '../../common/entities/main.entity';
 import { AttributeValueEntity } from './attribute-value.entity';
 import { ProductEntity } from './product.entity';
-import { ProviderEntity } from '../INVENTORY/provider.entity';
+import { ProviderEntity } from '../inventory/provider.entity';
 import { ColumnNumericTransformer } from 'src/common/classes/column-numeric-transformer.class';
-import { OrderEntity } from '../WALLET/order.entity';
+import { OrderEntity } from '../wallet/order.entity';
 
 @Entity({ schema: 'product', name: 'product_attribute_value' })
 export class ProductAttributeValueEntity extends MainEntity {

@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { RoleEntity } from 'src/entities/AUTH/role.entity';
-import { UserEntity } from 'src/entities/AUTH/user.entity';
+import { RoleEntity } from 'src/entities/auth/role.entity';
+import { UserEntity } from 'src/entities/auth/user.entity';
 
 export class CreateUserDto implements Partial<UserEntity> {
   @ApiPropertyOptional()

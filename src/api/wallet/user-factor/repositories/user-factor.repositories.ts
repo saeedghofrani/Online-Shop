@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { UserFactorEntity } from '../../../../entities/WALLET/user-factor.entity';
+import { UserFactorEntity } from '../../../../entities/wallet/user-factor.entity';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
 import { UpdateUserFactorDto } from '../dto/update-user-factor.dto';

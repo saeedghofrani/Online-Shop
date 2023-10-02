@@ -16,13 +16,13 @@ import * as argon2 from 'argon2';
 import crypto from 'crypto';
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
-import { AddressEntity } from '../LOCATION/address.entity';
+import { AddressEntity } from '../location/address.entity';
 import { RoleEntity } from './role.entity';
 import { FileEntity } from '../public/file.entity';
-import { ProviderEntity } from '../INVENTORY/provider.entity';
-import { WalletEntity } from '../WALLET/wallet.entity';
-import { OrderEntity } from '../WALLET/order.entity';
-import { AccountEntity } from '../WALLET/account.entity';
+import { ProviderEntity } from '../inventory/provider.entity';
+import { WalletEntity } from '../wallet/wallet.entity';
+import { OrderEntity } from '../wallet/order.entity';
+import { AccountEntity } from '../wallet/account.entity';
 
 @Entity({ schema: 'auth', name: 'user' })
 export class UserEntity extends MainEntity {

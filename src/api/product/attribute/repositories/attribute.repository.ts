@@ -4,7 +4,7 @@ import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract'
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import postgresConfiguration from 'src/config/database/postgres/postgres.configuration';
-import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
+import { AttributeEntity } from 'src/entities/product/attribute.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateAttributeDto } from '../dto/create-attribute.dto';
 import { UpdateAttributeDto } from '../dto/update-attribute.dto';

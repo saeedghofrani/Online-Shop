@@ -1,6 +1,6 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { CityEntity } from 'src/entities/LOCATION/city.entity';
-import { StateEntity } from 'src/entities/LOCATION/state.entity';
+import { CityEntity } from 'src/entities/location/city.entity';
+import { StateEntity } from 'src/entities/location/state.entity';
 
 export class CreateCityDto implements Partial<CityEntity> {
   @ApiProperty()

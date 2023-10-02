@@ -3,7 +3,7 @@ import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
+import { ProfileEntity } from 'src/entities/auth/profile.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';

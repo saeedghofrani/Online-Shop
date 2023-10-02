@@ -1,5 +1,5 @@
 import { DataSource, Repository, UpdateResult } from 'typeorm';
-import { UserPaymentEntity } from '../../../../entities/WALLET/user-payment.entity';
+import { UserPaymentEntity } from '../../../../entities/wallet/user-payment.entity';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';

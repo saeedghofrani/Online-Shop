@@ -4,7 +4,7 @@ import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UpdateResult } from 'typeorm';
 import { CreateCategoryAttributeDto } from '../dto/create-category-attribute.dto';
 import { UpdateCategoryAttributeDto } from '../dto/update-category-attribute.dto';
-import { CategoryAttributeEntity } from 'src/entities/PRODUCT/category-attribute.entity';
+import { CategoryAttributeEntity } from 'src/entities/product/category-attribute.entity';
 import { CategoryAttributeRepository } from '../repositories/category-attribute.repository';
 import { CategoryService } from '../../category/services/catgeory.service';
 import { AttributeService } from '../../attribute/services/attribute.service';

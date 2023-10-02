@@ -1,5 +1,5 @@
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
-import { OrderEntity } from '../../../../entities/WALLET/order.entity';
+import { OrderEntity } from '../../../../entities/wallet/order.entity';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';

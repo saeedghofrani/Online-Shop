@@ -1,4 +1,4 @@
-import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
+import { ProductEntity } from 'src/entities/product/product.entity';
 
 export interface CreateReportOrderInterface {
   user: string;

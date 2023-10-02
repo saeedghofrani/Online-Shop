@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { UserPaymentEntity } from 'src/entities/WALLET/user-payment.entity';
+import { UserPaymentEntity } from 'src/entities/wallet/user-payment.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateUserPaymentDto } from '../dto/create-user-payment.dto';
 import { UpdateUserPaymentDto } from '../dto/update-user-payment.dto';

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
 import { CreateRoleDto } from '../dto/create-role.dto';
 import { UpdateRoleDto } from '../dto/update-role.dto';
-import { RoleEntity } from 'src/entities/AUTH/role.entity';
+import { RoleEntity } from 'src/entities/auth/role.entity';
 import { RoleRepository } from '../repositories/role.repository';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';

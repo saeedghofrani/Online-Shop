@@ -2,7 +2,7 @@ import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { RouteEntity } from 'src/entities/AUTH/route.entity';
+import { RouteEntity } from 'src/entities/auth/route.entity';
 import { CreateRouteDto } from '../dto/create-route.dto';
 import { UpdateRouteDto } from '../dto/update-route.dto';
 import { RouteService } from '../service/route.service';

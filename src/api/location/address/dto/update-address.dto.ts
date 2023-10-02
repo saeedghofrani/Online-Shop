@@ -1,7 +1,7 @@
 import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
-import { UserEntity } from 'src/entities/AUTH/user.entity';
-import { AddressEntity } from 'src/entities/LOCATION/address.entity';
-import { CityEntity } from 'src/entities/LOCATION/city.entity';
+import { UserEntity } from 'src/entities/auth/user.entity';
+import { AddressEntity } from 'src/entities/location/address.entity';
+import { CityEntity } from 'src/entities/location/city.entity';
 
 export class UpdateAddressDto implements Partial<AddressEntity> {
   @ApiProperty()

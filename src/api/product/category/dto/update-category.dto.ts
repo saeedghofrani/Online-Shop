@@ -3,7 +3,7 @@ import {
   ApiProperty,
   ApiPropertyOptional,
 } from '@nestjs/swagger';
-import { CategoryEntity } from 'src/entities/PRODUCT/category.entity';
+import { CategoryEntity } from 'src/entities/product/category.entity';
 
 export class UpdateCategoryDto implements Partial<CategoryEntity> {
   @ApiProperty()

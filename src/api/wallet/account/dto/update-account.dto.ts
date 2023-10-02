@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AccountEntity } from 'src/entities/WALLET/account.entity';
+import { AccountEntity } from 'src/entities/wallet/account.entity';
 
 export class UpdateAccountDto implements Partial<AccountEntity> {
   @ApiProperty()

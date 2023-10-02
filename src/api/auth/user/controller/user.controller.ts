@@ -19,7 +19,7 @@ import { LoginRigesterInterceptor } from 'src/common/interceptors/login-rigester
 import { OtpInterceptor } from '../../../../common/interceptors/otp.interceptor';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { UserEntity } from 'src/entities/AUTH/user.entity';
+import { UserEntity } from 'src/entities/auth/user.entity';
 import { SignInDto } from '../dto/sign-in.dto';
 
 @ApiTags('User')

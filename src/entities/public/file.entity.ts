@@ -1,6 +1,6 @@
 import { Column, Entity, Index, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { UserEntity } from '../AUTH/user.entity';
+import { UserEntity } from '../auth/user.entity';
 import { FileTypeEnum } from './enum/file-type.enum';
 
 @Entity({ schema: 'public', name: 'file' })

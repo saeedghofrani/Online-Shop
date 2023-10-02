@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { PatternMasterEntity } from 'src/entities/WALLET/pattern-master.entity';
+import { PatternMasterEntity } from 'src/entities/wallet/pattern-master.entity';
 import { UpdateResult } from 'typeorm';
 import { CreatePatternMasterDto } from '../dto/create-pattern-master.dto';
 import { UpdatePatternMasterDto } from '../dto/update-pattern-master.dto';

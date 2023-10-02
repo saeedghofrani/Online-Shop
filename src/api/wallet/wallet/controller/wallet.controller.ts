@@ -1,6 +1,6 @@
 import { WalletService } from '../services/wallet.service';
 import { CreateWalletDto } from '../dto/create-wallet.dto';
-import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
+import { WalletEntity } from '../../../../entities/wallet/wallet.entity';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
 import { UpdateResult } from 'typeorm';
 import { UserInterface } from '../../../../common/interfaces/user.interface';

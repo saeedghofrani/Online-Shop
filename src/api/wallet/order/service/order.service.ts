@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { UpdateResult } from 'typeorm';
-import { OrderEntity } from '../../../../entities/WALLET/order.entity';
+import { OrderEntity } from '../../../../entities/wallet/order.entity';
 import { UserService } from '../../../auth/user/service/user.service';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';

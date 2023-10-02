@@ -4,7 +4,7 @@ import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
-import { OrderEntity } from '../../../../entities/WALLET/order.entity';
+import { OrderEntity } from '../../../../entities/wallet/order.entity';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 

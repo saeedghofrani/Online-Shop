@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { SummaryEntity } from 'src/entities/INVENTORY/summary.entity';
+import { SummaryEntity } from 'src/entities/inventory/summary.entity';
 
 export class UpdateSummaryDto implements Partial<SummaryEntity> {
   @ApiProperty()

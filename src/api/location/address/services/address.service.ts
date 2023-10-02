@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Paginated } from 'nestjs-paginate';
 import { UserService } from 'src/api/auth/user/service/user.service';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { AddressEntity } from 'src/entities/LOCATION/address.entity';
+import { AddressEntity } from 'src/entities/location/address.entity';
 import { UpdateResult } from 'typeorm';
 import { CityService } from '../../city/services/city.service';
 import { CreateAddressDto } from '../dto/create-address.dto';

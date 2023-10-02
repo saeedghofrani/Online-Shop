@@ -4,7 +4,7 @@ import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
 import { PostgresConstant } from '../../../../common/constants/postgres.constant';
-import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
+import { WalletEntity } from '../../../../entities/wallet/wallet.entity';
 import { CreateWalletDto } from '../dto/create-wallet.dto';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
 

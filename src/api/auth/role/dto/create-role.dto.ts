@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { RoleEntity } from 'src/entities/AUTH/role.entity';
+import { RoleEntity } from 'src/entities/auth/role.entity';
 
 export class CreateRoleDto implements Partial<RoleEntity> {
   @ApiProperty()

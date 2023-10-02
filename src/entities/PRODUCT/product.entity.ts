@@ -9,7 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { SummaryEntity } from '../INVENTORY/summary.entity';
+import { SummaryEntity } from '../inventory/summary.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
 import { ProductAttributeValueEntity } from './product-attribute-value.entity';

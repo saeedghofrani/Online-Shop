@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserFactorService } from '../services/user-factor.service';
 import { CreateUserFactorDto } from '../dto/create-user-factor.dto';
-import { UserFactorEntity } from '../../../../entities/WALLET/user-factor.entity';
+import { UserFactorEntity } from '../../../../entities/wallet/user-factor.entity';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 
 @ApiBearerAuth('access-token')

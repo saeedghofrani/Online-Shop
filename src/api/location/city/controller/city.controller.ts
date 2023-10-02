@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { CityEntity } from 'src/entities/LOCATION/city.entity';
+import { CityEntity } from 'src/entities/location/city.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateCityDto } from '../dto/create-city.dto';
 import { UpdateCityDto } from '../dto/update-city.dto';

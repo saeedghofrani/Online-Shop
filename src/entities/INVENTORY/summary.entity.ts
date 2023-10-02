@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { ProductEntity } from '../PRODUCT/product.entity';
+import { ProductEntity } from '../product/product.entity';
 import { ProviderEntity } from './provider.entity';
 
 @Entity({ schema: 'inventory', name: 'summary' })

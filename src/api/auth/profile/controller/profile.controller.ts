@@ -5,7 +5,7 @@ import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { Paginated } from 'nestjs-paginate';
-import { ProfileEntity } from 'src/entities/AUTH/profile.entity';
+import { ProfileEntity } from 'src/entities/auth/profile.entity';
 
 @ApiBearerAuth('access-token')
 @ApiTags('Profile')

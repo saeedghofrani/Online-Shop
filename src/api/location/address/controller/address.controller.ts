@@ -5,7 +5,7 @@ import { GetUser } from 'src/common/decorator/user.decorator';
 import { UseJwtGuard } from 'src/common/guards/jwt.guard';
 import { UserInterface } from 'src/common/interfaces/user.interface';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { AddressEntity } from 'src/entities/LOCATION/address.entity';
+import { AddressEntity } from 'src/entities/location/address.entity';
 import { UpdateResult } from 'typeorm';
 import { CreateAddressDto } from '../dto/create-address.dto';
 import { UpdateAddressDto } from '../dto/update-address.dto';

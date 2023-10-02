@@ -3,7 +3,7 @@ import { FilterOperator, paginate, Paginated } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProviderEntity } from 'src/entities/INVENTORY/provider.entity';
+import { ProviderEntity } from 'src/entities/inventory/provider.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProviderDto } from '../dto/create-provider.dto';
 import { UpdateProviderStatusDto } from '../dto/update-provider-status.dto';

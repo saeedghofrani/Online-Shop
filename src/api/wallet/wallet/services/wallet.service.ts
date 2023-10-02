@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { RepositoriesAbstract } from '../../../../common/abstract/repositories.abstract';
-import { WalletEntity } from '../../../../entities/WALLET/wallet.entity';
+import { WalletEntity } from '../../../../entities/wallet/wallet.entity';
 import { CreateWalletDto } from '../dto/create-wallet.dto';
 import { UpdateWalletDto } from '../dto/update-wallet.dto';
 import { UpdateResult } from 'typeorm';

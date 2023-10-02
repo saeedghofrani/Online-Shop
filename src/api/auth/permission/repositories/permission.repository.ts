@@ -3,7 +3,7 @@ import { Paginated, paginate, FilterOperator } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { PermissionEntity } from 'src/entities/AUTH/permission.entity';
+import { PermissionEntity } from 'src/entities/auth/permission.entity';
 import { DataSource, In, Repository, UpdateResult } from 'typeorm';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';

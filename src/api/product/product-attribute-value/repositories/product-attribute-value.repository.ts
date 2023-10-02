@@ -3,7 +3,7 @@ import { FilterOperator, Paginated, paginate } from 'nestjs-paginate';
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { ProductAttributeValueEntity } from 'src/entities/PRODUCT/product-attribute-value.entity';
+import { ProductAttributeValueEntity } from 'src/entities/product/product-attribute-value.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateProductAttributeValueDto } from '../dto/create-product-attribute-value.dto';
 import { UpdateProductAttributeValueDto } from '../dto/update-product-attribute-value.dto';

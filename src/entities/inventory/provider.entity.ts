@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, OneToMany, Unique } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
-import { UserEntity } from '../AUTH/user.entity';
+import { UserEntity } from '../auth/user.entity';
 import { ProviderStatus } from './enum/provider-status.enum';
 import { SummaryEntity } from './summary.entity';
-import { ProductAttributeValueEntity } from '../PRODUCT/product-attribute-value.entity';
+import { ProductAttributeValueEntity } from '../product/product-attribute-value.entity';
 import { WebEntity } from './web.entity';
 
 @Entity({ schema: 'inventory', name: 'provider' })

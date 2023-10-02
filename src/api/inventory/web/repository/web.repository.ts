@@ -8,7 +8,7 @@ import {
 import { RepositoriesAbstract } from 'src/common/abstract/repositories.abstract';
 import { PostgresConstant } from 'src/common/constants/postgres.constant';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
-import { WebEntity } from 'src/entities/INVENTORY/web.entity';
+import { WebEntity } from 'src/entities/inventory/web.entity';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { CreateWebDto } from '../dto/create-web.dto';
 import { UpdateWebDto } from '../dto/update-web.dto';
