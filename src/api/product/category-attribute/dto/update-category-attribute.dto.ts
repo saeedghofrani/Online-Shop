@@ -17,7 +17,7 @@ export class UpdateCategoryAttributeDto
   @IsNotEmpty()
   @IsBoolean()
   priceable: boolean;
-  
+
   @ApiProperty()
   name: string;
 

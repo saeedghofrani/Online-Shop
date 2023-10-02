@@ -28,10 +28,11 @@ export class CategoryAttributeService {
         createEntityDto.category_id,
       );
       if (
-        await this.findPriceableAttribute(
+        (await this.findPriceableAttribute(
           createEntityDto.category_id,
           createEntityDto.attribute_id,
-        ) && createEntityDto.priceable
+        )) &&
+        createEntityDto.priceable
       ) {
         throw new BadRequestException(
           'category can only contain one priceable attribute',
@@ -57,10 +58,11 @@ export class CategoryAttributeService {
         updateEntityDto.category_id,
       );
       if (
-        await this.findPriceableAttribute(
+        (await this.findPriceableAttribute(
           updateEntityDto.category_id,
           updateEntityDto.attribute_id,
-        ) && updateEntityDto.priceable
+        )) &&
+        updateEntityDto.priceable
       ) {
         throw new BadRequestException(
           'category can only contain one priceable attribute',
@@ -68,12 +70,12 @@ export class CategoryAttributeService {
       }
       await this.attributeService.updateEntity(updateEntityDto.attribute_id, {
         name: updateEntityDto.name,
-        type: updateEntityDto.type
-      })
-      delete updateEntityDto.name
-      delete updateEntityDto.type
-      delete updateEntityDto.category_id
-      delete updateEntityDto.attribute_id
+        type: updateEntityDto.type,
+      });
+      delete updateEntityDto.name;
+      delete updateEntityDto.type;
+      delete updateEntityDto.category_id;
+      delete updateEntityDto.attribute_id;
       return await this.categoryAttributeRepository.updateEntity(
         id,
         updateEntityDto,

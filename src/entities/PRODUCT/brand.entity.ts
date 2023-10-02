@@ -10,7 +10,7 @@ export class BrandEntity extends MainEntity {
   @Column({ unique: true })
   original_name: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   description: string;
 
   @Column({ default: true })
@@ -18,6 +18,4 @@ export class BrandEntity extends MainEntity {
 
   @OneToMany(() => ProductEntity, (productEntity) => productEntity.brand)
   products: ProductEntity[];
-
-  
 }

@@ -46,11 +46,11 @@ export class CategoryEntity extends MainEntity {
   )
   category_attribute: CategoryAttributeEntity[];
 
-  @BeforeSoftRemove() 
-  @BeforeRemove() 
+  @BeforeSoftRemove()
+  @BeforeRemove()
   changeName() {
     this.name = 'deleted_' + this.id + '_' + this.name;
     this.original_name = 'deleted_' + this.id + '_' + this.original_name;
-    return this.save()
+    return this.save();
   }
 }

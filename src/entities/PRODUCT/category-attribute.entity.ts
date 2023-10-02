@@ -12,7 +12,7 @@ export class CategoryAttributeEntity extends MainEntity {
   priceable: boolean;
 
   @DeleteDateColumn()
-  delete_at: Date
+  delete_at: Date;
 
   @ManyToOne(() => CategoryEntity, (category) => category.category_attribute)
   category: CategoryEntity;

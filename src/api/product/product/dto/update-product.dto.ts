@@ -14,7 +14,7 @@ export class UpdateProductDto implements Partial<ProductEntity> {
   @IsNotEmpty()
   @IsNumber()
   price: number;
-  
+
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

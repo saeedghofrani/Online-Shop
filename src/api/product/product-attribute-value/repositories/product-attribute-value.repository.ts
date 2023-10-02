@@ -45,7 +45,9 @@ export class ProductAttributeValueRepository
       .getOne();
   }
   async findAllEntities(): Promise<ProductAttributeValueEntity[]> {
-    return await this.createQueryBuilder('product_attribute_value').orderBy('product_attribute_value.id', 'ASC').getMany();
+    return await this.createQueryBuilder('product_attribute_value')
+      .orderBy('product_attribute_value.id', 'ASC')
+      .getMany();
   }
 
   async removeEntity(id: string) {

@@ -47,8 +47,8 @@ export class ProductRepository
       .getOne();
   }
   async removeProduct(id: string): Promise<ProductEntity> {
-    const product = await this.findOne({where: {id}});
-    return await product.softRemove()
+    const product = await this.findOne({ where: { id } });
+    return await product.softRemove();
   }
   async findAllEntities(): Promise<ProductEntity[]> {
     return await this.query(`

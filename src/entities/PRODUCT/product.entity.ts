@@ -31,7 +31,7 @@ export class ProductEntity extends MainEntity {
   price: number;
 
   @DeleteDateColumn()
-  delete_at: Date
+  delete_at: Date;
 
   @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;
@@ -49,10 +49,10 @@ export class ProductEntity extends MainEntity {
   @JoinColumn()
   brand: BrandEntity;
 
-  @BeforeSoftRemove() 
+  @BeforeSoftRemove()
   beforeSoftRemove() {
     this.title = 'deleted_' + this.id + '_' + this.title;
     this.original_title = 'deleted_' + this.id + '_' + this.original_title;
-    return this.save()
+    return this.save();
   }
 }

@@ -42,7 +42,9 @@ export class AttributeRepository
       .getOne();
   }
   async findAllEntities(): Promise<AttributeEntity[]> {
-    return await this.createQueryBuilder('attribute').orderBy('attribute.id', 'ASC').getMany();
+    return await this.createQueryBuilder('attribute')
+      .orderBy('attribute.id', 'ASC')
+      .getMany();
   }
 
   async categoryAttribute(product_id: number) {
@@ -55,8 +57,8 @@ export class AttributeRepository
   }
 
   async removeAttribute(id: string) {
-    const attribute = await this.findOne({where: {id}})
-    return await attribute.softRemove()
+    const attribute = await this.findOne({ where: { id } });
+    return await attribute.softRemove();
   }
 
   async attributePagination(

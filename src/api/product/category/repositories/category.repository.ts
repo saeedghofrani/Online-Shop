@@ -36,7 +36,9 @@ export class CategoryRepository
       .getOne();
   }
   async findAllEntities(): Promise<CategoryEntity[]> {
-    return await this.createQueryBuilder('category').orderBy('category.id', 'ASC').getMany();
+    return await this.createQueryBuilder('category')
+      .orderBy('category.id', 'ASC')
+      .getMany();
   }
   async findTree(): Promise<CategoryEntity[]> {
     return await this.manager.getTreeRepository(CategoryEntity).findTrees();
@@ -55,8 +57,8 @@ export class CategoryRepository
   }
 
   async removeCategory(id: number) {
-    const category = await this.findOne({where: {id: String(id)}})
-    category.softRemove({listeners: true});
+    const category = await this.findOne({ where: { id: String(id) } });
+    category.softRemove({ listeners: true });
   }
 
   async categoryPagination(

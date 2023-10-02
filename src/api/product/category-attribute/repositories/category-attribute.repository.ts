@@ -49,23 +49,22 @@ export class CategoryAttributeRepository
   }
 
   async findAllEntities(): Promise<CategoryAttributeEntity[]> {
-    return await this.createQueryBuilder('category_attribute').orderBy('category_attribute.id', 'ASC').getMany();
+    return await this.createQueryBuilder('category_attribute')
+      .orderBy('category_attribute.id', 'ASC')
+      .getMany();
   }
 
   async findPriceableAttribute(category_id: string, attribute_id: string) {
     return await this.createQueryBuilder('category_attribute')
       .innerJoinAndSelect('category_attribute.category', 'category')
-      .where(
-        'category.id = :category_id and category_attribute.priceable',
-        {
-          category_id,
-        },
-      )
+      .where('category.id = :category_id and category_attribute.priceable', {
+        category_id,
+      })
       .getOne();
   }
 
   async removeCategoryAttribute(id: string) {
-    const categoryAttribute = await this.findOne({where: {id}});
+    const categoryAttribute = await this.findOne({ where: { id } });
     return await categoryAttribute.softRemove();
   }
 

@@ -12,11 +12,11 @@ import { UpdateAttributeValueDto } from '../dto/update-attribute-value.dto';
 export class AttributeValueRepository
   extends Repository<AttributeValueEntity>
   implements
-  RepositoriesAbstract<
-    AttributeValueEntity,
-    CreateAttributeValueDto,
-    UpdateAttributeValueDto
-  >
+    RepositoriesAbstract<
+      AttributeValueEntity,
+      CreateAttributeValueDto,
+      UpdateAttributeValueDto
+    >
 {
   constructor(
     @Inject(PostgresConstant) private postgresDataSource: DataSource,
@@ -52,7 +52,9 @@ export class AttributeValueRepository
   }
 
   async findAllEntities(): Promise<AttributeValueEntity[]> {
-    return await this.createQueryBuilder('attribute_value').orderBy('attribute.id', 'ASC').getMany();
+    return await this.createQueryBuilder('attribute_value')
+      .orderBy('attribute.id', 'ASC')
+      .getMany();
   }
 
   async removeAttributeValue(id: string): Promise<AttributeValueEntity> {

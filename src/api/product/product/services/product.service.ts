@@ -28,10 +28,12 @@ export class ProductService {
         categoryId,
       );
       return await this.productRepository.createEntity(createEntityDto);
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
   }
   async removeProduct(id: string) {
-    return await this.productRepository.removeProduct(id)
+    return await this.productRepository.removeProduct(id);
   }
   async updateEntity(
     id: string,
@@ -40,7 +42,9 @@ export class ProductService {
     brandId: string,
   ): Promise<UpdateResult> {
     try {
-    } catch (error) { throw error }
+    } catch (error) {
+      throw error;
+    }
     categoryId
       ? (updateEntityDto.category = await this.categoryService.findOneEntity(
           categoryId,
