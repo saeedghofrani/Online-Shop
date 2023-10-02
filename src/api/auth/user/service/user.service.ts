@@ -155,7 +155,8 @@ export class UserService {
 
   async signIn(signInDto: SignInDto): Promise<CheckOtpInterface> {
     try {
-      const userEntity = await this.findByEntity(signInDto.mobile);
+      const formattedNumber = signInDto.mobile.replace(/^0|^(\+98)/, '');
+      const userEntity = await this.findByEntity(formattedNumber);
       if (!userEntity) {
         throw new BadRequestException('Username Does Not Exist');
       }
@@ -183,9 +184,10 @@ export class UserService {
 
   async signUp(signInDto: SignInDto) {
     try {
+      const formattedNumber = signInDto.mobile.replace(/^0|^(\+98)/, '');
       const role = await this.roleService.getRoleDefault();
       const createUser = new CreateUserDto();
-      createUser.mobile = signInDto.mobile;
+      createUser.mobile = formattedNumber;
       createUser.prefix = signInDto.prefix;
       createUser.password = signInDto.password;
       createUser.roles = [role];
