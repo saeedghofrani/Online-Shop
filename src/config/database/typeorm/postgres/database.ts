@@ -6,7 +6,7 @@ export const dbConfig = (): DataSourceOptions => ({
   host: process.env.PG_HOST,
   port: parseInt(process.env.PG_PORT, 10) || 5432,
   username: process.env.PG_USERNAME,
-  password: process.env.PG_PASSWORD,
+  password: "#FS#@9445HATsdS*WEJFZpart$$",
   database: process.env.PG_DATABASE,
   ssl: process.env.PG_SSL === 'true',
   synchronize: process.env.PG_SYNCHRONIZE === 'true',
