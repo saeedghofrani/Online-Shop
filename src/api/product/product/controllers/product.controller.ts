@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { ProductEntity } from 'src/entities/PRODUCT/product.entity';
@@ -61,6 +61,11 @@ export class ProductController {
   @ApiOperation({ summary: 'Product Pagination' })
   productPagination(@Body() query: PaginationQueryDto) {
     return this.productService.productPagination(query);
+  }
+
+  @Delete()
+  removeProduct(@Query('id') id: string) {
+    return this.productService.removeProduct(id);
   }
 
   @Get('attribute')

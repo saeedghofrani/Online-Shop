@@ -1,5 +1,6 @@
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   Index,
   JoinColumn,
@@ -27,6 +28,9 @@ export class ProductEntity extends MainEntity {
 
   @Column({ nullable: true })
   price: number;
+
+  @DeleteDateColumn()
+  delete_at: Date
 
   @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;

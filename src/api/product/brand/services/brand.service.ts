@@ -19,6 +19,10 @@ export class BrandService {
     }
   }
 
+  async updateStatus(id: string) {
+    return await this.brandRepository.updateStatus(id);
+  }
+
   async updateEntity(
     id: string,
     updateEntityDto: UpdateBrandDto,

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
 import { AttributeEntity } from 'src/entities/PRODUCT/attribute.entity';
@@ -52,5 +52,10 @@ export class AttributeController {
   @ApiOperation({ summary: 'Attribute Pagination' })
   attributePagination(@Body() query: PaginationQueryDto) {
     return this.attributeService.attributePagination(query);
+  }
+
+  @Delete()
+  async removeAttribute(@Query('id') id: string) {
+    return this.attributeService.removeAttribute(id);
   }
 }

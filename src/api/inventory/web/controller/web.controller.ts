@@ -17,6 +17,12 @@ export class WebController {
     return this.webService.findAllEntities();
   }
 
+  @Get('last')
+  @ApiOperation({ summary: 'Get last web record' })
+  findLast() {
+    return this.webService.findLast();
+  }
+
   @Post('page')
   @ApiOperation({ summary: 'Web Pagination' })
   webPagination(@Body() query: PaginationQueryDto) {

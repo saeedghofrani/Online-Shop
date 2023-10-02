@@ -97,4 +97,8 @@ export class CategoryAttributeService {
       throw error;
     }
   }
+
+  async removeCategoryAttribute(id: string) {
+    return await this.categoryAttributeRepository.removeCategoryAttribute(id);
+  }
 }

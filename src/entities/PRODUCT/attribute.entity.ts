@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, DeleteDateColumn, Entity, OneToMany } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { CategoryAttributeEntity } from './category-attribute.entity';
 import { AttributeValueEntity } from './attribute-value.entity';
@@ -16,6 +16,9 @@ export class AttributeEntity extends MainEntity {
   })
   type: AttributeEnum;
 
+  @DeleteDateColumn()
+  delete_at: Date;
+  
   @OneToMany(
     () => CategoryAttributeEntity,
     (category_attribute) => category_attribute.category,

@@ -37,6 +37,11 @@ export class BrandController {
     return this.brandService.findAllEntities();
   }
 
+  @Get('status')
+  updateStatus(@Query('id') id: string): Promise<BrandEntity> {
+    return this.brandService.updateStatus(id);
+  }
+
   @Post('page')
   @ApiOperation({ summary: 'Brand Pagination' })
   brandPagination(

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Paginated } from 'nestjs-paginate';
 import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
@@ -37,6 +37,11 @@ export class CategoryAttributeController {
   @Get('all')
   findAllEntities(): Promise<CategoryAttributeEntity[]> {
     return this.categoryAttributeService.findAllEntities();
+  }
+
+  @Delete()
+  async removeCategoryAttribute(@Query('id') id: string): Promise<CategoryAttributeEntity> {
+    return await this.categoryAttributeService.removeCategoryAttribute(id);
   }
 
   @Post('page')

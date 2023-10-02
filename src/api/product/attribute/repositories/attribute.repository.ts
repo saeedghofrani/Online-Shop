@@ -54,6 +54,11 @@ export class AttributeRepository
     `);
   }
 
+  async removeAttribute(id: string) {
+    const attribute = await this.findOne({where: {id}})
+    return await attribute.softRemove()
+  }
+
   async attributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeEntity>> {

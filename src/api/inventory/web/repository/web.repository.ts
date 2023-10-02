@@ -43,6 +43,15 @@ export class WebRepository
     `)
   }
 
+  async findLast(): Promise<WebEntity[]> {
+    return await this.query(`
+    select
+    * ,
+    (select id from public.file f where f.relation_id = w.id order by create_at limit 1)
+    from inventory.web w order by create_at desc limit 1
+    `)
+  }
+
   async findByEntity(searchTerm: string): Promise<WebEntity> {
     return await this.createQueryBuilder('web')
       .where(`web.name = :searchTerm OR web.original_name = :searchTerm`, {

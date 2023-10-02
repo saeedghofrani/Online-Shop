@@ -56,6 +56,10 @@ export class AttributeService {
     }
   }
 
+  async removeAttribute(id: string) {
+    return await this.attributeRepository.removeAttribute(id);
+  }
+
   async attributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeEntity>> {

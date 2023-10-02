@@ -66,6 +66,11 @@ export class CategoryAttributeRepository
       .getOne();
   }
 
+  async removeCategoryAttribute(id: string) {
+    const categoryAttribute = await this.findOne({where: {id}});
+    return await categoryAttribute.softRemove();
+  }
+
   async categoryAttributePagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<CategoryAttributeEntity>> {

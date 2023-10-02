@@ -30,6 +30,9 @@ export class ProductService {
       return await this.productRepository.createEntity(createEntityDto);
     } catch (error) { throw error }
   }
+  async removeProduct(id: string) {
+    return await this.productRepository.removeProduct(id)
+  }
   async updateEntity(
     id: string,
     updateEntityDto: UpdateProductDto,

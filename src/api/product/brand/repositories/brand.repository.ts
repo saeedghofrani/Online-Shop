@@ -41,6 +41,12 @@ export class BrandRepository
     return await this.createQueryBuilder('brand').getMany();
   }
 
+  async updateStatus(id: string): Promise<BrandEntity> {
+    const brand = await this.findOne({where: {id}});
+    brand.status = brand.status? false : true;
+    return await this.save(this.create(brand));
+  }
+
   async brandPagination(
     query: PaginationQueryDto,
   ): Promise<Paginated<BrandEntity>> {

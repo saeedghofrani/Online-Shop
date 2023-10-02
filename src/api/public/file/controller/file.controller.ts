@@ -75,8 +75,8 @@ export class FileController {
     return await this.fileService.getFileDirect(id);
   }
 
-  @Delete(':id')
-  async removeFile(@Param('id') id: string) {
+  @Delete()
+  async removeFile(@Query('id') id: string) {
     return await this.fileService.removeFile(id);
   }
 }

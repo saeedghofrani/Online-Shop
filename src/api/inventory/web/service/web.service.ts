@@ -35,6 +35,10 @@ export class WebService {
     return await this.webRepository.findOneEntity(providerId);
   }
 
+  async findLast(): Promise<WebEntity[]> {
+    return await this.webRepository.findLast();
+  }
+
   async updateEntity(
     id: string,
     updateWebDto: UpdateWebDto,
