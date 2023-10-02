@@ -42,7 +42,7 @@ export class AttributeRepository
       .getOne();
   }
   async findAllEntities(): Promise<AttributeEntity[]> {
-    return await this.createQueryBuilder('attribute').getMany();
+    return await this.createQueryBuilder('attribute').orderBy('attribute.id', 'ASC').getMany();
   }
 
   async categoryAttribute(product_id: number) {
@@ -50,7 +50,7 @@ export class AttributeRepository
       select a."name",a."type" , ca.priceable, a.id  from product.product p 
       inner join product.category_attribute ca on ca."categoryId" = p."categoryId" 
       inner join product."attribute" a on a.id = ca."attributeId"
-      where p.id = ${product_id}
+      where p.id = ${product_id} and p.delete_at is NULL order by p.id desc
     `);
   }
 

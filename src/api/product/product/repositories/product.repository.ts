@@ -61,7 +61,7 @@ export class ProductRepository
     (SELECT "id" FROM file f WHERE f.relation_id = p.id LIMIT 1) AS image,
     CAST((SELECT MIN(pav.price) FROM product.product_attribute_value pav where pav."productId" = p.id and pav.price > 0 LIMIT 1) AS FLOAT) AS price
     FROM
-        product.product p
+        product.product p where p.delete_at is null order by p.id asc
     `);
   }
 
@@ -72,6 +72,7 @@ export class ProductRepository
       .innerJoinAndSelect('av.attribute', 'a', 'a.type = :attributeType', {
         attributeType: 0,
       })
+      .orderBy('p.id', 'ASC')
       .getMany();
   }
 
@@ -94,7 +95,7 @@ export class ProductRepository
       SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} LIMIT 1 
       `);
       const price = await this.query(`
-      SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 LIMIT 1
+      SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 and pav.delete_at is null LIMIT 1
       `);
       element.image = image[0] ? image[0]['image'] : '';
       element.price = Number(price[0] ? price[0]['price'] : '');

@@ -49,17 +49,15 @@ export class CategoryAttributeRepository
   }
 
   async findAllEntities(): Promise<CategoryAttributeEntity[]> {
-    return await this.createQueryBuilder('category_attribute').getMany();
+    return await this.createQueryBuilder('category_attribute').orderBy('category_attribute.id', 'ASC').getMany();
   }
 
   async findPriceableAttribute(category_id: string, attribute_id: string) {
     return await this.createQueryBuilder('category_attribute')
       .innerJoinAndSelect('category_attribute.category', 'category')
-      .innerJoinAndSelect('category_attribute.attribute', 'attribute')
       .where(
-        'attribute.id = :attribute_id and category.id = :category_id and category_attribute.priceable',
+        'category.id = :category_id and category_attribute.priceable',
         {
-          attribute_id,
           category_id,
         },
       )

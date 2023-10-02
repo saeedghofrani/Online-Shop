@@ -47,11 +47,12 @@ export class AttributeValueRepository
       .where('attribute_value.attribute=:id', {
         id,
       })
+      .orderBy('attribute_value.id', 'ASC')
       .getMany();
   }
 
   async findAllEntities(): Promise<AttributeValueEntity[]> {
-    return await this.createQueryBuilder('attribute_value').getMany();
+    return await this.createQueryBuilder('attribute_value').orderBy('attribute.id', 'ASC').getMany();
   }
 
   async removeAttributeValue(id: string): Promise<AttributeValueEntity> {
@@ -62,11 +63,11 @@ export class AttributeValueRepository
   async productAttributeValue(id: number): Promise<AttributeValueEntity> {
     return await this.query(`
       select a."name" , av.value , ca.priceable , pav.price  from product.product p 
-      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" 
-      inner join product."attribute" a on a.id = ca."attributeId"
-      inner join product.attribute_value av on av."attributeId" = ca."attributeId" 
+      inner join product.category_attribute ca on ca."categoryId" = p."categoryId" and ca.delete_at is NULL
+      inner join product."attribute" a on a.id = ca."attributeId" and a.delete_at is NULL
+      inner join product.attribute_value av on av."attributeId" = ca."attributeId"  and av.delete_at is NULL
       inner join product.product_attribute_value pav on pav."productId" = p.id
-      where p.id = ${id}
+      where p.id = ${id} and p.delete_at is NULL order by p.id asc
     `);
   }
 

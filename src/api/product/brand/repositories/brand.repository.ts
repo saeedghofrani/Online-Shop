@@ -35,15 +35,18 @@ export class BrandRepository
   async findOneEntity(id: string): Promise<BrandEntity> {
     return await this.createQueryBuilder('brand')
       .where('brand.id=:brand_id', { brand_id: id })
+      .andWhere('brand.status')
       .getOne();
   }
   async findAllEntities(): Promise<BrandEntity[]> {
-    return await this.createQueryBuilder('brand').getMany();
+    return await this.createQueryBuilder('brand').where('brand.status').orderBy('brand.id', 'ASC').getMany();
   }
 
   async updateStatus(id: string): Promise<BrandEntity> {
     const brand = await this.findOne({where: {id}});
     brand.status = brand.status? false : true;
+    brand.name = 'deleted_' + brand.id + '_' + brand.name
+    brand.original_name = 'deleted_' + brand.id + '_' + brand.original_name
     return await this.save(this.create(brand));
   }
 

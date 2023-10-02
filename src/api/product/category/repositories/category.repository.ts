@@ -36,7 +36,7 @@ export class CategoryRepository
       .getOne();
   }
   async findAllEntities(): Promise<CategoryEntity[]> {
-    return await this.createQueryBuilder('category').getMany();
+    return await this.createQueryBuilder('category').orderBy('category.id', 'ASC').getMany();
   }
   async findTree(): Promise<CategoryEntity[]> {
     return await this.manager.getTreeRepository(CategoryEntity).findTrees();
@@ -44,21 +44,19 @@ export class CategoryRepository
 
   async findRoots() {
     return await this.query(`
-    select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId" is null 
+    select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id and c2.delete_at is NULL) as descendants from product.category c where c."parentId" is null and c.delete_at is NULL  order by c.id asc
       `);
   }
 
   async findChildren(parent_id: number) {
     return await this.query(`
-      select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id) as descendants from product.category c where c."parentId"  = ${parent_id}
+      select "name", description , id, original_name , (select count(*) from product.category c2 where c2."parentId" = c.id and c2.delete_at is NULL) as descendants from product.category c where c."parentId"  = ${parent_id} and c.delete_at is NULL   order by c.id asc
       `);
   }
 
   async removeCategory(id: number) {
-    const category = await this.createQueryBuilder('category')
-      .where('category.id = :id', { id })
-      .getOne();
-    category.softRemove();
+    const category = await this.findOne({where: {id: String(id)}})
+    category.softRemove({listeners: true});
   }
 
   async categoryPagination(
