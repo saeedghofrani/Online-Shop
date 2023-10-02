@@ -12,8 +12,7 @@ import {
 } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserStatusEnum } from './enum/user-status.enum';
-import * as argon2 from 'argon2';
-import crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../location/address.entity';
@@ -80,7 +79,9 @@ export class UserEntity extends MainEntity {
   @BeforeInsert()
   async hashPassword() {
     if (this.password) {
-      this.password = await argon2.hash(this.password);
+      const saltRounds = 10; // You can adjust the number of salt rounds as needed
+      const salt = await bcrypt.genSalt(saltRounds);
+      this.password = await bcrypt.hash(this.password, salt);
     }
   }
 
@@ -89,10 +90,7 @@ export class UserEntity extends MainEntity {
     delete this.password;
   }
 
-  async verifyPassword(
-    password: string,
-    entityPassword: string,
-  ): Promise<boolean> {
-    return argon2.verify(entityPassword, password);
+  async verifyPassword(password: string, entityPassword: string): Promise<boolean> {
+    return bcrypt.compare(password, entityPassword);
   }
 }
