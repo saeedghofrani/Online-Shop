@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserStatusEnum } from './enum/user-status.enum';
-import * as bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../location/address.entity';
@@ -79,9 +79,11 @@ export class UserEntity extends MainEntity {
   @BeforeInsert()
   async hashPassword() {
     if (this.password) {
-      const saltRounds = 10; // You can adjust the number of salt rounds as needed
-      const salt = await bcrypt.genSalt(saltRounds);
-      this.password = await bcrypt.hash(this.password, salt);
+      const salt = crypto.randomBytes(16).toString('hex'); // Generate a random salt
+      const hash = crypto
+        .pbkdf2Sync(this.password, salt, 1000, 64, 'sha512')
+        .toString('hex'); // Use a suitable hashing algorithm
+      this.password = `${salt}:${hash}`;
     }
   }
 
@@ -91,6 +93,11 @@ export class UserEntity extends MainEntity {
   }
 
   async verifyPassword(password: string, entityPassword: string): Promise<boolean> {
-    return bcrypt.compare(password, entityPassword);
+    const [storedSalt, storedHash] = entityPassword.split(':');
+    const hash = crypto
+      .pbkdf2Sync(password, storedSalt, 1000, 64, 'sha512')
+      .toString('hex');
+    
+    return hash === storedHash;
   }
 }
