@@ -6,5 +6,8 @@ export function getEnvPath(): string {
   const filename: string = env
     ? `${prefix}${env}.env`
     : prefix + '/development.env';
+    console.log(filename, '===============================================>');
+    console.log(process.env.PG_PASSWORD);
+    
   return resolve(`${filename}`);
 }
