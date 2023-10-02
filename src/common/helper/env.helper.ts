@@ -8,6 +8,8 @@ export function getEnvPath(): string {
     : prefix + '/development.env';
     console.log(filename, '===============================================>');
     console.log(process.env.PG_PASSWORD);
+    console.log(process.env.APP_MODE);
+    
     
   return resolve(`${filename}`);
 }
