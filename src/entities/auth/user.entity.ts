@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { MainEntity } from '../../common/entities/main.entity';
 import { UserStatusEnum } from './enum/user-status.enum';
-import crypto from 'crypto';
+import * as  crypto from 'crypto';
 import { ProfileEntity } from './profile.entity';
 import { KycEntity } from './kyc.entity';
 import { AddressEntity } from '../location/address.entity';
