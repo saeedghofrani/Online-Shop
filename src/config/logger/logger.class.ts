@@ -226,9 +226,9 @@ class Logger {
       levels: customLevels.levels,
       transports: [
         new winston.transports.Console(transports.console),
-        new winston.transports.File({
-          filename: 'common/logs/query.log',
-        }),
+        // new winston.transports.File({
+        //   filename: 'common/logs/query.log',
+        // }),
       ],
     };
   }
