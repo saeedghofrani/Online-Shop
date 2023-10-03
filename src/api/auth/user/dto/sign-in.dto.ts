@@ -1,16 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsString,
+  IsIn,
   IsNotEmpty,
   IsPhoneNumber,
+  IsString,
   Length,
-  Matches,
-  IsIn,
+  Matches
 } from 'class-validator';
 
 export class SignInDto {
   @IsString()
-  @ApiProperty()
+  @ApiProperty()  
   @IsNotEmpty({ message: 'Mobile number is required' })
   @IsPhoneNumber('IR', { message: 'Invalid mobile number format' })
   mobile: string;
@@ -27,8 +27,8 @@ export class SignInDto {
   @Length(1, 20, {
     message: 'Password length must be between 6 and 20 characters',
   })
-  // @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
-  //   message: 'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character',
-  // })
+  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+    message: 'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character',
+  })
   password: string;
 }
