@@ -94,11 +94,11 @@ export class ProductRepository
       const image = await this.query(`
       SELECT "id" as image FROM file f WHERE f.relation_id = ${element.id} and f.type= '0'::file_type_enum  LIMIT 1 
       `);
-      const price = await this.query(`
-      SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 and pav.delete_at is null LIMIT 1
-      `);
+      // const price = await this.query(`
+      // SELECT MIN(pav.price) as price FROM product.product_attribute_value pav where pav."productId" = ${element.id} and pav.price > 0 and pav.delete_at is null LIMIT 1
+      // `);
       element.image = image[0] ? image[0]['image'] : '';
-      element.price = Number(price[0] ? price[0]['price'] : '');
+      // element.price = Number(price[0] ? price[0]['price'] : '');
     }
     return pagination;
   }
