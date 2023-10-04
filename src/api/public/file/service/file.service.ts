@@ -141,6 +141,10 @@ export class FileService {
     }
   }
 
+  async updateRelation(id: string, relation: number) {
+    return await this.fileRepository.updateRelation(id, relation);
+  }
+
   async findFile(type: FileTypeEnum, id: string): Promise<FileEntity[]> {
     try {
       return await this.fileRepository.findFile(type, id);

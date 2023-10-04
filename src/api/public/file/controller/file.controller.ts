@@ -3,6 +3,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   Res,
@@ -78,5 +79,10 @@ export class FileController {
   @Delete()
   async removeFile(@Query('id') id: string) {
     return await this.fileService.removeFile(id);
+  }
+
+  @Patch(':id')
+  async updateRelation(@Param('id') id: string, @Query('relation') relation: number) {
+    return await this.fileService.updateRelation(id, relation);
   }
 }

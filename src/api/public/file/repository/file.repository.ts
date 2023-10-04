@@ -28,6 +28,16 @@ export class FileRepository
   ): Promise<UpdateResult> {
     return await this.update(id, updateEntityDto);
   }
+
+  async updateRelation(
+    id: string,
+    relation: number
+  ) {
+    const file = await this.findOne({where: {id}});
+    file.relation_id = relation
+    return await this.save(this.create(file));
+  }
+
   async findOneEntity(id: string): Promise<FileEntity> {
     return await this.createQueryBuilder('file')
       .where('file.id=:id_file', { id_file: id })
