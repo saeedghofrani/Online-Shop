@@ -3,7 +3,6 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { UserEntity } from '../auth/user.entity';
 import { ProviderStatus } from './enum/provider-status.enum';
 import { SummaryEntity } from './summary.entity';
-import { ProductAttributeValueEntity } from '../product/product-attribute-value.entity';
 import { WebEntity } from './web.entity';
 
 @Entity({ schema: 'inventory', name: 'provider' })
@@ -30,12 +29,6 @@ export class ProviderEntity extends MainEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.providers)
   user: UserEntity;
-
-  @OneToMany(
-    () => ProductAttributeValueEntity,
-    (product_attribute_value) => product_attribute_value.provider,
-  )
-  product_attribute_value: ProductAttributeValueEntity[];
 
   @OneToMany(() => WebEntity, (web) => web.provider)
   web: WebEntity[];

@@ -17,9 +17,6 @@ import { AttributeValueRepository } from './attribute-value/repositories/attribu
 import { CategoryAttributeController } from './category-attribute/controller/category-attribute.controller';
 import { CategoryAttributeService } from './category-attribute/services/category-attribute.service';
 import { CategoryAttributeRepository } from './category-attribute/repositories/category-attribute.repository';
-import { ProductAttributeValueController } from './product-attribute-value/controller/product-attribute-value.controller';
-import { ProductAttributeValueService } from './product-attribute-value/services/product-attribute-value.service';
-import { ProductAttributeValueRepository } from './product-attribute-value/repositories/product-attribute-value.repository';
 import { InventoryModuel } from '../inventory/inventory.module';
 
 @Module({
@@ -31,7 +28,6 @@ import { InventoryModuel } from '../inventory/inventory.module';
     ProductController,
     AttributeValueController,
     CategoryAttributeController,
-    ProductAttributeValueController,
   ],
   providers: [
     AttributeService,
@@ -46,8 +42,6 @@ import { InventoryModuel } from '../inventory/inventory.module';
     AttributeValueRepository,
     CategoryAttributeService,
     CategoryAttributeRepository,
-    ProductAttributeValueService,
-    ProductAttributeValueRepository,
   ],
   exports: [ProductService, ProductRepository],
 })

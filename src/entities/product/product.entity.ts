@@ -12,7 +12,6 @@ import { MainEntity } from '../../common/entities/main.entity';
 import { SummaryEntity } from '../inventory/summary.entity';
 import { BrandEntity } from './brand.entity';
 import { CategoryEntity } from './category.entity';
-import { ProductAttributeValueEntity } from './product-attribute-value.entity';
 
 @Entity({ schema: 'product', name: 'product' })
 export class ProductEntity extends MainEntity {
@@ -38,12 +37,6 @@ export class ProductEntity extends MainEntity {
 
   @OneToMany(() => SummaryEntity, (summaries) => summaries.product)
   summaries: SummaryEntity[];
-
-  @OneToMany(
-    () => ProductAttributeValueEntity,
-    (product_attributes_value) => product_attributes_value.product,
-  )
-  product_attributes_value: ProductAttributeValueEntity[];
 
   @ManyToOne(() => BrandEntity, (brandEntity) => brandEntity.products)
   @JoinColumn()
