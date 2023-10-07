@@ -57,10 +57,10 @@ export class BrandRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<BrandEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['name', 'description'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },

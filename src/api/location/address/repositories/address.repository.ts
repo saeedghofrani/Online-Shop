@@ -46,10 +46,10 @@ export class AddressRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<AddressEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['building_number', 'postal_code'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
     });
   }
 }

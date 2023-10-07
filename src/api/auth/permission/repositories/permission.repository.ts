@@ -64,10 +64,10 @@ export class PermissionRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<PermissionEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['name'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },

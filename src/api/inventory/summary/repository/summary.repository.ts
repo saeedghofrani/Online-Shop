@@ -59,9 +59,9 @@ export class SummaryRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<SummaryEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
     });
   }
 }

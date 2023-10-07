@@ -78,10 +78,10 @@ export class AttributeValueRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<AttributeValueEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['value'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },

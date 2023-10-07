@@ -58,10 +58,10 @@ export class RouteRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<RouteEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['address'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         //##TODO
         jwt: [FilterOperator.NULL],

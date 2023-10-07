@@ -47,9 +47,9 @@ export class InstallmentRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<InstallmentEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         priec: [FilterOperator.EQ],
         dou_date: [FilterOperator.BTW],

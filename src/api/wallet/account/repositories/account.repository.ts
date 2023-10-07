@@ -43,10 +43,10 @@ export class AccountRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<AccountEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['account'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         account: [FilterOperator.ILIKE],
         iban: [FilterOperator.ILIKE],

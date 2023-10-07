@@ -80,7 +80,7 @@ export class ProductRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<ProductEntity>> {
     const pagination = await paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['title', 'description'],
       defaultSortBy: [['title', 'DESC']],

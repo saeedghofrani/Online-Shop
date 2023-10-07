@@ -51,9 +51,9 @@ export class UserFactorRepositories
     query: PaginationQueryDto,
   ): Promise<Paginated<UserFactorEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
     });
   }
 }

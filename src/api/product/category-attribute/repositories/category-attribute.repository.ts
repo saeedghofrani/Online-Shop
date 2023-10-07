@@ -72,10 +72,10 @@ export class CategoryAttributeRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<CategoryAttributeEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['filterable', 'priceable'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },

@@ -59,10 +59,10 @@ export class UserRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<UserEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['mobile', 'email'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         mobile: [FilterOperator.ILIKE],
         email: [FilterOperator.ILIKE],

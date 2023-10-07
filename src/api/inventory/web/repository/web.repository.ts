@@ -38,7 +38,7 @@ export class WebRepository
     return await this.query(`
     select
     * ,
-    (select id from public.file f where f.relation_id = w.id and f.type= '3'::file_type_enum order by create_at limit 1) as image
+    (select id from public.file f where f.relation_id = w.id and f.type= '3'::file_type_enum order by id limit 1) as image
     from inventory.web w 
     `);
   }
@@ -47,7 +47,7 @@ export class WebRepository
     return await this.query(`
     select
     * ,
-    (select id from public.file f where f.relation_id = w.id and f.type= '3'::file_type_enum order by create_at limit 1) as image 
+    (select id from public.file f where f.relation_id = w.id and f.type= '3'::file_type_enum order by id limit 1) as image 
     from inventory.web w order by id desc limit 1
     `);
   }
@@ -72,9 +72,9 @@ export class WebRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<WebEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         name: [FilterOperator.ILIKE],
       },

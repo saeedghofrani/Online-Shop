@@ -51,9 +51,9 @@ export class PatternMasterRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<PatternMasterEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
     });
   }
 }

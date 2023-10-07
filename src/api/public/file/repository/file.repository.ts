@@ -66,10 +66,10 @@ export class FileRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<FileEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['type'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         relation_id: [FilterOperator.ILIKE],
         type: [FilterOperator.ILIKE],

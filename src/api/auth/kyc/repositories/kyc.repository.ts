@@ -56,10 +56,10 @@ export class KycRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<KycEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['national_code', 'birth_date'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         national_code: [FilterOperator.ILIKE],
       },

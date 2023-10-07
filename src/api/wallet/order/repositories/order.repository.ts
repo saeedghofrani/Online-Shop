@@ -44,9 +44,9 @@ export class OrderRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<OrderEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
     });
   }
 }

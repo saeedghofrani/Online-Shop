@@ -45,10 +45,10 @@ export class WalletRepository
     query: PaginationQueryDto,
   ): Promise<Paginated<WalletEntity>> {
     return paginate(query, this, {
-      sortableColumns: ['create_at'],
+      sortableColumns: ['id'],
       nullSort: 'last',
       searchableColumns: ['amount'],
-      defaultSortBy: [['create_at', 'DESC']],
+      defaultSortBy: [['id', 'DESC']],
       filterableColumns: {
         amount: [FilterOperator.ILIKE],
       },
